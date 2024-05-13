@@ -61,11 +61,11 @@ var entries = [
 
 
 function getArtUrl(id, group) {
-    return "assets/" + group + "/" + id + ".jpg";
+    return "assets/2024/" + group + "/" + id + ".jpg";
 }
 
 function getItemUrl(id) {
-    return "assets/item/" + id + ".png";
+    return "assets/2024/item/" + id + ".png";
 }
 
 function generateGrid() {
