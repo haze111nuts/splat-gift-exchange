@@ -263,7 +263,6 @@ p {
 
 .label {
   cursor: pointer;
-  transform: rotateZ(2deg);
   width: 110%;
   position: absolute;
   left: 0;
@@ -359,4 +358,4 @@ p {
   }
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=2024.css.map */
