@@ -326,15 +326,47 @@ p {
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
 	transition: all 0.14s ease-in;
+	.itemPanel{
+		margin: 0 auto;
+		width: 800px;
+		height: 100%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) scale(1);
+		transition: all 0.25s ease-out;
+		// border: 1px solid green;
+
+		.itemArt{
+			width: 350px;
+			height: 350px;
+			position: absolute;
+			left: -50px;
+			top: 50%;
+			transform: translate(0, -50%) scale(1) rotateZ(-5deg);
+			// border: 1px solid red;
+		}
+		.itemSummary{
+			width: 400px;
+			max-height: 300px;
+			padding: 80px 50px 80px 200px;
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translate(0, -50%) scale(1) rotateZ(2deg);
+			background-color: #f3f4f8;
+		}
+	}
+	.art{
+		position: absolute;
+		height: 90%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) scale(1);
+		transition: all 0.25s ease-out;
+	}
 }
-.modal img{
-	position: absolute;
-	height: 90%;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%) scale(1);
-	transition: all 0.25s ease-out;
-}
+
 
 .hide {
 	opacity: 0 !important;

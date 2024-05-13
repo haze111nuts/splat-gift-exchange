@@ -133,12 +133,31 @@ function setupFlipToggle() {
     });
 }
 
+
+function setUpItemModalClickEvents(){
+    $(".label").each(function () {
+        $(this).click(function () {
+            var dataID = $(this).data().id;
+            $(".modal").removeClass("hide");
+            var itemModalHtml = "";
+
+            itemModalHtml += "<div class='itemPanel'>"
+            itemModalHtml += "<div class='itemSummary'> askajdlkajalkjdalksdjlk </div>"
+            itemModalHtml += "<img class='itemArt' src='" + getItemUrl(dataID) + "'>"
+            itemModalHtml += "</div>"
+
+            $(".modal").html(itemModalHtml);
+            $(document.body).addClass("noscroll");
+        })
+    })
+}
+
 function setupModalClickEvents() {
     $(".cardFront").each(function () {
         $(this).click(function () {
             var dataID = $(this).data().id;
             $(".modal").removeClass("hide");
-            $(".modal").html("<img src='" + getArtUrl(dataID, "sender") + "'>");
+            $(".modal").html("<img class='art' src='" + getArtUrl(dataID, "sender") + "'>");
             $(document.body).addClass("noscroll");
         })
     })
@@ -146,7 +165,7 @@ function setupModalClickEvents() {
         $(this).click(function () {
             var dataID = $(this).data().id;
             $(".modal").removeClass("hide");
-            $(".modal").html("<img src='" + getArtUrl(dataID, "getter") + "'>");
+            $(".modal").html("<img class='art' src='" + getArtUrl(dataID, "getter") + "'>");
             $(document.body).addClass("noscroll");
         })
     })
@@ -154,13 +173,13 @@ function setupModalClickEvents() {
         $(".modal").addClass("hide");
         $(document.body).removeClass("noscroll");
     })
-
 }
 
 function setupStuff() {
     generateGrid();
     setupFlipToggle();
     setupModalClickEvents();
+    setUpItemModalClickEvents();
 }
 
 //======================//
