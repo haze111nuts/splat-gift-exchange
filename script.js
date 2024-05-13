@@ -91,7 +91,7 @@ function generateGrid() {
         gridHtml += '</div>'
         gridHtml += '</div>'
 
-        gridHtml += '<div class="label" data-id="' + i + '>';
+        gridHtml += '<div class="label" data-id="'+i+'">';
         gridHtml += '<div class="giftTitle">' + entries[i].itemName + '</div>';
         gridHtml += '<div class="giftAltTitle">' + entries[i].itemAltName + '</div>';
         gridHtml += '</div>';
