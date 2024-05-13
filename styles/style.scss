@@ -1,0 +1,363 @@
+@font-face {
+	font-family: "DFPT_AZ5";
+	src: url("../assets/fonts/DFPT_AZ5.otf");
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	font-family: "DFPT_ZY9";
+	src: url("../assets/fonts/DFPT_ZY9.otf");
+	font-style: normal;
+	font-weight: normal;
+}
+
+$preview_size: 180px;
+$preview_gapX: 20px;
+$preview_gapY: 80px;
+$gift_size: 80px;
+$gift_toL: -40px;
+$gift_toB: -75px;
+
+html {
+	font-size: 16px;
+}
+
+body {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	transition: all 0.14s ease-in;
+}
+
+.day {
+	background-color: #f3f4f8;
+}
+
+.night {
+	background-color: #333;
+}
+
+.banner {
+	padding: 50px 0;
+	background: fixed
+		url(https://cdn.vectorstock.com/i/1000x1000/16/72/cute-winter-pattern-on-subtle-background-vector-29121672.webp);
+}
+
+h1 {
+	margin: 0 0 0.25rem;
+	font-size: 2.5rem;
+	font-weight: 300;
+	text-align: center;
+	color: #333;
+	font-family: "DFPT_AZ5", sans-serif;
+	// font-family: ‘Noto Sans TC’, sans-serif;
+}
+h3 {
+	font-size: 1.3rem;
+	font-weight: 600;
+	text-align: center;
+	font-family: "DFPT_AZ5", sans-serif;
+	color: #333;
+	// text-shadow: 0 0 5px rgba(0, 0, 0, 0.24);
+	margin: 0 0 10px 0;
+}
+h4 {
+	margin: 0 0 2rem;
+	font-size: 1.25rem;
+	font-weight: 600;
+	text-align: center;
+	font-family: "DFPT_AZ5", sans-serif;
+	color: white;
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.24);
+}
+
+p {
+	max-width: 800px;
+	padding: 0px 20px;
+	margin: 0 auto;
+	font-size: 0.875rem;
+	font-weight: 400;
+	text-align: center;
+	letter-spacing: 0.25px;
+	color: #333;
+}
+
+.navbar {
+	z-index: 10;
+	position: sticky;
+	top: 0;
+	font-size: medium;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+.flipButton {
+	cursor: pointer;
+	font-family: "DFPT_AZ5", sans-serif;
+	text-decoration: wavy;
+	text-align: center;
+	display: flex;
+	transition: all 0.14s ease-in;
+}
+// .flipButton:hover {
+// }
+.sender,
+.getter {
+	z-index: 10;
+	flex: 1;
+	padding: 8px 0px;
+}
+
+.sender > div,
+.getter > div {
+	font-size: small;
+}
+
+.flipButtonBG,
+.flipButtonBG2 {
+	// box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+	height: 100%;
+	position: absolute;
+	transition: all 0.4s ease-in-out;
+}
+
+.flipButtonBG {
+	width: 0;
+	background-image: url(../assets/bg.png);
+	background-color: rgb(212, 203, 115);
+	// border-top-right-radius: 50px;
+	// border-bottom-right-radius: 50px;
+	clip-path: polygon(0 0, 100% 0%, 95% 100%, 0% 100%);
+}
+.flipButtonBG2 {
+	width: 0;
+	right: 0;
+	background-image: url(../assets/bg2.png);
+	background-color: rgb(101, 212, 207);
+	// border-top-left-radius: 50px;
+	// border-bottom-left-radius: 50px;
+	clip-path: polygon(5% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.grid {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	align-items: center;
+	justify-content: center;
+	width: 90%;
+	max-width: 1200px;
+	height: 100%;
+	margin: 0 auto;
+	padding: 50px 0 0;
+	list-style: none;
+}
+
+.grid-item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	flex-direction: column;
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: $preview_size;
+	height: $preview_size;
+	margin-right: $preview_gapX;
+	margin-left: $preview_gapX;
+	margin-bottom: $preview_gapY;
+	transform: translate(0, 0);
+	transform: translate3d(0, 0, 0);
+	transition:
+		transform 0.14s ease-in,
+		text-shadow 0.1s ease-in;
+	will-change: transform;
+	cursor: pointer;
+}
+
+.card {
+	background-color: transparent;
+	width: 100%;
+	height: 100%;
+	perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+.cardInner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transition: transform 0.8s;
+	transform-style: preserve-3d;
+}
+
+.cardFront,
+.cardBack {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-webkit-backface-visibility: hidden; /* Safari */
+	backface-visibility: hidden;
+}
+
+.cardFront {
+	background-color: #bbb;
+	color: black;
+}
+
+/* Style the back side */
+.cardBack {
+	background-color: dodgerblue;
+	color: white;
+	transform: rotateY(180deg);
+}
+
+.preview {
+	border: 5px solid rgb(192, 192, 192);
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+	display: inline-block;
+}
+
+.previewInner {
+	height: 100%;
+	width: 100%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.preview:hover .previewInner,
+.preview:focus .previewInner {
+	background-color: #bdc4d0;
+	-ms-transform: scale(1.2);
+	-moz-transform: scale(1.2);
+	-webkit-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
+.preview:hover .previewInner:before,
+.preview:focus .previewInner:before {
+	display: block;
+}
+
+.preview:hover a,
+.preview:focus a {
+	display: block;
+}
+
+.previewInner:before {
+	content: "";
+	display: none;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.gift img,
+.gift {
+	width: $gift_size;
+}
+
+.gift {
+	position: absolute;
+	left: $gift_toL;
+	bottom: $gift_toB;
+	transform: rotateZ(-5deg);
+	transition:
+		transform 0.14s ease-in,
+		text-shadow 0.1s ease-in;
+}
+
+.label {
+	transform: rotateZ(2deg);
+	width: 110%;
+	position: absolute;
+	left: 0;
+	bottom: -55px;
+	// border: rgba(48, 48, 48, 0.2) 1px solid;
+	transition: all 0.14s ease-in;
+}
+
+.label:hover {
+	background-color: #a6d7dd;
+}
+
+.giftTitle,
+.giftAltTitle {
+	width: 95%;
+	float: right;
+	text-align: center;
+	// border: 1px solid rgba(255, 0, 0, 0.1);
+}
+.giftTitle {
+	font-size: 1.2rem;
+}
+.giftAltTitle {
+	font-size: 0.8rem;
+}
+
+//=========================//
+//===                   ===//
+//===   POP-UP MODAL    ===//
+//===                   ===//
+//=========================//
+.noscroll {
+	overflow: hidden;
+}
+.modal {
+	z-index: 830;
+	background-color: rgba(0, 0, 0, 0.7);
+	opacity: 1;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transition: 0.25s ease-out;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	transition: all 0.14s ease-in;
+}
+.modal img{
+	position: absolute;
+	height: 90%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(1);
+	transition: all 0.25s ease-out;
+}
+
+.hide {
+	opacity: 0 !important;
+	z-index: -1 !important;
+}
+
+//=========================//
+//===                   ===//
+//===   MEDIA SCREENS   ===//
+//===                   ===//
+//=========================//
+
+@media only screen and (max-width: 1200px) {
+}
+
+@media only screen and (max-width: 959px) {
+}
+
+@media only screen and (max-width: 481px) {
+	h1 {
+		font-size: 8vw;
+	}
+	h4 {
+		font-size: 5vw;
+	}
+}
