@@ -172,10 +172,10 @@ p {
 		transform 0.14s ease-in,
 		text-shadow 0.1s ease-in;
 	will-change: transform;
-	cursor: pointer;
 }
 
 .card {
+	cursor: pointer;
 	background-color: transparent;
 	width: 100%;
 	height: 100%;
@@ -278,6 +278,7 @@ p {
 }
 
 .label {
+	cursor: pointer;
 	transform: rotateZ(2deg);
 	width: 110%;
 	position: absolute;
