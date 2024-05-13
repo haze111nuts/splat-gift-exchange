@@ -1,3 +1,14 @@
+body {
+  margin: 0;
+  padding: 0;
+}
 
+.turingBar {
+  border: 1px solid red;
+}
+
+.turingBar > div {
+    float: left;
+}
 
 /*# sourceMappingURL=lottery.css.map */
