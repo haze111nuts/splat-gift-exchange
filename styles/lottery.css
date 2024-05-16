@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "DFPT_AZ5";
+  src: url("../assets/fonts/DFPT_AZ5.otf");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "DFPT_ZY9";
+  src: url("../assets/fonts/DFPT_ZY9.otf");
+  font-style: normal;
+  font-weight: normal;
+}
 html {
   margin: 0;
   padding: 0;
@@ -9,24 +21,41 @@ body {
   background-color: #e0e0e0;
 }
 
+.stats {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(83, 83, 83);
+  z-index: 83;
+  width: 150px;
+  padding: 40px 20px;
+  border-radius: 0 0 50px 0;
+  color: #e0e0e0;
+}
+
 .topBar {
-  width: 70%;
-  background-color: rgb(159, 129, 228);
+  width: 100%;
   padding-top: 20px;
-  padding: 20px;
-  border-radius: 0 0 100px 100px;
-  height: 120px;
   position: fixed;
   top: 0px;
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 83;
-  clear: both;
 }
 
 .topBar_inner {
   height: 100%;
   position: relative;
+}
+
+.topBar_BG {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80%;
+  background-color: rgb(159, 129, 228);
+  height: 150px;
+  border-radius: 0 0 0 100px;
 }
 
 .turingBar {
@@ -46,15 +75,87 @@ body {
   height: 100px;
 }
 
-.spotlight {
-  border: 8px rgb(252, 241, 183) solid;
+.spotlight, .frame {
   width: 100px;
   height: 100px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 0, 0, 0.3);
   position: absolute;
   left: 50%;
   top: -8px;
-  transform: translate(-50%, 0) scale(1.1);
+}
+
+.spotlight {
+  border: 8px transparent solid;
+  transform: translate(-50%, 0);
+}
+
+.frame {
+  border: 8px rgb(252, 241, 183) solid;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, 0) scale(1);
+}
+
+.current, .currentName {
+  color: rgb(252, 241, 183);
+  font-size: 2em;
+  font-family: "DFPT_ZY9";
+  text-shadow: -5px 5px 0 rgba(0, 0, 0, 0.7);
+}
+
+.current {
+  padding: 20px;
+  position: absolute;
+  top: -2%;
+  left: -400%;
+  transform: rotate(-2deg);
+}
+
+.currentName {
+  text-align: center;
+  width: 200px;
+  position: absolute;
+  top: 65%;
+  left: -310%;
+  transform: rotate(1deg);
+}
+
+.icon {
+  z-index: 84;
+  position: absolute;
+  left: -70%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 60px;
+}
+
+.arrow {
+  position: absolute;
+  top: 25px;
+  width: 90%;
+  height: 10px;
+  background-color: rgb(252, 241, 183);
+  box-shadow: -4px 4px 1px rgba(0, 0, 0, 0.7);
+}
+
+.arrow::after,
+.arrow::before {
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: 10px;
+  right: -8px;
+  background-color: rgb(252, 241, 183);
+}
+
+.arrow::after {
+  top: -12px;
+  transform: rotate(45deg);
+}
+
+.arrow::before {
+  top: 12px;
+  box-shadow: -4px 4px 1px rgba(0, 0, 0, 0.7);
+  transform: rotate(-45deg);
 }
 
 .content {
