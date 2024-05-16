@@ -1,3 +1,8 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -5,13 +10,18 @@ body {
 }
 
 .topBar {
-  margin: 0 auto;
-  width: 80%;
+  width: 70%;
   background-color: rgb(159, 129, 228);
   padding-top: 20px;
   padding: 20px;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 100px 100px;
   height: 120px;
+  position: fixed;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 83;
+  clear: both;
 }
 
 .topBar_inner {
@@ -23,10 +33,12 @@ body {
   display: flex;
   position: absolute;
   left: 50%;
+  transition: transform 0.5s;
 }
 
-.turingBar > div {
+.oc {
   flex: 1;
+  transition: all 0.5s;
 }
 
 .turingBar img {
@@ -35,17 +47,18 @@ body {
 }
 
 .spotlight {
-  border: 6px rgb(252, 241, 183) solid;
+  border: 8px rgb(252, 241, 183) solid;
   width: 100px;
   height: 100px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 0, 0, 0.3);
   position: absolute;
   left: 50%;
-  top: -6px;
+  top: -8px;
   transform: translate(-50%, 0) scale(1.1);
 }
 
 .content {
+  margin-top: 200px;
   padding: 0 30px;
 }
 
@@ -73,7 +86,7 @@ body {
 
 .pool {
   background-color: rgb(207, 199, 177);
-  margin: 20px auto 100px auto;
+  margin: 0 auto 100px auto;
   width: 80%;
   max-width: 1100px;
 }
@@ -120,7 +133,6 @@ body {
   font-weight: 600;
   color: #fff;
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
-  cursor: pointer;
   position: relative;
   width: 100%;
   height: 100%;
@@ -130,8 +142,7 @@ body {
 }
 
 .gridItem:hover .gridItem_inner {
-  border: rgba(92, 83, 73, 0.308) 1px solid;
-  transform: rotateY(180deg);
+  transform: scale(1.2);
 }
 
 .gift_front,
@@ -144,11 +155,12 @@ body {
 }
 
 .gift_front {
+  cursor: pointer;
   background-position: center center;
 }
 
 .gift_back {
-  background-color: rgb(207, 199, 177);
+  background-color: rgb(190, 183, 163);
   color: white;
   transform: rotateY(180deg);
 }

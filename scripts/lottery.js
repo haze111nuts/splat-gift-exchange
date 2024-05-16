@@ -4,7 +4,11 @@ var OCS = [{},{},{},{},{},{},{},{}];
 var GIFT_SLOTS = [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}];
 
 
-var NUMBER_OF_BG = 75
+var NUMBER_OF_BG = 75;
+
+var ORIGINAL_OC_POS = -50;
+
+var CURRENT_OC_INDEX = 0;
 
 function getOcUrl(id) {
     return "assets/lottery/2024profile/" + id + ".jpg";
@@ -13,14 +17,23 @@ function getOcUrl(id) {
 function printOCs() {
     var ocHtml = "";
     for (var i = 0; i < OCS.length; i++) {
-        ocHtml += "<div>";
+        ocHtml += "<div class='oc'>";
         ocHtml += "<img src='"+ getOcUrl(i) +"'>";
         ocHtml += "</div>";
     }
     $(".turingBar").html(ocHtml);
 
-    //transform: translate(-50px, 0);
-    $(".turingBar").css("transform", "translate(-650px, 0)");
+    setSpotlightToOC();
+}
+
+function getCurrentOCPos() {
+    return ORIGINAL_OC_POS + ((CURRENT_OC_INDEX) * -100);
+}
+
+function setSpotlightToOC(){
+    console.log("moving to "+ CURRENT_OC_INDEX + "th OC");
+    console.log("Pos is "+getCurrentOCPos())
+    $(".turingBar").css("transform", "translate("+getCurrentOCPos()+"px, 0)");
 }
 
 function printGrid(){
@@ -49,6 +62,27 @@ function setGridBG(){
     }
 }
 
+function setUpFlipEvent(){
+    $(".gridItem_inner").each(function () {
+        $(this).find(".gift_front").click(function () {
+            $(this).parent(".gridItem_inner").css("transform","rotateY(180deg)");
+            $(this).parent(".gridItem_inner").css("border","rgba(92, 83, 73, 0.308) 1px solid");
+            CURRENT_OC_INDEX++;
+            setSpotlightToOC();
+            // $(".oc:nth-child("+CURRENT_OC_INDEX+")").css("filter","grayscale(1)");
+            $(".oc:nth-child("+CURRENT_OC_INDEX+")").css("opacity",0.3);
+            $(".oc:nth-child("+(CURRENT_OC_INDEX-2)+")").css("opacity",0.2);
+            $(".oc:nth-child("+(CURRENT_OC_INDEX-4)+")").css("opacity",0);
+        })
+    })
+}
+
+// function setUpOCStyle(){
+//     $(".oc").each(function () {
+//         $(this).css("filter","grayscale(1)");
+//     })
+// }
+
 function randomBGIndex(){
     return Math.floor(Math.random() * NUMBER_OF_BG) +1
 }
@@ -57,6 +91,7 @@ function setupStuff() {
     printOCs();
     printGrid();
     setGridBG();
+    setUpFlipEvent();
 }
 
 //======================//
