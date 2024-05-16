@@ -27,10 +27,18 @@ body {
   left: 0;
   background-color: rgb(83, 83, 83);
   z-index: 83;
-  width: 150px;
-  padding: 40px 20px;
+  font-family: "DFPT_ZY9";
+  font-size: 1.5em;
+  padding: 40px 90px 40px 50px;
   border-radius: 0 0 50px 0;
+  line-height: 1.2em;
   color: #e0e0e0;
+}
+.stats .title {
+  text-align: center;
+  font-size: 1.5em;
+  transform: rotate(-4deg);
+  margin-bottom: 20px;
 }
 
 .topBar {
