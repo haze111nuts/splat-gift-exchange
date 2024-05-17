@@ -36,7 +36,7 @@ body {
     z-index: 83;
     font-family: "DFPT_ZY9";
     font-size: 1.5em;
-    padding: 40px 90px 40px 50px;
+    padding: 40px 70px 40px 30px;
     border-radius: 0 0 50px 0;
     line-height: 1.2em;
     color: #e0e0e0;
@@ -46,6 +46,10 @@ body {
         font-size: 1.5em;
         transform: rotate(-4deg);
         margin-bottom: 20px;
+    }
+
+    span{
+        color: $accent2;
     }
 }
 
@@ -131,7 +135,7 @@ body {
 }
 .currentName{
     text-align: center;
-    width: 200px;
+    width: 210px;
     position: absolute;
     top: 65%;
     left: -310%;
@@ -186,31 +190,80 @@ body {
     margin-top: 200px;
     padding: 0 30px;
 }
+
 .giftLogPanel {
-    opacity: 0.1;
+    width: 260px;
+    height: 800px;
     position: fixed;
-    bottom: -50px;
-    margin-top: 50px;
-    padding: 20px;
-    width: 250px;
-    background-color: $accent1;
-    border-radius: 20px;
-    height: 500px;
-    .title {
-        color: #fff;
-        font-size: x-large;
-        text-align: center;
-    }
-    .giftLog {
-        border: 1px solid rgb(92, 73, 73);
-        margin-top: 10px;
-        height: 85%;
+    overflow: hidden;
+    top: 160px;
+    ul{
+        width: 277px;
+        height: 100%;
+        padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
+        box-sizing: content-box; /* So the width will be 100% + 17px */
+        overflow-y: scroll;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li{
+            position: relative;
+            background-color: rgba(61, 61, 61, 0.521);
+            border-radius: 10px;
+            list-style: none;
+            // padding: 20px;
+            width: 250px;
+            height: 80px;
+            margin: 10px 0;
+            opacity: 0;
+            transition: all 0.3s;
+            .chara{
+                width: 60px;
+                height: 60px;
+                position: absolute;
+                top: 10px;
+                left: 15px;
+                transform: rotate(-5deg);
+            }
+            .gift{
+                width: 60px;
+                height: 60px;
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                transform: rotate(5deg);
+            }
+            .label{
+                // border: #fff 1px solid;
+                font-size: smaller;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                width: 150px;
+                div:nth-child(1){
+                    border-bottom: 1px solid white;
+                    padding: 20px 20px 0 30px;
+                    text-align: left;
+                }
+                div:nth-child(2){
+                    padding: 0 20px 20px 20px;
+                    text-align: right;
+                }
+            }
+        }
+        li:first-child{
+            margin-top: 65px;
+        }
+        li:last-child{
+            margin-bottom: 50px;
+        }
     }
 }
 
 .pool {
     background-color: rgb(207, 199, 177);
-    margin: 0 auto 100px auto;
+    margin: 0 10% 100px auto;
     width: 80%;
     max-width: 1100px;
 }

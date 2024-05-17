@@ -2,16 +2,27 @@
 var OCS = [
     {name:"成步堂龍一"}, {name:"王泥喜法介"}, {name:"希月心音"}, 
     {name:"御劍伶侍"}, {name:"綾里真宵"}, {name:"成步堂美貫"}, 
-    {name:"寶月茜"}, {name:"綾里春美"}];
+    {name:"寶月茜"}, {name:"綾里春美"}, {name:"靈花 帕多瑪"}];
 
-var GIFT_SLOTS = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
+var GIFT_SLOTS = [
+    {}, {}, {}, {}, {}, 
+    {}, {}, {}, {}, {}, 
+    {}, {}, {}, {}, {}, 
+    {}, {}, {}, {}, {}, 
+    {}, {}, {}, {}, {}, 
+    {}, {}, {}, {}, {}, 
+    {}, {}, {}, {}, {}
+];
 
+var results = []
 
 var NUMBER_OF_BG = 75;
 
 var ORIGINAL_OC_POS = -50;
 
 var CURRENT_OC_INDEX = 0;
+
+var YEAR = 2024;
 
 function getOcUrl(id) {
     return "assets/lottery/2024profile/" + id + ".jpg";
@@ -26,7 +37,7 @@ function printOCs() {
     }
     $(".turingBar").html(ocHtml);
 
-    setSpotlightToOC();
+    setSpotlightToNextOC();
     //animateArrow();
     animateFrame();
 }
@@ -59,9 +70,8 @@ function getCurrentOCPos() {
     return ORIGINAL_OC_POS + ((CURRENT_OC_INDEX) * -100);
 }
 
-function setSpotlightToOC() {
+function setSpotlightToNextOC() {
     console.log("moving to " + CURRENT_OC_INDEX + "th OC");
-    console.log("Pos is " + getCurrentOCPos())
     $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
     $(".currentName").html(OCS[CURRENT_OC_INDEX].name);
 }
@@ -97,16 +107,51 @@ function setUpFlipEvent() {
         $(this).find(".gift_front").click(function () {
             $(this).parent(".gridItem_inner").css("transform", "rotateY(180deg)");
             $(this).parent(".gridItem_inner").css("border", "rgba(92, 83, 73, 0.308) 1px solid");
-            CURRENT_OC_INDEX++;
-            setSpotlightToOC();
-            // $(".oc:nth-child("+CURRENT_OC_INDEX+")").css("filter","grayscale(1)");
-            setUpOCStyle();
+            $(".giftLogPanel ul").append(addGiftLog(CURRENT_OC_INDEX,1));
+            $(".giftLogPanel ul").animate({ scrollTop: $(document).height() }, 1000);
+            setUpGiftLogStyle(CURRENT_OC_INDEX);
+
+            COUNT++;
+            REMAIN--;
+            updateStats();
+
+            if(CURRENT_OC_INDEX !== OCS.length-1){
+                CURRENT_OC_INDEX++;
+                setSpotlightToNextOC();
+                setUpOCOpacity();
+            }else{
+                //case of last click
+                CURRENT_OC_INDEX++;
+                $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
+                $(".currentName").html("");
+                setUpOCOpacity();
+            }
+
         })
     })
 }
 
-function setUpOCStyle() {
-    $(".oc:nth-child(" + (CURRENT_OC_INDEX + 1) + ")").css("opacity", 1);
+
+function addGiftLog(charaIndex, giftIndex){
+    var logHtml = "";
+    logHtml += "<li>";
+    logHtml += "<div class='label'>";
+    logHtml += "<div>成步堂龍一</div>"
+    logHtml += "<div>灰色飲料瓶</div>"
+    logHtml += "</div>";
+    logHtml += "<img class='chara' src='assets/lottery/"+YEAR+"profile/"+charaIndex+".jpg'>";
+    logHtml += "<img class='gift' src='assets/"+YEAR+"/item/"+giftIndex+".png'>";
+    logHtml += "</li>";
+    return logHtml;
+}
+
+function setUpGiftLogStyle(index){
+    console.log(index+1);
+    $(".giftLogPanel ul li:nth-child("+(index+1)+")").css("border","1px solid black");
+    $(".giftLogPanel ul li:nth-child("+(index+1)+")").css("opacity","1");
+}
+
+function setUpOCOpacity() {
     $(".oc:nth-child(" + CURRENT_OC_INDEX + ")").css("opacity", 0.20);
     $(".oc:nth-child(" + (CURRENT_OC_INDEX - 1) + ")").css("opacity", 0.10);
     $(".oc:nth-child(" + (CURRENT_OC_INDEX - 2) + ")").css("opacity", 0.05);
@@ -117,11 +162,20 @@ function randomBGIndex() {
     return Math.floor(Math.random() * NUMBER_OF_BG) + 1
 }
 
+var COUNT = 0;
+var REMAIN = GIFT_SLOTS.length;
+
+function updateStats(){
+    $(".count").html(COUNT);
+    $(".remain").html(REMAIN);
+}
+
 function setupStuff() {
     printOCs();
     printGrid();
     setGridBG();
     setUpFlipEvent();
+    updateStats();
 }
 
 //======================//
