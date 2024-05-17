@@ -86,9 +86,20 @@ function printGrid() {
     $(".grid").html(gridHtml);
 }
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 function setGridBG() {
+
+    var bgNum = [...Array(77).keys()];
+    shuffleArray(bgNum);
+    
     for (var i = 0; i < GIFT_SLOTS.length; i++) {
-        $(".grid .gridItem:nth-of-type(" + (i + 1) + ") .gift_front").css("background-image", "url(assets/lottery/bg/" + randomBGIndex() + ".png)");
+        $(".grid .gridItem:nth-of-type(" + (i + 1) + ") .gift_front").css("background-image", "url(assets/lottery/bg/" + bgNum[i] + ".png)");
     }
 }
 
