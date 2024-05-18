@@ -186,7 +186,6 @@ function setGridBG() {
 
 function draw() {
     var giftPoolForCurrentOC = giftPile.filter(gift => gift !== ocList[CURRENT_OC_INDEX]);
-    //  var senderInGiftPool = Object.keys(giftPoolForCurrentOC);
     var randomDraw = giftPoolForCurrentOC[Math.floor(Math.random() * giftPoolForCurrentOC.length)];
     var participantsWithoutGift = ocList.slice(CURRENT_OC_INDEX);
     // to handle lonely last person problem
