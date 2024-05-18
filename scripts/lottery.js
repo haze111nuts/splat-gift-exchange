@@ -214,6 +214,7 @@ function displayItemModal(gift) {
 function setUpLongClick() {
     var timeout;
     var gift;
+    var currentGiftCard;
 
     $(".gridItem_inner").each(function () {
         var giftCard = $(this).find(".gift_front");
@@ -227,16 +228,16 @@ function setUpLongClick() {
             giftCard.find(".progress").addClass("full_progress");
             timeout = window.setTimeout(function () {
 
+                currentGiftCard = giftCard;
+                giftCard.find(".progress").css("opacity","0");
+
                 //draw gift
                 gift = draw();
                 giftCard.siblings().html("<img src='" + getGiftUrl(gift) + "'/>");
 
-                //do card flip
-                giftCard.parent(".gridItem_inner").css("transform", "rotateY(180deg)");
-                giftCard.parent(".gridItem_inner").css("border", "rgba(92, 83, 73, 0.308) 1px solid");
-
                 //display item
                 displayItemModal(gift);
+
             }, 1500);
             return;
         })
@@ -245,6 +246,11 @@ function setUpLongClick() {
     //events on modal close
     $(".modal").click(function () {
         console.log("closing modal");
+
+        //do card flip
+        currentGiftCard.parent(".gridItem_inner").css("transform", "rotateY(180deg)");
+        currentGiftCard.parent(".gridItem_inner").css("border", "rgba(92, 83, 73, 0.308) 1px solid");
+
         $(".modalPanel").css("top", "30%");
         $(".modal").addClass("hide");
         $(document.body).removeClass("noscroll");
