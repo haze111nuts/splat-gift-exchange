@@ -1,8 +1,51 @@
 
 var OCS = [
-    {name:"成步堂龍一"}, {name:"王泥喜法介"}, {name:"希月心音"}, 
-    {name:"御劍伶侍"}, {name:"綾里真宵"}, {name:"成步堂美貫"}, 
-    {name:"寶月茜"}, {name:"綾里春美"}, {name:"靈花 帕多瑪"}];
+    {
+        name:"成步堂龍一",
+        giftName: "葡萄汁",
+        giftUrl: ""
+    }, 
+    {
+        name:"王泥喜法介",
+        giftName: "折疊式天文望遠鏡",
+        giftUrl: ""
+    },
+    {
+        name:"希月心音",
+        giftName: "碰可玩具機器人",
+        giftUrl: ""
+    }, 
+    {
+        name:"御劍伶侍",
+        giftName: "西洋棋組",
+        giftUrl: ""
+    }, 
+    {
+        name:"綾里真宵",
+        giftName: "將軍超人第一季DVD全套",
+        giftUrl: ""
+    }, 
+    {
+        name:"成步堂美貫",
+        giftName: "帽子先生吊飾",
+        giftUrl: ""
+    }, 
+    {
+        name:"寶月茜",
+        giftName: "冬季限定花林糖",
+        giftUrl: ""
+    }, 
+    {
+        name:"綾里春美",
+        giftName: "倉院特產饅頭",
+        giftUrl: ""
+    }, 
+    {
+        name:"靈花 帕多瑪",
+        giftName: "手工押花",
+        giftUrl: ""
+    }
+];
 
 var GIFT_SLOTS = [
     {}, {}, {}, {}, {}, 
