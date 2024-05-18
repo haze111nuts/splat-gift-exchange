@@ -82,7 +82,7 @@ var GIFT_SLOTS = [
 
 var results = []
 
-var NUMBER_OF_BG = 76;
+var NUMBER_OF_BG = 77;
 
 var ORIGINAL_OC_POS = -50;
 
@@ -176,7 +176,7 @@ function shuffleArray(array) {
 
 function setGridBG() {
 
-    var bgNum = [...Array(NUMBER_OF_BG+1).keys()];
+    var bgNum = [...Array(NUMBER_OF_BG).keys()];
     shuffleArray(bgNum);
 
     for (var i = 0; i < GIFT_SLOTS.length; i++) {
@@ -257,7 +257,7 @@ function setUpOCOpacity() {
 }
 
 function randomBGIndex() {
-    return Math.floor(Math.random() * NUMBER_OF_BG) + 1
+    return Math.floor(Math.random() * NUMBER_OF_BG)
 }
 
 function updateStats() {
