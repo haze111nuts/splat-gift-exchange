@@ -69,19 +69,6 @@ var OC_ARRANGED = [].concat(OCS);
 
 var GIFTPILE = [].concat(OCS);
 
-
-var GIFT_SLOTS = [
-    {}, {}, {}, {}, {},
-    {}, {}, {}, {}, {},
-    {}, {}, {}, {}, {},
-    {}, {}, {}, {}, {},
-    {}, {}, {}, {}, {},
-    {}, {}, {}, {}, {},
-    {}, {}, {}, {}, {}
-];
-
-var results = []
-
 var NUMBER_OF_BG = 77;
 
 var ORIGINAL_OC_POS = -50;
@@ -89,6 +76,8 @@ var ORIGINAL_OC_POS = -50;
 var CURRENT_OC_INDEX = 0;
 
 var YEAR = 2024;
+
+var COOKIE_EXPIRE_DAYS = 1;
 
 function getOcUrl(oc) {
     return "assets/lottery/" + YEAR + "profile/" + oc.profilePic;
@@ -175,11 +164,20 @@ function shuffleArray(array) {
 }
 
 function setGridBG() {
-    var bgNum = [...Array(NUMBER_OF_BG).keys()];
-    shuffleArray(bgNum);
+    var bgPattern;
+    const bgPatternCookie = getCookie("bgPattern");
 
-    for (var i = 0; i < GIFT_SLOTS.length; i++) {
-        $(".grid .gridItem:nth-of-type(" + (i + 1) + ") .gift_front").css("background-image", "url(assets/lottery/bg/" + bgNum[i] + ".png)");
+    if (bgPatternCookie === "") {    
+        bgPattern = [...Array(NUMBER_OF_BG).keys()];
+        shuffleArray(bgPattern);
+        setCookie("bgPattern", bgPattern.toString(), COOKIE_EXPIRE_DAYS);
+    }
+    else {
+        bgPattern = bgPatternCookie.split(",");
+    }
+
+    for (var i = 0; i < OCS.length; i++) {
+        $(".grid .gridItem:nth-of-type(" + (i + 1) + ") .gift_front").css("background-image", "url(assets/lottery/bg/" + bgPattern[i] + ".png)");
     }
 }
 
@@ -238,6 +236,11 @@ function setUpLongClick() {
                 //display item
                 displayItemModal(gift);
 
+                OC_ARRANGED[CURRENT_OC_INDEX].obtainedGift = {
+                    giftName: gift.giftName,
+                    giftPic: gift.giftPic,
+                    cardIndex: giftCard.parent().parent().index()
+                }
             }, 1500);
             return;
         })
