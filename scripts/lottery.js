@@ -53,14 +53,14 @@ const OCS = [
         name: "綾里春美",
         profilePic: "7.jpg",
         giftName: "倉院特產饅頭",
-        giftPic: "6.png",
+        giftPic: "7.png",
         artist: "2"
     },
     {
         name: "靈花 帕多瑪",
         profilePic: "8.jpg",
         giftName: "手工押花",
-        giftPic: "6.png",
+        giftPic: "8.png",
         artist: "6"
     }
 ];
@@ -69,7 +69,7 @@ var OC_ARRANGED = [].concat(OCS);
 
 var GIFTPILE = [].concat(OCS);
 
-var NUMBER_OF_BG = 77;
+var NUMBER_OF_BG = 83;
 
 var ORIGINAL_OC_POS = -50;
 
