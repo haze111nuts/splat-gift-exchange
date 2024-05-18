@@ -1,51 +1,74 @@
 
-var OCS = [
+const OCS = [
     {
         name:"成步堂龍一",
+        profilePic: "0.jpg",
         giftName: "葡萄汁",
-        giftUrl: ""
+        giftPic: "0.png",
+        artist: "1"
     }, 
     {
         name:"王泥喜法介",
+        profilePic: "1.jpg",
         giftName: "折疊式天文望遠鏡",
-        giftUrl: ""
+        giftPic: "1.png",
+        artist: "4"
     },
     {
         name:"希月心音",
+        profilePic: "2.jpg",
         giftName: "碰可玩具機器人",
-        giftUrl: ""
+        giftPic: "2.png",
+        artist: "5"
     }, 
     {
         name:"御劍伶侍",
+        profilePic: "3.jpg",
         giftName: "西洋棋組",
-        giftUrl: ""
+        giftPic: "3.png",
+        artist: "1"
     }, 
     {
         name:"綾里真宵",
+        profilePic: "4.jpg",
         giftName: "將軍超人第一季DVD全套",
-        giftUrl: ""
+        giftPic: "4.png",
+        artist: "1"
     }, 
     {
         name:"成步堂美貫",
+        profilePic: "5.jpg",
         giftName: "帽子先生吊飾",
-        giftUrl: ""
+        giftPic: "5.png",
+        artist: "4"
     }, 
     {
         name:"寶月茜",
+        profilePic: "6.jpg",
         giftName: "冬季限定花林糖",
-        giftUrl: ""
+        giftPic: "6.png",
+        artist: "4"
     }, 
     {
         name:"綾里春美",
+        profilePic: "7.jpg",
         giftName: "倉院特產饅頭",
-        giftUrl: ""
+        giftPic: "6.png",
+        artist: "2"
     }, 
     {
         name:"靈花 帕多瑪",
+        profilePic: "8.jpg",
         giftName: "手工押花",
-        giftUrl: ""
+        giftPic: "6.png",
+        artist: "6"
     }
 ];
+
+var ocList = [].concat(OCS);
+
+var giftPile = [].concat(OCS);
+
 
 var GIFT_SLOTS = [
     {}, {}, {}, {}, {},
@@ -59,7 +82,7 @@ var GIFT_SLOTS = [
 
 var results = []
 
-var NUMBER_OF_BG = 75;
+var NUMBER_OF_BG = 76;
 
 var ORIGINAL_OC_POS = -50;
 
@@ -67,24 +90,25 @@ var CURRENT_OC_INDEX = 0;
 
 var YEAR = 2024;
 
-function getOcUrl(id) {
-    return "assets/lottery/" + YEAR + "profile/" + id + ".jpg";
+function getOcUrl(oc) {
+    return "assets/lottery/" + YEAR + "profile/" + oc.profilePic;
 }
 
-function getGiftUrl(id) {
-    return "assets/" + YEAR + "/item/" + id + ".png";
+function getGiftUrl(oc) {
+    console.log("assets/" + YEAR + "/item/" + oc.giftPic);
+    return "assets/" + YEAR + "/item/" + oc.giftPic;
 }
 
 function printOCs() {
     var ocHtml = "";
-    for (var i = 0; i < OCS.length; i++) {
+    for (const oc of ocList) {
         ocHtml += "<div class='oc'>";
-        ocHtml += "<img src='" + getOcUrl(i) + "'>";
+        ocHtml += "<img src='" + getOcUrl(oc) + "'>";
         ocHtml += "</div>";
     }
     $(".turingBar").html(ocHtml);
 
-    setSpotlightToNextOC();
+    setSpotlightToNextOC(ocList);
     //animateArrow();
     animateFrame();
 }
@@ -120,21 +144,21 @@ function getCurrentOCPos() {
 function setSpotlightToNextOC() {
     console.log("moving to " + CURRENT_OC_INDEX + "th OC");
     $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
-    $(".currentName").html(OCS[CURRENT_OC_INDEX].name);
+    $(".currentName").html(ocList[CURRENT_OC_INDEX].name);
 }
 
 function printGrid() {
     var gridHtml = "";
-    for (var i = 0; i < GIFT_SLOTS.length; i++) {
+    var gridNumber = 1;
+    for (const oc of OCS) {
         gridHtml += "<div class='gridItem'>";
         gridHtml += "<div class='gridItem_inner'>";
 
         gridHtml += "<div class='gift_front'>";
-        gridHtml += i + 1;
+        gridHtml +=  gridNumber++;
         gridHtml += "</div>";
 
         gridHtml += "<div class='gift_back'>";
-        gridHtml += "<img src='" + getGiftUrl(i) +"'>";
         gridHtml += "</div>";
 
         gridHtml += "</div>";
@@ -152,7 +176,7 @@ function shuffleArray(array) {
 
 function setGridBG() {
 
-    var bgNum = [...Array(77).keys()];
+    var bgNum = [...Array(NUMBER_OF_BG+1).keys()];
     shuffleArray(bgNum);
 
     for (var i = 0; i < GIFT_SLOTS.length; i++) {
@@ -160,18 +184,34 @@ function setGridBG() {
     }
 }
 
+function draw() {
+    var giftPoolForCurrentOC = giftPile.filter(gift => gift !== ocList[CURRENT_OC_INDEX]);
+    //  var senderInGiftPool = Object.keys(giftPoolForCurrentOC);
+    var randomDraw = giftPoolForCurrentOC[Math.floor(Math.random() * giftPoolForCurrentOC.length)];
+    var participantsWithoutGift = ocList.slice(CURRENT_OC_INDEX);
+    // to handle lonely last person problem
+    if ( ocList.length - CURRENT_OC_INDEX === 2 && giftPoolForCurrentOC.some(r => participantsWithoutGift.includes(r)) && giftPoolForCurrentOC.length === 2) {
+            console.log("detected lonely OC! OC that haven't get gift and still in pool: ");
+        console.log(participantsWithoutGift.filter(value => giftPoolForCurrentOC.includes(value)));
+            var lonelyOC = participantsWithoutGift.filter(value => giftPoolForCurrentOC.includes(value))[0];
+        randomDraw = lonelyOC;
+    }
+    giftPile = giftPile.filter(gift => gift != randomDraw);
+    return randomDraw;
+}
+
 function setUpFlipEvent() {
     $(".gridItem_inner").each(function () {
         $(this).find(".gift_front").click(function () {
+            var gift = draw();
+            $(this).siblings().html("<img src='" + getGiftUrl(gift) + "'/>");
+            console.log(gift);
             $(this).parent(".gridItem_inner").css("transform", "rotateY(180deg)");
             $(this).parent(".gridItem_inner").css("border", "rgba(92, 83, 73, 0.308) 1px solid");
-            $(".giftLogPanel ul").append(addGiftLog(CURRENT_OC_INDEX, 1));
+            $(".giftLogPanel ul").append(addGiftLog(ocList[CURRENT_OC_INDEX], gift));
             $(".giftLogPanel ul").animate({ scrollTop: $(document).height() }, 1000);
             setUpGiftLogStyle(CURRENT_OC_INDEX);
 
-            COUNT++;
-            REMAIN--;
-            updateStats();
 
             if (CURRENT_OC_INDEX !== OCS.length - 1) {
                 CURRENT_OC_INDEX++;
@@ -184,21 +224,22 @@ function setUpFlipEvent() {
                 $(".currentName").html("");
                 setUpOCOpacity();
             }
+            updateStats();
 
         })
     })
 }
 
 
-function addGiftLog(charaIndex, giftIndex) {
+function addGiftLog(currentOC, gift) {
     var logHtml = "";
     logHtml += "<li>";
     logHtml += "<div class='label'>";
-    logHtml += "<div>成步堂龍一</div>"
-    logHtml += "<div>灰色飲料瓶</div>"
+    logHtml += "<div>" + currentOC.name + "</div>"
+    logHtml += "<div>" + gift.giftName + "</div>"
     logHtml += "</div>";
-    logHtml += "<img class='chara' src='assets/lottery/" + YEAR + "profile/" + charaIndex + ".jpg'>";
-    logHtml += "<img class='gift' src='assets/" + YEAR + "/item/" + giftIndex + ".png'>";
+    logHtml += "<img class='chara' src='" + getOcUrl(currentOC) + "'>";
+    logHtml += "<img class='gift' src='" + getGiftUrl(gift) + "'>";
     logHtml += "</li>";
     return logHtml;
 }
@@ -220,20 +261,13 @@ function randomBGIndex() {
     return Math.floor(Math.random() * NUMBER_OF_BG) + 1
 }
 
-var COUNT = 0;
-var REMAIN = GIFT_SLOTS.length;
-
 function updateStats() {
-    $(".count").html(COUNT);
-    $(".remain").html(REMAIN);
+    $(".count").html(CURRENT_OC_INDEX);
+    $(".remain").html(giftPile.length);
 }
 
 function setupStuff() {
-    printOCs();
-    printGrid();
-    setGridBG();
-    setUpFlipEvent();
-    updateStats();
+
 }
 
 //======================//
@@ -243,5 +277,12 @@ function setupStuff() {
 //======================//
 
 $(document).ready(function () {
-    setupStuff();
+    shuffleArray(ocList);
+    printOCs();
+    printGrid();
+    setGridBG();
+    setUpFlipEvent();
+    updateStats();
+
+
 });
