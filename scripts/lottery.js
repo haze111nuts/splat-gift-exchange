@@ -265,10 +265,6 @@ function updateStats() {
     $(".remain").html(giftPile.length);
 }
 
-function setupStuff() {
-
-}
-
 //======================//
 //===                ===//
 //=== Ready Function ===//
@@ -282,6 +278,4 @@ $(document).ready(function () {
     setGridBG();
     setUpFlipEvent();
     updateStats();
-
-
 });
