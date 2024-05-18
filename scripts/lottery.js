@@ -65,9 +65,9 @@ const OCS = [
     }
 ];
 
-var ocList = [].concat(OCS);
+var OC_ARRANGED = [].concat(OCS);
 
-var giftPile = [].concat(OCS);
+var GIFTPILE = [].concat(OCS);
 
 
 var GIFT_SLOTS = [
@@ -101,14 +101,14 @@ function getGiftUrl(oc) {
 
 function printOCs() {
     var ocHtml = "";
-    for (const oc of ocList) {
+    for (const oc of OC_ARRANGED) {
         ocHtml += "<div class='oc'>";
         ocHtml += "<img src='" + getOcUrl(oc) + "'>";
         ocHtml += "</div>";
     }
     $(".turingBar").html(ocHtml);
 
-    setSpotlightToNextOC(ocList);
+    setSpotlightToNextOC(OC_ARRANGED);
     //animateArrow();
     animateFrame();
 }
@@ -144,7 +144,7 @@ function getCurrentOCPos() {
 function setSpotlightToNextOC() {
     console.log("moving to " + CURRENT_OC_INDEX + "th OC");
     $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
-    $(".currentName").html(ocList[CURRENT_OC_INDEX].name);
+    $(".currentName").html(OC_ARRANGED[CURRENT_OC_INDEX].name);
 }
 
 function printGrid() {
@@ -185,17 +185,17 @@ function setGridBG() {
 }
 
 function draw() {
-    var giftPoolForCurrentOC = giftPile.filter(gift => gift !== ocList[CURRENT_OC_INDEX]);
+    var giftPoolForCurrentOC = GIFTPILE.filter(gift => gift !== OC_ARRANGED[CURRENT_OC_INDEX]);
     var randomDraw = giftPoolForCurrentOC[Math.floor(Math.random() * giftPoolForCurrentOC.length)];
-    var participantsWithoutGift = ocList.slice(CURRENT_OC_INDEX);
+    var participantsWithoutGift = OC_ARRANGED.slice(CURRENT_OC_INDEX);
     // to handle lonely last person problem
-    if ( ocList.length - CURRENT_OC_INDEX === 2 && giftPoolForCurrentOC.some(r => participantsWithoutGift.includes(r)) && giftPoolForCurrentOC.length === 2) {
+    if ( OC_ARRANGED.length - CURRENT_OC_INDEX === 2 && giftPoolForCurrentOC.some(r => participantsWithoutGift.includes(r)) && giftPoolForCurrentOC.length === 2) {
             console.log("detected lonely OC! OC that haven't get gift and still in pool: ");
         console.log(participantsWithoutGift.filter(value => giftPoolForCurrentOC.includes(value)));
             var lonelyOC = participantsWithoutGift.filter(value => giftPoolForCurrentOC.includes(value))[0];
         randomDraw = lonelyOC;
     }
-    giftPile = giftPile.filter(gift => gift != randomDraw);
+    GIFTPILE = GIFTPILE.filter(gift => gift != randomDraw);
     return randomDraw;
 }
 
@@ -207,7 +207,7 @@ function setUpFlipEvent() {
             console.log(gift);
             $(this).parent(".gridItem_inner").css("transform", "rotateY(180deg)");
             $(this).parent(".gridItem_inner").css("border", "rgba(92, 83, 73, 0.308) 1px solid");
-            $(".giftLogPanel ul").append(addGiftLog(ocList[CURRENT_OC_INDEX], gift));
+            $(".giftLogPanel ul").append(addGiftLog(OC_ARRANGED[CURRENT_OC_INDEX], gift));
             $(".giftLogPanel ul").animate({ scrollTop: $(document).height() }, 1000);
             setUpGiftLogStyle(CURRENT_OC_INDEX);
 
@@ -262,7 +262,7 @@ function randomBGIndex() {
 
 function updateStats() {
     $(".count").html(CURRENT_OC_INDEX);
-    $(".remain").html(giftPile.length);
+    $(".remain").html(GIFTPILE.length);
 }
 
 //======================//
@@ -272,7 +272,7 @@ function updateStats() {
 //======================//
 
 $(document).ready(function () {
-    shuffleArray(ocList);
+    shuffleArray(OC_ARRANGED); // TODO: need to reshuffle and group by artist
     printOCs();
     printGrid();
     setGridBG();
