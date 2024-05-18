@@ -1,63 +1,63 @@
 
 const OCS = [
     {
-        name:"成步堂龍一",
+        name: "成步堂龍一",
         profilePic: "0.jpg",
         giftName: "葡萄汁",
         giftPic: "0.png",
         artist: "1"
-    }, 
+    },
     {
-        name:"王泥喜法介",
+        name: "王泥喜法介",
         profilePic: "1.jpg",
         giftName: "折疊式天文望遠鏡",
         giftPic: "1.png",
         artist: "4"
     },
     {
-        name:"希月心音",
+        name: "希月心音",
         profilePic: "2.jpg",
         giftName: "碰可玩具機器人",
         giftPic: "2.png",
         artist: "5"
-    }, 
+    },
     {
-        name:"御劍伶侍",
+        name: "御劍伶侍",
         profilePic: "3.jpg",
         giftName: "西洋棋組",
         giftPic: "3.png",
         artist: "1"
-    }, 
+    },
     {
-        name:"綾里真宵",
+        name: "綾里真宵",
         profilePic: "4.jpg",
         giftName: "將軍超人第一季DVD全套",
         giftPic: "4.png",
         artist: "1"
-    }, 
+    },
     {
-        name:"成步堂美貫",
+        name: "成步堂美貫",
         profilePic: "5.jpg",
         giftName: "帽子先生吊飾",
         giftPic: "5.png",
         artist: "4"
-    }, 
+    },
     {
-        name:"寶月茜",
+        name: "寶月茜",
         profilePic: "6.jpg",
         giftName: "冬季限定花林糖",
         giftPic: "6.png",
         artist: "4"
-    }, 
+    },
     {
-        name:"綾里春美",
+        name: "綾里春美",
         profilePic: "7.jpg",
         giftName: "倉院特產饅頭",
         giftPic: "6.png",
         artist: "2"
-    }, 
+    },
     {
-        name:"靈花 帕多瑪",
+        name: "靈花 帕多瑪",
         profilePic: "8.jpg",
         giftName: "手工押花",
         giftPic: "6.png",
@@ -95,7 +95,6 @@ function getOcUrl(oc) {
 }
 
 function getGiftUrl(oc) {
-    console.log("assets/" + YEAR + "/item/" + oc.giftPic);
     return "assets/" + YEAR + "/item/" + oc.giftPic;
 }
 
@@ -142,7 +141,7 @@ function getCurrentOCPos() {
 }
 
 function setSpotlightToNextOC() {
-    console.log("moving to " + CURRENT_OC_INDEX + "th OC");
+    console.log("moving to next OC ("+ CURRENT_OC_INDEX + ")");
     $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
     $(".currentName").html(OC_ARRANGED[CURRENT_OC_INDEX].name);
 }
@@ -154,8 +153,9 @@ function printGrid() {
         gridHtml += "<div class='gridItem'>";
         gridHtml += "<div class='gridItem_inner'>";
 
-        gridHtml += "<div class='gift_front'>";
-        gridHtml +=  gridNumber++;
+        gridHtml += "<div class='gift_front no-select'>";
+        gridHtml += "<div class='progress'></div>";
+        gridHtml += gridNumber++;
         gridHtml += "</div>";
 
         gridHtml += "<div class='gift_back'>";
@@ -175,7 +175,6 @@ function shuffleArray(array) {
 }
 
 function setGridBG() {
-
     var bgNum = [...Array(NUMBER_OF_BG).keys()];
     shuffleArray(bgNum);
 
@@ -189,43 +188,83 @@ function draw() {
     var randomDraw = giftPoolForCurrentOC[Math.floor(Math.random() * giftPoolForCurrentOC.length)];
     var participantsWithoutGift = OC_ARRANGED.slice(CURRENT_OC_INDEX);
     // to handle lonely last person problem
-    if ( OC_ARRANGED.length - CURRENT_OC_INDEX === 2 && giftPoolForCurrentOC.some(r => participantsWithoutGift.includes(r)) && giftPoolForCurrentOC.length === 2) {
-            console.log("detected lonely OC! OC that haven't get gift and still in pool: ");
-        console.log(participantsWithoutGift.filter(value => giftPoolForCurrentOC.includes(value)));
-            var lonelyOC = participantsWithoutGift.filter(value => giftPoolForCurrentOC.includes(value))[0];
+    if (OC_ARRANGED.length - CURRENT_OC_INDEX === 2 && giftPoolForCurrentOC.some(r => participantsWithoutGift.includes(r)) && giftPoolForCurrentOC.length === 2) {
+        console.log("detected lonely OC! OC that haven't get gift and still in pool: ");
+        var lonelyOC = participantsWithoutGift.filter(value => giftPoolForCurrentOC.includes(value))[0];
         randomDraw = lonelyOC;
     }
     GIFTPILE = GIFTPILE.filter(gift => gift != randomDraw);
     return randomDraw;
 }
 
-function setUpFlipEvent() {
+
+function displayItemModal(gift) {
+    $(".modal").removeClass("hide");
+    var itemModalHtml = "";
+
+    itemModalHtml += "<div class='itemPanel'>"
+    itemModalHtml += "<div class='itemSummary'> askajdlkajalkjdalksdjlk </div>"
+    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(gift) + "'>"
+    itemModalHtml += "</div>"
+
+    $(".modal").html(itemModalHtml);
+    $(document.body).addClass("noscroll");
+}
+
+function setUpLongClick() {
+    var timeout;
+    var gift;
+
     $(".gridItem_inner").each(function () {
-        $(this).find(".gift_front").click(function () {
-            var gift = draw();
-            $(this).siblings().html("<img src='" + getGiftUrl(gift) + "'/>");
-            console.log(gift);
-            $(this).parent(".gridItem_inner").css("transform", "rotateY(180deg)");
-            $(this).parent(".gridItem_inner").css("border", "rgba(92, 83, 73, 0.308) 1px solid");
-            $(".giftLogPanel ul").append(addGiftLog(OC_ARRANGED[CURRENT_OC_INDEX], gift));
-            $(".giftLogPanel ul").animate({ scrollTop: $(document).height() }, 1000);
-            setUpGiftLogStyle(CURRENT_OC_INDEX);
-
-
-            if (CURRENT_OC_INDEX !== OCS.length - 1) {
-                CURRENT_OC_INDEX++;
-                setSpotlightToNextOC();
-                setUpOCOpacity();
-            } else {
-                //case of last click
-                CURRENT_OC_INDEX++;
-                $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
-                $(".currentName").html("");
-                setUpOCOpacity();
-            }
-            updateStats();
-
+        var giftCard = $(this).find(".gift_front");
+        giftCard.mouseup(function () {
+            giftCard.find(".progress").removeClass("full_progress");
+            clearTimeout(timeout);
+            return;
         })
+
+        giftCard.mousedown(function () {
+            giftCard.find(".progress").addClass("full_progress");
+            timeout = window.setTimeout(function () {
+
+                //draw gift
+                gift = draw();
+                giftCard.siblings().html("<img src='" + getGiftUrl(gift) + "'/>");
+
+                //do card flip
+                giftCard.parent(".gridItem_inner").css("transform", "rotateY(180deg)");
+                giftCard.parent(".gridItem_inner").css("border", "rgba(92, 83, 73, 0.308) 1px solid");
+
+                //display item
+                displayItemModal(gift);
+            }, 1500);
+            return;
+        })
+    })
+
+    //events on modal close
+    $(".modal").click(function () {
+        console.log("closing modal");
+        $(".modalPanel").css("top", "30%");
+        $(".modal").addClass("hide");
+        $(document.body).removeClass("noscroll");
+
+        $(".giftLogPanel ul").append(addGiftLog(OC_ARRANGED[CURRENT_OC_INDEX], gift));
+        $(".giftLogPanel ul").animate({ scrollTop: $(document).height() }, 1000);
+        setUpGiftLogStyle(CURRENT_OC_INDEX);
+
+        if (CURRENT_OC_INDEX !== OCS.length - 1) {
+            CURRENT_OC_INDEX++;
+            setSpotlightToNextOC();
+            setUpOCOpacity();
+        } else {
+            //case of last click
+            CURRENT_OC_INDEX++;
+            $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
+            $(".currentName").html("");
+            setUpOCOpacity();
+        }
+        updateStats();
     })
 }
 
@@ -244,7 +283,6 @@ function addGiftLog(currentOC, gift) {
 }
 
 function setUpGiftLogStyle(index) {
-    console.log(index + 1);
     $(".giftLogPanel ul li:nth-child(" + (index + 1) + ")").css("border", "1px solid black");
     $(".giftLogPanel ul li:nth-child(" + (index + 1) + ")").css("opacity", "1");
 }
@@ -276,6 +314,8 @@ $(document).ready(function () {
     printOCs();
     printGrid();
     setGridBG();
-    setUpFlipEvent();
+    // setUpModalClickEvents();
+    // setUpFlipEvent();
+    setUpLongClick();
     updateStats();
 });

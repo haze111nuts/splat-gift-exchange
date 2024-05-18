@@ -86,7 +86,8 @@ body {
   height: 100px;
 }
 
-.spotlight, .frame {
+.spotlight,
+.frame {
   width: 100px;
   height: 100px;
   position: absolute;
@@ -105,7 +106,8 @@ body {
   transform: translate(-50%, 0) scale(1);
 }
 
-.current, .currentName {
+.current,
+.currentName {
   color: rgb(252, 241, 183);
   font-size: 2em;
   font-family: "DFPT_ZY9";
@@ -316,6 +318,19 @@ body {
   cursor: pointer;
   background-position: center center;
 }
+.gift_front .progress {
+  width: 0%;
+  position: absolute;
+  height: 5px;
+  background: red;
+  box-shadow: 0 2px 5px rgba(83, 83, 83, 0.349);
+  transition: width 0s;
+}
+
+.full_progress {
+  width: 100% !important;
+  transition: width 1.5s cubic-bezier(0.55, 0, 0.55, 1) !important;
+}
 
 .gift_back {
   background-color: rgb(190, 183, 163);
@@ -329,6 +344,64 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.modal {
+  z-index: 830;
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.25s ease-out;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.14s ease-in;
+}
+.modal .itemPanel {
+  margin: 0 auto;
+  width: 800px;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: all 0.25s ease-out;
+}
+.modal .itemPanel .itemArt {
+  width: 350px;
+  height: 350px;
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  transform: translate(0, -50%) scale(1) rotateZ(-5deg);
+}
+.modal .itemPanel .itemSummary {
+  width: 400px;
+  max-height: 300px;
+  padding: 80px 50px 80px 200px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%) scale(1) rotateZ(2deg);
+  background-color: #f3f4f8;
+}
+
+.noscroll {
+  overflow: hidden;
+}
+
+.hide {
+  opacity: 0 !important;
+  z-index: -1 !important;
+}
+
+.no-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 /*# sourceMappingURL=lottery.css.map */

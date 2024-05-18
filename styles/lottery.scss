@@ -1,14 +1,14 @@
 @font-face {
-	font-family: "DFPT_AZ5";
-	src: url("../assets/fonts/DFPT_AZ5.otf");
-	font-style: normal;
-	font-weight: normal;
+    font-family: "DFPT_AZ5";
+    src: url("../assets/fonts/DFPT_AZ5.otf");
+    font-style: normal;
+    font-weight: normal;
 }
 @font-face {
-	font-family: "DFPT_ZY9";
-	src: url("../assets/fonts/DFPT_ZY9.otf");
-	font-style: normal;
-	font-weight: normal;
+    font-family: "DFPT_ZY9";
+    src: url("../assets/fonts/DFPT_ZY9.otf");
+    font-style: normal;
+    font-weight: normal;
 }
 
 $profile_size: 100px;
@@ -28,7 +28,7 @@ body {
     background-color: #e0e0e0;
 }
 
-.stats{
+.stats {
     position: fixed;
     top: 0;
     left: 0;
@@ -41,14 +41,14 @@ body {
     line-height: 1.2em;
     color: #e0e0e0;
 
-    .title{
+    .title {
         text-align: center;
         font-size: 1.5em;
         transform: rotate(-4deg);
         margin-bottom: 20px;
     }
 
-    span{
+    span {
         color: $accent2;
     }
 }
@@ -97,8 +97,8 @@ body {
     height: $profile_size;
 }
 
-
-.spotlight, .frame{
+.spotlight,
+.frame {
     width: $profile_size;
     height: $profile_size;
     position: absolute;
@@ -111,21 +111,22 @@ body {
     transform: translate(-50%, 0);
 }
 
-.frame{
+.frame {
     border: $spotlight_border_size $accent2 solid;
     box-shadow:
         0 0 5px rgba(0, 0, 0, 0.3),
         inset 0 0 5px rgba(0, 0, 0, 0.3);
-    transform: translate(-50%, 0) scale(1);    
+    transform: translate(-50%, 0) scale(1);
 }
 
-.current, .currentName{
+.current,
+.currentName {
     color: $accent2;
     font-size: 2em;
     font-family: "DFPT_ZY9";
     text-shadow: -5px 5px 0 rgba(0, 0, 0, 0.7);
 }
-.current{
+.current {
     // background-color: grey;
     padding: 20px;
     position: absolute;
@@ -133,7 +134,7 @@ body {
     left: -400%;
     transform: rotate(-2deg);
 }
-.currentName{
+.currentName {
     text-align: center;
     width: 210px;
     position: absolute;
@@ -148,7 +149,7 @@ body {
     position: absolute;
     left: -70%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     width: 80px;
     height: 60px;
 }
@@ -197,7 +198,7 @@ body {
     position: fixed;
     overflow: hidden;
     top: 160px;
-    ul{
+    ul {
         width: 277px;
         height: 100%;
         padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
@@ -206,7 +207,7 @@ body {
         list-style: none;
         padding: 0;
         margin: 0;
-        li{
+        li {
             position: relative;
             background-color: rgba(61, 61, 61, 0.521);
             border-radius: 10px;
@@ -217,7 +218,7 @@ body {
             margin: 10px 0;
             opacity: 0;
             transition: all 0.3s;
-            .chara{
+            .chara {
                 width: 60px;
                 height: 60px;
                 position: absolute;
@@ -225,7 +226,7 @@ body {
                 left: 15px;
                 transform: rotate(-5deg);
             }
-            .gift{
+            .gift {
                 width: 60px;
                 height: 60px;
                 position: absolute;
@@ -233,29 +234,29 @@ body {
                 right: 15px;
                 transform: rotate(5deg);
             }
-            .label{
+            .label {
                 // border: #fff 1px solid;
                 font-size: smaller;
                 position: absolute;
                 left: 50%;
                 top: 50%;
-                transform: translate(-50%,-50%);
+                transform: translate(-50%, -50%);
                 width: 150px;
-                div:nth-child(1){
+                div:nth-child(1) {
                     border-bottom: 1px solid white;
                     padding: 20px 20px 0 30px;
                     text-align: left;
                 }
-                div:nth-child(2){
+                div:nth-child(2) {
                     padding: 0 20px 20px 20px;
                     text-align: right;
                 }
             }
         }
-        li:first-child{
+        li:first-child {
             margin-top: 65px;
         }
-        li:last-child{
+        li:last-child {
             margin-bottom: 50px;
         }
     }
@@ -324,10 +325,18 @@ $preview_gapY: 20px;
     transform-style: preserve-3d;
 }
 
+// .gridItem:hover{
+//     transform: scale(1.2);
+// }
+
 .gridItem:hover .gridItem_inner {
     transform: scale(1.2);
     // transform: scale(0);
 }
+
+// .gridItem:hover .progress {
+//     transition: width 2s cubic-bezier(0.55, 0, 0.55, 1) !important;
+// }
 
 .gift_front,
 .gift_back {
@@ -341,6 +350,20 @@ $preview_gapY: 20px;
 .gift_front {
     cursor: pointer;
     background-position: center center;
+
+    .progress {
+        width: 0%;
+        position: absolute;
+        height: 5px;
+        background: red;
+        box-shadow: 0 2px 5px rgba(83, 83, 83, 0.349);
+        transition: width 0s;
+    }
+}
+
+.full_progress{
+    width: 100% !important;
+    transition: width 1.5s cubic-bezier(0.55, 0, 0.55, 1) !important;
 }
 
 .gift_back {
@@ -348,7 +371,7 @@ $preview_gapY: 20px;
     color: white;
     transform: rotateY(180deg);
 
-    img{
+    img {
         width: 120px;
         height: 120px;
         position: absolute;
@@ -356,4 +379,66 @@ $preview_gapY: 20px;
         left: 50%;
         transform: translate(-50%, -50%);
     }
+}
+
+.modal {
+    z-index: 830;
+    background-color: rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.25s ease-out;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all 0.14s ease-in;
+
+    .itemPanel{
+		margin: 0 auto;
+		width: 800px;
+		height: 100%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) scale(1);
+		transition: all 0.25s ease-out;
+		// border: 1px solid green;
+
+		.itemArt{
+			width: 350px;
+			height: 350px;
+			position: absolute;
+			left: -50px;
+			top: 50%;
+			transform: translate(0, -50%) scale(1) rotateZ(-5deg);
+			// border: 1px solid red;
+		}
+		.itemSummary{
+			width: 400px;
+			max-height: 300px;
+			padding: 80px 50px 80px 200px;
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translate(0, -50%) scale(1) rotateZ(2deg);
+			background-color: #f3f4f8;
+		}
+    }
+}
+
+.noscroll {
+    overflow: hidden;
+}
+
+.hide {
+    opacity: 0 !important;
+    z-index: -1 !important;
+}
+
+.no-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
