@@ -1,16 +1,16 @@
 
 var OCS = [
-    {name:"成步堂龍一"}, {name:"王泥喜法介"}, {name:"希月心音"}, 
-    {name:"御劍伶侍"}, {name:"綾里真宵"}, {name:"成步堂美貫"}, 
-    {name:"寶月茜"}, {name:"綾里春美"}, {name:"靈花 帕多瑪"}];
+    { name: "成步堂龍一" }, { name: "王泥喜法介" }, { name: "希月心音" },
+    { name: "御劍伶侍" }, { name: "綾里真宵" }, { name: "成步堂美貫" },
+    { name: "寶月茜" }, { name: "綾里春美" }, { name: "靈花 帕多瑪" }];
 
 var GIFT_SLOTS = [
-    {}, {}, {}, {}, {}, 
-    {}, {}, {}, {}, {}, 
-    {}, {}, {}, {}, {}, 
-    {}, {}, {}, {}, {}, 
-    {}, {}, {}, {}, {}, 
-    {}, {}, {}, {}, {}, 
+    {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {},
     {}, {}, {}, {}, {}
 ];
 
@@ -25,7 +25,11 @@ var CURRENT_OC_INDEX = 0;
 var YEAR = 2024;
 
 function getOcUrl(id) {
-    return "assets/lottery/2024profile/" + id + ".jpg";
+    return "assets/lottery/" + YEAR + "profile/" + id + ".jpg";
+}
+
+function getGiftUrl(id) {
+    return "assets/" + YEAR + "/item/" + id + ".png";
 }
 
 function printOCs() {
@@ -87,7 +91,7 @@ function printGrid() {
         gridHtml += "</div>";
 
         gridHtml += "<div class='gift_back'>";
-        gridHtml += "";
+        gridHtml += "<img src='" + getGiftUrl(i) +"'>";
         gridHtml += "</div>";
 
         gridHtml += "</div>";
@@ -107,7 +111,7 @@ function setGridBG() {
 
     var bgNum = [...Array(77).keys()];
     shuffleArray(bgNum);
-    
+
     for (var i = 0; i < GIFT_SLOTS.length; i++) {
         $(".grid .gridItem:nth-of-type(" + (i + 1) + ") .gift_front").css("background-image", "url(assets/lottery/bg/" + bgNum[i] + ".png)");
     }
@@ -118,7 +122,7 @@ function setUpFlipEvent() {
         $(this).find(".gift_front").click(function () {
             $(this).parent(".gridItem_inner").css("transform", "rotateY(180deg)");
             $(this).parent(".gridItem_inner").css("border", "rgba(92, 83, 73, 0.308) 1px solid");
-            $(".giftLogPanel ul").append(addGiftLog(CURRENT_OC_INDEX,1));
+            $(".giftLogPanel ul").append(addGiftLog(CURRENT_OC_INDEX, 1));
             $(".giftLogPanel ul").animate({ scrollTop: $(document).height() }, 1000);
             setUpGiftLogStyle(CURRENT_OC_INDEX);
 
@@ -126,11 +130,11 @@ function setUpFlipEvent() {
             REMAIN--;
             updateStats();
 
-            if(CURRENT_OC_INDEX !== OCS.length-1){
+            if (CURRENT_OC_INDEX !== OCS.length - 1) {
                 CURRENT_OC_INDEX++;
                 setSpotlightToNextOC();
                 setUpOCOpacity();
-            }else{
+            } else {
                 //case of last click
                 CURRENT_OC_INDEX++;
                 $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
@@ -143,23 +147,23 @@ function setUpFlipEvent() {
 }
 
 
-function addGiftLog(charaIndex, giftIndex){
+function addGiftLog(charaIndex, giftIndex) {
     var logHtml = "";
     logHtml += "<li>";
     logHtml += "<div class='label'>";
     logHtml += "<div>成步堂龍一</div>"
     logHtml += "<div>灰色飲料瓶</div>"
     logHtml += "</div>";
-    logHtml += "<img class='chara' src='assets/lottery/"+YEAR+"profile/"+charaIndex+".jpg'>";
-    logHtml += "<img class='gift' src='assets/"+YEAR+"/item/"+giftIndex+".png'>";
+    logHtml += "<img class='chara' src='assets/lottery/" + YEAR + "profile/" + charaIndex + ".jpg'>";
+    logHtml += "<img class='gift' src='assets/" + YEAR + "/item/" + giftIndex + ".png'>";
     logHtml += "</li>";
     return logHtml;
 }
 
-function setUpGiftLogStyle(index){
-    console.log(index+1);
-    $(".giftLogPanel ul li:nth-child("+(index+1)+")").css("border","1px solid black");
-    $(".giftLogPanel ul li:nth-child("+(index+1)+")").css("opacity","1");
+function setUpGiftLogStyle(index) {
+    console.log(index + 1);
+    $(".giftLogPanel ul li:nth-child(" + (index + 1) + ")").css("border", "1px solid black");
+    $(".giftLogPanel ul li:nth-child(" + (index + 1) + ")").css("opacity", "1");
 }
 
 function setUpOCOpacity() {
@@ -176,7 +180,7 @@ function randomBGIndex() {
 var COUNT = 0;
 var REMAIN = GIFT_SLOTS.length;
 
-function updateStats(){
+function updateStats() {
     $(".count").html(COUNT);
     $(".remain").html(REMAIN);
 }
