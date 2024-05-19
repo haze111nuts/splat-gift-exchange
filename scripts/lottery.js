@@ -77,6 +77,10 @@ var CURRENT_OC_INDEX = 0;
 
 var YEAR = 2024;
 
+var OBTAINED_GIFT_INDEX = [];
+
+var FLIPPED_CARD = [];
+
 function getOcUrl(oc) {
     return "assets/lottery/" + YEAR + "profile/" + oc.profilePic;
 }
@@ -94,7 +98,7 @@ function printOCs() {
     }
     $(".turingBar").html(ocHtml);
 
-    setSpotlightToNextOC(OC_ARRANGED);
+    setSpotlightToNextOC();
     //animateArrow();
     animateFrame();
 }
@@ -161,27 +165,51 @@ function shuffleArray(array) {
     }
 }
 
-function loadOCs() {
-    var ocArrangementCookie = getCookie("ocArrangement");
+function loadCookie() {
+    const ocArrangementCookie = getCookie(COOKIE.OC_ARRANGEMENT);
+    const obtainedGIftCookie = getCookie(COOKIE.OBTAINED_GIFT);
+    const flippedCardCookie = getCookie(COOKIE.FLIPPED_CARD); 
 
     if (ocArrangementCookie === "") {
         OC_ARRANGED = [].concat(OCS);
         shuffleArray(OC_ARRANGED); // TODO: need to reshuffle and group by artist
         var arrangedIndexs = OC_ARRANGED.map(oc => OCS.indexOf(oc));
-        setCookie("ocArrangement", arrangedIndexs.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
+        setCookie(COOKIE.OC_ARRANGEMENT, arrangedIndexs.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
     } else {
         OC_ARRANGED = ocArrangementCookie.split(",").map(index => OCS[index]);
     }
+
+    if (obtainedGIftCookie !== "" && flippedCardCookie !== "") {
+        OBTAINED_GIFT_INDEX = obtainedGIftCookie.split(",");
+        FLIPPED_CARD = flippedCardCookie.split(",");
+
+        var obtainedGifts = OBTAINED_GIFT_INDEX.map(index => OCS[index]);
+        var index = 0;
+        for (var gift of obtainedGifts) {
+            $(".giftLogPanel ul").append(addGiftLog(OC_ARRANGED[index], gift));
+            $(".giftLogPanel ul").animate({ scrollTop: $(document).height() }, 1000);
+            setUpGiftLogStyle(index);
+
+            $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index])+1) + ") .gridItem_inner .gift_back").html("<img src='" + getGiftUrl(gift) + "'/>");
+            $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index])+1) + ") .gridItem_inner").css("transform", "rotateY(180deg)");
+            index++;
+        }
+
+        CURRENT_OC_INDEX = index;
+        GIFTPILE = GIFTPILE.filter(gift => !obtainedGifts.includes(gift));
+        setUpOCOpacity();
+    }
+    
 }
 
 function setGridBG() {
     var bgPattern;
-    const bgPatternCookie = getCookie("bgPattern");
+    const bgPatternCookie = getCookie(COOKIE.BG_PATTEREN);
 
     if (bgPatternCookie === "") {    
         bgPattern = [...Array(NUMBER_OF_BG).keys()];
         shuffleArray(bgPattern);
-        setCookie("bgPattern", bgPattern.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
+        setCookie(COOKIE.BG_PATTEREN, bgPattern.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
     }
     else {
         bgPattern = bgPatternCookie.split(",");
@@ -247,11 +275,11 @@ function setUpLongClick() {
                 //display item
                 displayItemModal(gift);
 
-                OC_ARRANGED[CURRENT_OC_INDEX].obtainedGift = {
-                    giftName: gift.giftName,
-                    giftPic: gift.giftPic,
-                    cardIndex: giftCard.parent().parent().index()
-                }
+                OBTAINED_GIFT_INDEX.push(OCS.indexOf(gift));
+                FLIPPED_CARD.push(giftCard.parent().parent().index());
+
+                setCookie(COOKIE.OBTAINED_GIFT, OBTAINED_GIFT_INDEX.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
+                setCookie(COOKIE.FLIPPED_CARD, FLIPPED_CARD.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
             }, 1500);
             return;
         })
@@ -290,7 +318,6 @@ function setUpLongClick() {
         }
     })
 }
-
 
 function addGiftLog(currentOC, gift) {
     var logHtml = "";
@@ -337,10 +364,10 @@ function setUpEnding(){
 //======================//
 
 $(document).ready(function () {
-    loadOCs();
-    printOCs();
     printGrid();
     setGridBG();
+    loadCookie();
+    printOCs();
     // setUpModalClickEvents();
     // setUpFlipEvent();
     setUpLongClick();

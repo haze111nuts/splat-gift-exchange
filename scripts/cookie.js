@@ -1,6 +1,13 @@
 const ENABLE_COOKIE = true;
 
-var COOKIE_EXPIRE_DEFAULT_DAYS = 1;
+const COOKIE_EXPIRE_DEFAULT_DAYS = 1;
+
+const COOKIE = {
+    OC_ARRANGEMENT: "ocArrangement",
+    BG_PATTEREN: "bgPattern",
+    OBTAINED_GIFT: "obtainedGift",
+    FLIPPED_CARD: "flippedCard"
+}
 
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
