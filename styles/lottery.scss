@@ -33,7 +33,7 @@ body {
     top: 0;
     left: 0;
     background-color: $accent3;
-    z-index: 83;
+    z-index: 84;
     font-family: "DFPT_ZY9";
     font-size: 1.5em;
     padding: 40px 70px 40px 30px;
@@ -54,12 +54,12 @@ body {
 }
 
 .topBar {
-    width: 100%;
+    width: 80%;
     padding-top: 20px;
     position: fixed;
     top: 0px;
-    left: 50%;
-    transform: translate(-50%, 0);
+    right: 0px;
+    // transform: translate(-50%, 0);
     z-index: 83;
 }
 
@@ -72,7 +72,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    width: 80%;
+    width: 100%;
     background-color: $accent1;
     height: 150px;
     border-radius: 0 0 0 100px;
@@ -189,20 +189,23 @@ body {
 .content {
     // border: 1px solid red;
     margin-top: 200px;
-    padding: 0 30px;
+    // padding: 0 30px;
 }
 
+
+$gift_notif_width: 300px;
 .giftLogPanel {
-    width: 260px;
+    width: $gift_notif_width;
     height: 800px;
     position: fixed;
     overflow: hidden;
     top: 160px;
+    left: 15px;
     ul {
-        width: 277px;
+        width: $gift_notif_width + 17;
         height: 100%;
-        padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
-        box-sizing: content-box; /* So the width will be 100% + 17px */
+        padding-right: 17px;//scroll width
+        box-sizing: content-box;
         overflow-y: scroll;
         list-style: none;
         padding: 0;
@@ -212,9 +215,8 @@ body {
             background-color: rgba(61, 61, 61, 0.521);
             border-radius: 10px;
             list-style: none;
-            // padding: 20px;
-            width: 250px;
-            height: 80px;
+            width: $gift_notif_width - 10;
+            height: 100px;
             margin: 10px 0;
             opacity: 0;
             transition: all 0.3s;
@@ -222,33 +224,34 @@ body {
                 width: 60px;
                 height: 60px;
                 position: absolute;
-                top: 10px;
+                top: 50%;
                 left: 15px;
-                transform: rotate(-5deg);
+                transform: translate(0,-50%) rotate(-5deg);
             }
             .gift {
                 width: 60px;
                 height: 60px;
                 position: absolute;
-                top: 10px;
+                top: 50%;
                 right: 15px;
-                transform: rotate(5deg);
+                transform: translate(0,-50%) rotate(5deg);
             }
             .label {
                 // border: #fff 1px solid;
-                font-size: smaller;
+                font-size: medium;
                 position: absolute;
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%, -50%);
-                width: 150px;
+                width: 180px;
                 div:nth-child(1) {
                     border-bottom: 1px solid white;
                     padding: 20px 20px 0 30px;
                     text-align: left;
                 }
                 div:nth-child(2) {
-                    padding: 0 20px 20px 20px;
+                    line-height: 110%;
+                    padding: 4px 20px 20px 30px;
                     text-align: right;
                 }
             }
@@ -257,14 +260,16 @@ body {
             margin-top: 65px;
         }
         li:last-child {
-            margin-bottom: 50px;
+            margin-bottom: 85px;
         }
     }
 }
 
 .pool {
     background-color: rgb(207, 199, 177);
-    margin: 0 15% 100px auto;
+    float: right;
+    margin-right: 14%;
+    // margin: 0 15% 100px auto;
     width: 80%;
     max-width: 1100px;
 }
@@ -325,18 +330,11 @@ $preview_gapY: 20px;
     transform-style: preserve-3d;
 }
 
-// .gridItem:hover{
-//     transform: scale(1.2);
-// }
 
 .gridItem:hover .gridItem_inner {
     transform: scale(1.2);
-    // transform: scale(0);
 }
 
-// .gridItem:hover .progress {
-//     transition: width 2s cubic-bezier(0.55, 0, 0.55, 1) !important;
-// }
 
 .gift_front,
 .gift_back {
@@ -441,4 +439,29 @@ $preview_gapY: 20px;
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
+}
+
+
+//=========================//
+//===                   ===//
+//===   MEDIA SCREENS   ===//
+//===                   ===//
+//=========================//
+
+@media only screen and (max-width: 1700px) {
+    .pool {
+        margin-right: 50px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .topBar {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 959px) {
+}
+
+@media only screen and (max-width: 481px) {
 }
