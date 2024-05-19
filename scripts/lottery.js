@@ -65,7 +65,7 @@ const OCS = [
     }
 ];
 
-var OC_ARRANGED = [].concat(OCS);
+var OC_ARRANGED;
 
 var GIFTPILE = [].concat(OCS);
 
@@ -76,8 +76,6 @@ var ORIGINAL_OC_POS = -50;
 var CURRENT_OC_INDEX = 0;
 
 var YEAR = 2024;
-
-var COOKIE_EXPIRE_DAYS = 1;
 
 function getOcUrl(oc) {
     return "assets/lottery/" + YEAR + "profile/" + oc.profilePic;
@@ -163,6 +161,19 @@ function shuffleArray(array) {
     }
 }
 
+function loadOCs() {
+    var ocArrangementCookie = getCookie("ocArrangement");
+
+    if (ocArrangementCookie === "") {
+        OC_ARRANGED = [].concat(OCS);
+        shuffleArray(OC_ARRANGED); // TODO: need to reshuffle and group by artist
+        var arrangedIndexs = OC_ARRANGED.map(oc => OCS.indexOf(oc));
+        setCookie("ocArrangement", arrangedIndexs.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
+    } else {
+        OC_ARRANGED = ocArrangementCookie.split(",").map(index => OCS[index]);
+    }
+}
+
 function setGridBG() {
     var bgPattern;
     const bgPatternCookie = getCookie("bgPattern");
@@ -170,7 +181,7 @@ function setGridBG() {
     if (bgPatternCookie === "") {    
         bgPattern = [...Array(NUMBER_OF_BG).keys()];
         shuffleArray(bgPattern);
-        setCookie("bgPattern", bgPattern.toString(), COOKIE_EXPIRE_DAYS);
+        setCookie("bgPattern", bgPattern.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
     }
     else {
         bgPattern = bgPatternCookie.split(",");
@@ -319,7 +330,7 @@ function updateStats() {
 //======================//
 
 $(document).ready(function () {
-    shuffleArray(OC_ARRANGED); // TODO: need to reshuffle and group by artist
+    loadOCs();
     printOCs();
     printGrid();
     setGridBG();

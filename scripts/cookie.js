@@ -1,4 +1,6 @@
-const ENABLE_COOKIE = false;
+const ENABLE_COOKIE = true;
+
+var COOKIE_EXPIRE_DEFAULT_DAYS = 1;
 
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
