@@ -149,7 +149,7 @@ function printGrid() {
         gridHtml += gridNumber++;
         gridHtml += "</div>";
 
-        gridHtml += "<div class='gift_back'>";
+        gridHtml += "<div class='gift_back no-select'>";
         gridHtml += "</div>";
 
         gridHtml += "</div>";
@@ -186,8 +186,8 @@ function loadCookie() {
         var obtainedGifts = OBTAINED_GIFT_INDEX.map(index => OCS[index]);
         var index = 0;
         for (var gift of obtainedGifts) {
-            $(".giftLogPanel ul").append(addGiftLog(OC_ARRANGED[index], gift));
-            $(".giftLogPanel ul").animate({ scrollTop: $(document).height() }, 1000);
+            $(".logPanelContent ul").append(addGiftLog(OC_ARRANGED[index], gift));
+            $(".logPanelContent ul").animate({ scrollTop: $(document).height() }, 1000);
             setUpGiftLogStyle(index);
 
             $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index])+1) + ") .gridItem_inner .gift_back").html("<img src='" + getGiftUrl(gift) + "'/>");
@@ -297,8 +297,8 @@ function setUpLongClick() {
             currentGiftCard.parent(".gridItem_inner").css("transform", "rotateY(180deg)");
             currentGiftCard.parent(".gridItem_inner").css("border", "rgba(92, 83, 73, 0.308) 1px solid");
 
-            $(".giftLogPanel ul").append(addGiftLog(OC_ARRANGED[CURRENT_OC_INDEX], gift));
-            $(".giftLogPanel ul").animate({ scrollTop: $(document).height() }, 1000);
+            $(".logPanelContent ul").append(addGiftLog(OC_ARRANGED[CURRENT_OC_INDEX], gift));
+            $(".logPanelContent").animate({ scrollTop: $(".logPanelContent").prop("scrollHeight") }, 1000);
             setUpGiftLogStyle(CURRENT_OC_INDEX);
 
             if (CURRENT_OC_INDEX !== OCS.length - 1) {
@@ -333,8 +333,8 @@ function addGiftLog(currentOC, gift) {
 }
 
 function setUpGiftLogStyle(index) {
-    $(".giftLogPanel ul li:nth-child(" + (index + 1) + ")").css("border", "1px solid black");
-    $(".giftLogPanel ul li:nth-child(" + (index + 1) + ")").css("opacity", "1");
+    $(".logPanelContent ul li:nth-child(" + (index + 1) + ")").css("border", "1px solid black");
+    $(".logPanelContent ul li:nth-child(" + (index + 1) + ")").css("opacity", "1");
 }
 
 function setUpOCOpacity() {
@@ -368,8 +368,6 @@ $(document).ready(function () {
     setGridBG();
     loadCookie();
     printOCs();
-    // setUpModalClickEvents();
-    // setUpFlipEvent();
     setUpLongClick();
     updateStats();
 });

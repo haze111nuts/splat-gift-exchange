@@ -18,239 +18,9 @@ html {
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   background-size: auto;
   background-image: url(../assets/lottery/main.jpg);
-}
-
-.stats {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgb(83, 83, 83);
-  z-index: 84;
-  font-family: "DFPT_ZY9";
-  font-size: 1.5em;
-  padding: 40px 70px 40px 30px;
-  border-radius: 0 0 50px 0;
-  line-height: 1.2em;
-  color: #e0e0e0;
-}
-.stats .title {
-  text-align: center;
-  font-size: 1.5em;
-  transform: rotate(-4deg);
-  margin-bottom: 20px;
-}
-.stats span {
-  color: rgb(252, 241, 183);
-}
-
-.topBar {
-  width: 80%;
-  padding-top: 20px;
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  z-index: 83;
-}
-
-.topBar_inner {
-  height: 100%;
-  position: relative;
-}
-
-.topBar_BG {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  background-color: rgb(72, 60, 54);
-  height: 150px;
-  border-radius: 0 0 0 100px;
-}
-
-.turingBar {
-  display: flex;
-  position: absolute;
-  left: 50%;
-  transition: transform 0.5s;
-}
-
-.oc {
-  flex: 1;
-  transition: all 0.5s;
-}
-
-.turingBar img {
-  width: 100px;
-  height: 100px;
-}
-
-.spotlight,
-.frame {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  left: 50%;
-  top: -8px;
-}
-
-.spotlight {
-  border: 8px transparent solid;
-  transform: translate(-50%, 0);
-}
-
-.frame {
-  border: 8px rgb(252, 241, 183) solid;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 0, 0, 0.3);
-  transform: translate(-50%, 0) scale(1);
-}
-
-.current,
-.currentName {
-  color: rgb(252, 241, 183);
-  font-size: 2em;
-  font-family: "DFPT_ZY9";
-  text-shadow: -5px 5px 0 rgba(0, 0, 0, 0.7);
-}
-
-.current {
-  padding: 20px;
-  position: absolute;
-  top: -2%;
-  left: -400%;
-  transform: rotate(-2deg);
-}
-
-.currentName {
-  text-align: center;
-  width: 210px;
-  position: absolute;
-  top: 65%;
-  left: -310%;
-  transform: rotate(1deg);
-}
-
-.icon {
-  z-index: 84;
-  position: absolute;
-  left: -70%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  height: 60px;
-}
-
-.arrow {
-  position: absolute;
-  top: 25px;
-  width: 90%;
-  height: 10px;
-  background-color: rgb(252, 241, 183);
-  box-shadow: -4px 4px 1px rgba(0, 0, 0, 0.7);
-}
-
-.arrow::after,
-.arrow::before {
-  content: "";
-  position: absolute;
-  width: 60%;
-  height: 10px;
-  right: -8px;
-  background-color: rgb(252, 241, 183);
-}
-
-.arrow::after {
-  top: -12px;
-  transform: rotate(45deg);
-}
-
-.arrow::before {
-  top: 12px;
-  box-shadow: -4px 4px 1px rgba(0, 0, 0, 0.7);
-  transform: rotate(-45deg);
-}
-
-.content {
-  margin-top: 200px;
-}
-
-.giftLogPanel {
-  width: 300px;
-  height: 800px;
-  position: fixed;
-  overflow: hidden;
-  top: 160px;
-  left: 15px;
-}
-.giftLogPanel ul {
-  width: 317px;
-  height: 100%;
-  padding-right: 17px;
-  box-sizing: content-box;
-  overflow-y: scroll;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.giftLogPanel ul li {
-  position: relative;
-  background-color: rgba(61, 61, 61, 0.521);
-  border-radius: 10px;
-  list-style: none;
-  width: 290px;
-  height: 100px;
-  margin: 10px 0;
-  opacity: 0;
-  transition: all 0.3s;
-}
-.giftLogPanel ul li .chara {
-  width: 60px;
-  height: 60px;
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  transform: translate(0, -50%) rotate(-5deg);
-}
-.giftLogPanel ul li .gift {
-  width: 60px;
-  height: 60px;
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translate(0, -50%) rotate(5deg);
-}
-.giftLogPanel ul li .label {
-  font-size: medium;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 180px;
-}
-.giftLogPanel ul li .label div:nth-child(1) {
-  border-bottom: 1px solid white;
-  padding: 20px 20px 0 30px;
-  text-align: left;
-}
-.giftLogPanel ul li .label div:nth-child(2) {
-  line-height: 110%;
-  padding: 4px 20px 20px 30px;
-  text-align: right;
-}
-.giftLogPanel ul li:first-child {
-  margin-top: 75px;
-}
-.giftLogPanel ul li:last-child {
-  margin-bottom: 140px;
-}
-
-.pool {
-  background-color: rgb(207, 199, 177);
-  float: right;
-  margin-right: 14%;
-  width: 80%;
-  max-width: 1100px;
 }
 
 .panelWarp {
@@ -258,25 +28,111 @@ body {
   display: flex;
 }
 
-.panelWarp > div {
-  margin: 24px;
-  border: rgb(72, 60, 54) 8px solid;
+.panel {
+  margin: 32px 24px;
+  border: rgb(58, 49, 45) 8px solid;
   border-radius: 10px;
 }
 
+.panelHeader {
+  background: rgb(58, 49, 45);
+  font-size: 1.3em;
+  font-family: "DFPT_AZ5";
+  color: rgb(219, 213, 202);
+  padding: 8px 8px 14px 8px;
+}
+
 .logPanel {
+  position: relative;
   margin-right: 16px !important;
-  width: 370px;
   height: 600px;
+}
+.logPanel .title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  background-color: rgb(58, 49, 45);
+  color: rgb(179, 170, 156);
+  font-size: 1.5em;
+  padding: 10px;
+  border-radius: 8px;
+}
+.logPanel .logPanelContent {
   background-color: rgba(224, 224, 209, 0.6);
+  width: 320px;
+  height: 557px;
+  overflow-y: auto;
+}
+.logPanel .logPanelContent ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.logPanel .logPanelContent ul li {
+  position: relative;
+  background-color: rgb(72, 60, 54);
+  color: white;
+  border-radius: 10px;
+  list-style: none;
+  width: 88%;
+  height: 80px;
+  margin: 10px auto;
+  opacity: 0;
+  transition: all 0.3s;
+  box-shadow: 0 0 5px rgba(252, 240, 183, 0.8) inset;
+}
+.logPanel .logPanelContent ul li .chara {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(0, -50%) rotate(-5deg);
+}
+.logPanel .logPanelContent ul li .gift {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translate(0, -50%) rotate(5deg);
+}
+.logPanel .logPanelContent ul li .label {
+  font-size: medium;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+}
+.logPanel .logPanelContent ul li .label div:nth-child(1) {
+  border-bottom: 1px solid rgb(179, 170, 156);
+  padding: 20px 20px 0 25px;
+  text-align: left;
+}
+.logPanel .logPanelContent ul li .label div:nth-child(2) {
+  line-height: 110%;
+  padding: 4px 15px 20px 30px;
+  text-align: right;
+}
+.logPanel .logPanelContent ul li:last-child {
+  background-color: rgb(184, 120, 2);
+  margin-bottom: 64px;
+}
+
+.lotterySection {
+  width: 100%;
 }
 
 .lotteryPanel {
   margin-left: 16px !important;
-  width: 100%;
-  height: 700px;
   background-color: rgba(203, 193, 177, 0.7);
   backdrop-filter: blur(10px);
+}
+.lotteryPanel .lotteryBoard {
+  height: 642px;
+  overflow-y: auto;
 }
 
 .grid {
@@ -286,13 +142,12 @@ body {
   align-content: flex-start;
   align-items: center;
   justify-content: center;
-  height: 100%;
   margin: 0 auto;
-  padding: 40px 0 20px 0;
+  padding: 30px 0 10px 0;
   list-style: none;
+  max-width: 1100px;
 }
-
-.gridItem {
+.grid .gridItem {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -311,8 +166,10 @@ body {
   will-change: transform;
   perspective: 1000px;
 }
-
-.gridItem_inner {
+.grid .gridItem:hover .gridItem_inner {
+  transform: scale(1.2);
+}
+.grid .gridItem .gridItem_inner {
   text-align: center;
   vertical-align: middle;
   line-height: 150px;
@@ -328,25 +185,19 @@ body {
   transition: transform 0.5s;
   transform-style: preserve-3d;
 }
-
-.gridItem:hover .gridItem_inner {
-  transform: scale(1.2);
-}
-
-.gift_front,
-.gift_back {
+.grid .gridItem .gridItem_inner .gift_front,
+.grid .gridItem .gridItem_inner .gift_back {
   position: absolute;
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
 }
-
-.gift_front {
+.grid .gridItem .gridItem_inner .gift_front {
   cursor: pointer;
   background-position: center center;
 }
-.gift_front .progress {
+.grid .gridItem .gridItem_inner .gift_front .progress {
   width: 0%;
   position: absolute;
   height: 5px;
@@ -354,24 +205,131 @@ body {
   box-shadow: 0 2px 5px rgba(83, 83, 83, 0.349);
   transition: width 0s;
 }
-
-.full_progress {
+.grid .gridItem .gridItem_inner .gift_front .full_progress {
   width: 100% !important;
   transition: width 1.5s cubic-bezier(0.55, 0, 0.55, 1) !important;
 }
-
-.gift_back {
-  background-color: rgb(190, 183, 163);
+.grid .gridItem .gridItem_inner .gift_back {
+  background-color: rgb(175, 168, 149);
   color: white;
   transform: rotateY(180deg);
 }
-.gift_back img {
+.grid .gridItem .gridItem_inner .gift_back img {
   width: 120px;
   height: 120px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.OCPanel {
+  background-color: rgb(58, 49, 45);
+  height: 100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 26px 0;
+  position: relative;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+.OCPanel .OCPanel_content {
+  width: 100%;
+  position: absolute;
+}
+
+.turingBar,
+.indicator,
+.frame {
+  position: absolute;
+  left: 50%;
+}
+
+.turingBar {
+  display: flex;
+  transition: transform 0.5s;
+}
+.turingBar img {
+  width: 100px;
+  height: 100px;
+}
+.turingBar .oc {
+  flex: 1;
+  transition: all 0.5s;
+}
+
+.indicator,
+.frame {
+  width: 100px;
+  height: 100px;
+  top: -8px;
+}
+
+.indicator {
+  border: 8px transparent solid;
+  transform: translate(-50%, 0);
+}
+.indicator .frame {
+  border: 8px rgb(252, 241, 183) solid;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, 0) scale(1);
+}
+.indicator .current,
+.indicator .currentName {
+  color: rgb(252, 241, 183);
+  font-size: 2em;
+  font-family: "DFPT_ZY9";
+  text-shadow: -5px 5px 0 rgba(0, 0, 0, 0.7);
+}
+.indicator .current {
+  padding: 20px;
+  position: absolute;
+  top: -2%;
+  left: -400%;
+  transform: rotate(-2deg);
+}
+.indicator .currentName {
+  text-align: center;
+  width: 210px;
+  position: absolute;
+  top: 65%;
+  left: -310%;
+  transform: rotate(1deg);
+}
+.indicator .icon {
+  z-index: 84;
+  position: absolute;
+  left: -70%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 60px;
+}
+.indicator .icon .arrow {
+  position: absolute;
+  top: 25px;
+  width: 90%;
+  height: 10px;
+  background-color: rgb(252, 241, 183);
+  box-shadow: -4px 4px 1px rgba(0, 0, 0, 0.7);
+}
+.indicator .icon .arrow::after,
+.indicator .icon .arrow::before {
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: 10px;
+  right: -8px;
+  background-color: rgb(252, 241, 183);
+}
+.indicator .icon .arrow::after {
+  top: -12px;
+  transform: rotate(45deg);
+}
+.indicator .icon .arrow::before {
+  top: 12px;
+  box-shadow: -4px 4px 1px rgba(0, 0, 0, 0.7);
+  transform: rotate(-45deg);
 }
 
 .modal {
@@ -432,15 +390,26 @@ body {
   user-select: none; /* Standard syntax */
 }
 
-@media only screen and (max-width: 1700px) {
-  .pool {
-    margin-right: 50px;
-  }
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(184, 120, 2) rgb(179, 170, 156);
 }
-@media only screen and (max-width: 1200px) {
-  .topBar {
-    width: 70%;
-  }
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(179, 170, 156);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(58, 49, 45);
+  border-radius: 10px;
+  border: 3px solid #ffffff;
 }
 
 /*# sourceMappingURL=lottery.css.map */
