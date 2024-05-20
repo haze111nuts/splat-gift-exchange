@@ -172,7 +172,7 @@ body {
     }
     .lotteryBoard_overlay {
         opacity: 0;
-        background-color: rgba(31, 21, 16, 0.4);
+        background-color: rgba(31, 21, 16, 0.5);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         width: 100%;
@@ -197,15 +197,16 @@ body {
                 opacity: 0.8;
             }
             div:nth-child(2) {
-                width: 200px;
+                width: 250px;
                 text-align: center;
-                font-size: 1.5em;
+                font-size: 2.2em;
+                font-family: "DFPT_AZ5";
                 color: white;
+                line-height: 170%;
                 text-shadow:
-                    0 0 15px black,
                     0 0 20px black,
-                    0 0 45px black,
-                    0 0 50px black;
+                    0 0 50px black,
+                    0 0 65px black;
             }
         }
     }
@@ -258,8 +259,9 @@ $preview_gapY: 20px;
             border: $ACCENT2 1px solid;
             font-size: 4rem;
             font-weight: 600;
+            font-family: "DFPT_ZY9";
             color: #fff;
-            text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+            text-shadow: 0 0 4px rgba(0, 0, 0, 0.7), 0 0 6px rgba(0, 0, 0, 0.7);
             position: relative;
             width: 100%;
             height: 100%;
