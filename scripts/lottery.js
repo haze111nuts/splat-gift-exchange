@@ -107,7 +107,7 @@ function printOCs() {
 
     setSpotlightToNextOC();
     //animateArrow();
-    animateFrame();
+    // animateFrame();
 }
 
 // function animateArrow() {
