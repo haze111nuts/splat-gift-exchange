@@ -103,17 +103,17 @@ function printOCs() {
     animateFrame();
 }
 
-function animateArrow() {
-    const $arrow = document.querySelector('.arrow');
-    $arrow.animate([
-        { left: '10px' },
-        { left: '0' },
-        { left: '10px' }
-    ], {
-        duration: 500,
-        iterations: Infinity
-    });
-}
+// function animateArrow() {
+//     const $arrow = document.querySelector('.arrow');
+//     $arrow.animate([
+//         { left: '10px' },
+//         { left: '0' },
+//         { left: '10px' }
+//     ], {
+//         duration: 500,
+//         iterations: Infinity
+//     });
+// }
 
 function animateFrame() {
     const $arrow = document.querySelector('.frame');
@@ -354,7 +354,13 @@ function updateStats() {
 }
 
 function setUpEnding(){
-    $(".oc").css("opacity", 0);
+    $(".OCPanel").css("opacity", 0);
+    $(".OCPanel").css("width", 0);
+    $(".OCPanel").css("margin-right", "-300px");
+    $(".lotteryBoard_overlay").css("opacity", 1);
+    $(".lotteryBoard_overlay").css("z-index", 83);
+    $(".cross").css("width", "90%");
+    $(".lotteryPanel").css("background-color","rgb(203, 193, 177, 0.2)");
 }
 
 //======================//

@@ -15,7 +15,7 @@ $profile_size: 100px;
 $spotlight_border_size: 8px;
 
 $ACCENT1: rgb(58, 49, 45);
-$ACCENT2: rgb(72, 60, 54);
+$ACCENT2: rgb(82, 68, 61);
 $ACCENT3: rgb(179, 170, 156);
 $ACCENT4: rgb(252, 241, 183);
 $ACCENT5: rgb(219, 213, 202);
@@ -30,35 +30,9 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    // background-color: #e0e0e0;
     background-size: auto;
     background-image: url(../assets/lottery/main.jpg);
 }
-
-// .stats {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     background-color: $accent3;
-//     z-index: 84;
-//     font-family: "DFPT_ZY9";
-//     font-size: 1.5em;
-//     padding: 40px 70px 40px 30px;
-//     border-radius: 0 0 50px 0;
-//     line-height: 1.2em;
-//     color: #e0e0e0;
-
-//     .title {
-//         text-align: center;
-//         font-size: 1.5em;
-//         transform: rotate(-4deg);
-//         margin-bottom: 20px;
-//     }
-
-//     span {
-//         color: $accent2;
-//     }
-// }
 
 //===================//
 //===   GENERAL   ===//
@@ -70,18 +44,19 @@ body {
 }
 
 .panel {
-    margin: 32px 24px;
+    margin: 24px;
     border: $ACCENT1 8px solid;
     border-radius: 10px;
+    box-shadow: 3px 3px 0px 0px rgba(255, 245, 201, 0.5);
 }
 
 .panelHeader {
     background: $ACCENT1;
-    // background: linear-gradient(0deg, $ACCENT4 0%, $ACCENT1 50%);
     font-size: 1.3em;
     font-family: "DFPT_AZ5";
     color: $ACCENT5;
     padding: 8px 8px 14px 8px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.45);
 }
 
 //=====================//
@@ -116,7 +91,7 @@ body {
             margin: 0;
             li {
                 position: relative;
-                background-color: $ACCENT2;
+                background: linear-gradient(-60deg, $ACCENT2 65%, $ACCENT1 66%);
                 color: white;
                 border-radius: 10px;
                 list-style: none;
@@ -183,10 +158,50 @@ body {
     margin-left: 16px !important;
     background-color: rgb(203, 193, 177, 0.7);
     backdrop-filter: blur(10px);
+    transition: all .4s;
     .lotteryBoard {
         // max-height: 632px;
         height: 642px;
         overflow-y: auto;
+    }
+    .lotteryBoard_overlay {
+        opacity: 0;
+        background-color: rgba(31, 21, 16, 0.4);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        width: 100%;
+        height: 642px;
+        position: absolute;
+        z-index: -1;
+        transition: opacity .4s;
+
+        .endingText {
+            div {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .cross {
+                width: 0;
+                border: 1px solid $ACCENT5;
+                transform: translate(-50%, -50%) rotate(-25deg);
+                box-shadow: 0 0 30px black;
+                transition: width .7s ease-in-out;
+                opacity: 0.8;
+            }
+            div:nth-child(2) {
+                width: 200px;
+                text-align: center;
+                font-size: 1.5em;
+                color: white;
+                text-shadow:
+                    0 0 15px black,
+                    0 0 20px black,
+                    0 0 45px black,
+                    0 0 50px black;
+            }
+        }
     }
 }
 
@@ -228,12 +243,13 @@ $preview_gapY: 20px;
 
         &:hover .gridItem_inner {
             transform: scale(1.2);
+            box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.3);
         }
         .gridItem_inner {
             text-align: center;
             vertical-align: middle;
             line-height: $preview_size;
-            border: rgb(92, 83, 73) 1px solid;
+            border: $ACCENT2 1px solid;
             font-size: 4rem;
             font-weight: 600;
             color: #fff;
@@ -242,7 +258,7 @@ $preview_gapY: 20px;
             width: 100%;
             height: 100%;
             text-align: center;
-            transition: transform 0.5s;
+            transition: transform 0.5s, box-shadow 0.5s;
             transform-style: preserve-3d;
 
             .gift_front,
@@ -260,13 +276,14 @@ $preview_gapY: 20px;
                     width: 0%;
                     position: absolute;
                     height: 5px;
-                    background: red;
+                    background: yellow;
                     box-shadow: 0 2px 5px rgba(83, 83, 83, 0.349);
                     transition: width 0s;
                 }
                 .full_progress {
                     width: 100% !important;
-                    transition: width 1.5s cubic-bezier(0.55, 0, 0.55, 1) !important;
+                    background: red;
+                    transition: all 1.5s cubic-bezier(0.55, 0, 0.55, 1) !important;
                 }
             }
             .gift_back {
@@ -291,19 +308,25 @@ $preview_gapY: 20px;
 //==================//
 
 .OCPanel {
-    background-color: $ACCENT1;
+    background: linear-gradient(-30deg, $ACCENT2 55%, $ACCENT1 55%);
     height: $profile_size;
     width: 100%;
-    margin: 0 auto;
+    margin: 8px auto 0 auto;
     padding: 26px 0;
     position: relative;
-    border-top-left-radius: 16px;
-    border-bottom-left-radius: 16px;
+    box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.5);
+    // border-top-left-radius: 80px;
+    // border-bottom-left-radius: 80px;
+    // clip-path: polygon(0 0, 100% 0, 100% 120%, 6% 120%);
+    transition:
+        margin 0.3s ease,
+        opacity 0.5s,
+        width 0.5s;
 
-    .OCPanel_content {
-        // border: 1px solid white;
-        width: 100%;
+    .OCPanelContent {
+        width: 80%;
         position: absolute;
+        right: 0;
     }
 }
 
@@ -346,19 +369,19 @@ $preview_gapY: 20px;
             inset 0 0 5px rgba(0, 0, 0, 0.3);
         transform: translate(-50%, 0) scale(1);
     }
-    .current,
+    .currentText,
     .currentName {
         color: $ACCENT4;
-        font-size: 2em;
+        font-size: 2.2em;
         font-family: "DFPT_ZY9";
         text-shadow: -5px 5px 0 rgba(0, 0, 0, 0.7);
     }
-    .current {
+    .currentText {
         // background-color: grey;
         padding: 20px;
         position: absolute;
-        top: -2%;
-        left: -400%;
+        top: -8%;
+        left: -450%;
         transform: rotate(-2deg);
     }
     .currentName {
@@ -366,11 +389,10 @@ $preview_gapY: 20px;
         width: 210px;
         position: absolute;
         top: 65%;
-        left: -310%;
+        left: -320%;
         transform: rotate(1deg);
         // border: 1px solid black;
     }
-
     .icon {
         z-index: 84;
         position: absolute;
@@ -482,7 +504,7 @@ $preview_gapY: 20px;
 /* Firefox */
 * {
     scrollbar-width: thin;
-    scrollbar-color: $ACCENT6 $ACCENT3;
+    scrollbar-color: $ACCENT6 $ACCENT5;
 }
 
 /* Chrome, Edge, and Safari */
@@ -491,7 +513,7 @@ $preview_gapY: 20px;
 }
 
 *::-webkit-scrollbar-track {
-    background: $ACCENT3;
+    background: $ACCENT5;
 }
 
 *::-webkit-scrollbar-thumb {

@@ -29,9 +29,10 @@ body {
 }
 
 .panel {
-  margin: 32px 24px;
+  margin: 24px;
   border: rgb(58, 49, 45) 8px solid;
   border-radius: 10px;
+  box-shadow: 3px 3px 0px 0px rgba(255, 245, 201, 0.5);
 }
 
 .panelHeader {
@@ -40,6 +41,7 @@ body {
   font-family: "DFPT_AZ5";
   color: rgb(219, 213, 202);
   padding: 8px 8px 14px 8px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.45);
 }
 
 .logPanel {
@@ -71,7 +73,7 @@ body {
 }
 .logPanel .logPanelContent ul li {
   position: relative;
-  background-color: rgb(72, 60, 54);
+  background: linear-gradient(-60deg, rgb(82, 68, 61) 65%, rgb(58, 49, 45) 66%);
   color: white;
   border-radius: 10px;
   list-style: none;
@@ -129,10 +131,43 @@ body {
   margin-left: 16px !important;
   background-color: rgba(203, 193, 177, 0.7);
   backdrop-filter: blur(10px);
+  transition: all 0.4s;
 }
 .lotteryPanel .lotteryBoard {
   height: 642px;
   overflow-y: auto;
+}
+.lotteryPanel .lotteryBoard_overlay {
+  opacity: 0;
+  background-color: rgba(31, 21, 16, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  width: 100%;
+  height: 642px;
+  position: absolute;
+  z-index: -1;
+  transition: opacity 0.4s;
+}
+.lotteryPanel .lotteryBoard_overlay .endingText div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.lotteryPanel .lotteryBoard_overlay .endingText .cross {
+  width: 0;
+  border: 1px solid rgb(219, 213, 202);
+  transform: translate(-50%, -50%) rotate(-25deg);
+  box-shadow: 0 0 30px black;
+  transition: width 0.7s ease-in-out;
+  opacity: 0.8;
+}
+.lotteryPanel .lotteryBoard_overlay .endingText div:nth-child(2) {
+  width: 200px;
+  text-align: center;
+  font-size: 1.5em;
+  color: white;
+  text-shadow: 0 0 15px black, 0 0 20px black, 0 0 45px black, 0 0 50px black;
 }
 
 .grid {
@@ -168,12 +203,13 @@ body {
 }
 .grid .gridItem:hover .gridItem_inner {
   transform: scale(1.2);
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.3);
 }
 .grid .gridItem .gridItem_inner {
   text-align: center;
   vertical-align: middle;
   line-height: 150px;
-  border: rgb(92, 83, 73) 1px solid;
+  border: rgb(82, 68, 61) 1px solid;
   font-size: 4rem;
   font-weight: 600;
   color: #fff;
@@ -182,7 +218,7 @@ body {
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 0.5s;
+  transition: transform 0.5s, box-shadow 0.5s;
   transform-style: preserve-3d;
 }
 .grid .gridItem .gridItem_inner .gift_front,
@@ -201,13 +237,14 @@ body {
   width: 0%;
   position: absolute;
   height: 5px;
-  background: red;
+  background: yellow;
   box-shadow: 0 2px 5px rgba(83, 83, 83, 0.349);
   transition: width 0s;
 }
 .grid .gridItem .gridItem_inner .gift_front .full_progress {
   width: 100% !important;
-  transition: width 1.5s cubic-bezier(0.55, 0, 0.55, 1) !important;
+  background: red;
+  transition: all 1.5s cubic-bezier(0.55, 0, 0.55, 1) !important;
 }
 .grid .gridItem .gridItem_inner .gift_back {
   background-color: rgb(175, 168, 149);
@@ -224,18 +261,19 @@ body {
 }
 
 .OCPanel {
-  background-color: rgb(58, 49, 45);
+  background: linear-gradient(-30deg, rgb(82, 68, 61) 55%, rgb(58, 49, 45) 55%);
   height: 100px;
   width: 100%;
-  margin: 0 auto;
+  margin: 8px auto 0 auto;
   padding: 26px 0;
   position: relative;
-  border-top-left-radius: 16px;
-  border-bottom-left-radius: 16px;
+  box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.5);
+  transition: margin 0.3s ease, opacity 0.5s, width 0.5s;
 }
-.OCPanel .OCPanel_content {
-  width: 100%;
+.OCPanel .OCPanelContent {
+  width: 80%;
   position: absolute;
+  right: 0;
 }
 
 .turingBar,
@@ -274,18 +312,18 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(0, 0, 0, 0.3);
   transform: translate(-50%, 0) scale(1);
 }
-.indicator .current,
+.indicator .currentText,
 .indicator .currentName {
   color: rgb(252, 241, 183);
-  font-size: 2em;
+  font-size: 2.2em;
   font-family: "DFPT_ZY9";
   text-shadow: -5px 5px 0 rgba(0, 0, 0, 0.7);
 }
-.indicator .current {
+.indicator .currentText {
   padding: 20px;
   position: absolute;
-  top: -2%;
-  left: -400%;
+  top: -8%;
+  left: -450%;
   transform: rotate(-2deg);
 }
 .indicator .currentName {
@@ -293,7 +331,7 @@ body {
   width: 210px;
   position: absolute;
   top: 65%;
-  left: -310%;
+  left: -320%;
   transform: rotate(1deg);
 }
 .indicator .icon {
@@ -394,7 +432,7 @@ body {
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgb(184, 120, 2) rgb(179, 170, 156);
+  scrollbar-color: rgb(184, 120, 2) rgb(219, 213, 202);
 }
 
 /* Chrome, Edge, and Safari */
@@ -403,7 +441,7 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  background: rgb(179, 170, 156);
+  background: rgb(219, 213, 202);
 }
 
 *::-webkit-scrollbar-thumb {
