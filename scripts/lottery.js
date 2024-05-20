@@ -81,6 +81,13 @@ var OBTAINED_GIFT_INDEX = [];
 
 var FLIPPED_CARD = [];
 
+var INFO = [
+    "還有"+ GIFTPILE.length +"個禮物還沒被打開",
+    "卡片花色是隨機生成的，跟禮物沒有關係～",
+    "123123212",
+    "屋趴～～～"
+]
+
 function getOcUrl(oc) {
     return "assets/lottery/" + YEAR + "profile/" + oc.profilePic;
 }
@@ -127,6 +134,33 @@ function animateFrame() {
     });
 }
 
+
+
+function animatBubble() {
+    var count = 0;
+    setInterval(function () {
+        timeout = window.setTimeout(function () {
+            $(".infoBubble").css("opacity", 1);
+            $('.infoBubble_inner').html(INFO[count]);
+            count += 1;
+            if (count >= INFO.length) {
+                count = 0;
+            }
+        }, 500);
+        $(".infoBubble").css("opacity", 0);
+    }, 4000);
+
+
+    // $bubble.animate([
+    //     { opacity: '1' },
+    //     { opacity: '0' },
+    //     { opacity: '1' }
+    // ], {
+    //     duration: 500,
+    //     iterations: Infinity
+    // });
+}
+
 function getCurrentOCPos() {
     return ORIGINAL_OC_POS + ((CURRENT_OC_INDEX) * -100);
 }
@@ -168,7 +202,7 @@ function shuffleArray(array) {
 function loadCookie() {
     const ocArrangementCookie = getCookie(COOKIE.OC_ARRANGEMENT);
     const obtainedGIftCookie = getCookie(COOKIE.OBTAINED_GIFT);
-    const flippedCardCookie = getCookie(COOKIE.FLIPPED_CARD); 
+    const flippedCardCookie = getCookie(COOKIE.FLIPPED_CARD);
 
     if (ocArrangementCookie === "") {
         OC_ARRANGED = [].concat(OCS);
@@ -190,8 +224,8 @@ function loadCookie() {
             $(".logPanelContent ul").animate({ scrollTop: $(document).height() }, 1000);
             setUpGiftLogStyle(index);
 
-            $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index])+1) + ") .gridItem_inner .gift_back").html("<img src='" + getGiftUrl(gift) + "'/>");
-            $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index])+1) + ") .gridItem_inner").css("transform", "rotateY(180deg)");
+            $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index]) + 1) + ") .gridItem_inner .gift_back").html("<img src='" + getGiftUrl(gift) + "'/>");
+            $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index]) + 1) + ") .gridItem_inner").css("transform", "rotateY(180deg)");
             index++;
         }
 
@@ -199,14 +233,14 @@ function loadCookie() {
         GIFTPILE = GIFTPILE.filter(gift => !obtainedGifts.includes(gift));
         setUpOCOpacity();
     }
-    
+
 }
 
 function setGridBG() {
     var bgPattern;
     const bgPatternCookie = getCookie(COOKIE.BG_PATTEREN);
 
-    if (bgPatternCookie === "") {    
+    if (bgPatternCookie === "") {
         bgPattern = [...Array(NUMBER_OF_BG).keys()];
         shuffleArray(bgPattern);
         setCookie(COOKIE.BG_PATTEREN, bgPattern.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
@@ -231,6 +265,7 @@ function draw() {
         randomDraw = lonelyOC;
     }
     GIFTPILE = GIFTPILE.filter(gift => gift != randomDraw);
+    INFO[0] = "還有"+ GIFTPILE.length +"個禮物還沒被打開"; 
     return randomDraw;
 }
 
@@ -314,7 +349,7 @@ function setUpLongClick() {
                 setUpEnding();
             }
             updateStats();
-            currentGiftCard=undefined;
+            currentGiftCard = undefined;
         }
     })
 }
@@ -353,14 +388,14 @@ function updateStats() {
     $(".remain").html(GIFTPILE.length);
 }
 
-function setUpEnding(){
+function setUpEnding() {
     $(".OCPanel").css("opacity", 0);
     $(".OCPanel").css("width", 0);
     $(".OCPanel").css("margin-right", "-300px");
     $(".lotteryBoard_overlay").css("opacity", 1);
     $(".lotteryBoard_overlay").css("z-index", 83);
     $(".cross").css("width", "90%");
-    $(".lotteryPanel").css("background-color","rgb(203, 193, 177, 0.2)");
+    $(".lotteryPanel").css("background-color", "rgb(203, 193, 177, 0.2)");
 }
 
 //======================//
@@ -376,4 +411,5 @@ $(document).ready(function () {
     printOCs();
     setUpLongClick();
     updateStats();
+    animatBubble();
 });

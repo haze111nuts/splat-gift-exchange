@@ -20,6 +20,9 @@ $ACCENT3: rgb(179, 170, 156);
 $ACCENT4: rgb(252, 241, 183);
 $ACCENT5: rgb(219, 213, 202);
 $ACCENT6: rgb(184, 120, 2);
+$ACCENT7: rgb(219, 149, 19);
+$ACCENT_WOOPA: rgb(250, 200, 200);
+
 
 html {
     margin: 0;
@@ -57,6 +60,9 @@ body {
     color: $ACCENT5;
     padding: 8px 8px 14px 8px;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.45);
+    span{
+        color: $ACCENT7 !important;
+    }
 }
 
 //=====================//
@@ -138,7 +144,7 @@ body {
                 }
             }
             li:last-child {
-                background-color: $ACCENT6;
+                background: linear-gradient(-60deg, $ACCENT6 65%, rgb(153, 95, 7) 66%);
                 margin-bottom: 64px;
             }
         }
@@ -158,7 +164,7 @@ body {
     margin-left: 16px !important;
     background-color: rgb(203, 193, 177, 0.7);
     backdrop-filter: blur(10px);
-    transition: all .4s;
+    transition: all 0.4s;
     .lotteryBoard {
         // max-height: 632px;
         height: 642px;
@@ -173,7 +179,7 @@ body {
         height: 642px;
         position: absolute;
         z-index: -1;
-        transition: opacity .4s;
+        transition: opacity 0.4s;
 
         .endingText {
             div {
@@ -187,7 +193,7 @@ body {
                 border: 1px solid $ACCENT5;
                 transform: translate(-50%, -50%) rotate(-25deg);
                 box-shadow: 0 0 30px black;
-                transition: width .7s ease-in-out;
+                transition: width 0.7s ease-in-out;
                 opacity: 0.8;
             }
             div:nth-child(2) {
@@ -258,7 +264,9 @@ $preview_gapY: 20px;
             width: 100%;
             height: 100%;
             text-align: center;
-            transition: transform 0.5s, box-shadow 0.5s;
+            transition:
+                transform 0.5s,
+                box-shadow 0.5s;
             transform-style: preserve-3d;
 
             .gift_front,
@@ -276,14 +284,16 @@ $preview_gapY: 20px;
                     width: 0%;
                     position: absolute;
                     height: 5px;
-                    background: yellow;
+                    background-color: yellow;
                     box-shadow: 0 2px 5px rgba(83, 83, 83, 0.349);
                     transition: width 0s;
                 }
                 .full_progress {
                     width: 100% !important;
-                    background: red;
-                    transition: all 1.5s cubic-bezier(0.55, 0, 0.55, 1) !important;
+                    background-color: red;
+                    transition: 
+                                background-color 1.5s cubic-bezier(0.55, 0, 0.55, 1), 
+                                width 1.5s cubic-bezier(0.55, 0, 0.55, 1) !important;
                 }
             }
             .gift_back {
@@ -383,6 +393,9 @@ $preview_gapY: 20px;
         top: -8%;
         left: -450%;
         transform: rotate(-2deg);
+        span{
+            color: $ACCENT7 !important;
+        }
     }
     .currentName {
         text-align: center;
@@ -484,6 +497,118 @@ $preview_gapY: 20px;
         }
     }
 }
+
+//===================//
+//===   HOST ART  ===//
+//===================//
+
+.host {
+    position: fixed;
+    left: 1%;
+    bottom: -5%;
+
+    img {
+        width: 500px;
+    }
+}
+
+.breath {
+    animation: breathe 1s infinite;
+    transform-origin: bottom;
+}
+
+.wobble {
+    animation: wobble 4s infinite;
+    transform-origin: bottom center;
+    animation-timing-function: linear;
+}
+
+@keyframes wobble {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+    15% {
+        transform: rotate(7deg);
+    }
+    25% {
+        transform: rotate(5deg);
+    }
+    75% {
+        transform: rotate(-5deg);
+    }
+    90% {
+        transform: rotate(-7deg);
+    }
+}
+
+@keyframes breathe {
+    0%,
+    100% {
+        transform: scaleY(1);
+    }
+    50% {
+        transform: scaleY(0.96) scaleX(1.04);
+    }
+}
+
+//======================//
+//===   HOST BUBBLE  ===//
+//======================//
+
+.infoBubble {
+    color: #3a1f1f;
+    position: absolute;
+    left: 530px;
+    bottom: 220px;
+    z-index: 83;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.infoBubble_inner {
+    background: $ACCENT_WOOPA;
+    border: 2px solid $ACCENT2;
+    border-radius: 16px;
+    padding: 12px 25px;
+    font-size: 1.7em;
+    font-family: "DFPT_AZ5";
+    transition: all 0.5s;
+    position: relative;
+}
+
+.infoBubble_inner:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 27px 10px 0;
+    border-color: $ACCENT_WOOPA transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    bottom: -27px;
+    left: 9px;
+    transform: scale(1.1) skew(-40deg, 0deg);
+}
+
+.breath {
+    animation: breathe2 1s infinite;
+    transform-origin: bottom;
+}
+
+@keyframes breathe2 {
+    0%,
+    100% {
+        transform: rotate(4deg) scaleY(1);
+    }
+    50% {
+        transform: rotate(4deg) scaleY(0.96) scaleX(1.04);
+    }
+}
+
+//================//
+//===   UTILS  ===//
+//================//
 
 .noscroll {
     overflow: hidden;

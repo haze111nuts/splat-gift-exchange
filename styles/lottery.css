@@ -43,6 +43,9 @@ body {
   padding: 8px 8px 14px 8px;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.45);
 }
+.panelHeader span {
+  color: rgb(219, 149, 19) !important;
+}
 
 .logPanel {
   position: relative;
@@ -119,7 +122,7 @@ body {
   text-align: right;
 }
 .logPanel .logPanelContent ul li:last-child {
-  background-color: rgb(184, 120, 2);
+  background: linear-gradient(-60deg, rgb(184, 120, 2) 65%, rgb(153, 95, 7) 66%);
   margin-bottom: 64px;
 }
 
@@ -237,14 +240,14 @@ body {
   width: 0%;
   position: absolute;
   height: 5px;
-  background: yellow;
+  background-color: yellow;
   box-shadow: 0 2px 5px rgba(83, 83, 83, 0.349);
   transition: width 0s;
 }
 .grid .gridItem .gridItem_inner .gift_front .full_progress {
   width: 100% !important;
-  background: red;
-  transition: all 1.5s cubic-bezier(0.55, 0, 0.55, 1) !important;
+  background-color: red;
+  transition: background-color 1.5s cubic-bezier(0.55, 0, 0.55, 1), width 1.5s cubic-bezier(0.55, 0, 0.55, 1) !important;
 }
 .grid .gridItem .gridItem_inner .gift_back {
   background-color: rgb(175, 168, 149);
@@ -325,6 +328,9 @@ body {
   top: -8%;
   left: -450%;
   transform: rotate(-2deg);
+}
+.indicator .currentText span {
+  color: rgb(219, 149, 19) !important;
 }
 .indicator .currentName {
   text-align: center;
@@ -413,6 +419,99 @@ body {
   background-color: #f3f4f8;
 }
 
+.host {
+  position: fixed;
+  left: 1%;
+  bottom: -5%;
+}
+.host img {
+  width: 500px;
+}
+
+.breath {
+  animation: breathe 1s infinite;
+  transform-origin: bottom;
+}
+
+.wobble {
+  animation: wobble 4s infinite;
+  transform-origin: bottom center;
+  animation-timing-function: linear;
+}
+
+@keyframes wobble {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(7deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  90% {
+    transform: rotate(-7deg);
+  }
+}
+@keyframes breathe {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.96) scaleX(1.04);
+  }
+}
+.infoBubble {
+  color: #3a1f1f;
+  position: absolute;
+  left: 530px;
+  bottom: 220px;
+  z-index: 83;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.infoBubble_inner {
+  background: rgb(250, 200, 200);
+  border: 2px solid rgb(82, 68, 61);
+  border-radius: 16px;
+  padding: 12px 25px;
+  font-size: 1.7em;
+  font-family: "DFPT_AZ5";
+  transition: all 0.5s;
+  position: relative;
+}
+
+.infoBubble_inner:after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 27px 10px 0;
+  border-color: rgb(250, 200, 200) transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  bottom: -27px;
+  left: 9px;
+  transform: scale(1.1) skew(-40deg, 0deg);
+}
+
+.breath {
+  animation: breathe2 1s infinite;
+  transform-origin: bottom;
+}
+
+@keyframes breathe2 {
+  0%, 100% {
+    transform: rotate(4deg) scaleY(1);
+  }
+  50% {
+    transform: rotate(4deg) scaleY(0.96) scaleX(1.04);
+  }
+}
 .noscroll {
   overflow: hidden;
 }
