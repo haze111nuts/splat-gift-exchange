@@ -10,6 +10,12 @@
     font-style: normal;
     font-weight: normal;
 }
+@font-face {
+    font-family: "Sunny Spell";
+    src: url("../assets/fonts/SunnySpellsBasicRegular.ttf");
+    font-style: normal;
+    font-weight: normal;
+}
 
 $profile_size: 100px;
 $spotlight_border_size: 8px;
@@ -160,14 +166,16 @@ body {
     width: 100%;
 }
 
+
 .lotteryPanel {
     margin-left: 16px !important;
     background-color: rgb(203, 193, 177, 0.7);
     backdrop-filter: blur(10px);
     transition: all 0.4s;
+    .lotteryBoard, .lotteryBoard_overlay{
+        height: 640px;
+    }
     .lotteryBoard {
-        // max-height: 632px;
-        height: 642px;
         overflow-y: auto;
     }
     .lotteryBoard_overlay {
@@ -176,7 +184,6 @@ body {
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         width: 100%;
-        height: 642px;
         position: absolute;
         z-index: -1;
         transition: opacity 0.4s;
@@ -247,19 +254,13 @@ $preview_gapY: 20px;
             text-shadow 0.1s ease-in;
         will-change: transform;
         perspective: 1000px;
-
-        &:hover .gridItem_inner {
-            transform: scale(1.2);
-            box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.3);
-        }
         .gridItem_inner {
             text-align: center;
             vertical-align: middle;
             line-height: $preview_size;
             border: $ACCENT2 1px solid;
-            font-size: 4rem;
-            font-weight: 600;
-            font-family: "DFPT_ZY9";
+            font-size: 5rem;
+            font-family: "Sunny Spell";
             color: #fff;
             text-shadow: 0 0 4px rgba(0, 0, 0, 0.7), 0 0 6px rgba(0, 0, 0, 0.7);
             position: relative;
@@ -297,6 +298,10 @@ $preview_gapY: 20px;
                                 background-color 1.5s cubic-bezier(0.55, 0, 0.55, 1), 
                                 width 1.5s cubic-bezier(0.55, 0, 0.55, 1) !important;
                 }
+                &:hover .gift_front {
+                    transform: scale(1.2);
+                    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.3);
+                }
             }
             .gift_back {
                 background-color: rgb(175, 168, 149);
@@ -323,7 +328,7 @@ $preview_gapY: 20px;
     background: linear-gradient(-30deg, $ACCENT2 55%, $ACCENT1 55%);
     height: $profile_size;
     width: 100%;
-    margin: 8px auto 0 auto;
+    margin: 16px auto 0 auto;
     padding: 26px 0;
     position: relative;
     box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.5);
@@ -663,4 +668,20 @@ $preview_gapY: 20px;
     background-color: $ACCENT1;
     border-radius: 10px;
     border: 3px solid #ffffff;
+}
+
+
+//=========================//
+//===                   ===//
+//===   MEDIA SCREENS   ===//
+//===                   ===//
+//=========================//
+
+@media all and (display-mode: fullscreen) {
+    .lotteryPanel {
+        .lotteryBoard, .lotteryBoard_overlay{
+            height: 740px;
+        }
+    }
+    
 }

@@ -1,3 +1,6 @@
+//==================//
+//=== Guest Data ===//
+//==================//
 
 const OCS = [
     {
@@ -65,28 +68,38 @@ const OCS = [
     }
 ];
 
-var OC_ARRANGED;
-
-var GIFTPILE = [].concat(OCS);
-
-var NUMBER_OF_BG = 83;
-
-var ORIGINAL_OC_POS = -50;
-
-var CURRENT_OC_INDEX = 0;
-
-var YEAR = 2024;
+//============================//
+//=== Functional Variables ===//
+//============================//
 
 var OBTAINED_GIFT_INDEX = [];
 
 var FLIPPED_CARD = [];
 
-var INFO = [
-    "還有"+ GIFTPILE.length +"個禮物還沒被打開",
+var OC_ARRANGED;
+
+var GIFT_PILE = [].concat(OCS);
+
+var CURRENT_OC_INDEX = 0;
+
+//========================//
+//=== Custom Variables ===//
+//========================//
+
+var YEAR = 2024;
+
+var NUMBER_OF_BG = 83;
+
+var HOST_QUOTES = [
+    getQuoteOfRemainingGiftCountZH(GIFT_PILE.length),
     "卡片花色是隨機生成的，跟禮物沒有關係～",
     "123123212",
     "屋趴～～～"
 ]
+
+//======================//
+//=== Getter & Utils ===//
+//======================//
 
 function getOcUrl(oc) {
     return "assets/lottery/" + YEAR + "profile/" + oc.profilePic;
@@ -95,6 +108,25 @@ function getOcUrl(oc) {
 function getGiftUrl(oc) {
     return "assets/" + YEAR + "/item/" + oc.giftPic;
 }
+
+function getQuoteOfRemainingGiftCountZH(count){
+    return "還有" + count + "個禮物還沒被打開";
+}
+
+function getCurrentOCPos() {
+    var offset = $(".oc").width() / 2 * -1
+    return offset + ((CURRENT_OC_INDEX) * -100);
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+//=========================//
+//=== HTML Manipulators ===//
+//=========================//
 
 function printOCs() {
     var ocHtml = "";
@@ -106,81 +138,18 @@ function printOCs() {
     $(".turingBar").html(ocHtml);
 
     setSpotlightToNextOC();
-    //animateArrow();
-    // animateFrame();
-}
-
-// function animateArrow() {
-//     const $arrow = document.querySelector('.arrow');
-//     $arrow.animate([
-//         { left: '10px' },
-//         { left: '0' },
-//         { left: '10px' }
-//     ], {
-//         duration: 500,
-//         iterations: Infinity
-//     });
-// }
-
-function animateFrame() {
-    const $arrow = document.querySelector('.frame');
-    $arrow.animate([
-        { transform: 'translate(-50%, 0) scale(1)' },
-        { transform: 'translate(-50%, 0) scale(1.2)' },
-        { transform: 'translate(-50%, 0) scale(1)' }
-    ], {
-        duration: 500,
-        iterations: Infinity
-    });
-}
-
-
-
-function animatBubble() {
-    var count = 0;
-    setInterval(function () {
-        timeout = window.setTimeout(function () {
-            $(".infoBubble").css("opacity", 1);
-            $('.infoBubble_inner').html(INFO[count]);
-            count += 1;
-            if (count >= INFO.length) {
-                count = 0;
-            }
-        }, 500);
-        $(".infoBubble").css("opacity", 0);
-    }, 4000);
-
-
-    // $bubble.animate([
-    //     { opacity: '1' },
-    //     { opacity: '0' },
-    //     { opacity: '1' }
-    // ], {
-    //     duration: 500,
-    //     iterations: Infinity
-    // });
-}
-
-function getCurrentOCPos() {
-    return ORIGINAL_OC_POS + ((CURRENT_OC_INDEX) * -100);
-}
-
-function setSpotlightToNextOC() {
-    console.log("moving to next OC (" + CURRENT_OC_INDEX + ")");
-    $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
-    $(".currentName").html(OC_ARRANGED[CURRENT_OC_INDEX].name);
 }
 
 function printGrid() {
+    var cardNumber = 1;
     var gridHtml = "";
-    var gridNumber = 1;
     for (const oc of OCS) {
         gridHtml += "<div class='gridItem'>";
         gridHtml += "<div class='gridItem_inner'>";
 
         gridHtml += "<div class='gift_front no-select'>";
         gridHtml += "<div class='progress'></div>";
-        gridHtml += gridNumber++;
+        gridHtml += cardNumber++;
         gridHtml += "</div>";
 
         gridHtml += "<div class='gift_back no-select'>";
@@ -192,12 +161,207 @@ function printGrid() {
     $(".grid").html(gridHtml);
 }
 
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+function displayItemModal(gift) {
+    $(".modal").removeClass("hide");
+    var itemModalHtml = "";
+
+    itemModalHtml += "<div class='itemPanel'>"
+    itemModalHtml += "<div class='itemSummary'> askajdlkajalkjdalksdjlk </div>"
+    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(gift) + "'>"
+    itemModalHtml += "</div>"
+
+    $(".modal").html(itemModalHtml);
+    $(document.body).addClass("noscroll");
+}
+
+function getGiftLogHtml(currentOC, gift) {
+    var logHtml = "";
+    logHtml += "<li>";
+    logHtml += "<div class='label'>";
+    logHtml += "<div>" + currentOC.name + "</div>"
+    logHtml += "<div>" + gift.giftName + "</div>"
+    logHtml += "</div>";
+    logHtml += "<img class='chara' src='" + getOcUrl(currentOC) + "'>";
+    logHtml += "<img class='gift' src='" + getGiftUrl(gift) + "'>";
+    logHtml += "</li>";
+    return logHtml;
+}
+
+//=================================//
+//=== Randomize and Set Grid BG ===//
+//=================================//
+
+function setGridBG() {
+    var bgPattern;
+    const bgPatternCookie = getCookie(COOKIE.BG_PATTEREN);
+
+    if (bgPatternCookie === "") {
+        bgPattern = [...Array(NUMBER_OF_BG).keys()];
+        shuffleArray(bgPattern);
+        setCookie(COOKIE.BG_PATTEREN, bgPattern.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
+    }
+    else {
+        bgPattern = bgPatternCookie.split(",");
+    }
+    for (var i = 0; i < OCS.length; i++) {
+        $(".grid .gridItem:nth-of-type(" + (i + 1) + ") .gift_front").css("background-image", "url(assets/lottery/bg/" + bgPattern[i] + ".png)");
     }
 }
+
+//=========================//
+//=== Handle Gift Pulls ===//
+//=========================//
+//                         //
+//                         //
+//=========================//
+
+function drawGift() {
+    var giftPoolForCurrentOC = GIFT_PILE.filter(gift => gift !== OC_ARRANGED[CURRENT_OC_INDEX]);
+    var randomGift = giftPoolForCurrentOC[Math.floor(Math.random() * giftPoolForCurrentOC.length)];
+    var participantsWithoutGift = OC_ARRANGED.slice(CURRENT_OC_INDEX);
+    // to handle lonely last person problem
+    if (OC_ARRANGED.length - CURRENT_OC_INDEX === 2 && giftPoolForCurrentOC.some(r => participantsWithoutGift.includes(r)) && giftPoolForCurrentOC.length === 2) {
+        console.log("detected lonely OC! OC that haven't get gift and still in pool: ");
+        var lonelyOCsGift = participantsWithoutGift.filter(value => giftPoolForCurrentOC.includes(value))[0];
+        randomGift = lonelyOCsGift;
+    }
+    GIFT_PILE = GIFT_PILE.filter(gift => gift != randomGift);
+    HOST_QUOTES[0] = getQuoteOfRemainingGiftCountZH(GIFT_PILE.length);
+    return randomGift;
+}
+
+//=========================//
+//=== Handle Flip Click ===//
+//=========================//
+//                         //
+//                         //
+//=========================//
+
+function setUpFlipEvent() {
+    var timeout;
+    var gift;
+    var currentGiftCard;
+
+    $(".gridItem_inner").each(function () {
+        var giftCard = $(this).find(".gift_front");
+        //when long click stops
+        giftCard.mouseup(function () {
+            giftCard.find(".progress").removeClass("full_progress");
+            clearTimeout(timeout);
+            return;
+        })
+        //when long click is pressed
+        giftCard.mousedown(function () {
+            giftCard.find(".progress").addClass("full_progress");
+            timeout = window.setTimeout(function () {
+                currentGiftCard = giftCard;
+                giftCard.find(".progress").css("opacity", "0");
+
+                //draw gift
+                gift = drawGift();
+                giftCard.siblings().html("<img src='" + getGiftUrl(gift) + "'/>");
+
+                //display item
+                displayItemModal(gift);
+
+                OBTAINED_GIFT_INDEX.push(OCS.indexOf(gift));
+                FLIPPED_CARD.push(giftCard.parent().parent().index());
+
+                setCookie(COOKIE.OBTAINED_GIFT, OBTAINED_GIFT_INDEX.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
+                setCookie(COOKIE.FLIPPED_CARD, FLIPPED_CARD.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
+            }, 1500);
+            return;
+        })
+    })
+
+    //Events on modal close
+    $(".modal").click(function () {
+        $(this).addClass("hide");
+        $(document.body).removeClass("noscroll");
+
+        //Only do the rest when the click is on a card
+        if (currentGiftCard) {
+            //Flip card
+            doCardFlip(currentGiftCard.parent(".gridItem_inner"))
+            //Add entry to gift log
+            addEntryToGoftLog(gift);
+
+            CURRENT_OC_INDEX++;
+            setSpotlightToNextOC();
+            fadeFinishedOCs();
+            if (CURRENT_OC_INDEX == OCS.length) {
+                //trigger ending events for the last flip
+                triggerEnding();
+            }
+            updateStats();
+            currentGiftCard = undefined;
+        }
+    })
+}
+
+function addEntryToGoftLog(gift){
+    $(".logPanelContent ul").append(getGiftLogHtml(OC_ARRANGED[CURRENT_OC_INDEX], gift));
+    $(".logPanelContent").animate({ scrollTop: $(".logPanelContent").prop("scrollHeight") }, 1000);
+    setUpGiftLogStyle(CURRENT_OC_INDEX);
+}
+
+function doCardFlip(element){
+    element.css("transform", "rotateY(180deg)");
+    element.css("border", "rgba(92, 83, 73, 0.308) 1px solid");
+}
+
+function shuffleHostQuotes() {
+    var count = 0;
+    setInterval(function () {
+        timeout = window.setTimeout(function () {
+            $(".infoBubble").css("opacity", 1);
+            $('.infoBubble_inner').html(HOST_QUOTES[count]);
+            count += 1;
+            if (count >= HOST_QUOTES.length) {
+                count = 0;
+            }
+        }, 500);
+        $(".infoBubble").css("opacity", 0);
+    }, 4000);
+}
+
+function setSpotlightToNextOC() {
+    $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
+    $(".currentName").html(OC_ARRANGED[CURRENT_OC_INDEX]?.name);
+}
+
+function setUpGiftLogStyle(index) {
+    $(".logPanelContent ul li:nth-child(" + (index + 1) + ")").css("border", "1px solid black");
+    $(".logPanelContent ul li:nth-child(" + (index + 1) + ")").css("opacity", "1");
+}
+
+function fadeFinishedOCs() {
+    $(".oc:nth-child(" + CURRENT_OC_INDEX + ")").css("opacity", 0.20);
+    $(".oc:nth-child(" + (CURRENT_OC_INDEX - 1) + ")").css("opacity", 0.10);
+    $(".oc:nth-child(" + (CURRENT_OC_INDEX - 2) + ")").css("opacity", 0.05);
+    $(".oc:nth-child(" + (CURRENT_OC_INDEX - 3) + ")").css("opacity", 0);
+}
+
+function updateStats() {
+    $(".count").html(CURRENT_OC_INDEX);
+    $(".remain").html(GIFT_PILE.length);
+}
+
+function triggerEnding() {
+    $(".OCPanel").css("opacity", 0);
+    $(".OCPanel").css("width", 0);
+    $(".OCPanel").css("margin-right", "-300px");
+    $(".lotteryBoard_overlay").css("opacity", 1);
+    $(".lotteryBoard_overlay").css("z-index", 83);
+    $(".cross").css("width", "90%");
+    $(".lotteryPanel").css("background-color", "rgb(203, 193, 177, 0.2)");
+}
+
+//======================//
+//===                ===//
+//=== Handle Coockie ===//
+//===                ===//
+//======================//
 
 function loadCookie() {
     const ocArrangementCookie = getCookie(COOKIE.OC_ARRANGEMENT);
@@ -220,7 +384,7 @@ function loadCookie() {
         var obtainedGifts = OBTAINED_GIFT_INDEX.map(index => OCS[index]);
         var index = 0;
         for (var gift of obtainedGifts) {
-            $(".logPanelContent ul").append(addGiftLog(OC_ARRANGED[index], gift));
+            $(".logPanelContent ul").append(getGiftLogHtml(OC_ARRANGED[index], gift));
             $(".logPanelContent ul").animate({ scrollTop: $(document).height() }, 1000);
             setUpGiftLogStyle(index);
 
@@ -230,173 +394,11 @@ function loadCookie() {
         }
 
         CURRENT_OC_INDEX = index;
-        GIFTPILE = GIFTPILE.filter(gift => !obtainedGifts.includes(gift));
-        setUpOCOpacity();
-    }
-
-}
-
-function setGridBG() {
-    var bgPattern;
-    const bgPatternCookie = getCookie(COOKIE.BG_PATTEREN);
-
-    if (bgPatternCookie === "") {
-        bgPattern = [...Array(NUMBER_OF_BG).keys()];
-        shuffleArray(bgPattern);
-        setCookie(COOKIE.BG_PATTEREN, bgPattern.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
-    }
-    else {
-        bgPattern = bgPatternCookie.split(",");
-    }
-
-    for (var i = 0; i < OCS.length; i++) {
-        $(".grid .gridItem:nth-of-type(" + (i + 1) + ") .gift_front").css("background-image", "url(assets/lottery/bg/" + bgPattern[i] + ".png)");
+        GIFT_PILE = GIFT_PILE.filter(gift => !obtainedGifts.includes(gift));
+        fadeFinishedOCs();
     }
 }
 
-function draw() {
-    var giftPoolForCurrentOC = GIFTPILE.filter(gift => gift !== OC_ARRANGED[CURRENT_OC_INDEX]);
-    var randomDraw = giftPoolForCurrentOC[Math.floor(Math.random() * giftPoolForCurrentOC.length)];
-    var participantsWithoutGift = OC_ARRANGED.slice(CURRENT_OC_INDEX);
-    // to handle lonely last person problem
-    if (OC_ARRANGED.length - CURRENT_OC_INDEX === 2 && giftPoolForCurrentOC.some(r => participantsWithoutGift.includes(r)) && giftPoolForCurrentOC.length === 2) {
-        console.log("detected lonely OC! OC that haven't get gift and still in pool: ");
-        var lonelyOC = participantsWithoutGift.filter(value => giftPoolForCurrentOC.includes(value))[0];
-        randomDraw = lonelyOC;
-    }
-    GIFTPILE = GIFTPILE.filter(gift => gift != randomDraw);
-    INFO[0] = "還有"+ GIFTPILE.length +"個禮物還沒被打開"; 
-    return randomDraw;
-}
-
-
-function displayItemModal(gift) {
-    $(".modal").removeClass("hide");
-    var itemModalHtml = "";
-
-    itemModalHtml += "<div class='itemPanel'>"
-    itemModalHtml += "<div class='itemSummary'> askajdlkajalkjdalksdjlk </div>"
-    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(gift) + "'>"
-    itemModalHtml += "</div>"
-
-    $(".modal").html(itemModalHtml);
-    $(document.body).addClass("noscroll");
-}
-
-function setUpLongClick() {
-    var timeout;
-    var gift;
-    var currentGiftCard;
-
-    $(".gridItem_inner").each(function () {
-        var giftCard = $(this).find(".gift_front");
-        giftCard.mouseup(function () {
-            giftCard.find(".progress").removeClass("full_progress");
-            clearTimeout(timeout);
-            return;
-        })
-
-        giftCard.mousedown(function () {
-            giftCard.find(".progress").addClass("full_progress");
-            timeout = window.setTimeout(function () {
-
-                currentGiftCard = giftCard;
-                giftCard.find(".progress").css("opacity", "0");
-
-                //draw gift
-                gift = draw();
-                giftCard.siblings().html("<img src='" + getGiftUrl(gift) + "'/>");
-
-                //display item
-                displayItemModal(gift);
-
-                OBTAINED_GIFT_INDEX.push(OCS.indexOf(gift));
-                FLIPPED_CARD.push(giftCard.parent().parent().index());
-
-                setCookie(COOKIE.OBTAINED_GIFT, OBTAINED_GIFT_INDEX.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
-                setCookie(COOKIE.FLIPPED_CARD, FLIPPED_CARD.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
-            }, 1500);
-            return;
-        })
-    })
-
-    //events on modal close
-    $(".modal").click(function () {
-        $(".modalPanel").css("top", "30%");
-        $(".modal").addClass("hide");
-        $(document.body).removeClass("noscroll");
-
-        //only do the rest when the click is on a card
-        if (currentGiftCard) {
-            //do card flip
-            currentGiftCard.parent(".gridItem_inner").css("transform", "rotateY(180deg)");
-            currentGiftCard.parent(".gridItem_inner").css("border", "rgba(92, 83, 73, 0.308) 1px solid");
-
-            $(".logPanelContent ul").append(addGiftLog(OC_ARRANGED[CURRENT_OC_INDEX], gift));
-            $(".logPanelContent").animate({ scrollTop: $(".logPanelContent").prop("scrollHeight") }, 1000);
-            setUpGiftLogStyle(CURRENT_OC_INDEX);
-
-            if (CURRENT_OC_INDEX !== OCS.length - 1) {
-                CURRENT_OC_INDEX++;
-                setSpotlightToNextOC();
-                setUpOCOpacity();
-            } else {
-                //case of last click
-                CURRENT_OC_INDEX++;
-                $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
-                $(".currentName").html("");
-                setUpOCOpacity();
-                setUpEnding();
-            }
-            updateStats();
-            currentGiftCard = undefined;
-        }
-    })
-}
-
-function addGiftLog(currentOC, gift) {
-    var logHtml = "";
-    logHtml += "<li>";
-    logHtml += "<div class='label'>";
-    logHtml += "<div>" + currentOC.name + "</div>"
-    logHtml += "<div>" + gift.giftName + "</div>"
-    logHtml += "</div>";
-    logHtml += "<img class='chara' src='" + getOcUrl(currentOC) + "'>";
-    logHtml += "<img class='gift' src='" + getGiftUrl(gift) + "'>";
-    logHtml += "</li>";
-    return logHtml;
-}
-
-function setUpGiftLogStyle(index) {
-    $(".logPanelContent ul li:nth-child(" + (index + 1) + ")").css("border", "1px solid black");
-    $(".logPanelContent ul li:nth-child(" + (index + 1) + ")").css("opacity", "1");
-}
-
-function setUpOCOpacity() {
-    $(".oc:nth-child(" + CURRENT_OC_INDEX + ")").css("opacity", 0.20);
-    $(".oc:nth-child(" + (CURRENT_OC_INDEX - 1) + ")").css("opacity", 0.10);
-    $(".oc:nth-child(" + (CURRENT_OC_INDEX - 2) + ")").css("opacity", 0.05);
-    $(".oc:nth-child(" + (CURRENT_OC_INDEX - 3) + ")").css("opacity", 0);
-}
-
-function randomBGIndex() {
-    return Math.floor(Math.random() * NUMBER_OF_BG)
-}
-
-function updateStats() {
-    $(".count").html(CURRENT_OC_INDEX);
-    $(".remain").html(GIFTPILE.length);
-}
-
-function setUpEnding() {
-    $(".OCPanel").css("opacity", 0);
-    $(".OCPanel").css("width", 0);
-    $(".OCPanel").css("margin-right", "-300px");
-    $(".lotteryBoard_overlay").css("opacity", 1);
-    $(".lotteryBoard_overlay").css("z-index", 83);
-    $(".cross").css("width", "90%");
-    $(".lotteryPanel").css("background-color", "rgb(203, 193, 177, 0.2)");
-}
 
 //======================//
 //===                ===//
@@ -409,7 +411,7 @@ $(document).ready(function () {
     setGridBG();
     loadCookie();
     printOCs();
-    setUpLongClick();
+    setUpFlipEvent();
     updateStats();
-    animatBubble();
+    shuffleHostQuotes();
 });

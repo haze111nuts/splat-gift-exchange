@@ -10,6 +10,12 @@
   font-style: normal;
   font-weight: normal;
 }
+@font-face {
+  font-family: "Sunny Spell";
+  src: url("../assets/fonts/SunnySpellsBasicRegular.ttf");
+  font-style: normal;
+  font-weight: normal;
+}
 html {
   margin: 0;
   padding: 0;
@@ -136,8 +142,10 @@ body {
   backdrop-filter: blur(10px);
   transition: all 0.4s;
 }
+.lotteryPanel .lotteryBoard, .lotteryPanel .lotteryBoard_overlay {
+  height: 640px;
+}
 .lotteryPanel .lotteryBoard {
-  height: 642px;
   overflow-y: auto;
 }
 .lotteryPanel .lotteryBoard_overlay {
@@ -146,7 +154,6 @@ body {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   width: 100%;
-  height: 642px;
   position: absolute;
   z-index: -1;
   transition: opacity 0.4s;
@@ -215,9 +222,8 @@ body {
   vertical-align: middle;
   line-height: 150px;
   border: rgb(82, 68, 61) 1px solid;
-  font-size: 4rem;
-  font-weight: 600;
-  font-family: "DFPT_ZY9";
+  font-size: 5rem;
+  font-family: "Sunny Spell";
   color: #fff;
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.7), 0 0 6px rgba(0, 0, 0, 0.7);
   position: relative;
@@ -270,7 +276,7 @@ body {
   background: linear-gradient(-30deg, rgb(82, 68, 61) 55%, rgb(58, 49, 45) 55%);
   height: 100px;
   width: 100%;
-  margin: 8px auto 0 auto;
+  margin: 16px auto 0 auto;
   padding: 26px 0;
   position: relative;
   box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.5);
@@ -564,6 +570,12 @@ body {
   background-color: rgb(58, 49, 45);
   border-radius: 10px;
   border: 3px solid #ffffff;
+}
+
+@media all and (display-mode: fullscreen) {
+  .lotteryPanel .lotteryBoard, .lotteryPanel .lotteryBoard_overlay {
+    height: 740px;
+  }
 }
 
 /*# sourceMappingURL=lottery.css.map */
