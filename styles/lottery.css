@@ -56,7 +56,7 @@ body {
 .logPanel {
   position: relative;
   margin-right: 16px !important;
-  height: 600px;
+  max-height: 600px;
 }
 .logPanel .title {
   position: absolute;
@@ -119,7 +119,7 @@ body {
 }
 .logPanel .logPanelContent ul li .label div:nth-child(1) {
   border-bottom: 1px solid rgb(179, 170, 156);
-  padding: 20px 20px 0 25px;
+  padding: 20px 20px 0 27px;
   text-align: left;
 }
 .logPanel .logPanelContent ul li .label div:nth-child(2) {
@@ -142,7 +142,8 @@ body {
   backdrop-filter: blur(10px);
   transition: all 0.4s;
 }
-.lotteryPanel .lotteryBoard, .lotteryPanel .lotteryBoard_overlay {
+.lotteryPanel .lotteryBoard,
+.lotteryPanel .lotteryBoard_overlay {
   height: 640px;
 }
 .lotteryPanel .lotteryBoard {
@@ -213,10 +214,6 @@ body {
   will-change: transform;
   perspective: 1000px;
 }
-.grid .gridItem:hover .gridItem_inner {
-  transform: scale(1.2);
-  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.3);
-}
 .grid .gridItem .gridItem_inner {
   text-align: center;
   vertical-align: middle;
@@ -232,6 +229,10 @@ body {
   text-align: center;
   transition: transform 0.5s, box-shadow 0.5s;
   transform-style: preserve-3d;
+}
+.grid .gridItem .gridItem_inner:hover {
+  transform: scale(1.2);
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.3);
 }
 .grid .gridItem .gridItem_inner .gift_front,
 .grid .gridItem .gridItem_inner .gift_back {
@@ -280,12 +281,13 @@ body {
   padding: 26px 0;
   position: relative;
   box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.5);
-  transition: margin 0.3s ease, opacity 0.5s, width 0.5s;
+  transition: margin 0.3s ease;
 }
 .OCPanel .OCPanelContent {
   width: 80%;
   position: absolute;
   right: 0;
+  transition: opacity 0.6;
 }
 
 .turingBar,
@@ -442,13 +444,39 @@ body {
   background-color: #f3f4f8;
 }
 
-.host {
-  position: fixed;
-  left: 1%;
-  bottom: -5%;
-}
+.host_wrap,
+.host,
 .host img {
   width: 500px;
+  height: 375px;
+}
+
+.host_wrap {
+  position: fixed;
+  bottom: -6%;
+}
+
+.host {
+  perspective: 2000px;
+}
+.host .host_inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+.host .front,
+.host .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.host .back {
+  transform: rotateY(180deg);
 }
 
 .squeezBreath {
@@ -470,13 +498,13 @@ body {
     transform: rotate(6deg);
   }
   25% {
-    transform: rotate(4deg);
+    transform: rotate(3deg);
   }
   75% {
     transform: rotate(-10deg);
   }
   87% {
-    transform: rotate(-3deg);
+    transform: rotate(-5deg);
   }
 }
 @keyframes squeezBreath {
@@ -527,6 +555,12 @@ body {
   transform-origin: bottom;
 }
 
+.move_wobble {
+  animation: move_wobble 4s infinite;
+  transform-origin: bottom center;
+  animation-timing-function: linear;
+}
+
 @keyframes rotated_squeezBreath {
   0%, 100% {
     transform: rotate(4deg) scaleY(1);
@@ -535,6 +569,27 @@ body {
     transform: rotate(4deg) scaleY(0.96) scaleX(1.04);
   }
 }
+@keyframes move_wobble {
+  0%, 100% {
+    left: 500px;
+  }
+  12% {
+    left: 510px;
+  }
+  25% {
+    left: 503px;
+  }
+  75% {
+    left: 470px;
+  }
+  87% {
+    left: 488px;
+  }
+}
+.flipped:hover {
+  box-shadow: none !important;
+}
+
 .noscroll {
   overflow: hidden;
 }
@@ -544,13 +599,30 @@ body {
   z-index: -1 !important;
 }
 
-.no-select {
+.no-select,
+.turingBar *,
+.host_wrap * {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 }
 
-/* ===== Scrollbar CSS ===== */
+::selection {
+  color: rgb(58, 49, 45);
+  background: rgb(219, 213, 202);
+}
+
+.currentText span::selection,
+.currentName::selection {
+  color: white;
+  background: rgb(219, 149, 19);
+}
+
+.infoBubble_inner::selection {
+  color: #ca3044;
+  background: white;
+}
+
 /* Firefox */
 * {
   scrollbar-width: thin;
@@ -573,8 +645,15 @@ body {
 }
 
 @media all and (display-mode: fullscreen) {
-  .lotteryPanel .lotteryBoard, .lotteryPanel .lotteryBoard_overlay {
+  .lotteryPanel .lotteryBoard,
+.lotteryPanel .lotteryBoard_overlay {
     height: 740px;
+  }
+  .logPanel {
+    max-height: 670px;
+  }
+  .logPanel .logPanelContent {
+    height: 627px;
   }
 }
 

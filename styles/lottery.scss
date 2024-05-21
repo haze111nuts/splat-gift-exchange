@@ -17,8 +17,8 @@
     font-weight: normal;
 }
 
-$profile_size: 100px;
-$spotlight_border_size: 8px;
+$PROFILE_SIZE: 100px;
+$SPOTLIGHT_BORDER_SIZE: 8px;
 
 $ACCENT1: rgb(58, 49, 45);
 $ACCENT2: rgb(82, 68, 61);
@@ -28,7 +28,6 @@ $ACCENT5: rgb(219, 213, 202);
 $ACCENT6: rgb(184, 120, 2);
 $ACCENT7: rgb(219, 149, 19);
 $ACCENT_WOOPA: rgb(250, 200, 200);
-
 
 html {
     margin: 0;
@@ -66,7 +65,7 @@ body {
     color: $ACCENT5;
     padding: 8px 8px 14px 8px;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.45);
-    span{
+    span {
         color: $ACCENT7 !important;
     }
 }
@@ -75,12 +74,12 @@ body {
 //===   LOG BOARD   ===//
 //=====================//
 
+$LOG_PANEL_HIGHT: 600px;
+
 .logPanel {
     position: relative;
     margin-right: 16px !important;
-    height: 600px;
-    // max-height: 664px;
-    // max-height: 643px;
+    max-height: $LOG_PANEL_HIGHT;
     .title {
         position: absolute;
         top: 0;
@@ -95,7 +94,7 @@ body {
     .logPanelContent {
         background-color: rgb(224, 224, 209, 0.6);
         width: 320px;
-        height: 557px;
+        height: $LOG_PANEL_HIGHT - 43;
         overflow-y: auto;
         ul {
             list-style: none;
@@ -139,7 +138,7 @@ body {
                     width: 180px;
                     div:nth-child(1) {
                         border-bottom: 1px solid $ACCENT3;
-                        padding: 20px 20px 0 25px;
+                        padding: 20px 20px 0 27px;
                         text-align: left;
                     }
                     div:nth-child(2) {
@@ -166,13 +165,13 @@ body {
     width: 100%;
 }
 
-
 .lotteryPanel {
     margin-left: 16px !important;
     background-color: rgb(203, 193, 177, 0.7);
     backdrop-filter: blur(10px);
     transition: all 0.4s;
-    .lotteryBoard, .lotteryBoard_overlay{
+    .lotteryBoard,
+    .lotteryBoard_overlay {
         height: 640px;
     }
     .lotteryBoard {
@@ -262,7 +261,9 @@ $preview_gapY: 20px;
             font-size: 5rem;
             font-family: "Sunny Spell";
             color: #fff;
-            text-shadow: 0 0 4px rgba(0, 0, 0, 0.7), 0 0 6px rgba(0, 0, 0, 0.7);
+            text-shadow:
+                0 0 4px rgba(0, 0, 0, 0.7),
+                0 0 6px rgba(0, 0, 0, 0.7);
             position: relative;
             width: 100%;
             height: 100%;
@@ -271,6 +272,10 @@ $preview_gapY: 20px;
                 transform 0.5s,
                 box-shadow 0.5s;
             transform-style: preserve-3d;
+            &:hover {
+                transform: scale(1.2);
+                box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.3);
+            }
 
             .gift_front,
             .gift_back {
@@ -294,13 +299,9 @@ $preview_gapY: 20px;
                 .full_progress {
                     width: 100% !important;
                     background-color: red;
-                    transition: 
-                                background-color 1.5s cubic-bezier(0.55, 0, 0.55, 1), 
-                                width 1.5s cubic-bezier(0.55, 0, 0.55, 1) !important;
-                }
-                &:hover .gift_front {
-                    transform: scale(1.2);
-                    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.3);
+                    transition:
+                        background-color 1.5s cubic-bezier(0.55, 0, 0.55, 1),
+                        width 1.5s cubic-bezier(0.55, 0, 0.55, 1) !important;
                 }
             }
             .gift_back {
@@ -326,7 +327,7 @@ $preview_gapY: 20px;
 
 .OCPanel {
     background: linear-gradient(-30deg, $ACCENT2 55%, $ACCENT1 55%);
-    height: $profile_size;
+    height: $PROFILE_SIZE;
     width: 100%;
     margin: 16px auto 0 auto;
     padding: 26px 0;
@@ -335,15 +336,13 @@ $preview_gapY: 20px;
     // border-top-left-radius: 80px;
     // border-bottom-left-radius: 80px;
     // clip-path: polygon(0 0, 100% 0, 100% 120%, 6% 120%);
-    transition:
-        margin 0.3s ease,
-        opacity 0.5s,
-        width 0.5s;
+    transition: margin 0.3s ease;
 
     .OCPanelContent {
         width: 80%;
         position: absolute;
         right: 0;
+        transition: opacity 0.6;
     }
 }
 
@@ -359,8 +358,8 @@ $preview_gapY: 20px;
     display: flex;
     transition: transform 0.5s;
     img {
-        width: $profile_size;
-        height: $profile_size;
+        width: $PROFILE_SIZE;
+        height: $PROFILE_SIZE;
     }
     .oc {
         flex: 1;
@@ -370,17 +369,17 @@ $preview_gapY: 20px;
 
 .indicator,
 .frame {
-    width: $profile_size;
-    height: $profile_size;
-    top: $spotlight_border_size * -1;
+    width: $PROFILE_SIZE;
+    height: $PROFILE_SIZE;
+    top: $SPOTLIGHT_BORDER_SIZE * -1;
 }
 
 .indicator {
-    border: $spotlight_border_size transparent solid;
+    border: $SPOTLIGHT_BORDER_SIZE transparent solid;
     transform: translate(-50%, 0);
 
     .frame {
-        border: $spotlight_border_size $ACCENT4 solid;
+        border: $SPOTLIGHT_BORDER_SIZE $ACCENT4 solid;
         box-shadow:
             0 0 5px rgba(0, 0, 0, 0.3),
             inset 0 0 5px rgba(0, 0, 0, 0.3);
@@ -400,7 +399,7 @@ $preview_gapY: 20px;
         top: -8%;
         left: -450%;
         transform: rotate(-2deg);
-        span{
+        span {
             color: $ACCENT7 !important;
         }
     }
@@ -525,13 +524,40 @@ $preview_gapY: 20px;
 //===   HOST ART  ===//
 //===================//
 
-.host {
-    position: fixed;
-    left: 1%;
-    bottom: -5%;
+.host_wrap,
+.host,
+.host img {
+    width: 500px;
+    height: 375px;
+}
 
-    img {
-        width: 500px;
+.host_wrap {
+    position: fixed;
+    bottom: -6%;
+}
+
+.host {
+    perspective: 2000px;
+    .host_inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+    .front,
+    .back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    // .front{
+    // }
+    .back {
+        transform: rotateY(180deg);
     }
 }
 
@@ -555,13 +581,13 @@ $preview_gapY: 20px;
         transform: rotate(6deg);
     }
     25% {
-        transform: rotate(4deg);
+        transform: rotate(3deg);
     }
     75% {
         transform: rotate(-10deg);
     }
     87% {
-        transform: rotate(-3deg);
+        transform: rotate(-5deg);
     }
 }
 
@@ -619,6 +645,12 @@ $preview_gapY: 20px;
     transform-origin: bottom;
 }
 
+.move_wobble {
+    animation: move_wobble 4s infinite;
+    transform-origin: bottom center;
+    animation-timing-function: linear;
+}
+
 @keyframes rotated_squeezBreath {
     0%,
     100% {
@@ -629,9 +661,34 @@ $preview_gapY: 20px;
     }
 }
 
-//================//
-//===   UTILS  ===//
-//================//
+$BUBBLE_LEFT: 500px;
+
+@keyframes move_wobble {
+    0%,
+    100% {
+        left: $BUBBLE_LEFT;
+    }
+    12% {
+        left: $BUBBLE_LEFT + 10;
+    }
+    25% {
+        left: $BUBBLE_LEFT + 3;
+    }
+    75% {
+        left: $BUBBLE_LEFT - 30;
+    }
+    87% {
+        left: $BUBBLE_LEFT - 12;
+    }
+}
+
+//=================//
+//===   UTILS   ===//
+//=================//
+
+.flipped:hover {
+    box-shadow: none !important;
+}
 
 .noscroll {
     overflow: hidden;
@@ -642,13 +699,34 @@ $preview_gapY: 20px;
     z-index: -1 !important;
 }
 
-.no-select {
+.no-select,
+.turingBar *,
+.host_wrap * {
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
 }
 
-/* ===== Scrollbar CSS ===== */
+::selection {
+    color: $ACCENT1;
+    background: $ACCENT5;
+}
+
+.currentText span::selection,
+.currentName::selection{
+    color: white;
+    background: $ACCENT7;
+}
+
+.infoBubble_inner::selection{
+    color: #ca3044;
+    background: white;
+}
+
+//=====================//
+//===   SCROLLBAR   ===//
+//=====================//
+
 /* Firefox */
 * {
     scrollbar-width: thin;
@@ -670,18 +748,25 @@ $preview_gapY: 20px;
     border: 3px solid #ffffff;
 }
 
-
 //=========================//
 //===                   ===//
 //===   MEDIA SCREENS   ===//
 //===                   ===//
 //=========================//
 
+$LOG_PANEL_HIGHT_FULLSCREEN: 670px;
+
 @media all and (display-mode: fullscreen) {
     .lotteryPanel {
-        .lotteryBoard, .lotteryBoard_overlay{
+        .lotteryBoard,
+        .lotteryBoard_overlay {
             height: 740px;
         }
     }
-    
+    .logPanel {
+        max-height: $LOG_PANEL_HIGHT_FULLSCREEN;
+        .logPanelContent {
+            height: $LOG_PANEL_HIGHT_FULLSCREEN - 43;
+        }
+    }
 }

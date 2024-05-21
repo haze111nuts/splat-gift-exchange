@@ -86,6 +86,8 @@ var CURRENT_OC_INDEX = 0;
 //=== Custom Variables ===//
 //========================//
 
+var EMOTES = "WASDF";
+
 var YEAR = 2024;
 
 var NUMBER_OF_BG = 83;
@@ -107,6 +109,10 @@ function getOcUrl(oc) {
 
 function getGiftUrl(oc) {
     return "assets/" + YEAR + "/item/" + oc.giftPic;
+}
+
+function getHostEmoteUrl(char) {
+    return "assets/lottery/host/" + char + ".png";
 }
 
 function getQuoteOfRemainingGiftCountZH(count){
@@ -132,7 +138,7 @@ function printOCs() {
     var ocHtml = "";
     for (const oc of OC_ARRANGED) {
         ocHtml += "<div class='oc'>";
-        ocHtml += "<img src='" + getOcUrl(oc) + "'>";
+        ocHtml += "<img src='" + getOcUrl(oc) + "' alt='oc'>";
         ocHtml += "</div>";
     }
     $(".turingBar").html(ocHtml);
@@ -167,7 +173,7 @@ function displayItemModal(gift) {
 
     itemModalHtml += "<div class='itemPanel'>"
     itemModalHtml += "<div class='itemSummary'> askajdlkajalkjdalksdjlk </div>"
-    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(gift) + "'>"
+    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(gift) + "' alt='item' >"
     itemModalHtml += "</div>"
 
     $(".modal").html(itemModalHtml);
@@ -176,13 +182,13 @@ function displayItemModal(gift) {
 
 function getGiftLogHtml(currentOC, gift) {
     var logHtml = "";
-    logHtml += "<li>";
+    logHtml += "<li id='giftli'>";
     logHtml += "<div class='label'>";
     logHtml += "<div>" + currentOC.name + "</div>"
     logHtml += "<div>" + gift.giftName + "</div>"
     logHtml += "</div>";
-    logHtml += "<img class='chara' src='" + getOcUrl(currentOC) + "'>";
-    logHtml += "<img class='gift' src='" + getGiftUrl(gift) + "'>";
+    logHtml += "<img class='chara no-select' src='" + getOcUrl(currentOC) + "' alt='chara' draggable='false'>";
+    logHtml += "<img class='gift no-select' src='" + getGiftUrl(gift) + "' alt='gift' draggable='false'>";
     logHtml += "</li>";
     return logHtml;
 }
@@ -253,20 +259,21 @@ function setUpFlipEvent() {
         //when long click is pressed
         giftCard.mousedown(function () {
             giftCard.find(".progress").addClass("full_progress");
+            //upon long click completed
             timeout = window.setTimeout(function () {
                 currentGiftCard = giftCard;
                 giftCard.find(".progress").css("opacity", "0");
 
                 //draw gift
                 gift = drawGift();
-                giftCard.siblings().html("<img src='" + getGiftUrl(gift) + "'/>");
+                giftCard.siblings().html("<img src='" + getGiftUrl(gift) + "' alt='gift' />");
 
                 //display item
                 displayItemModal(gift);
-
+                
+                //handle gift data
                 OBTAINED_GIFT_INDEX.push(OCS.indexOf(gift));
                 FLIPPED_CARD.push(giftCard.parent().parent().index());
-
                 setCookie(COOKIE.OBTAINED_GIFT, OBTAINED_GIFT_INDEX.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
                 setCookie(COOKIE.FLIPPED_CARD, FLIPPED_CARD.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
             }, 1500);
@@ -279,11 +286,11 @@ function setUpFlipEvent() {
         $(this).addClass("hide");
         $(document.body).removeClass("noscroll");
 
-        //Only do the rest when the click is on a card
+        //only do the rest when the click is on a card (otherwise)
         if (currentGiftCard) {
-            //Flip card
+            //flip card
             doCardFlip(currentGiftCard.parent(".gridItem_inner"))
-            //Add entry to gift log
+            //add entry to gift log
             addEntryToGoftLog(gift);
 
             CURRENT_OC_INDEX++;
@@ -308,6 +315,7 @@ function addEntryToGoftLog(gift){
 function doCardFlip(element){
     element.css("transform", "rotateY(180deg)");
     element.css("border", "rgba(92, 83, 73, 0.308) 1px solid");
+    element.addClass("flipped");
 }
 
 function shuffleHostQuotes() {
@@ -324,6 +332,43 @@ function shuffleHostQuotes() {
         $(".infoBubble").css("opacity", 0);
     }, 4000);
 }
+
+//===================//
+//=== Host Events ===//
+//===================//
+
+var HOST_CURRENT_SIDE = 0;
+var HOST_CURRENT_LETTER = "S";
+
+function setHostEmote(side, imgUrl){
+    var sideClass= (side === 0) ? "front" : "back";
+    $(".host_inner ."+sideClass).html("<img src='"+imgUrl+"' alt='host'>");
+}
+
+function flipHost(imgUrl){
+    if(HOST_CURRENT_SIDE === 0){
+        setHostEmote(1,imgUrl);
+        $(".host_inner").css("transform","rotateY(180deg)");
+        HOST_CURRENT_SIDE = 1;
+    }else{
+        setHostEmote(0,imgUrl);
+        $(".host_inner").css("transform","rotateY(0deg)");
+        HOST_CURRENT_SIDE = 0;
+    }
+}
+
+function handleKeyPress(keyPressed){
+    var letter = String.fromCharCode(keyPressed.keyCode).toUpperCase();
+    if(EMOTES.includes(letter) && HOST_CURRENT_LETTER !== letter){
+        flipHost(getHostEmoteUrl(letter));
+        HOST_CURRENT_LETTER = letter;
+    }
+
+}
+
+//====================//
+//=== Other Events ===//
+//====================//
 
 function setSpotlightToNextOC() {
     $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
@@ -348,13 +393,16 @@ function updateStats() {
 }
 
 function triggerEnding() {
-    $(".OCPanel").css("opacity", 0);
-    $(".OCPanel").css("width", 0);
-    $(".OCPanel").css("margin-right", "-300px");
+    $(".OCPanelContent").css("opacity", 0);
     $(".lotteryBoard_overlay").css("opacity", 1);
     $(".lotteryBoard_overlay").css("z-index", 83);
     $(".cross").css("width", "90%");
     $(".lotteryPanel").css("background-color", "rgb(203, 193, 177, 0.2)");
+}
+
+function extraStyle(){
+    $('.oc img').attr('draggable', false);
+    $('.host img').attr('draggable', false);
 }
 
 //======================//
@@ -388,11 +436,10 @@ function loadCookie() {
             $(".logPanelContent ul").animate({ scrollTop: $(document).height() }, 1000);
             setUpGiftLogStyle(index);
 
-            $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index]) + 1) + ") .gridItem_inner .gift_back").html("<img src='" + getGiftUrl(gift) + "'/>");
+            $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index]) + 1) + ") .gridItem_inner .gift_back").html("<img src='" + getGiftUrl(gift) + "' alt='gift' />");
             $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index]) + 1) + ") .gridItem_inner").css("transform", "rotateY(180deg)");
             index++;
         }
-
         CURRENT_OC_INDEX = index;
         GIFT_PILE = GIFT_PILE.filter(gift => !obtainedGifts.includes(gift));
         fadeFinishedOCs();
@@ -414,4 +461,10 @@ $(document).ready(function () {
     setUpFlipEvent();
     updateStats();
     shuffleHostQuotes();
+    setHostEmote(HOST_CURRENT_SIDE, getHostEmoteUrl(HOST_CURRENT_LETTER));
+    extraStyle();
+});
+
+$(document).keydown(function(keyPressed) {
+    handleKeyPress(keyPressed);
 });
