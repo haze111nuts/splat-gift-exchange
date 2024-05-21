@@ -713,12 +713,12 @@ $BUBBLE_LEFT: 500px;
 }
 
 .currentText span::selection,
-.currentName::selection{
+.currentName::selection {
     color: white;
     background: $ACCENT7;
 }
 
-.infoBubble_inner::selection{
+.infoBubble_inner::selection {
     color: #ca3044;
     background: white;
 }
