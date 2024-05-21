@@ -82,15 +82,19 @@ var GIFT_PILE = [].concat(OCS);
 
 var CURRENT_OC_INDEX = 0;
 
+var HOST_CURRENT_SIDE = 0;
+
 //========================//
 //=== Custom Variables ===//
 //========================//
 
-var EMOTES = "WASDF";
-
 var YEAR = 2024;
 
 var NUMBER_OF_BG = 83;
+
+var EMOTES = "WASDF";
+
+var HOST_CURRENT_LETTER = "S";
 
 var HOST_QUOTES = [
     getQuoteOfRemainingGiftCountZH(GIFT_PILE.length),
@@ -115,7 +119,7 @@ function getHostEmoteUrl(char) {
     return "assets/lottery/host/" + char + ".png";
 }
 
-function getQuoteOfRemainingGiftCountZH(count){
+function getQuoteOfRemainingGiftCountZH(count) {
     return "還有" + count + "個禮物還沒被打開";
 }
 
@@ -270,7 +274,7 @@ function setUpFlipEvent() {
 
                 //display item
                 displayItemModal(gift);
-                
+
                 //handle gift data
                 OBTAINED_GIFT_INDEX.push(OCS.indexOf(gift));
                 FLIPPED_CARD.push(giftCard.parent().parent().index());
@@ -306,13 +310,13 @@ function setUpFlipEvent() {
     })
 }
 
-function addEntryToGoftLog(gift){
+function addEntryToGoftLog(gift) {
     $(".logPanelContent ul").append(getGiftLogHtml(OC_ARRANGED[CURRENT_OC_INDEX], gift));
     $(".logPanelContent").animate({ scrollTop: $(".logPanelContent").prop("scrollHeight") }, 1000);
     setUpGiftLogStyle(CURRENT_OC_INDEX);
 }
 
-function doCardFlip(element){
+function doCardFlip(element) {
     element.css("transform", "rotateY(180deg)");
     element.css("border", "rgba(92, 83, 73, 0.308) 1px solid");
     element.addClass("flipped");
@@ -337,29 +341,26 @@ function shuffleHostQuotes() {
 //=== Host Events ===//
 //===================//
 
-var HOST_CURRENT_SIDE = 0;
-var HOST_CURRENT_LETTER = "S";
-
-function setHostEmote(side, imgUrl){
-    var sideClass= (side === 0) ? "front" : "back";
-    $(".host_inner ."+sideClass).html("<img src='"+imgUrl+"' alt='host'>");
+function setHostEmote(side, imgUrl) {
+    var sideClass = (side === 0) ? "front" : "back";
+    $(".host_inner ." + sideClass).html("<img src='" + imgUrl + "' alt='host' draggable='false'>");
 }
 
-function flipHost(imgUrl){
-    if(HOST_CURRENT_SIDE === 0){
-        setHostEmote(1,imgUrl);
-        $(".host_inner").css("transform","rotateY(180deg)");
+function flipHost(imgUrl) {
+    if (HOST_CURRENT_SIDE === 0) {
+        setHostEmote(1, imgUrl);
+        $(".host_inner").css("transform", "rotateY(180deg)");
         HOST_CURRENT_SIDE = 1;
-    }else{
-        setHostEmote(0,imgUrl);
-        $(".host_inner").css("transform","rotateY(0deg)");
+    } else {
+        setHostEmote(0, imgUrl);
+        $(".host_inner").css("transform", "rotateY(0deg)");
         HOST_CURRENT_SIDE = 0;
     }
 }
 
-function handleKeyPress(keyPressed){
+function handleKeyPress(keyPressed) {
     var letter = String.fromCharCode(keyPressed.keyCode).toUpperCase();
-    if(EMOTES.includes(letter) && HOST_CURRENT_LETTER !== letter){
+    if (EMOTES.includes(letter) && HOST_CURRENT_LETTER !== letter) {
         flipHost(getHostEmoteUrl(letter));
         HOST_CURRENT_LETTER = letter;
     }
@@ -400,9 +401,8 @@ function triggerEnding() {
     $(".lotteryPanel").css("background-color", "rgb(203, 193, 177, 0.2)");
 }
 
-function extraStyle(){
+function extraStyle() {
     $('.oc img').attr('draggable', false);
-    $('.host img').attr('draggable', false);
 }
 
 //======================//
@@ -465,6 +465,6 @@ $(document).ready(function () {
     extraStyle();
 });
 
-$(document).keydown(function(keyPressed) {
+$(document).keydown(function (keyPressed) {
     handleKeyPress(keyPressed);
 });
