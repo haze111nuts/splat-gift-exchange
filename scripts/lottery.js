@@ -185,11 +185,14 @@ function displayItemModal(gift) {
     var itemModalHtml = "";
 
     itemModalHtml += "<div class='itemPanel'>"
-    itemModalHtml += "<div class='itemSummary'>" + gift.giftDescription + "</div>"
-    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(gift) + "' alt='item' >"
+    itemModalHtml += "<div class='itemSummary'>"
+    itemModalHtml += "<div class='itemSummary_inner'>" + gift.giftDescription + "</div>"
     itemModalHtml += "</div>"
 
-    $(".modal").html(itemModalHtml);
+    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(gift) + "' alt='item' draggable='false' >"
+    itemModalHtml += "</div>"
+
+    $(".modal_content").html(itemModalHtml);
     $(document.body).addClass("noscroll");
 
     $(".itemSummary").click(function () {
@@ -299,8 +302,8 @@ function setUpFlipEvent() {
     })
 
     //Events on modal close
-    $(".modal").click(function () {
-        $(this).addClass("hide");
+    $(".modal_bg").click(function () {
+        $(".modal").addClass("hide");
         $(document.body).removeClass("noscroll");
         //only do the rest when the long click is on a card
         if (currentGiftCard) {
