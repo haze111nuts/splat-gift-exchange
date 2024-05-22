@@ -8,7 +8,7 @@ const OCS = [
         profilePic: "0.jpg",
         giftName: "葡萄汁",
         giftPic: "0.png",
-        giftDescription: "用特產巨峰葡萄做的100%無濃縮果汁，裝在漂亮的玻璃瓶裡面。當然不含酒精。",
+        giftDescription: "用特產巨峰葡萄做的100%無濃縮果汁﹐裝在漂亮的玻璃瓶裡面。當然不含酒精。",
         artist: "1"
     },
     {
@@ -16,7 +16,7 @@ const OCS = [
         profilePic: "1.jpg",
         giftName: "折疊式天文望遠鏡",
         giftPic: "1.png",
-        giftDescription: "口徑7公分、長為26公分的迷你形望遠鏡。有20mm和10mm的數位轉接目鏡、手機攝影轉接架﹐還附有簡易天文觀測指南。除了拿來觀星賞月以外﹐似乎也很適合拿來賞鳥。",
+        giftDescription: "口徑7公分、長為26公分的迷你形望遠鏡。有20mm和10mm的數位轉接目鏡和手機攝影轉接架﹐還附有簡易天文觀測指南。除了拿來觀星賞月以外﹐似乎也很適合拿來賞鳥。",
         artist: "4"
     },
     {
@@ -24,7 +24,7 @@ const OCS = [
         profilePic: "2.jpg",
         giftName: "碰可玩具機器人",
         giftPic: "2.png",
-        giftDescription: "大河原宇宙中心的最新紀念品﹐1/8比例的多功能碰可玩具機器人，有著跟原物一樣人工智能與，可以透過聲控來做為日常的小幫手。附一個機器人充電台。\n\n功能：\n- 鬧鐘、備忘錄、上網查詢資料等通知等日常實用機能。\n- 帶去大河原宇宙中心的話，可以當作迷你導覽。\n- 為了人類發展的未來，偶爾會推薦你捐錢給大河原宇宙中心。",
+        giftDescription: "大河原宇宙中心的最新紀念品﹐1/8比例的多功能碰可玩具機器人﹐有著跟原物一樣人工智能﹐可以透過聲控來做為日常的小幫手。附一個機器人充電台。\n\n功能：\n- 鬧鐘、備忘錄、上網查詢資料等通知等日常實用機能。\n- 帶去大河原宇宙中心的話，可以當作迷你導覽。\n- 為了人類發展的未來，偶爾會推薦你捐錢給大河原宇宙中心。",
         artist: "5"
     },
     {
@@ -32,15 +32,15 @@ const OCS = [
         profilePic: "3.jpg",
         giftName: "西洋棋組",
         giftPic: "3.png",
-        giftDescription: "特別訂做的紅白色西洋棋組。以桃花心木製成，並鑲有金邊。",
+        giftDescription: "特別訂做的紅白色西洋棋組。以桃花心木製成﹐並鑲有金邊。",
         artist: "1"
     },
     {
         name: "綾里真宵",
         profilePic: "4.jpg",
-        giftName: "將軍超人第一季DVD全套",
+        giftName: "將軍超人影集",
         giftPic: "4.png",
-        giftDescription: "初代將軍超人的DVD影集﹐",
+        giftDescription: "包含第一季將軍超人和第二季粉紅公主的DVD影集全套。",
         artist: "1"
     },
     {
