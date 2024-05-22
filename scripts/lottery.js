@@ -101,7 +101,7 @@ var YEAR = "0000";
 
 var NUMBER_OF_BG = 83;
 
-var EMOTES = "WASDFZ";
+var EMOTES = "WASDFX";
 
 var HOST_CURRENT_LETTER = "W";
 
