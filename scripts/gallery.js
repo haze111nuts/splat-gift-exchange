@@ -59,13 +59,19 @@ var entries = [
     }
 ];
 
+//========================//
+//=== Custom Variables ===//
+//========================//
+
+var YEAR = "0000";
+
 
 function getArtUrl(id, group) {
-    return "assets/2024/" + group + "/" + id + ".jpg";
+    return "assets/" + YEAR + "/" + group + "/" + id + ".jpg";
 }
 
 function getItemUrl(id) {
-    return "assets/2024/item/" + id + ".png";
+    return "assets/" + YEAR + "/item/" + id + ".png";
 }
 
 function generateGrid() {

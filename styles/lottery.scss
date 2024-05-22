@@ -11,8 +11,8 @@
     font-weight: normal;
 }
 @font-face {
-    font-family: "Sunny Spell";
-    src: url("../assets/fonts/SunnySpellsBasicRegular.ttf");
+    font-family: "Thelma";
+    src: url("../assets/fonts/ThelmaPersonalUse.otf");
     font-style: normal;
     font-weight: normal;
 }
@@ -38,8 +38,9 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    background-position: center 40%;
     background-size: auto;
-    background-image: url(../assets/lottery/main.jpg);
+    background-image: url(../assets/lottery/bg2.jpg);
 }
 
 //===================//
@@ -55,7 +56,7 @@ body {
     margin: 24px;
     border: $ACCENT1 8px solid;
     border-radius: 10px;
-    box-shadow: 3px 3px 0px 0px rgba(255, 245, 201, 0.5);
+    box-shadow: 3px 3px 2px 0px rgba(255, 245, 201, 0.4);
 }
 
 .panelHeader {
@@ -65,8 +66,17 @@ body {
     color: $ACCENT5;
     padding: 8px 8px 14px 8px;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.45);
-    span {
+    span:nth-child(1) {
         color: $ACCENT7 !important;
+    }
+    span:nth-child(2) {
+        float: right;
+        padding-top: 2px;
+        font-size: 0.7em;
+        word-spacing: 5px;
+        span{
+            color: $ACCENT7 !important;
+        }
     }
 }
 
@@ -92,7 +102,7 @@ $LOG_PANEL_HIGHT: 600px;
         border-radius: 8px;
     }
     .logPanelContent {
-        background-color: rgb(224, 224, 209, 0.6);
+        background-color: rgb(224, 224, 209, 0.4);
         width: 320px;
         height: $LOG_PANEL_HIGHT - 43;
         overflow-y: auto;
@@ -126,7 +136,12 @@ $LOG_PANEL_HIGHT: 600px;
                     position: absolute;
                     top: 50%;
                     right: 8px;
+                    cursor: pointer;
                     transform: translate(0, -50%) rotate(5deg);
+                    transition: all 0.2s;
+                    &:hover {
+                        transform: translate(0, -50%) rotate(5deg) scale(1.3);
+                    }
                 }
                 .label {
                     // border: #fff 1px solid;
@@ -167,8 +182,8 @@ $LOG_PANEL_HIGHT: 600px;
 
 .lotteryPanel {
     margin-left: 16px !important;
-    background-color: rgb(203, 193, 177, 0.7);
-    backdrop-filter: blur(10px);
+    background-color: rgb(203, 193, 177, 0.5);
+    backdrop-filter: blur(8px);
     transition: all 0.4s;
     .lotteryBoard,
     .lotteryBoard_overlay {
@@ -257,9 +272,9 @@ $preview_gapY: 20px;
             text-align: center;
             vertical-align: middle;
             line-height: $preview_size;
-            border: $ACCENT2 1px solid;
+            border: $ACCENT2 2px solid;
             font-size: 5rem;
-            font-family: "Sunny Spell";
+            font-family: "Thelma";
             color: #fff;
             text-shadow:
                 0 0 4px rgba(0, 0, 0, 0.7),
@@ -306,6 +321,8 @@ $preview_gapY: 20px;
             }
             .gift_back {
                 background-color: rgb(175, 168, 149);
+                // background: linear-gradient(0deg, rgba(175, 168, 149,1) 50%, rgb(151, 145, 129) 100%);
+                box-shadow: 0 0 8px 3px rgb(153, 147, 131) inset;
                 color: white;
                 transform: rotateY(180deg);
                 img {
@@ -396,7 +413,7 @@ $preview_gapY: 20px;
         // background-color: grey;
         padding: 20px;
         position: absolute;
-        top: -8%;
+        top: -12%;
         left: -450%;
         transform: rotate(-2deg);
         span {
@@ -494,10 +511,8 @@ $preview_gapY: 20px;
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%) scale(1);
-        transition: all 0.25s ease-out;
-        // border: 1px solid green;
-
+        transform: translate(-50%, -50%);
+        transition: all .2s ease-out;
         .itemArt {
             width: 350px;
             height: 350px;
@@ -605,19 +620,24 @@ $preview_gapY: 20px;
 //===   HOST BUBBLE  ===//
 //======================//
 
+
 .infoBubble {
     color: #3a1f1f;
     position: absolute;
-    left: 530px;
     bottom: 220px;
     z-index: 83;
     opacity: 0;
     transition: all 0.3s;
+
+    span{
+        color: #b82153 !important;
+        text-decoration: underline;
+    }
 }
 
 .infoBubble_inner {
     background: $ACCENT_WOOPA;
-    border: 2px solid $ACCENT2;
+    border: 2px solid #3a1f1f;
     border-radius: 16px;
     padding: 12px 25px;
     font-size: 1.7em;
@@ -626,6 +646,7 @@ $preview_gapY: 20px;
     position: relative;
 }
 
+.infoBubble_inner:before,
 .infoBubble_inner:after {
     content: "";
     position: absolute;
@@ -638,6 +659,13 @@ $preview_gapY: 20px;
     bottom: -27px;
     left: 9px;
     transform: scale(1.1) skew(-40deg, 0deg);
+}
+
+.infoBubble_inner:before{
+    left: 6px;
+    bottom: -32px;
+    border-color: #3a1f1f transparent;
+    transform: scale(1.4) skew(-40deg, 0deg);
 }
 
 .rotated_squeezBreath {
@@ -661,7 +689,7 @@ $preview_gapY: 20px;
     }
 }
 
-$BUBBLE_LEFT: 500px;
+$BUBBLE_LEFT: 480px;
 
 @keyframes move_wobble {
     0%,
@@ -713,7 +741,8 @@ $BUBBLE_LEFT: 500px;
 }
 
 .currentText span::selection,
-.currentName::selection {
+.currentName::selection,
+.endingText div::selection {
     color: white;
     background: $ACCENT7;
 }
@@ -757,6 +786,11 @@ $BUBBLE_LEFT: 500px;
 $LOG_PANEL_HIGHT_FULLSCREEN: 670px;
 
 @media all and (display-mode: fullscreen) {
+
+    .panel {
+        margin: 40px;
+    }
+
     .lotteryPanel {
         .lotteryBoard,
         .lotteryBoard_overlay {
@@ -768,5 +802,9 @@ $LOG_PANEL_HIGHT_FULLSCREEN: 670px;
         .logPanelContent {
             height: $LOG_PANEL_HIGHT_FULLSCREEN - 43;
         }
+    }
+
+    .OCPanel {
+        margin-top:0;
     }
 }

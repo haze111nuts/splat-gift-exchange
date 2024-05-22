@@ -11,8 +11,8 @@
   font-weight: normal;
 }
 @font-face {
-  font-family: "Sunny Spell";
-  src: url("../assets/fonts/SunnySpellsBasicRegular.ttf");
+  font-family: "Thelma";
+  src: url("../assets/fonts/ThelmaPersonalUse.otf");
   font-style: normal;
   font-weight: normal;
 }
@@ -25,8 +25,9 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background-position: center 40%;
   background-size: auto;
-  background-image: url(../assets/lottery/main.jpg);
+  background-image: url(../assets/lottery/bg2.jpg);
 }
 
 .panelWarp {
@@ -38,7 +39,7 @@ body {
   margin: 24px;
   border: rgb(58, 49, 45) 8px solid;
   border-radius: 10px;
-  box-shadow: 3px 3px 0px 0px rgba(255, 245, 201, 0.5);
+  box-shadow: 3px 3px 2px 0px rgba(255, 245, 201, 0.4);
 }
 
 .panelHeader {
@@ -49,7 +50,16 @@ body {
   padding: 8px 8px 14px 8px;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.45);
 }
-.panelHeader span {
+.panelHeader span:nth-child(1) {
+  color: rgb(219, 149, 19) !important;
+}
+.panelHeader span:nth-child(2) {
+  float: right;
+  padding-top: 2px;
+  font-size: 0.7em;
+  word-spacing: 5px;
+}
+.panelHeader span:nth-child(2) span {
   color: rgb(219, 149, 19) !important;
 }
 
@@ -70,7 +80,7 @@ body {
   border-radius: 8px;
 }
 .logPanel .logPanelContent {
-  background-color: rgba(224, 224, 209, 0.6);
+  background-color: rgba(224, 224, 209, 0.4);
   width: 320px;
   height: 557px;
   overflow-y: auto;
@@ -107,7 +117,12 @@ body {
   position: absolute;
   top: 50%;
   right: 8px;
+  cursor: pointer;
   transform: translate(0, -50%) rotate(5deg);
+  transition: all 0.2s;
+}
+.logPanel .logPanelContent ul li .gift:hover {
+  transform: translate(0, -50%) rotate(5deg) scale(1.3);
 }
 .logPanel .logPanelContent ul li .label {
   font-size: medium;
@@ -138,8 +153,8 @@ body {
 
 .lotteryPanel {
   margin-left: 16px !important;
-  background-color: rgba(203, 193, 177, 0.7);
-  backdrop-filter: blur(10px);
+  background-color: rgba(203, 193, 177, 0.5);
+  backdrop-filter: blur(8px);
   transition: all 0.4s;
 }
 .lotteryPanel .lotteryBoard,
@@ -218,9 +233,9 @@ body {
   text-align: center;
   vertical-align: middle;
   line-height: 150px;
-  border: rgb(82, 68, 61) 1px solid;
+  border: rgb(82, 68, 61) 2px solid;
   font-size: 5rem;
-  font-family: "Sunny Spell";
+  font-family: "Thelma";
   color: #fff;
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.7), 0 0 6px rgba(0, 0, 0, 0.7);
   position: relative;
@@ -261,6 +276,7 @@ body {
 }
 .grid .gridItem .gridItem_inner .gift_back {
   background-color: rgb(175, 168, 149);
+  box-shadow: 0 0 8px 3px rgb(153, 147, 131) inset;
   color: white;
   transform: rotateY(180deg);
 }
@@ -336,7 +352,7 @@ body {
 .indicator .currentText {
   padding: 20px;
   position: absolute;
-  top: -8%;
+  top: -12%;
   left: -450%;
   transform: rotate(-2deg);
 }
@@ -422,8 +438,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  transition: all 0.25s ease-out;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease-out;
 }
 .modal .itemPanel .itemArt {
   width: 350px;
@@ -518,16 +534,19 @@ body {
 .infoBubble {
   color: #3a1f1f;
   position: absolute;
-  left: 530px;
   bottom: 220px;
   z-index: 83;
   opacity: 0;
   transition: all 0.3s;
 }
+.infoBubble span {
+  color: #b82153 !important;
+  text-decoration: underline;
+}
 
 .infoBubble_inner {
   background: rgb(250, 200, 200);
-  border: 2px solid rgb(82, 68, 61);
+  border: 2px solid #3a1f1f;
   border-radius: 16px;
   padding: 12px 25px;
   font-size: 1.7em;
@@ -536,6 +555,7 @@ body {
   position: relative;
 }
 
+.infoBubble_inner:before,
 .infoBubble_inner:after {
   content: "";
   position: absolute;
@@ -548,6 +568,13 @@ body {
   bottom: -27px;
   left: 9px;
   transform: scale(1.1) skew(-40deg, 0deg);
+}
+
+.infoBubble_inner:before {
+  left: 6px;
+  bottom: -32px;
+  border-color: #3a1f1f transparent;
+  transform: scale(1.4) skew(-40deg, 0deg);
 }
 
 .rotated_squeezBreath {
@@ -571,19 +598,19 @@ body {
 }
 @keyframes move_wobble {
   0%, 100% {
-    left: 500px;
+    left: 480px;
   }
   12% {
-    left: 510px;
+    left: 490px;
   }
   25% {
-    left: 503px;
+    left: 483px;
   }
   75% {
-    left: 470px;
+    left: 450px;
   }
   87% {
-    left: 488px;
+    left: 468px;
   }
 }
 .flipped:hover {
@@ -613,7 +640,8 @@ body {
 }
 
 .currentText span::selection,
-.currentName::selection {
+.currentName::selection,
+.endingText div::selection {
   color: white;
   background: rgb(219, 149, 19);
 }
@@ -645,6 +673,9 @@ body {
 }
 
 @media all and (display-mode: fullscreen) {
+  .panel {
+    margin: 40px;
+  }
   .lotteryPanel .lotteryBoard,
 .lotteryPanel .lotteryBoard_overlay {
     height: 740px;
@@ -654,6 +685,9 @@ body {
   }
   .logPanel .logPanelContent {
     height: 627px;
+  }
+  .OCPanel {
+    margin-top: 0;
   }
 }
 
