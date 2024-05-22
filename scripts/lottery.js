@@ -24,7 +24,7 @@ const OCS = [
         profilePic: "2.jpg",
         giftName: "碰可玩具機器人",
         giftPic: "2.png",
-        giftDescription: "大河原宇宙中心的最新紀念品﹐1/8比例的多功能碰可玩具機器人﹐有著跟原物一樣人工智能﹐可以透過聲控來做為日常的小幫手。附一個機器人充電台。\n\n功能：\n- 鬧鐘、備忘錄、上網查詢資料等通知等日常實用機能。\n- 帶去大河原宇宙中心的話，可以當作迷你導覽。\n- 為了人類發展的未來，偶爾會推薦你捐錢給大河原宇宙中心。",
+        giftDescription: "大河原宇宙中心的最新紀念品﹐1/8比例的多功能碰可玩具機器人﹐有著跟原物一樣的人工智能﹐可以透過聲控來做為日常的小幫手。附一個機器人充電台。功能：<ul><li>鬧鐘、備忘錄、上網查詢資料等通知等日常實用機能。</li><li>帶去大河原宇宙中心的話，可以當作迷你導覽。</li><li>為了人類發展的未來，偶爾會推薦你捐錢給大河原宇宙中心。</li></ul>有一些跟<a href='https://www.amazon.com/b?node=18354642011' target='_blank'>ALEXA</a>類似的功能",
         artist: "5"
     },
     {
@@ -209,6 +209,14 @@ function getGiftLogHtml(currentOC, gift) {
     return logHtml;
 }
 
+function printSnow() {
+    var snowHtml = "";
+    for (var i = 0; i < 100; i++) {
+        snowHtml += "<div class='snow'></div>";
+    }    
+    $(".snowScreen").html(snowHtml);
+}
+
 //=================================//
 //=== Randomize and Set Grid BG ===//
 //=================================//
@@ -325,7 +333,7 @@ function addEntryToGoftLog(gift) {
     $(".logPanelContent ul").append(getGiftLogHtml(OC_ARRANGED[CURRENT_OC_INDEX], gift));
     $(".logPanelContent").animate({ scrollTop: $(".logPanelContent").prop("scrollHeight") }, 1000);
     setUpGiftLogStyle(CURRENT_OC_INDEX);
-    $(".logPanelContent ul li:nth-child("+ (CURRENT_OC_INDEX+1) +") .gift").click(function(){
+    $(".logPanelContent ul li:nth-child(" + (CURRENT_OC_INDEX + 1) + ") .gift").click(function () {
         displayItemModal(gift);
     });
 }
@@ -414,7 +422,6 @@ function triggerEnding() {
     $(".cross").css("width", "90%");
     $(".lotteryPanel").css("background-color", "rgb(203, 193, 177, 0.4)");
     $(".infoBubble").css("display", "none");
-    
 }
 
 function extraStyle() {
@@ -479,6 +486,7 @@ $(document).ready(function () {
     shuffleHostQuotes();
     setHostEmote(HOST_CURRENT_SIDE, getHostEmoteUrl(HOST_CURRENT_LETTER));
     extraStyle();
+    printSnow();
 });
 
 $(document).keydown(function (keyPressed) {
