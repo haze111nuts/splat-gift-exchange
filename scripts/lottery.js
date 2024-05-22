@@ -194,10 +194,6 @@ function displayItemModal(gift) {
 
     $(".modal_content").html(itemModalHtml);
     $(document.body).addClass("noscroll");
-
-    $(".itemSummary").click(function () {
-        console.log("...")
-    });
 }
 
 function getGiftLogHtml(currentOC, gift) {
