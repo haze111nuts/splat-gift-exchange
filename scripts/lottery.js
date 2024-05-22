@@ -88,17 +88,17 @@ var HOST_CURRENT_SIDE = 0;
 //=== Custom Variables ===//
 //========================//
 
-var YEAR = 2024;
+var YEAR = "0000";
 
 var NUMBER_OF_BG = 83;
 
-var EMOTES = "WASDF";
+var EMOTES = "WASDFZ";
 
-var HOST_CURRENT_LETTER = "S";
+var HOST_CURRENT_LETTER = "W";
 
 var HOST_QUOTES = [
     getQuoteOfRemainingGiftCountZH(GIFT_PILE.length),
-    "卡片花色是隨機生成的，跟禮物沒有關係～",
+    "卡片花色是<span>隨機</span>生成的，跟禮物沒有關係～",
     "123123212",
     "屋趴～～～"
 ]
@@ -108,7 +108,7 @@ var HOST_QUOTES = [
 //======================//
 
 function getOcUrl(oc) {
-    return "assets/lottery/" + YEAR + "profile/" + oc.profilePic;
+    return "assets/lottery/" + YEAR + "/" + oc.profilePic;
 }
 
 function getGiftUrl(oc) {
@@ -120,7 +120,7 @@ function getHostEmoteUrl(char) {
 }
 
 function getQuoteOfRemainingGiftCountZH(count) {
-    return "還有" + count + "個禮物還沒被打開";
+    return "還有<span>" + count + "個禮物</span>還沒被打開～";
 }
 
 function getCurrentOCPos() {
@@ -186,7 +186,7 @@ function displayItemModal(gift) {
 
 function getGiftLogHtml(currentOC, gift) {
     var logHtml = "";
-    logHtml += "<li id='giftli'>";
+    logHtml += "<li>";
     logHtml += "<div class='label'>";
     logHtml += "<div>" + currentOC.name + "</div>"
     logHtml += "<div>" + gift.giftName + "</div>"
@@ -289,8 +289,7 @@ function setUpFlipEvent() {
     $(".modal").click(function () {
         $(this).addClass("hide");
         $(document.body).removeClass("noscroll");
-
-        //only do the rest when the click is on a card (otherwise)
+        //only do the rest when the long click is on a card
         if (currentGiftCard) {
             //flip card
             doCardFlip(currentGiftCard.parent(".gridItem_inner"))
@@ -314,6 +313,9 @@ function addEntryToGoftLog(gift) {
     $(".logPanelContent ul").append(getGiftLogHtml(OC_ARRANGED[CURRENT_OC_INDEX], gift));
     $(".logPanelContent").animate({ scrollTop: $(".logPanelContent").prop("scrollHeight") }, 1000);
     setUpGiftLogStyle(CURRENT_OC_INDEX);
+    $(".logPanelContent ul li:nth-child("+ (CURRENT_OC_INDEX+1) +") .gift").click(function(){
+        displayItemModal(gift);
+    });
 }
 
 function doCardFlip(element) {
@@ -398,7 +400,9 @@ function triggerEnding() {
     $(".lotteryBoard_overlay").css("opacity", 1);
     $(".lotteryBoard_overlay").css("z-index", 83);
     $(".cross").css("width", "90%");
-    $(".lotteryPanel").css("background-color", "rgb(203, 193, 177, 0.2)");
+    $(".lotteryPanel").css("background-color", "rgb(203, 193, 177, 0.4)");
+    $(".infoBubble").css("display", "none");
+    
 }
 
 function extraStyle() {
