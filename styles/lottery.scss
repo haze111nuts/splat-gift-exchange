@@ -494,7 +494,7 @@ $preview_gapY: 20px;
     z-index: 830;
     background-color: rgba(0, 0, 0, 0.1);
     opacity: 1;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -514,6 +514,7 @@ $preview_gapY: 20px;
         transform: translate(-50%, -50%);
         transition: all .2s ease-out;
         .itemArt {
+            z-index: 834;
             width: 350px;
             height: 350px;
             position: absolute;
@@ -523,14 +524,17 @@ $preview_gapY: 20px;
             // border: 1px solid red;
         }
         .itemSummary {
+            z-index: 833;
             width: 400px;
             max-height: 300px;
-            padding: 80px 50px 80px 200px;
+            padding: 70px 70px 80px 180px;
+            overflow-y: auto;
             position: absolute;
             right: 0;
             top: 50%;
             transform: translate(0, -50%) scale(1) rotateZ(2deg);
             background-color: #f3f4f8;
+            font-size: 1.2em;
         }
     }
 }

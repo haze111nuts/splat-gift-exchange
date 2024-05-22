@@ -185,12 +185,16 @@ function displayItemModal(gift) {
     var itemModalHtml = "";
 
     itemModalHtml += "<div class='itemPanel'>"
-    itemModalHtml += "<div class='itemSummary'> askajdlkajalkjdalksdjlk </div>"
+    itemModalHtml += "<div class='itemSummary'>" + gift.giftDescription + "</div>"
     itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(gift) + "' alt='item' >"
     itemModalHtml += "</div>"
 
     $(".modal").html(itemModalHtml);
     $(document.body).addClass("noscroll");
+
+    $(".itemSummary").click(function () {
+        console.log("...")
+    });
 }
 
 function getGiftLogHtml(currentOC, gift) {
