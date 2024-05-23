@@ -45,6 +45,14 @@ body {
     background-image: url(../assets/lottery/bg2.jpg);
 }
 
+a {
+    color: $ACCENT6;
+    transition: all 0.3s ease-out;
+    &:hover{
+        color: rgb(199, 71, 21);
+    }
+}
+
 //===================//
 //===   GENERAL   ===//
 //===================//
@@ -138,7 +146,6 @@ $LOG_PANEL_HIGHT: 600px;
                     position: absolute;
                     top: 50%;
                     right: 8px;
-                    cursor: pointer;
                     transform: translate(0, -50%) rotate(5deg);
                     transition: all 0.2s;
                     &:hover {
@@ -303,7 +310,6 @@ $preview_gapY: 20px;
                 backface-visibility: hidden;
             }
             .gift_front {
-                cursor: pointer;
                 background-position: center center;
                 .progress {
                     width: 0%;
@@ -718,7 +724,7 @@ $BUBBLE_LEFT: 480px;
         font-size: 1.3em;
         box-shadow: 8px 8px 9px 1px rgba(0, 0, 0, 0.2);
         .itemSummary_inner {
-            max-height: 300px;
+            max-height: 320px;
             padding: 10px 16px;
             overflow-y: auto;
             width: 440px;
@@ -729,14 +735,6 @@ $BUBBLE_LEFT: 480px;
                 margin-bottom: 10px;
                 li {
                     padding-right: 20px;
-                }
-            }
-
-            a {
-                color: $ACCENT6;
-                transition: all 0.3s ease-out;
-                &:hover{
-                    color: rgb(199, 71, 21);
                 }
             }
         }
@@ -770,6 +768,10 @@ $BUBBLE_LEFT: 480px;
     user-select: none; /* Standard syntax */
 }
 
+//=====================//
+//===   SELECTION   ===//
+//=====================//
+
 ::selection {
     color: $ACCENT1;
     background: $ACCENT5;
@@ -777,7 +779,9 @@ $BUBBLE_LEFT: 480px;
 
 .currentText span::selection,
 .currentName::selection,
-.endingText div::selection {
+.endingText div::selection,
+.itemSummary_inner::selection,
+.itemSummary_inner *::selection {
     color: white;
     background: $ACCENT7;
 }
@@ -840,6 +844,24 @@ $BUBBLE_LEFT: 480px;
             }
         }
     }
+}
+
+//==================//
+//===   CURSOR   ===//
+//==================//
+
+.cursor{
+    width: 48px;
+    height: 48px;
+    background-image: url(../assets/lottery/cursor/pointer.png);
+    position: fixed;
+	pointer-events: none;
+	z-index: 999;
+	transition: background-image 0.15s;
+}
+
+body, a {
+    cursor: none;
 }
 
 //=====================//

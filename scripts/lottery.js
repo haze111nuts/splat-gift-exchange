@@ -16,7 +16,7 @@ const OCS = [
         profilePic: "1.jpg",
         giftName: "折疊式天文望遠鏡",
         giftPic: "1.png",
-        giftDescription: "口徑7公分、長為26公分的迷你形望遠鏡。有20mm和10mm的數位轉接目鏡和手機攝影轉接架﹐還附有簡易天文觀測指南。除了拿來觀星賞月以外﹐似乎也很適合拿來賞鳥。",
+        giftDescription: "口徑7公分、長為26公分的迷你形望遠鏡。有20mm和10mm的數位轉接目鏡和手機攝影轉接架﹐還附有簡易天文觀測指南。除了拿來觀星賞月以外﹐似乎也很適合拿來賞鳥或是湖中的不明生物。",
         artist: "4"
     },
     {
@@ -428,6 +428,32 @@ function extraStyle() {
     $('.oc img').attr('draggable', false);
 }
 
+function setUpCursor(){
+	var cursor = $(".cursor");
+	$(window).mousemove(function(e) {
+        // cursor.css({
+		// 	top: e.clientY - cursor.height() / 2,
+		// 	left: e.clientX - cursor.width() / 2
+		// });
+		cursor.css({
+			top: e.clientY,
+			left: e.clientX
+		});
+	});
+
+
+    $(".gift_front").mouseenter(function() {
+        cursor.css(
+            "background-image", "url(assets/lottery/cursor/pointer_gift.png)"
+        );
+    }).mouseleave(function() {
+        cursor.css(
+            "background-image", "url(assets/lottery/cursor/pointer.png)"
+        );
+    });
+}
+
+
 //======================//
 //===                ===//
 //=== Handle Coockie ===//
@@ -487,6 +513,7 @@ $(document).ready(function () {
     setHostEmote(HOST_CURRENT_SIDE, getHostEmoteUrl(HOST_CURRENT_LETTER));
     extraStyle();
     printSnow();
+    setUpCursor();
 });
 
 $(document).keydown(function (keyPressed) {
