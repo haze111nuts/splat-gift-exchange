@@ -440,8 +440,6 @@ function setUpCursor(){
 			left: e.clientX
 		});
 	});
-
-
     $(".gift_front").mouseenter(function() {
         cursor.css(
             "background-image", "url(assets/lottery/cursor/pointer_gift.png)"
