@@ -724,8 +724,12 @@ $BUBBLE_LEFT: 480px;
             width: 440px;
             height: 100%;
 
-            li {
-                padding-right: 30px;
+            ul{
+                margin-top: 0px;
+                margin-bottom: 10px;
+                li {
+                    padding-right: 20px;
+                }
             }
 
             a {
