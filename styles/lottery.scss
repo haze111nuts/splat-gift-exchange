@@ -17,6 +17,8 @@
     font-weight: normal;
 }
 
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap");
+
 $PROFILE_SIZE: 100px;
 $SPOTLIGHT_BORDER_SIZE: 8px;
 
@@ -37,10 +39,18 @@ html {
 body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow: hidden;
     background-position: center 40%;
     background-size: auto;
     background-image: url(../assets/lottery/bg2.jpg);
+}
+
+a {
+    color: $ACCENT6;
+    transition: all 0.3s ease-out;
+    &:hover{
+        color: rgb(199, 71, 21);
+    }
 }
 
 //===================//
@@ -74,7 +84,7 @@ body {
         padding-top: 2px;
         font-size: 0.7em;
         word-spacing: 5px;
-        span{
+        span {
             color: $ACCENT7 !important;
         }
     }
@@ -136,7 +146,6 @@ $LOG_PANEL_HIGHT: 600px;
                     position: absolute;
                     top: 50%;
                     right: 8px;
-                    cursor: pointer;
                     transform: translate(0, -50%) rotate(5deg);
                     transition: all 0.2s;
                     &:hover {
@@ -301,7 +310,6 @@ $preview_gapY: 20px;
                 backface-visibility: hidden;
             }
             .gift_front {
-                cursor: pointer;
                 background-position: center center;
                 .progress {
                     width: 0%;
@@ -484,61 +492,6 @@ $preview_gapY: 20px;
     }
 }
 
-//=========================//
-//===                   ===//
-//===   POP-UP MODALS   ===//
-//===                   ===//
-//=========================//
-
-.modal {
-    z-index: 830;
-    background-color: rgba(0, 0, 0, 0.1);
-    opacity: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition: 0.25s ease-out;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    transition: all 0.14s ease-in;
-
-    .itemPanel {
-        margin: 0 auto;
-        width: 800px;
-        height: 100%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: all .2s ease-out;
-        .itemArt {
-            z-index: 834;
-            width: 350px;
-            height: 350px;
-            position: absolute;
-            left: -50px;
-            top: 50%;
-            transform: translate(0, -50%) scale(1) rotateZ(-5deg);
-            // border: 1px solid red;
-        }
-        .itemSummary {
-            z-index: 833;
-            width: 400px;
-            max-height: 300px;
-            padding: 70px 70px 80px 180px;
-            overflow-y: auto;
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translate(0, -50%) scale(1) rotateZ(2deg);
-            background-color: #f3f4f8;
-            font-size: 1.2em;
-        }
-    }
-}
-
 //===================//
 //===   HOST ART  ===//
 //===================//
@@ -624,7 +577,6 @@ $preview_gapY: 20px;
 //===   HOST BUBBLE  ===//
 //======================//
 
-
 .infoBubble {
     color: #3a1f1f;
     position: absolute;
@@ -633,9 +585,8 @@ $preview_gapY: 20px;
     opacity: 0;
     transition: all 0.3s;
 
-    span{
+    span {
         color: #b82153 !important;
-        text-decoration: underline;
     }
 }
 
@@ -665,7 +616,7 @@ $preview_gapY: 20px;
     transform: scale(1.1) skew(-40deg, 0deg);
 }
 
-.infoBubble_inner:before{
+.infoBubble_inner:before {
     left: 6px;
     bottom: -32px;
     border-color: #3a1f1f transparent;
@@ -714,6 +665,82 @@ $BUBBLE_LEFT: 480px;
     }
 }
 
+
+//=========================//
+//===                   ===//
+//===   POP-UP MODALS   ===//
+//===                   ===//
+//=========================//
+
+.modal {
+    z-index: 830;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.2s ease-in;
+
+    .modal_bg {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+.itemPanel {
+    margin: 0 auto;
+    width: 800px;
+    height: 0%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease-out;
+    .itemArt {
+        z-index: 834;
+        width: 350px;
+        height: 350px;
+        position: absolute;
+        left: -50px;
+        top: 50%;
+        transform: translate(0, -50%) scale(1) rotateZ(-5deg);
+        // border: 1px solid red;
+    }
+    .itemSummary {
+        z-index: 833;
+        padding: 50px 40px 60px 120px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translate(0, -50%) scale(1) rotateZ(2deg);
+        background-color: rgb(235, 230, 220);
+        background-image: url(../assets/lottery/paper.jpg);
+        color: $ACCENT1;
+        font-family: "Noto Sans TC", sans-serif;
+        font-size: 1.3em;
+        box-shadow: 8px 8px 9px 1px rgba(0, 0, 0, 0.2);
+        .itemSummary_inner {
+            max-height: 320px;
+            padding: 10px 16px;
+            overflow-y: auto;
+            width: 440px;
+            height: 100%;
+
+            ul{
+                margin-top: 0px;
+                margin-bottom: 10px;
+                li {
+                    padding-right: 20px;
+                }
+            }
+        }
+    }
+}
+
 //=================//
 //===   UTILS   ===//
 //=================//
@@ -732,13 +759,18 @@ $BUBBLE_LEFT: 480px;
 }
 
 .no-select,
+.itemArt,
 .turingBar *,
 .host_wrap *,
-.panelHeader span{
+.panelHeader span {
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
 }
+
+//=====================//
+//===   SELECTION   ===//
+//=====================//
 
 ::selection {
     color: $ACCENT1;
@@ -747,7 +779,9 @@ $BUBBLE_LEFT: 480px;
 
 .currentText span::selection,
 .currentName::selection,
-.endingText div::selection {
+.endingText div::selection,
+.itemSummary_inner::selection,
+.itemSummary_inner *::selection {
     color: white;
     background: $ACCENT7;
 }
@@ -755,6 +789,79 @@ $BUBBLE_LEFT: 480px;
 .infoBubble_inner::selection {
     color: #ca3044;
     background: white;
+}
+
+//================//
+//===   SNOW   ===//
+//================//
+
+@function random_range($min, $max) {
+    $rand: random();
+    $random_range: $min + floor($rand * (($max - $min) + 1));
+    @return $random_range;
+}
+
+.snowScreen{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    z-index: -1;
+}
+
+.snow {
+    $total: 120;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+
+    @for $i from 1 through $total {
+        $random-x: random(1000000) * 0.0001vw;
+        $random-offset: random_range(-100000, 100000) * 0.0001vw;
+        $random-x-end: $random-x + $random-offset;
+        $random-x-end-yoyo: $random-x + calc($random-offset / 2);
+        $random-yoyo-time: calc(random_range(30000, 80000) / 100000);
+        $random-yoyo-y: $random-yoyo-time * 100vh;
+        $random-scale: random(10000) * 0.0001;
+        $fall-duration: random_range(10, 30) * 1s;
+        $fall-delay: random(30) * -1s;
+
+        &:nth-child(#{$i}) {
+            opacity: random(10000) * 0.0001;
+            transform: translate($random-x, -10px) scale($random-scale);
+            animation: fall-#{$i} $fall-duration $fall-delay linear infinite;
+        }
+
+        @keyframes fall-#{$i} {
+            #{percentage($random-yoyo-time)} {
+                transform: translate($random-x-end, $random-yoyo-y) scale($random-scale);
+            }
+
+            to {
+                transform: translate($random-x-end-yoyo, 100vh) scale($random-scale);
+            }
+        }
+    }
+}
+
+//==================//
+//===   CURSOR   ===//
+//==================//
+
+.cursor{
+    width: 48px;
+    height: 48px;
+    background-image: url(../assets/lottery/cursor/pointer.png);
+    position: fixed;
+	pointer-events: none;
+	z-index: 999;
+	transition: background-image 0.15s;
+}
+
+body, a {
+    cursor: none;
 }
 
 //=====================//
@@ -791,7 +898,6 @@ $BUBBLE_LEFT: 480px;
 $LOG_PANEL_HIGHT_FULLSCREEN: 670px;
 
 @media all and (display-mode: fullscreen) {
-
     .panel {
         margin: 40px;
     }
@@ -810,6 +916,6 @@ $LOG_PANEL_HIGHT_FULLSCREEN: 670px;
     }
 
     .OCPanel {
-        margin-top:0;
+        margin-top: 0;
     }
 }

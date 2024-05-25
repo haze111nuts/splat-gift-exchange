@@ -24,7 +24,7 @@ const OCS = [
         profilePic: "1.jpg",
         giftName: "折疊式天文望遠鏡",
         giftPic: "1.png",
-        giftDescription: "口徑7公分、長為26公分的迷你形望遠鏡。有20mm和10mm的數位轉接目鏡和手機攝影轉接架﹐還附有簡易天文觀測指南。除了拿來觀星賞月以外﹐似乎也很適合拿來賞鳥。",
+        giftDescription: "口徑7公分、長為26公分的迷你形望遠鏡。有20mm和10mm的數位轉接目鏡和手機攝影轉接架﹐還附有簡易天文觀測指南。除了拿來觀星賞月以外﹐似乎也很適合拿來賞鳥或是湖中的不明生物。",
         artist: "4"
     },
     {
@@ -32,7 +32,7 @@ const OCS = [
         profilePic: "2.jpg",
         giftName: "碰可玩具機器人",
         giftPic: "2.png",
-        giftDescription: "大河原宇宙中心的最新紀念品﹐1/8比例的多功能碰可玩具機器人﹐有著跟原物一樣人工智能﹐可以透過聲控來做為日常的小幫手。附一個機器人充電台。\n\n功能：\n- 鬧鐘、備忘錄、上網查詢資料等通知等日常實用機能。\n- 帶去大河原宇宙中心的話，可以當作迷你導覽。\n- 為了人類發展的未來，偶爾會推薦你捐錢給大河原宇宙中心。",
+        giftDescription: "大河原宇宙中心的最新紀念品﹐1/8比例的多功能碰可玩具機器人﹐有著跟原物一樣的人工智能﹐可以透過聲控來做為日常的小幫手。有附一個機器人充電台。<br><b>功能：</b><ul><li>鬧鐘、備忘錄、上網查詢資料等通知等日常實用機能。</li><li>帶去大河原宇宙中心的話，可以當作迷你導覽。</li><li>為了人類發展的未來，偶爾會推薦你捐錢給大河原宇宙中心。</li></ul>有一些跟<a href='https://www.amazon.com/b?node=18354642011' target='_blank'>ALEXA</a>類似的功能",
         artist: "5"
     },
     {
@@ -109,7 +109,7 @@ var YEAR = "0000";
 
 var NUMBER_OF_BG = 83;
 
-var EMOTES = "WASDFZ";
+var EMOTES = "WASDFX";
 
 var HOST_CURRENT_LETTER = "W";
 
@@ -193,16 +193,15 @@ function displayItemModal(gift) {
     var itemModalHtml = "";
 
     itemModalHtml += "<div class='itemPanel'>"
-    itemModalHtml += "<div class='itemSummary'>" + gift.giftDescription + "</div>"
-    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(gift) + "' alt='item' >"
+    itemModalHtml += "<div class='itemSummary'>"
+    itemModalHtml += "<div class='itemSummary_inner'>" + gift.giftDescription + "</div>"
     itemModalHtml += "</div>"
 
-    $(".modal").html(itemModalHtml);
-    $(document.body).addClass("noscroll");
+    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(gift) + "' alt='item' draggable='false' >"
+    itemModalHtml += "</div>"
 
-    $(".itemSummary").click(function () {
-        console.log("...")
-    });
+    $(".modal_content").html(itemModalHtml);
+    $(document.body).addClass("noscroll");
 }
 
 function getGiftLogHtml(currentOC, gift) {
@@ -216,6 +215,14 @@ function getGiftLogHtml(currentOC, gift) {
     logHtml += "<img class='gift no-select' src='" + getGiftUrl(gift) + "' alt='gift' draggable='false'>";
     logHtml += "</li>";
     return logHtml;
+}
+
+function printSnow() {
+    var snowHtml = "";
+    for (var i = 0; i < 120; i++) {
+        snowHtml += "<div class='snow'></div>";
+    }    
+    $(".snowScreen").html(snowHtml);
 }
 
 //=================================//
@@ -378,8 +385,8 @@ function setUpFlipEvent() {
     })
 
     //Events on modal close
-    $(".modal").click(function () {
-        $(this).addClass("hide");
+    $(".modal_bg").click(function () {
+        $(".modal").addClass("hide");
         $(document.body).removeClass("noscroll");
         //only do the rest when the long click is on a card
         if (currentGiftCard) {
@@ -405,7 +412,7 @@ function addEntryToGoftLog(gift) {
     $(".logPanelContent ul").append(getGiftLogHtml(OC_ARRANGED[CURRENT_OC_INDEX], gift));
     $(".logPanelContent").animate({ scrollTop: $(".logPanelContent").prop("scrollHeight") }, 1000);
     setUpGiftLogStyle(CURRENT_OC_INDEX);
-    $(".logPanelContent ul li:nth-child("+ (CURRENT_OC_INDEX+1) +") .gift").click(function(){
+    $(".logPanelContent ul li:nth-child(" + (CURRENT_OC_INDEX + 1) + ") .gift").click(function () {
         displayItemModal(gift);
     });
 }
@@ -494,12 +501,35 @@ function triggerEnding() {
     $(".cross").css("width", "90%");
     $(".lotteryPanel").css("background-color", "rgb(203, 193, 177, 0.4)");
     $(".infoBubble").css("display", "none");
-    
 }
 
 function extraStyle() {
     $('.oc img').attr('draggable', false);
 }
+
+function setUpCursor(){
+	var cursor = $(".cursor");
+	$(window).mousemove(function(e) {
+        // cursor.css({
+		// 	top: e.clientY - cursor.height() / 2,
+		// 	left: e.clientX - cursor.width() / 2
+		// });
+		cursor.css({
+			top: e.clientY,
+			left: e.clientX
+		});
+	});
+    $(".gift_front").mouseenter(function() {
+        cursor.css(
+            "background-image", "url(assets/lottery/cursor/pointer_gift.png)"
+        );
+    }).mouseleave(function() {
+        cursor.css(
+            "background-image", "url(assets/lottery/cursor/pointer.png)"
+        );
+    });
+}
+
 
 //======================//
 //===                ===//
@@ -559,6 +589,8 @@ $(document).ready(function () {
     shuffleHostQuotes();
     setHostEmote(HOST_CURRENT_SIDE, getHostEmoteUrl(HOST_CURRENT_LETTER));
     extraStyle();
+    printSnow();
+    setUpCursor();
 });
 
 $(document).keydown(function (keyPressed) {
