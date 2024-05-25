@@ -484,6 +484,7 @@ function setUpGiftLogStyle(index) {
 
 function fadeFinishedOCs() {
     $(".oc:nth-child(" + CURRENT_OC_INDEX + ")").css("opacity", 0.20);
+    $(".oc").css("border", "1px solid red !important");
     $(".oc:nth-child(" + (CURRENT_OC_INDEX - 1) + ")").css("opacity", 0.10);
     $(".oc:nth-child(" + (CURRENT_OC_INDEX - 2) + ")").css("opacity", 0.05);
     $(".oc:nth-child(" + (CURRENT_OC_INDEX - 3) + ")").css("opacity", 0);
@@ -568,8 +569,11 @@ function loadCookie() {
         }
         CURRENT_OC_INDEX = index;
         GIFT_PILE = GIFT_PILE.filter(gift => !obtainedGifts.includes(gift));
+        printOCs();
         fadeFinishedOCs();
+        return;
     }
+    printOCs();
 }
 
 
@@ -583,7 +587,6 @@ $(document).ready(function () {
     printGrid();
     setGridBG();
     loadCookie();
-    printOCs();
     setUpFlipEvent();
     updateStats();
     shuffleHostQuotes();
