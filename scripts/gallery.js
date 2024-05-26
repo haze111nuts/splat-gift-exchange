@@ -1,64 +1,4 @@
 
-
-var entries = [
-    {
-        senderName: "Marie",
-        getterID: 2,
-        itemName: "物品",
-        itemAltName: "An Item",
-        itemSummary: "This is just an item",
-        artist: "123"
-    },
-    {
-        senderName: "Callie",
-        getterID: 2,
-        itemName: "麥當勞套餐",
-        itemAltName: "McDanold Meal Set",
-        itemSummary: "This is just an item",
-        artist: "456"
-    },
-    {
-        senderName: "Callie",
-        getterID: 2,
-        itemName: "手工點心",
-        itemAltName: "Handmade Snack",
-        itemSummary: "This is just an item",
-        artist: "456"
-    },
-    {
-        senderName: "Callie",
-        getterID: 2,
-        itemName: "感覺很可疑的水壺",
-        itemAltName: "Suspicious Watter Bottle",
-        itemSummary: "This is just an item",
-        artist: "456"
-    },
-    {
-        senderName: "Callie",
-        getterID: 2,
-        itemName: "Item",
-        itemAltName: "中文註解",
-        itemSummary: "This is just an item",
-        artist: "456"
-    },
-    {
-        senderName: "Callie",
-        getterID: 2,
-        itemName: "Item",
-        itemAltName: "中文註解",
-        itemSummary: "This is just an item",
-        artist: "456"
-    },
-    {
-        senderName: "Callie",
-        getterID: 2,
-        itemName: "Item",
-        itemAltName: "中文註解",
-        itemSummary: "This is just an item",
-        artist: "456"
-    }
-];
-
 //========================//
 //=== Custom Variables ===//
 //========================//
@@ -76,7 +16,7 @@ function getItemUrl(id) {
 
 function generateGrid() {
     var gridHtml = "";
-    for (var i = 0; i < entries.length; i++) {
+    for (var i = 0; i < OCS.length; i++) {
         gridHtml += '<li class="grid-item">';
 
         gridHtml += '<div class="card">';
@@ -98,15 +38,15 @@ function generateGrid() {
         gridHtml += '</div>'
 
         gridHtml += '<div class="label" data-id="'+i+'">';
-        gridHtml += '<div class="giftTitle">' + entries[i].itemName + '</div>';
-        gridHtml += '<div class="giftAltTitle">' + entries[i].itemAltName + '</div>';
+        gridHtml += '<div class="giftTitle">' + OCS[i].giftName + '</div>';
+        gridHtml += '<div class="giftAltTitle">' + OCS[i].giftAltName + '</div>';
         gridHtml += '</div>';
         gridHtml += '<div class="gift"><img src="' + getItemUrl(i) + '"></div>';
         gridHtml += '</li>';
     }
     $(".grid").html(gridHtml);
 
-    for (var i = 0; i < entries.length; i++) {
+    for (var i = 0; i < OCS.length; i++) {
         $(".grid-item:nth-child(" + (i + 1) + ") .cardFront .previewInner")
             .css("background-image", "url(" + getArtUrl(i, "sender") + ")");
         $(".grid-item:nth-child(" + (i + 1) + ") .cardBack .previewInner")

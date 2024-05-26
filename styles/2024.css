@@ -22,16 +22,11 @@ body {
 }
 
 .day {
-  background-color: #f3f4f8;
+  background-color: rgb(211, 204, 188);
 }
 
 .night {
-  background-color: #333;
-}
-
-.banner {
-  padding: 50px 0;
-  background: fixed url(https://cdn.vectorstock.com/i/1000x1000/16/72/cute-winter-pattern-on-subtle-background-vector-29121672.webp);
+  background-color: #867e7e;
 }
 
 h1 {
@@ -59,7 +54,7 @@ h4 {
   text-align: center;
   font-family: "DFPT_AZ5", sans-serif;
   color: white;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.24);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 p {
@@ -71,6 +66,22 @@ p {
   text-align: center;
   letter-spacing: 0.25px;
   color: #333;
+}
+
+.banner {
+  padding: 50px 0;
+  position: relative;
+}
+.banner .banner_bg {
+  width: 400px;
+  height: 220px;
+  top: 40%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%) scaleX(1.2);
+  background-color: white;
+  clip-path: polygon(100% 0, 0 0, 50% 100%);
+  z-index: -1;
 }
 
 .navbar {
@@ -139,8 +150,7 @@ p {
   padding: 50px 0 0;
   list-style: none;
 }
-
-.grid-item {
+.grid .grid-item {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,10 +174,9 @@ p {
   background-color: transparent;
   width: 100%;
   height: 100%;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  perspective: 1000px;
 }
-
-.cardInner {
+.card .cardInner {
   position: relative;
   width: 100%;
   height: 100%;
@@ -175,24 +184,15 @@ p {
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
-
-.cardFront,
-.cardBack {
+.card .cardInner .cardFront,
+.card .cardInner .cardBack {
   position: absolute;
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
 }
-
-.cardFront {
-  background-color: #bbb;
-  color: black;
-}
-
-/* Style the back side */
-.cardBack {
-  background-color: dodgerblue;
+.card .cardInner .cardBack {
   color: white;
   transform: rotateY(180deg);
 }
@@ -205,8 +205,7 @@ p {
   position: relative;
   display: inline-block;
 }
-
-.previewInner {
+.preview .previewInner {
   height: 100%;
   width: 100%;
   background-size: cover;
@@ -217,28 +216,7 @@ p {
   -o-transition: all 0.5s;
   transition: all 0.5s;
 }
-
-.preview:hover .previewInner,
-.preview:focus .previewInner {
-  background-color: #bdc4d0;
-  -ms-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -webkit-transform: scale(1.2);
-  -o-transform: scale(1.2);
-  transform: scale(1.2);
-}
-
-.preview:hover .previewInner:before,
-.preview:focus .previewInner:before {
-  display: block;
-}
-
-.preview:hover a,
-.preview:focus a {
-  display: block;
-}
-
-.previewInner:before {
+.preview .previewInner:before {
   content: "";
   display: none;
   height: 100%;
@@ -246,6 +224,17 @@ p {
   position: absolute;
   top: 0;
   left: 0;
+}
+.preview:hover .previewInner, .preview:focus .previewInner {
+  background-color: #bdc4d0;
+  -ms-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.preview:hover .previewInner:before, .preview:focus .previewInner:before, .preview:hover a, .preview:focus a {
+  display: block;
 }
 
 .gift img,
@@ -269,23 +258,19 @@ p {
   bottom: -55px;
   transition: all 0.14s ease-in;
 }
-
 .label:hover {
   background-color: #a6d7dd;
 }
-
-.giftTitle,
-.giftAltTitle {
+.label .giftTitle,
+.label .giftAltTitle {
   width: 95%;
   float: right;
   text-align: center;
 }
-
-.giftTitle {
+.label .giftTitle {
   font-size: 1.2rem;
 }
-
-.giftAltTitle {
+.label .giftAltTitle {
   font-size: 0.8rem;
 }
 
