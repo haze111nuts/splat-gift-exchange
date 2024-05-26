@@ -139,4 +139,5 @@ $(document).ready(function () {
     $(".flipButtonBG").css("width", "50%");
     $(".flipButtonBG2").css("width", "0");
     setupStuff();
+    printSnow();
 });
