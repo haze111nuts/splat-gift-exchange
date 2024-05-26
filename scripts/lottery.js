@@ -38,11 +38,11 @@ var HOST_QUOTES = [
 //======================//
 
 function getOcUrl(oc) {
-    return "assets/" + YEAR + "/profile/" + oc.profilePic;
+    return "assets/" + YEAR + "/profile/" + OCS.indexOf(oc) + ".jpg";
 }
 
-function getGiftUrl(oc) {
-    return "assets/" + YEAR + "/item/" + oc.giftIcon;
+function getGiftUrl(gift) {
+    return "assets/" + YEAR + "/item/" + OCS.indexOf(gift) + ".png";
 }
 
 function getHostEmoteUrl(char) {
