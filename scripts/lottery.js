@@ -42,7 +42,7 @@ function getOcUrl(oc) {
 }
 
 function getGiftUrl(oc) {
-    return "assets/" + YEAR + "/item/" + oc.giftPic;
+    return "assets/" + YEAR + "/item/" + oc.giftIcon;
 }
 
 function getHostEmoteUrl(char) {
