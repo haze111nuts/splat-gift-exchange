@@ -295,7 +295,8 @@ p {
 
 .art {
   position: absolute;
-  height: 90%;
+  max-width: 1080px;
+  width: 90%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1) !important;
@@ -323,6 +324,20 @@ p {
   border: 3px solid #ffffff;
 }
 
+@media only screen and (max-width: 959px) {
+  .itemPanel .itemArt {
+    display: none;
+  }
+  .itemPanel .itemSummary {
+    width: 100% !important;
+    padding: 0 !important;
+    transform: translate(0, 0) scale(1) rotateZ(0deg) !important;
+  }
+  .itemPanel .itemSummary .itemSummary_inner {
+    width: 90% !important;
+    border: 1px solid red;
+  }
+}
 @media only screen and (max-width: 481px) {
   .banner .banner_bg {
     width: 100%;
