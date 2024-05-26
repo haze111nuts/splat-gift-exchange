@@ -38,7 +38,7 @@ var HOST_QUOTES = [
 //======================//
 
 function getOcUrl(oc) {
-    return "assets/lottery/" + YEAR + "/" + oc.profilePic;
+    return "assets/" + YEAR + "/profile/" + oc.profilePic;
 }
 
 function getGiftUrl(oc) {

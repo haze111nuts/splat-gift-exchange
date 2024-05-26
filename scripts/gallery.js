@@ -7,7 +7,7 @@ var YEAR = "0000";
 
 
 function getArtUrl(id, group) {
-    return "assets/" + YEAR + "/" + group + "/" + id + ".jpg";
+    return "assets/" + YEAR + "/art_" + group + "/" + id + ".jpg";
 }
 
 function getGiftUrl(oc) {
