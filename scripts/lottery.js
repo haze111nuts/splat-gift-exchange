@@ -158,7 +158,7 @@ function setGridBG() {
 //=========================//
 
 function FindLargestFamilyNoSelfTrade(ocList) {
-    var firstSelfTradeOC = ocList.find(oc => !selfTrade[oc.artist]);
+    var firstSelfTradeOC = ocList.find(oc => !ARTISTS[oc.artist].selfTrade);
     if(ocList.length === 0 || !firstSelfTradeOC)
         return undefined;
 
@@ -167,7 +167,7 @@ function FindLargestFamilyNoSelfTrade(ocList) {
     var currentMaxCount = 1;
     for (const oc of ocList) {
         // exclude current oc artist, only count people that disable self trade
-        if (oc.artist !== OC_ARRANGED[CURRENT_OC_INDEX].artist && !selfTrade[oc.artist]) {
+        if (oc.artist !== OC_ARRANGED[CURRENT_OC_INDEX].artist && !ARTISTS[oc.artist].selfTrade) {
             if (artistsOcCounts[oc.artist] === undefined) {
                 artistsOcCounts[oc.artist] = 1;
             } else {
@@ -218,8 +218,8 @@ function drawGift() {
         var giftPoolForCurrentOC;
 
         // if selfTrade is permitted by artist
-        console.log("self trade: " + selfTrade[currentOCArtist]);
-        if (selfTrade[currentOCArtist]) {
+        console.log("self trade: " + ARTISTS[currentOCArtist].selfTrade);
+        if (ARTISTS[currentOCArtist].selfTrade) {
             // only exclude current OC
             giftPoolForCurrentOC = GIFT_PILE.filter(gift => gift !== OC_ARRANGED[CURRENT_OC_INDEX])        
         } else {
