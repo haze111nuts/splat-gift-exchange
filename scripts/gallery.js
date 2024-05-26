@@ -10,8 +10,8 @@ function getArtUrl(id, group) {
     return "assets/" + YEAR + "/" + group + "/" + id + ".jpg";
 }
 
-function getItemUrl(id) {
-    return "assets/" + YEAR + "/item/" + id + ".png";
+function getGiftUrl(oc) {
+    return "assets/" + YEAR + "/item/" + oc.giftIcon;
 }
 
 function generateGrid() {
@@ -41,7 +41,7 @@ function generateGrid() {
         gridHtml += '<div class="giftTitle">' + OCS[i].giftName + '</div>';
         gridHtml += '<div class="giftAltTitle">' + OCS[i].giftAltName + '</div>';
         gridHtml += '</div>';
-        gridHtml += '<div class="gift"><img src="' + getItemUrl(i) + '"></div>';
+        gridHtml += '<div class="gift"><img src="' + getGiftUrl(OCS[i]) + '"></div>';
         gridHtml += '</li>';
     }
     $(".grid").html(gridHtml);
@@ -89,7 +89,7 @@ function setUpItemModalClickEvents(){
 
             itemModalHtml += "<div class='itemPanel'>"
             itemModalHtml += "<div class='itemSummary'> askajdlkajalkjdalksdjlk </div>"
-            itemModalHtml += "<img class='itemArt' src='" + getItemUrl(dataID) + "'>"
+            itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(OCS[dataID]) + "'>"
             itemModalHtml += "</div>"
 
             $(".modal").html(itemModalHtml);

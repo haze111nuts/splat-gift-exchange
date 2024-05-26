@@ -130,14 +130,6 @@ function getGiftLogHtml(currentOC, gift) {
     return logHtml;
 }
 
-function printSnow() {
-    var snowHtml = "";
-    for (var i = 0; i < 120; i++) {
-        snowHtml += "<div class='snow'></div>";
-    }    
-    $(".snowScreen").html(snowHtml);
-}
-
 //=================================//
 //=== Randomize and Set Grid BG ===//
 //=================================//

@@ -48,7 +48,7 @@ h3 {
 }
 
 h4 {
-  margin: 0 0 2rem;
+  margin: 0 0 1.2rem;
   font-size: 1.25rem;
   font-weight: 600;
   text-align: center;
@@ -69,7 +69,7 @@ p {
 }
 
 .banner {
-  padding: 50px 0;
+  padding: 40px 0 60px 0;
   position: relative;
 }
 .banner .banner_bg {
@@ -335,6 +335,11 @@ p {
 }
 
 @media only screen and (max-width: 481px) {
+  .banner .banner_bg {
+    width: 100%;
+    left: 0;
+    transform: translate(0, -50%) scaleX(1);
+  }
   h1 {
     font-size: 8vw;
   }
