@@ -83,17 +83,19 @@ function setupFlipToggle() {
 function setUpItemModalClickEvents(){
     $(".label").each(function () {
         $(this).click(function () {
-            // var dataID = $(this).data().id;
-            // $(".modal").removeClass("hide");
-            // var itemModalHtml = "";
+            var dataID = $(this).data().id;
+            $(".modal").removeClass("hide");
+            var itemModalHtml = "";
 
-            // itemModalHtml += "<div class='itemPanel'>"
-            // itemModalHtml += "<div class='itemSummary'> askajdlkajalkjdalksdjlk </div>"
-            // itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(OCS[dataID]) + "'>"
-            // itemModalHtml += "</div>"
+            itemModalHtml += "<div class='itemPanel'>"
+            itemModalHtml += "<div class='itemSummary'>"
+            itemModalHtml += "<div class='itemSummary_inner'>" + OCS[dataID].giftDescription + "</div>"
+            itemModalHtml += "</div>"
+            itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(OCS[dataID]) + "' alt='item' draggable='false' >"
+            itemModalHtml += "</div>"
 
-            // $(".modal").html(itemModalHtml);
-            // $(document.body).addClass("noscroll");
+            $(".modal_content").html(itemModalHtml);
+            $(document.body).addClass("noscroll");
         })
     })
 }
@@ -103,7 +105,7 @@ function setupModalClickEvents() {
         $(this).click(function () {
             var dataID = $(this).data().id;
             $(".modal").removeClass("hide");
-            $(".modal").html("<img class='art' src='" + getArtUrl(dataID, "sender") + "'>");
+            $(".modal_content").html("<img class='art' src='" + getArtUrl(dataID, "sender") + "'>");
             $(document.body).addClass("noscroll");
         })
     })
@@ -111,11 +113,11 @@ function setupModalClickEvents() {
         $(this).click(function () {
             var dataID = $(this).data().id;
             $(".modal").removeClass("hide");
-            $(".modal").html("<img class='art' src='" + getArtUrl(dataID, "getter") + "'>");
+            $(".modal_content").html("<img class='art' src='" + getArtUrl(dataID, "getter") + "'>");
             $(document.body).addClass("noscroll");
         })
     })
-    $(".modal").click(function () {
+    $(".modal_bg").click(function () {
         $(".modal").addClass("hide");
         $(document.body).removeClass("noscroll");
     })
