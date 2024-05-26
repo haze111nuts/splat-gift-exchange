@@ -1,0 +1,72 @@
+//=========================//
+//===                   ===//
+//===   POP-UP MODALS   ===//
+//===                   ===//
+//=========================//
+
+.modal {
+    z-index: 830;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.2s ease-in;
+
+    .modal_bg {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+.itemPanel {
+    margin: 0 auto;
+    width: 800px;
+    height: 0%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease-out;
+    .itemArt {
+        z-index: 834;
+        width: 350px;
+        height: 350px;
+        position: absolute;
+        left: -50px;
+        top: 50%;
+        transform: translate(0, -50%) scale(1) rotateZ(-5deg);
+        // border: 1px solid red;
+    }
+    .itemSummary {
+        z-index: 833;
+        padding: 50px 40px 60px 120px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translate(0, -50%) scale(1) rotateZ(2deg);
+        background-color: rgb(235, 230, 220);
+        background-image: url(../assets/paper.jpg);
+        font-family: "Noto Sans TC", sans-serif;
+        font-size: 1.3em;
+        box-shadow: 8px 8px 9px 1px rgba(0, 0, 0, 0.2);
+        .itemSummary_inner {
+            max-height: 320px;
+            padding: 10px 16px;
+            overflow-y: auto;
+            width: 440px;
+            height: 100%;
+            ul{
+                margin-top: 0px;
+                margin-bottom: 10px;
+                li {
+                    padding-right: 20px;
+                }
+            }
+        }
+    }
+}

@@ -83,17 +83,17 @@ function setupFlipToggle() {
 function setUpItemModalClickEvents(){
     $(".label").each(function () {
         $(this).click(function () {
-            var dataID = $(this).data().id;
-            $(".modal").removeClass("hide");
-            var itemModalHtml = "";
+            // var dataID = $(this).data().id;
+            // $(".modal").removeClass("hide");
+            // var itemModalHtml = "";
 
-            itemModalHtml += "<div class='itemPanel'>"
-            itemModalHtml += "<div class='itemSummary'> askajdlkajalkjdalksdjlk </div>"
-            itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(OCS[dataID]) + "'>"
-            itemModalHtml += "</div>"
+            // itemModalHtml += "<div class='itemPanel'>"
+            // itemModalHtml += "<div class='itemSummary'> askajdlkajalkjdalksdjlk </div>"
+            // itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(OCS[dataID]) + "'>"
+            // itemModalHtml += "</div>"
 
-            $(".modal").html(itemModalHtml);
-            $(document.body).addClass("noscroll");
+            // $(".modal").html(itemModalHtml);
+            // $(document.body).addClass("noscroll");
         })
     })
 }
