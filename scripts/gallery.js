@@ -16,7 +16,7 @@ function getGiftUrl(id) {
 
 function generateGrid() {
     var gridHtml = "";
-    for (var i = 0; i < OCS.length; i++) {
+    for (var i = 0; i < ENTRIES.length; i++) {
         gridHtml += '<li class="grid-item">';
 
         gridHtml += '<div class="card">';
@@ -38,15 +38,15 @@ function generateGrid() {
         gridHtml += '</div>'
 
         gridHtml += '<div class="label" data-id="'+i+'">';
-        gridHtml += '<div class="giftTitle">' + OCS[i].giftName + '</div>';
-        gridHtml += '<div class="giftAltTitle">' + OCS[i].giftAltName + '</div>';
+        gridHtml += '<div class="giftTitle">' + ENTRIES[i].giftName + '</div>';
+        gridHtml += '<div class="giftAltTitle">' + ENTRIES[i].giftAltName + '</div>';
         gridHtml += '</div>';
         gridHtml += '<div class="gift"><img src="' + getGiftUrl(i) + '"></div>';
         gridHtml += '</li>';
     }
     $(".grid").html(gridHtml);
 
-    for (var i = 0; i < OCS.length; i++) {
+    for (var i = 0; i < ENTRIES.length; i++) {
         $(".grid-item:nth-child(" + (i + 1) + ") .cardFront .previewInner")
             .css("background-image", "url(" + getArtUrl(i, "sender") + ")");
         $(".grid-item:nth-child(" + (i + 1) + ") .cardBack .previewInner")
@@ -89,7 +89,7 @@ function setUpItemModalClickEvents(){
 
             itemModalHtml += "<div class='itemPanel'>"
             itemModalHtml += "<div class='itemSummary'>"
-            itemModalHtml += "<div class='itemSummary_inner'>" + OCS[dataID].giftDescription + "</div>"
+            itemModalHtml += "<div class='itemSummary_inner'>" + ENTRIES[dataID].giftDescription + "</div>"
             itemModalHtml += "</div>"
             itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(dataID) + "' alt='item' draggable='false' >"
             itemModalHtml += "</div>"
