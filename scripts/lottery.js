@@ -8,7 +8,7 @@ var FLIPPED_CARD = [];
 
 var OC_ARRANGED;
 
-var GIFT_PILE = [].concat(OCS);
+var GIFT_PILE = [].concat(ENTRIES);
 
 var CURRENT_OC_INDEX = 0;
 
@@ -38,11 +38,11 @@ var HOST_QUOTES = [
 //======================//
 
 function getOcUrl(oc) {
-    return "assets/" + YEAR + "/profile/" + OCS.indexOf(oc) + ".jpg";
+    return "assets/" + YEAR + "/profile/" + ENTRIES.indexOf(oc) + ".jpg";
 }
 
 function getGiftUrl(gift) {
-    return "assets/" + YEAR + "/item/" + OCS.indexOf(gift) + ".png";
+    return "assets/" + YEAR + "/item/" + ENTRIES.indexOf(gift) + ".png";
 }
 
 function getHostEmoteUrl(char) {
@@ -81,15 +81,14 @@ function printOCs() {
 }
 
 function printGrid() {
-    var cardNumber = 1;
     var gridHtml = "";
-    for (const oc of OCS) {
+    for (var cardNumber = 1; cardNumber <= ENTRIES.length; cardNumber++) {
         gridHtml += "<div class='gridItem'>";
         gridHtml += "<div class='gridItem_inner'>";
 
         gridHtml += "<div class='gift_front no-select'>";
         gridHtml += "<div class='progress'></div>";
-        gridHtml += cardNumber++;
+        gridHtml += cardNumber;
         gridHtml += "</div>";
 
         gridHtml += "<div class='gift_back no-select'>";
@@ -121,7 +120,7 @@ function getGiftLogHtml(currentOC, gift) {
     var logHtml = "";
     logHtml += "<li>";
     logHtml += "<div class='label'>";
-    logHtml += "<div>" + currentOC.name + "</div>"
+    logHtml += "<div>" + currentOC.ocName + "</div>"
     logHtml += "<div>" + gift.giftName + "</div>"
     logHtml += "</div>";
     logHtml += "<img class='chara no-select' src='" + getOcUrl(currentOC) + "' alt='chara' draggable='false'>";
@@ -146,7 +145,7 @@ function setGridBG() {
     else {
         bgPattern = bgPatternCookie.split(",");
     }
-    for (var i = 0; i < OCS.length; i++) {
+    for (var i = 0; i < ENTRIES.length; i++) {
         $(".grid .gridItem:nth-of-type(" + (i + 1) + ") .gift_front").css("background-image", "url(assets/lottery/bg/" + bgPattern[i] + ".png)");
     }
 }
@@ -280,7 +279,7 @@ function setUpFlipEvent() {
                 displayItemModal(gift);
 
                 //handle gift data
-                OBTAINED_GIFT_INDEX.push(OCS.indexOf(gift));
+                OBTAINED_GIFT_INDEX.push(ENTRIES.indexOf(gift));
                 FLIPPED_CARD.push(giftCard.parent().parent().index());
                 setCookie(COOKIE.OBTAINED_GIFT, OBTAINED_GIFT_INDEX.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
                 setCookie(COOKIE.FLIPPED_CARD, FLIPPED_CARD.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
@@ -298,12 +297,12 @@ function setUpFlipEvent() {
             //flip card
             doCardFlip(currentGiftCard.parent(".gridItem_inner"))
             //add entry to gift log
-            addEntryToGoftLog(gift);
+            addEntryToGiftLog(gift);
 
             CURRENT_OC_INDEX++;
             setSpotlightToNextOC();
             fadeFinishedOCs();
-            if (CURRENT_OC_INDEX == OCS.length) {
+            if (CURRENT_OC_INDEX == ENTRIES.length) {
                 //trigger ending events for the last flip
                 triggerEnding();
             }
@@ -313,7 +312,7 @@ function setUpFlipEvent() {
     })
 }
 
-function addEntryToGoftLog(gift) {
+function addEntryToGiftLog(gift) {
     $(".logPanelContent ul").append(getGiftLogHtml(OC_ARRANGED[CURRENT_OC_INDEX], gift));
     $(".logPanelContent").animate({ scrollTop: $(".logPanelContent").prop("scrollHeight") }, 1000);
     setUpGiftLogStyle(CURRENT_OC_INDEX);
@@ -379,7 +378,7 @@ function handleKeyPress(keyPressed) {
 
 function setSpotlightToNextOC() {
     $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
-    $(".currentName").html(OC_ARRANGED[CURRENT_OC_INDEX]?.name);
+    $(".currentName").html(OC_ARRANGED[CURRENT_OC_INDEX]?.ocName);
 }
 
 function setUpGiftLogStyle(index) {
@@ -448,19 +447,19 @@ function loadCookie() {
     const flippedCardCookie = getCookie(COOKIE.FLIPPED_CARD);
 
     if (ocArrangementCookie === "") {
-        OC_ARRANGED = [].concat(OCS);
-        shuffleArray(OC_ARRANGED); // TODO: need to reshuffle and group by artist
-        var arrangedIndexs = OC_ARRANGED.map(oc => OCS.indexOf(oc));
+        OC_ARRANGED = [].concat(ENTRIES);
+        shuffleArray(OC_ARRANGED);
+        var arrangedIndexs = OC_ARRANGED.map(oc => ENTRIES.indexOf(oc));
         setCookie(COOKIE.OC_ARRANGEMENT, arrangedIndexs.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
     } else {
-        OC_ARRANGED = ocArrangementCookie.split(",").map(index => OCS[index]);
+        OC_ARRANGED = ocArrangementCookie.split(",").map(index => ENTRIES[index]);
     }
 
     if (obtainedGIftCookie !== "" && flippedCardCookie !== "") {
         OBTAINED_GIFT_INDEX = obtainedGIftCookie.split(",");
         FLIPPED_CARD = flippedCardCookie.split(",");
 
-        var obtainedGifts = OBTAINED_GIFT_INDEX.map(index => OCS[index]);
+        var obtainedGifts = OBTAINED_GIFT_INDEX.map(index => ENTRIES[index]);
         var index = 0;
         for (var gift of obtainedGifts) {
             $(".logPanelContent ul").append(getGiftLogHtml(OC_ARRANGED[index], gift));
