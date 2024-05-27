@@ -64,7 +64,7 @@ const ENTRIES = [
     },
     {
         ocName: "綾里真宵",
-        giftName: "將軍超人&粉紅公主全套DVD影集",
+        giftName: "Steel Samurai & Pink Princess Complete D",
         giftNameAlt: "Steel Samurai & Pink Princess Complete DVD Set",
         giftDescription: "包含第一季將軍超人和第二季粉紅公主的DVD影集全套。",
         artist: "1"
