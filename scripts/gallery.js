@@ -113,15 +113,22 @@ function setUpItemModalClickEvents(){
             var itemModalHtml = "";
 
             itemModalHtml += "<div class='itemPanel'>";
+
+            itemModalHtml += "<div class='itemArt_wapper'>";
+            itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(dataID) + "' alt='item' draggable='false' >";
+            itemModalHtml += "</div>";
+ 
             itemModalHtml += "<div class='itemSummary'>";
-            itemModalHtml += "<div class='itemTitle'>" + ENTRIES[dataID].giftName + "</div>";
+            itemModalHtml += "<div class='itemTitle'>";
+            itemModalHtml += "<div class='itemTitle1'>"+ENTRIES[dataID].giftName+"</div>";
+            itemModalHtml += "<div class='itemTitle2'>"+ENTRIES[dataID].giftNameAlt+"</div>";
+            itemModalHtml += "</div>";
             itemModalHtml += "<div class='itemSummary_inner'>" + ENTRIES[dataID].giftDescription + "</div>"
             itemModalHtml += "</div>";
-            itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(dataID) + "' alt='item' draggable='false' >";
             itemModalHtml += "</div>";
 
             $(".modal_content").html(itemModalHtml);
-            // $(document.body).addClass("noscroll");
+            $(document.body).addClass("noscroll");
 
             setupCloseModalEvents();
         })
@@ -149,9 +156,9 @@ function setUpArtModalClickEvents() {
 }
 
 function setupCloseModalEvents(){
-    $(".modal_bg, .itemArt").click(function () {
-        console.log("....");
+    $(".modal_bg, .itemArt_wapper").click(function () {
         $(".modal").addClass("hide");
+        $(document.body).removeClass("noscroll");
     })
 }
 

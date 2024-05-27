@@ -18,7 +18,6 @@
 }
 
 .itemPanel {
-  margin: 0 auto;
   width: 800px;
   height: 0%;
   position: absolute;
@@ -28,14 +27,17 @@
   transition: all 0.2s ease-out;
 }
 .itemPanel .itemArt {
+  z-index: 834;
   width: 350px;
   height: 350px;
   position: absolute;
-  left: -50px;
+  left: -60px;
   top: 50%;
-  transform: translate(0, -50%) scale(1) rotateZ(-5deg);
+  transform: translate(0, -50%) scale(1) rotateZ(-3deg);
+  transition: all 0.2s ease-out;
 }
 .itemPanel .itemSummary {
+  z-index: 833;
   padding: 50px 40px 60px 120px;
   position: absolute;
   right: 0;
@@ -48,16 +50,27 @@
   box-shadow: 8px 8px 9px 1px rgba(0, 0, 0, 0.2);
 }
 .itemPanel .itemSummary .itemTitle {
+  text-align: center;
   font-size: x-large;
   font-family: "DFPT_ZY9";
   background-image: url(../assets/paper.jpg);
-  padding: 12px 40px 12px 40px;
+  padding: 12px 40px;
   box-shadow: 0 -4px 7px 0px rgba(0, 0, 0, 0.1) inset;
   position: absolute;
   right: 5%;
-  top: -48px;
+  top: -69px;
+}
+.itemPanel .itemSummary .itemTitle div:nth-child(1) {
+  line-height: 120%;
+}
+.itemPanel .itemSummary .itemTitle div:nth-child(2) {
+  font-size: medium;
+  font-family: "Noto Sans TC", sans-serif;
+  border-top: 1px solid black;
+  line-height: 100%;
 }
 .itemPanel .itemSummary .itemSummary_inner {
+  text-align: left !important;
   max-height: 320px;
   padding: 10px 16px;
   overflow-y: auto;

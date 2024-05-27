@@ -106,7 +106,10 @@ function displayItemModal(gift) {
 
     itemModalHtml += "<div class='itemPanel'>";
     itemModalHtml += "<div class='itemSummary'>";
-    itemModalHtml += "<div class='itemTitle'>" + gift.giftName + "</div>";
+    itemModalHtml += "<div class='itemTitle'>";
+    itemModalHtml += "<div class='itemTitle1'>"+gift.giftName+"</div>";
+    itemModalHtml += "<div class='itemTitle2'>"+gift.giftNameAlt+"</div>";
+    itemModalHtml += "</div>";
     itemModalHtml += "<div class='itemSummary_inner'>" + gift.giftDescription + "</div>";
     itemModalHtml += "</div>";
 
