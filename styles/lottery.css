@@ -149,6 +149,7 @@ a:hover {
   line-height: 110%;
   padding: 4px 15px 20px 30px;
   text-align: right;
+  word-spacing: -2px;
 }
 .logPanel .logPanelContent ul li:last-child {
   background: linear-gradient(-60deg, rgb(184, 120, 2) 65%, rgb(153, 95, 7) 66%);
