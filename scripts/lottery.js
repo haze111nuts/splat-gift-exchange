@@ -64,9 +64,9 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
-//=========================//
-//=== HTML Manipulators ===//
-//=========================//
+//=======================//
+//=== HTML Generators ===//
+//=======================//
 
 function printOCs() {
     var ocHtml = "";
@@ -104,13 +104,15 @@ function displayItemModal(gift) {
     $(".modal").removeClass("hide");
     var itemModalHtml = "";
 
-    itemModalHtml += "<div class='itemPanel'>"
-    itemModalHtml += "<div class='itemSummary'>"
-    itemModalHtml += "<div class='itemSummary_inner'>" + gift.giftDescription + "</div>"
-    itemModalHtml += "</div>"
+    itemModalHtml += "<div class='itemPanel'>";
+    itemModalHtml += "<div class='itemSummary'>";
+    itemModalHtml += "<div class='itemTitle'>" + gift.giftName + "</div>";
+    itemModalHtml += "<div class='itemSummary_inner'>" + gift.giftDescription + "</div>";
+    itemModalHtml += "</div>";
 
-    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(gift) + "' alt='item' draggable='false' >"
-    itemModalHtml += "</div>"
+    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(gift) + "' alt='item' draggable='false' >";
+
+    itemModalHtml += "</div>";
 
     $(".modal_content").html(itemModalHtml);
     $(document.body).addClass("noscroll");
@@ -152,9 +154,6 @@ function setGridBG() {
 
 //=========================//
 //=== Handle Gift Pulls ===//
-//=========================//
-//                         //
-//                         //
 //=========================//
 
 function FindLargestFamilyNoSelfTrade(ocList) {
@@ -245,9 +244,6 @@ function drawGift() {
 
 //=========================//
 //=== Handle Flip Click ===//
-//=========================//
-//                         //
-//                         //
 //=========================//
 
 function setUpFlipEvent() {

@@ -12,16 +12,16 @@
 }
 
 $preview_size: 180px;
-$preview_gapX: 24px;
+$preview_gapX: 10px;
 $preview_gapY: 36px;
 $gift_size: 72px;
-$gift_toL: -46px;
-$gift_toT: -24px;
+$gift_toL: -32px;
+$gift_toT: -16px;
 
 $ACCENT1: rgb(58, 49, 45);
-$ACCENT2: rgb(82, 68, 61);
-$ACCENT3: rgb(179, 170, 156);
-$ACCENT4: rgb(252, 241, 183);
+$ACCENT2: #684a29;
+$ACCENT3: #b38242;
+$ACCENT4: #c4a87f;
 $ACCENT5: rgb(219, 213, 202);
 $ACCENT6: rgb(184, 120, 2);
 $ACCENT7: rgb(219, 149, 19);
@@ -39,7 +39,7 @@ body {
 }
 
 .day {
-	background-color: rgba(211, 204, 188);
+	background-color: $ACCENT5;
 }
 
 .night {
@@ -193,6 +193,10 @@ p {
 			transform 0.14s ease-in,
 			text-shadow 0.1s ease-in;
 		will-change: transform;
+		background-color: $ACCENT3;
+		padding: 14px;
+		border-radius: 3px;
+		box-shadow: 1px 3px 4px 0 rgba(0, 0, 0, 0.2);
 	}
 }
 
@@ -207,8 +211,8 @@ p {
 		// top: 20px;
 		width: 100%;
 		height: 100%;
-		background-color: #b37c3f;
-		transform: scale(1.05) rotate(3deg);
+		background-color: $ACCENT2;
+		transform: scale(1.05);
 		transition: transform 0.8s;
 	}
 	.cardInner {
@@ -271,21 +275,42 @@ p {
 }
 
 .label {
+	color: white;
+	font-family: "Noto Sans TC", sans-serif;
 	cursor: pointer;
-	width: 100%;
-	margin-top: 16px;
-	// margin-left: 48px;
-	transition: all 0.14s ease-in;
+	width: 105%;
+	margin-top: 10px;
 	position: relative;
-	&:hover {
-		background-color: #a6d7dd;
+	padding: 2px 0px;
+	border-radius: 5px;
+	transition: all 0.14s ease-in;
+	text-shadow: 0 0 5px $ACCENT2,0 0 5px $ACCENT2;
+	// &:hover{
+	// 	background-color: #684a295e;
+	// }
+	.label_BG{
+		z-index: -1;
+		width: 0%;
+		height: 100%;
+		padding: 2px 0px;
+		border-radius: 3px;
+		transition: all 0.2s ease-in-out;
+		position: absolute;
+		// top: -2px;
+
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%)  rotate(5deg);
+	}
+	&:hover .label_BG{
+		width: 100%;
+		background-color: $ACCENT4;
 	}
 	.giftTitle,
 	.giftAltTitle {
-		width: 100%;
+		width: 90%;
 		float: right;
 		text-align: center;
-		// border: 1px solid rgba(255, 0, 0, 0.1);
 	}
 	.giftTitle {
 		font-size: 1.2rem;
@@ -295,7 +320,6 @@ p {
 		font-size: 0.8rem;
 		line-height: 150%;
 	}
-
 	.gift {
 		width: $gift_size;
 		position: absolute;

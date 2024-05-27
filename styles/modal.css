@@ -28,7 +28,6 @@
   transition: all 0.2s ease-out;
 }
 .itemPanel .itemArt {
-  z-index: 834;
   width: 350px;
   height: 350px;
   position: absolute;
@@ -37,7 +36,6 @@
   transform: translate(0, -50%) scale(1) rotateZ(-5deg);
 }
 .itemPanel .itemSummary {
-  z-index: 833;
   padding: 50px 40px 60px 120px;
   position: absolute;
   right: 0;
@@ -48,6 +46,16 @@
   font-family: "Noto Sans TC", sans-serif;
   font-size: 1.3em;
   box-shadow: 8px 8px 9px 1px rgba(0, 0, 0, 0.2);
+}
+.itemPanel .itemSummary .itemTitle {
+  font-size: x-large;
+  font-family: "DFPT_ZY9";
+  background-image: url(../assets/paper.jpg);
+  padding: 12px 40px 12px 40px;
+  box-shadow: 0 -4px 7px 0px rgba(0, 0, 0, 0.1) inset;
+  position: absolute;
+  right: 5%;
+  top: -48px;
 }
 .itemPanel .itemSummary .itemSummary_inner {
   max-height: 320px;

@@ -5,6 +5,15 @@
 
 var YEAR = "0000";
 
+//============================//
+//=== Functional Variables ===//
+//============================//
+
+var displayGroup = "sender";
+
+//===================//
+//=== URL Getters ===//
+//===================//
 
 function getArtUrl(id, group) {
     return "assets/" + YEAR + "/art_" + group + "/" + id + ".jpg";
@@ -13,6 +22,10 @@ function getArtUrl(id, group) {
 function getGiftUrl(id) {
     return "assets/" + YEAR + "/item/" + id + ".png";
 }
+
+//=======================//
+//=== HTML Generators ===//
+//=======================//
 
 function generateGrid() {
     var gridHtml = "";
@@ -39,6 +52,7 @@ function generateGrid() {
         gridHtml += '</div>'
 
         gridHtml += '<div class="label" data-id="'+i+'">';
+        gridHtml += "<div class='label_BG'></div>";
         gridHtml += '<div class="giftTitle">' + ENTRIES[i].giftName + '</div>';
         gridHtml += '<div class="giftAltTitle">' + ENTRIES[i].giftNameAlt + '</div>';
         gridHtml += '<div class="gift"><img src="' + getGiftUrl(i) + '"></div>';
@@ -46,21 +60,23 @@ function generateGrid() {
         gridHtml += '</li>';
     }
     $(".grid").html(gridHtml);
+    setUpGridStyle();
+}
 
+function setUpGridStyle(){
     for (var i = 0; i < ENTRIES.length; i++) {
+        //set image for each grid item
         $(".grid-item:nth-child(" + (i + 1) + ") .cardFront .previewInner")
             .css("background-image", "url(" + getArtUrl(i, "sender") + ")");
         $(".grid-item:nth-child(" + (i + 1) + ") .cardBack .previewInner")
             .css("background-image", "url(" + getArtUrl(i, "getter") + ")");
+        // delay style for each grid tem
         $(".grid-item:nth-child(" + (i + 1) + ") .cardInner")
-        .css("transition-delay", i * 0.03 + "s");
-        $(".grid-item:nth-child(" + (i + 1) + ") .cardBG")
         .css("transition-delay", i * 0.03 + "s");
     }
 }
 
-var displayGroup = "sender";
-function setupFlipToggle() {
+function setUpFlipToggle() {
     $(".flipButton").click(function () {
         if (displayGroup === "sender") {
             //set to getter
@@ -70,8 +86,8 @@ function setupFlipToggle() {
             $("body").removeClass("day");
             $(".flipButtonBG2").css("width", "50%");
             $(".flipButtonBG").css("width", "0");
-            $(".cardBG").css("transform", "scale(1.05) rotate(-93deg)");
-            $(".cardBG").css("background-color", "#94cbdb");
+            // $(".cardBG").css("transform", "scale(1.05) rotate(-93deg)");
+            // $(".cardBG").css("background-color", "#94cbdb");
             
         } else {
             //set to sender
@@ -81,8 +97,8 @@ function setupFlipToggle() {
             $("body").removeClass("night");
             $(".flipButtonBG").css("width", "50%");
             $(".flipButtonBG2").css("width", "0");
-            $(".cardBG").css("transform", "scale(1.05) rotate(3deg)");
-            $(".cardBG").css("background-color", "#b37c3f");
+            // $(".cardBG").css("transform", "scale(1.05) rotate(3deg)");
+            // $(".cardBG").css("background-color", "#b37c3f");
             
         }
     });
@@ -96,26 +112,29 @@ function setUpItemModalClickEvents(){
             $(".modal").removeClass("hide");
             var itemModalHtml = "";
 
-            itemModalHtml += "<div class='itemPanel'>"
-            itemModalHtml += "<div class='itemSummary'>"
+            itemModalHtml += "<div class='itemPanel'>";
+            itemModalHtml += "<div class='itemSummary'>";
+            itemModalHtml += "<div class='itemTitle'>" + ENTRIES[dataID].giftName + "</div>";
             itemModalHtml += "<div class='itemSummary_inner'>" + ENTRIES[dataID].giftDescription + "</div>"
-            itemModalHtml += "</div>"
-            itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(dataID) + "' alt='item' draggable='false' >"
-            itemModalHtml += "</div>"
+            itemModalHtml += "</div>";
+            itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(dataID) + "' alt='item' draggable='false' >";
+            itemModalHtml += "</div>";
 
             $(".modal_content").html(itemModalHtml);
-            $(document.body).addClass("noscroll");
+            // $(document.body).addClass("noscroll");
+
+            setupCloseModalEvents();
         })
     })
 }
 
-function setupModalClickEvents() {
+function setUpArtModalClickEvents() {
     $(".cardFront").each(function () {
         $(this).click(function () {
             var dataID = $(this).data().id;
             $(".modal").removeClass("hide");
             $(".modal_content").html("<img class='art' src='" + getArtUrl(dataID, "sender") + "'>");
-            $(document.body).addClass("noscroll");
+            // $(document.body).addClass("noscroll");
         })
     })
     $(".cardBack").each(function () {
@@ -123,19 +142,23 @@ function setupModalClickEvents() {
             var dataID = $(this).data().id;
             $(".modal").removeClass("hide");
             $(".modal_content").html("<img class='art' src='" + getArtUrl(dataID, "getter") + "'>");
-            $(document.body).addClass("noscroll");
+            // $(document.body).addClass("noscroll");
         })
     })
-    $(".modal_bg").click(function () {
+    setupCloseModalEvents();
+}
+
+function setupCloseModalEvents(){
+    $(".modal_bg, .itemArt").click(function () {
+        console.log("....");
         $(".modal").addClass("hide");
-        $(document.body).removeClass("noscroll");
     })
 }
 
 function setupStuff() {
     generateGrid();
-    setupFlipToggle();
-    setupModalClickEvents();
+    setUpFlipToggle();
+    setUpArtModalClickEvents();
     setUpItemModalClickEvents();
 }
 
