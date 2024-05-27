@@ -20,6 +20,7 @@ function generateGrid() {
         gridHtml += '<li class="grid-item">';
 
         gridHtml += '<div class="card">';
+        gridHtml += '<div class="cardBG"></div>';
         gridHtml += '<div class="cardInner">';
 
         gridHtml += '<div class="cardFront" data-id="' + i + '">';
@@ -39,9 +40,9 @@ function generateGrid() {
 
         gridHtml += '<div class="label" data-id="'+i+'">';
         gridHtml += '<div class="giftTitle">' + ENTRIES[i].giftName + '</div>';
-        gridHtml += '<div class="giftAltTitle">' + ENTRIES[i].giftAltName + '</div>';
-        gridHtml += '</div>';
+        gridHtml += '<div class="giftAltTitle">' + ENTRIES[i].giftNameAlt + '</div>';
         gridHtml += '<div class="gift"><img src="' + getGiftUrl(i) + '"></div>';
+        gridHtml += '</div>';
         gridHtml += '</li>';
     }
     $(".grid").html(gridHtml);
@@ -52,7 +53,9 @@ function generateGrid() {
         $(".grid-item:nth-child(" + (i + 1) + ") .cardBack .previewInner")
             .css("background-image", "url(" + getArtUrl(i, "getter") + ")");
         $(".grid-item:nth-child(" + (i + 1) + ") .cardInner")
-            .css("transition-delay", i * 0.08 + "s");
+        .css("transition-delay", i * 0.03 + "s");
+        $(".grid-item:nth-child(" + (i + 1) + ") .cardBG")
+        .css("transition-delay", i * 0.03 + "s");
     }
 }
 
@@ -67,6 +70,9 @@ function setupFlipToggle() {
             $("body").removeClass("day");
             $(".flipButtonBG2").css("width", "50%");
             $(".flipButtonBG").css("width", "0");
+            $(".cardBG").css("transform", "scale(1.05) rotate(-93deg)");
+            $(".cardBG").css("background-color", "#94cbdb");
+            
         } else {
             //set to sender
             $(".cardInner").css("transform", "rotateY(0deg)");
@@ -75,6 +81,9 @@ function setupFlipToggle() {
             $("body").removeClass("night");
             $(".flipButtonBG").css("width", "50%");
             $(".flipButtonBG2").css("width", "0");
+            $(".cardBG").css("transform", "scale(1.05) rotate(3deg)");
+            $(".cardBG").css("background-color", "#b37c3f");
+            
         }
     });
 }

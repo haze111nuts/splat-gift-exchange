@@ -43,7 +43,7 @@ const ENTRIES = [
     },
     {
         ocName: "王泥喜法介",
-        giftName: "折疊式天文望遠鏡",
+        giftName: "折疊式天文望遠鏡折疊式天文望遠鏡",
         giftNameAlt: "Portable Telescope",
         giftDescription: "口徑7公分、長為26公分的迷你形望遠鏡。有20mm和10mm的數位轉接目鏡和手機攝影轉接架﹐還附有簡易天文觀測指南。除了拿來觀星賞月以外﹐似乎也很適合拿來賞鳥或是湖中的不明生物。",
         artist: "4"

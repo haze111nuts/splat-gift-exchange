@@ -12,11 +12,11 @@
 }
 
 $preview_size: 180px;
-$preview_gapX: 20px;
-$preview_gapY: 80px;
-$gift_size: 80px;
-$gift_toL: -40px;
-$gift_toB: -75px;
+$preview_gapX: 24px;
+$preview_gapY: 36px;
+$gift_size: 72px;
+$gift_toL: -46px;
+$gift_toT: -24px;
 
 $ACCENT1: rgb(58, 49, 45);
 $ACCENT2: rgb(82, 68, 61);
@@ -145,8 +145,8 @@ p {
 
 .flipButtonBG {
 	width: 0;
-	background-image: url(../assets/0000/bg.png);
-	background-color: rgb(212, 203, 115);
+	// background-image: url(../assets/0000/bg.png);
+	// background-color: rgb(212, 203, 115);
 	// border-top-right-radius: 50px;
 	// border-bottom-right-radius: 50px;
 	clip-path: polygon(0 0, 100% 0%, 95% 100%, 0% 100%);
@@ -166,7 +166,7 @@ p {
 	flex-direction: row;
 	flex-wrap: wrap;
 	align-content: flex-start;
-	align-items: center;
+	align-items: self-start;
 	justify-content: center;
 	width: 90%;
 	max-width: 1200px;
@@ -183,7 +183,7 @@ p {
 		flex-grow: 0;
 		flex-shrink: 0;
 		flex-basis: $preview_size;
-		height: $preview_size;
+		min-height: $preview_size;
 		margin-right: $preview_gapX;
 		margin-left: $preview_gapX;
 		margin-bottom: $preview_gapY;
@@ -200,12 +200,21 @@ p {
 	cursor: pointer;
 	background-color: transparent;
 	width: 100%;
-	height: 100%;
+	height: $preview_size;
 	perspective: 1000px;
+	.cardBG{
+		position: absolute;
+		// top: 20px;
+		width: 100%;
+		height: 100%;
+		background-color: #b37c3f;
+		transform: scale(1.05) rotate(3deg);
+		transition: transform 0.8s;
+	}
 	.cardInner {
 		position: relative;
 		width: 100%;
-		height: 100%;
+		// height: $preview_size;
 		text-align: center;
 		transition: transform 0.8s;
 		transform-style: preserve-3d;
@@ -213,7 +222,7 @@ p {
 		.cardBack {
 			position: absolute;
 			width: 100%;
-			height: 100%;
+			height: $preview_size;
 			-webkit-backface-visibility: hidden; /* Safari */
 			backface-visibility: hidden;
 		}
@@ -225,14 +234,13 @@ p {
 }
 
 .preview {
-	border: 5px solid rgb(192, 192, 192);
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
 	position: relative;
 	display: inline-block;
 	.previewInner {
-		height: 100%;
+		height: 180px;
 		width: 100%;
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -260,52 +268,46 @@ p {
 		-o-transform: scale(1.2);
 		transform: scale(1.2);
 	}
-	&:hover .previewInner:before,
-	&:focus .previewInner:before,
-	&:hover a,
-	&:focus a {
-		display: block;
-	}
-}
-
-.gift img,
-.gift {
-	width: $gift_size;
-}
-
-.gift {
-	position: absolute;
-	left: $gift_toL;
-	bottom: $gift_toB;
-	transform: rotateZ(-5deg);
-	transition:
-		transform 0.14s ease-in,
-		text-shadow 0.1s ease-in;
 }
 
 .label {
 	cursor: pointer;
-	width: 110%;
-	position: absolute;
-	left: 0;
-	bottom: -55px;
-	// border: rgba(48, 48, 48, 0.2) 1px solid;
+	width: 100%;
+	margin-top: 16px;
+	// margin-left: 48px;
 	transition: all 0.14s ease-in;
+	position: relative;
 	&:hover {
 		background-color: #a6d7dd;
 	}
 	.giftTitle,
 	.giftAltTitle {
-		width: 95%;
+		width: 100%;
 		float: right;
 		text-align: center;
 		// border: 1px solid rgba(255, 0, 0, 0.1);
 	}
 	.giftTitle {
 		font-size: 1.2rem;
+		line-height: 120%;
 	}
 	.giftAltTitle {
 		font-size: 0.8rem;
+		line-height: 150%;
+	}
+
+	.gift {
+		width: $gift_size;
+		position: absolute;
+		left: $gift_toL;
+		top: $gift_toT;
+		transform: rotateZ(-5deg);
+		transition:
+			transform 0.14s ease-in,
+			text-shadow 0.1s ease-in;
+		img{
+			width: $gift_size;
+		}
 	}
 }
 
@@ -337,8 +339,8 @@ p {
 
 .art {
 	position: absolute;
-	max-width: 1080px;
-	width: 90%;
+	// max-width: 1080px;
+	height: 90%;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%) scale(1) !important;
@@ -381,14 +383,18 @@ p {
 }
 
 @media only screen and (max-width: 959px) {
+	.art {
+		width: 90%;
+		height: auto;
+	}
+
 	.itemPanel{
 		width: 100% !important;
 		top: 400px !important;
 		transform: translate(-50%,0) !important;
 		.itemArt{
-			top: -40% !important;
 			left: 50% !important;
-			transform: translate(-50%, -100%) scale(1) rotateZ(0) !important;
+			transform: translate(-50%, -110%) scale(1) rotateZ(0) !important;
 		}
 		.itemSummary{
 			// width: 100% !important;
@@ -398,7 +404,7 @@ p {
 			margin: 0 auto !important;
 			right: auto !important;
 			padding: 20px 0 !important;
-			transform: translate(0, 0) scale(1) rotateZ(0deg) !important;
+			transform: translate(0, -10%) scale(1) rotateZ(2deg) !important;
 			.itemSummary_inner{
 				max-height: none !important;
 				width: 90% !important;
