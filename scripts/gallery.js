@@ -128,7 +128,7 @@ function setUpItemModalClickEvents(){
             itemModalHtml += "</div>";
 
             $(".modal_content").html(itemModalHtml);
-            $(document.body).addClass("noscroll");
+            // $(document.body).addClass("noscroll");
 
             setupCloseModalEvents();
         })
@@ -158,7 +158,7 @@ function setUpArtModalClickEvents() {
 function setupCloseModalEvents(){
     $(".modal_bg, .itemArt_wapper").click(function () {
         $(".modal").addClass("hide");
-        $(document.body).removeClass("noscroll");
+        // $(document.body).removeClass("noscroll");
     })
 }
 

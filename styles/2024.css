@@ -318,7 +318,8 @@ p {
 }
 
 .modal .modal_bg {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgb(58, 49, 45) !important;
+  opacity: 0.5;
 }
 
 .art {

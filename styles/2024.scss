@@ -96,10 +96,6 @@ p {
 .banner {
 	padding: 40px 0 60px 0;
 	position: relative;
-	// background-color: #aaa;
-	// background: fixed
-	// 	url(https://cdn.vectorstock.com/i/1000x1000/16/72/cute-winter-pattern-on-subtle-background-vector-29121672.webp);
-
 	.banner_bg {
 		width: 400px;
 		height: 220px;
@@ -362,7 +358,8 @@ p {
 
 .modal {
 	.modal_bg {
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: $ACCENT1 !important;
+		opacity: 0.5;
     }
 }
 
