@@ -318,7 +318,6 @@ p {
 .itemPanel .itemSummary {
   color: rgb(58, 49, 45);
 }
-
 .modal .modal_bg {
   background-color: rgb(58, 49, 45) !important;
   opacity: 0.5;
@@ -377,12 +376,15 @@ p {
     width: 90% !important;
     margin: 0 auto !important;
     right: auto !important;
-    padding: 8px 0 20px 0 !important;
+    padding: 0 0 20px 0 !important;
     transform: translate(0, 0) rotateZ(2deg) !important;
   }
   .itemPanel .itemSummary .itemTitle {
-    position: static !important;
-    box-shadow: none !important;
+    max-width: none !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    width: 90%;
+    margin: 0 auto;
   }
   .itemPanel .itemSummary .itemSummary_inner {
     width: 90% !important;

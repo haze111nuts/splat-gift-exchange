@@ -129,6 +129,7 @@ function setUpItemModalClickEvents(){
 
             $(".modal_content").html(itemModalHtml);
             // $(document.body).addClass("noscroll");
+            hideScrollBar();
 
             setupCloseModalEvents();
         })
@@ -142,6 +143,7 @@ function setUpArtModalClickEvents() {
             $(".modal").removeClass("hide");
             $(".modal_content").html("<img class='art' src='" + getArtUrl(dataID, "sender") + "'>");
             // $(document.body).addClass("noscroll");
+            hideScrollBar();
         })
     })
     $(".cardBack").each(function () {
@@ -150,6 +152,7 @@ function setUpArtModalClickEvents() {
             $(".modal").removeClass("hide");
             $(".modal_content").html("<img class='art' src='" + getArtUrl(dataID, "getter") + "'>");
             // $(document.body).addClass("noscroll");
+            hideScrollBar();
         })
     })
     setupCloseModalEvents();
@@ -158,7 +161,8 @@ function setUpArtModalClickEvents() {
 function setupCloseModalEvents(){
     $(".modal_bg, .itemArt_wapper").click(function () {
         $(".modal").addClass("hide");
-        // $(document.body).removeClass("noscroll");
+        //$(document.body).removeClass("noscroll");
+        resetScrollBar();
     })
 }
 
@@ -167,6 +171,16 @@ function setupStuff() {
     setUpFlipToggle();
     setUpArtModalClickEvents();
     setUpItemModalClickEvents();
+}
+
+function hideScrollBar(){
+    console.log("!");
+    $('body').width($('body').width());
+    $('body').css('overflow', 'hidden');
+    $('.modal').css('display', 'block');
+}
+function resetScrollBar(){
+    $('body, .modal').removeAttr('style')
 }
 
 //======================//

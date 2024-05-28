@@ -38,7 +38,7 @@
 }
 .itemPanel .itemSummary {
   z-index: 833;
-  padding: 50px 40px 60px 120px;
+  padding: 30px 40px 50px 120px;
   position: absolute;
   right: 0;
   top: 50%;
@@ -54,14 +54,12 @@
   font-size: x-large;
   font-family: "DFPT_ZY9";
   background-image: url(../assets/paper.jpg);
-  padding: 12px 30px;
-  box-shadow: 0 -4px 7px 0px rgba(0, 0, 0, 0.1) inset;
-  position: absolute;
-  right: 2%;
-  top: -69px;
+  position: static;
+  padding-bottom: 20px;
+  max-width: 440px;
 }
 .itemPanel .itemSummary .itemTitle div:nth-child(1) {
-  word-spacing: -5px;
+  word-spacing: -1px;
   line-height: 120%;
 }
 .itemPanel .itemSummary .itemTitle div:nth-child(2) {

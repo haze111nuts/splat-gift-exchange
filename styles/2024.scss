@@ -354,6 +354,8 @@ p {
 
 .itemPanel .itemSummary{
     color: $ACCENT1;
+	.itemTitle{
+	}
 }
 
 .modal {
@@ -437,12 +439,17 @@ p {
 			width: 90% !important;
 			margin: 0 auto !important;
 			right: auto !important;
-			padding: 8px 0 20px 0 !important;
+			padding: 0 0 20px 0 !important;
 			transform: translate(0, 0) rotateZ(2deg) !important;
 			.itemTitle{
 				//STATIC***
-				position: static !important;
-				box-shadow: none !important;
+				max-width: none !important;
+				padding-top: 12px !important;
+				padding-bottom: 12px !important;
+				width: 90%;
+				margin: 0 auto;
+				// position: static !important;
+				// box-shadow: none !important;
 
 				// padding: 0 !important;
 				// max-width: 70%;
