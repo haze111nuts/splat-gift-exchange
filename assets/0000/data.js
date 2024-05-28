@@ -46,17 +46,29 @@ const ENTRIES = [
         giftName: "折疊式天文望遠鏡",
         giftNameAlt: "Portable Telescope",
         giftDescription: "口徑7公分、長為26公分的迷你形望遠鏡。有20mm和10mm的數位轉接目鏡和手機攝影轉接架﹐還附有簡易天文觀測指南。除了拿來觀星賞月以外﹐似乎也很適合拿來賞鳥或是湖中的不明生物。",
-//        giftDescription: "A mini portable telescope with a 70 mm lens and a length of 26 cm. It comes with 20mm and 10mm digital adapter eyepieces and a smartphone photography adapter. It also includes a basic astronomy observation guide. In addition to stargazing and moon watching, it also seems very suitable for bird watching or observing unidentified creatures in the lake.",
         artist: "4"
     },
+    // {
+    //     ocName: "Apollo Justice",
+    //     giftName: "Portable Telescope",
+    //     giftNameAlt: "折疊式天文望遠鏡",
+    //     giftDescription: "A mini portable telescope with a 70 mm lens and a length of 26 cm. It comes with 20mm and 10mm digital adapter eyepieces and a smartphone photography adapter. It also includes a basic astronomy observation guide. In addition to stargazing and moon watching, it also seems very suitable for bird watching or observing unidentified creatures in the lake.",
+    //     artist: "4"
+    // },
     {
         ocName: "希月心音",
         giftName: "碰可玩具機器人",
         giftNameAlt: "PONCO Toy Robot",
         giftDescription: "大河原宇宙中心的最新紀念品﹐1/8比例的多功能碰可玩具機器人﹐有著跟原物一樣的人工智能﹐可以透過聲控來做為日常的小幫手。有附一個機器人充電台。<br><b>功能：</b><ul><li>鬧鐘、備忘錄、上網查詢資料等通知等日常實用機能。</li><li>用專用的手機app跟這個機器人連動的話﹐可以跟它玩小遊戲。</li><li>帶去大河原宇宙中心的話，可以當作迷你導覽。</li><li>為了人類發展的未來，偶爾會推薦你捐錢給大河原宇宙中心。</li></ul>有一些跟<a href='https://www.amazon.com/b?node=18354642011' target='_blank'>ALEXA</a>類似的功能",
-//        giftDescription: "The newest souvenir from Robo ROM-en, it is a multifunctional toy robot modeled after their service robot, scaled to 1/8 size. It is equipped with basic AI software and can function as a digital assistant through voice control. A charging station is also included.<br><b>Features:</b><ul><li>Alarm clock, task reminder, internet search, and other useful functions for daily use.</li><li>You can play mini-game with it if you link it to the PONCO app.</li><li>If you bring it to GAYXA Space Center, it can serve as your mini tour guide.</li><li>For the future of mankind, it periodically ask you for donation to GYAXA Space Center.</li></ul>It has some functions similar to <a href='https://www.amazon.com/b?node=18354642011' target='_blank'>ALEXA</a>",
         artist: "5"
     },
+    // {
+    //     ocName: "Athena Cykes",
+    //     giftName: "PONCO Toy Robot",
+    //     giftNameAlt: "碰可玩具機器人",
+    //     giftDescription: "The newest souvenir from Robo ROM-en, it is a multifunctional toy robot modeled after their service robot, scaled to 1/8 size. It is equipped with basic AI software and can function as a digital assistant through voice control. A charging station is also included.<br><b>Features:</b><ul><li>Alarm clock, task reminder, internet search, and other useful functions for daily use.</li><li>You can play mini-game with it if you link it to the PONCO app.</li><li>If you bring it to GAYXA Space Center, it can serve as your mini tour guide.</li><li>For the future of mankind, it periodically ask you for donation to GYAXA Space Center.</li></ul>It has some functions similar to <a href='https://www.amazon.com/b?node=18354642011' target='_blank'>ALEXA</a>",
+    //     artist: "5"
+    // },
     {
         ocName: "御劍伶侍",
         giftName: "西洋棋組",
