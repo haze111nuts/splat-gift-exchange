@@ -149,8 +149,8 @@ p {
 
 .flipButtonBG {
 	width: 0;
-	// background-image: url(../assets/0000/bg.png);
-	// background-color: rgb(212, 203, 115);
+	background-image: url(../assets/0000/bg.png);
+	background-color: rgb(212, 203, 115);
 	// border-top-right-radius: 50px;
 	// border-bottom-right-radius: 50px;
 	clip-path: polygon(0 0, 100% 0%, 95% 100%, 0% 100%);
@@ -304,7 +304,7 @@ p {
 
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%,-50%)  rotate(5deg);
+		transform: translate(-50%,-50%)  rotate(4deg);
 	}
 	&:hover .label_BG{
 		width: 100%;
