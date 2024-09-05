@@ -2,13 +2,6 @@
 //=== Guest Data ===//
 //==================//
 
-const selfTrade = {
-    "1": false,
-    "2": true,
-    "4": false,
-    "5": true,
-    "6": true
-}
 
 const ARTISTS = {
     "1": {
