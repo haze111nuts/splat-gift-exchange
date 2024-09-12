@@ -1,6 +1,7 @@
 const ENABLE_COOKIE = true;
 
 const COOKIE_EXPIRE_DEFAULT_DAYS = 1;
+// const MINUTE = (1/1440);
 
 const COOKIE = {
     OC_ARRANGEMENT: "ocArrangement",
