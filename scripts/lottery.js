@@ -18,7 +18,9 @@ var HOST_CURRENT_SIDE = 0;
 //=== Custom Variables ===//
 //========================//
 
-var YEAR = "0000";
+var YEAR = "2024";
+
+var dataMasking = true;
 
 var NUMBER_OF_BG = 83;
 
@@ -33,15 +35,30 @@ var HOST_QUOTES = [
     "屋趴～～～"
 ]
 
+var placeholderGift = {
+    ocName: "綾里春美",
+    giftName: "倉院特產饅頭",
+    giftNameAlt: "Kurain Buns",
+    giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
+    artist: "2"
+}
+
 //======================//
 //=== Getter & Utils ===//
 //======================//
 
+function fileFormat() {
+    return YEAR === "0000" ? ".jpg" : ".png";
+}
+
 function getOcUrl(oc) {
-    return "assets/" + YEAR + "/profile/" + ENTRIES.indexOf(oc) + ".jpg";
+    return "assets/" + YEAR + "/profile/" + ENTRIES.indexOf(oc) + fileFormat();
 }
 
 function getGiftUrl(gift) {
+    if (YEAR != '0000' && dataMasking) { // set placeholder gift
+        return "assets/placeholder.png";
+    }
     return "assets/" + YEAR + "/item/" + ENTRIES.indexOf(gift) + ".png";
 }
 
@@ -101,6 +118,10 @@ function printGrid() {
 }
 
 function displayItemModal(gift) {
+    if (YEAR != '0000' && dataMasking) { // set placeholder gift
+        gift = placeholderGift;
+    }
+
     $(".modal").removeClass("hide");
     var itemModalHtml = "";
 
@@ -122,6 +143,9 @@ function displayItemModal(gift) {
 }
 
 function getGiftLogHtml(currentOC, gift) {
+    if (YEAR != '0000' && dataMasking) { // set placeholder gift
+        gift = placeholderGift;
+    }
     var logHtml = "";
     logHtml += "<li>";
     logHtml += "<div class='label'>";

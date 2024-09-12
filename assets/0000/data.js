@@ -105,3 +105,69 @@ const ENTRIES = [
         artist: "6"
     }
 ];
+
+// const ENTRIES = [
+//     {
+//         ocName: "成步堂龙一",
+//         giftName: "葡萄汁",
+//         giftNameAlt: "Grape Juice",
+//         giftDescription: "用特产巨峰葡萄做的100%无浓缩果汁﹐装在漂亮的玻璃瓶里面。当然不含酒精。",
+//         artist: "1"
+//     },
+//     {
+//         ocName: "王泥喜法介",
+//         giftName: "折叠式天文望远镜",
+//         giftNameAlt: "Portable Telescope",
+//         giftDescription: "口径7公分、长为26公分的迷你形望远镜。有20mm和10mm的数位转接目镜和手机摄影转接架﹐还附有简易天文观测指南。除了拿来观星赏月以外﹐似乎也很适合拿来赏鸟或是湖中的不明生物。",
+//         artist: "4"
+//     },
+//     {
+//         ocName: "希月心音",
+//         giftName: "碰可玩具机器人",
+//         giftNameAlt: "PONCO Toy Robot",
+//         giftDescription: "大河原宇宙中心的最新纪念品﹐1/8比例的多功能碰可玩具机器人﹐有著跟原物一样的人工智能﹐可以透过声控来做为日常的小帮手。有附一个机器人充电台。<br><b>功能：</b><ul><li>闹钟、备忘录、上网查询资料等通知等日常实用机能。</li><li>用专用的手机app跟这个机器人连动的话﹐可以跟它玩小遊戏。</li><li>带去大河原宇宙中心的话，可以当作迷你导览。</li><li>为了人类发展的未来，偶尔会推荐你捐钱给大河原宇宙中心。</li></ul>有一些跟<a href='https://www.amazon.com/b?node=18354642011' target='_blank'>ALEXA</a>类似的功能",
+//         artist: "5"
+//     },
+//     {
+//         ocName: "御剑伶侍",
+//         giftName: "西洋棋组",
+//         giftNameAlt: "Chess Set",
+//         giftDescription: "特别订做的红白色西洋棋组。以桃花心木製成﹐并镶有金边。",
+//         artist: "1"
+//     },
+//     {
+//         ocName: "绫里真宵",
+//         giftName: "将军超人&粉红公主全套DVD影集",
+//         giftNameAlt: "Steel Samurai & Pink Princess Complete DVD Set",
+//         giftDescription: "包含第一季将军超人和第二季粉红公主的DVD影集全套。",
+//         artist: "1"
+//     },
+//     {
+//         ocName: "成步堂美贯",
+//         giftName: "帽子先生吊饰",
+//         giftNameAlt: "Mr. Hat Keychain",
+//         giftDescription: "手工做的帽子先生吊饰﹐还附有叁张惊奇酒吧的免费入场券。",
+//         artist: "4"
+//     },
+//     {
+//         ocName: "宝月茜",
+//         giftName: "冬季限定花林糖",
+//         giftNameAlt: "Winter Edition Snackoo",
+//         giftDescription: "使用北海道小麦的麵粉製成的花林糖﹐是冬季限定的牛奶口味。拿来丢人一定很浪费。",
+//         artist: "4"
+//     },
+//     {
+//         ocName: "绫里春美",
+//         giftName: "仓院特产馒头",
+//         giftNameAlt: "Kurain Buns",
+//         giftDescription: "仓院之里的特产栗子馒头。每个馒头都是勾玉形状﹐有经过某位灵媒的祈祷加持﹐据说吃下去可以补充灵力。",
+//         artist: "2"
+//     },
+//     {
+//         ocName: "灵花 帕多玛",
+//         giftName: "手工押花",
+//         giftNameAlt: "Handmade Pressed Flower",
+//         giftDescription: "苍苑国特有的花製成的书籤﹐还有淡淡的花香。",
+//         artist: "6"
+//     }
+// ];

@@ -17,6 +17,25 @@
   font-style: normal;
   font-weight: normal;
 }
+/* Chinese (Simplified) */
+@font-face {
+  font-family: "HanyiZongyi";
+  src: url("../assets/fonts/hanyi_zongyi.ttf");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "HuakangZongyi";
+  src: url("../assets/fonts/huakang_xinzongyi.ttc");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Noto Sans SC";
+  src: url("../assets/fonts/NotoSansSC-Regular.ttf");
+  font-style: normal;
+  font-weight: normal;
+}
 html {
   margin: 0;
   padding: 0;
@@ -54,7 +73,7 @@ a:hover {
 .panelHeader {
   background: rgb(58, 49, 45);
   font-size: 1.3em;
-  font-family: "DFPT_AZ5";
+  font-family: "DFPT_AZ5", "HanyiZongyi";
   color: rgb(219, 213, 202);
   padding: 8px 8px 14px 8px;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.45);
@@ -201,7 +220,7 @@ a:hover {
   width: 250px;
   text-align: center;
   font-size: 2.2em;
-  font-family: "DFPT_AZ5";
+  font-family: "DFPT_AZ5", "HanyiZongyi";
   color: white;
   line-height: 170%;
   text-shadow: 0 0 20px black, 0 0 50px black, 0 0 65px black;
@@ -354,7 +373,7 @@ a:hover {
 .indicator .currentName {
   color: rgb(252, 241, 183);
   font-size: 2.2em;
-  font-family: "DFPT_ZY9";
+  font-family: "DFPT_ZY9", "HuakangZongyi";
   text-shadow: -5px 5px 0 rgba(0, 0, 0, 0.7);
 }
 .indicator .currentText {
@@ -514,7 +533,7 @@ a:hover {
   border-radius: 16px;
   padding: 12px 25px;
   font-size: 1.7em;
-  font-family: "DFPT_AZ5";
+  font-family: "DFPT_AZ5", "HanyiZongyi";
   transition: all 0.5s;
   position: relative;
 }
@@ -667,7 +686,7 @@ body, a {
     margin: 40px;
   }
   .lotteryPanel .lotteryBoard,
-.lotteryPanel .lotteryBoard_overlay {
+  .lotteryPanel .lotteryBoard_overlay {
     height: 740px;
   }
   .logPanel {
