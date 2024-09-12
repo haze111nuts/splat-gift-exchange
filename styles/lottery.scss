@@ -18,6 +18,26 @@
     font-weight: normal;
 }
 
+/* Chinese (Simplified) */
+@font-face {
+    font-family: "HanyiZongyi";
+    src: url("../assets/fonts/hanyi_zongyi.ttf");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "HuakangZongyi";
+    src: url("../assets/fonts/huakang_xinzongyi.ttc");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "Noto Sans SC";
+    src: url("../assets/fonts/NotoSansSC-Regular.ttf");
+    font-style: normal;
+    font-weight: normal;
+  }
+
 $PROFILE_SIZE: 100px;
 $SPOTLIGHT_BORDER_SIZE: 8px;
 
@@ -71,7 +91,7 @@ a {
 .panelHeader {
     background: $ACCENT1;
     font-size: 1.3em;
-    font-family: "DFPT_AZ5";
+    font-family: "DFPT_AZ5", "HanyiZongyi";
     color: $ACCENT5;
     padding: 8px 8px 14px 8px;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.45);
@@ -230,7 +250,7 @@ $LOG_PANEL_HIGHT: 600px;
                 width: 250px;
                 text-align: center;
                 font-size: 2.2em;
-                font-family: "DFPT_AZ5";
+                font-family: "DFPT_AZ5", "HanyiZongyi";
                 color: white;
                 line-height: 170%;
                 text-shadow:
@@ -414,7 +434,7 @@ $preview_gapY: 20px;
     .currentName {
         color: $ACCENT4;
         font-size: 2.2em;
-        font-family: "DFPT_ZY9";
+        font-family: "DFPT_ZY9", "HuakangZongyi";
         text-shadow: -5px 5px 0 rgba(0, 0, 0, 0.7);
     }
     .currentText {
@@ -596,7 +616,7 @@ $preview_gapY: 20px;
     border-radius: 16px;
     padding: 12px 25px;
     font-size: 1.7em;
-    font-family: "DFPT_AZ5";
+    font-family: "DFPT_AZ5", "HanyiZongyi";
     transition: all 0.5s;
     position: relative;
 }

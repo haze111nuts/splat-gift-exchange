@@ -55,7 +55,7 @@
         transform: translate(0, -50%) scale(1) rotateZ(2deg);
         background-color: rgb(235, 230, 220);
         background-image: url(../assets/paper.jpg);
-        font-family: "Noto Sans TC", sans-serif;
+        font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
         font-size: 1.27em;
         box-shadow: 8px 8px 9px 1px rgba(0, 0, 0, 0.2);
         .itemTitle{
@@ -63,7 +63,7 @@
             // font-family: "DFPT_AZ5";
             text-align: center;
             font-size: x-large;
-            font-family: "DFPT_ZY9";
+            font-family: "DFPT_ZY9", "HuakangZongyi";
             background-image: url(../assets/paper.jpg);
             
             position: static;
@@ -80,7 +80,7 @@
             }
             div:nth-child(2){
                 font-size: medium;
-                font-family: "Noto Sans TC", sans-serif;
+                font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
                 border-top: 1px solid black;
                 line-height: 100%;
                 padding-top: 5px;
