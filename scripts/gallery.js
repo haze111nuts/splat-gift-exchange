@@ -140,8 +140,14 @@ function setUpArtModalClickEvents() {
     $(".cardFront").each(function () {
         $(this).click(function () {
             var dataID = $(this).data().id;
+            var modalHtml = "";
             $(".modal").removeClass("hide");
-            $(".modal_content").html("<img class='art' src='" + getArtUrl(dataID, "sender") + "'>");
+
+            modalHtml += "<div class='author'>";
+            modalHtml += ENTRIES[dataID].ocName+" By <a aref='"+ ENTRIES[dataID].artist+" target='_blank'>"+ ENTRIES[dataID].artist +"</a>"
+            modalHtml += "</div>";
+            modalHtml += "<img class='art' src='" + getArtUrl(dataID, "sender") + "'>"
+            $(".modal_content").html(modalHtml);
             // $(document.body).addClass("noscroll");
             hideScrollBar();
         })

@@ -31,10 +31,18 @@ a:hover {
 
 .day {
   background-color: rgb(219, 213, 202);
+  background-image: url(../assets/0000/bg_top.png);
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .night {
   background-color: #867e7e;
+  background-image: url(../assets/0000/bg_top.png);
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 h1 {
@@ -97,11 +105,8 @@ p {
   position: sticky;
   top: 0;
   font-size: medium;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
-
-.flipButton {
+.navbar .flipButton {
   cursor: pointer;
   font-family: "DFPT_AZ5", sans-serif;
   text-decoration: wavy;
@@ -109,39 +114,28 @@ p {
   display: flex;
   transition: all 0.14s ease-in;
 }
-
-.sender,
-.getter {
+.navbar .flipButton .sender,
+.navbar .flipButton .getter {
   z-index: 10;
   flex: 1;
-  padding: 8px 0px;
+  border-radius: 100px;
 }
-
-.sender > div,
-.getter > div {
-  font-size: small;
-}
-
-.flipButtonBG,
-.flipButtonBG2 {
-  height: 100%;
-  position: absolute;
-  transition: all 0.4s ease-in-out;
-}
-
-.flipButtonBG {
-  width: 0;
+.navbar .flipButton .sender > div,
+.navbar .flipButton .getter > div {
+  position: relative;
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  background: #b38242;
   background-image: url(../assets/0000/bg.png);
-  background-color: rgb(212, 203, 115);
-  clip-path: polygon(0 0, 100% 0%, 95% 100%, 0% 100%);
+  border-radius: 100px;
 }
-
-.flipButtonBG2 {
-  width: 0;
-  right: 0;
-  background-image: url(../assets/0000/bg2.png);
-  background-color: rgb(101, 212, 207);
-  clip-path: polygon(5% 0%, 100% 0%, 100% 100%, 0% 100%);
+.navbar .flipButton .sender > div .text,
+.navbar .flipButton .getter > div .text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .grid {
@@ -155,7 +149,7 @@ p {
   max-width: 1200px;
   height: 100%;
   margin: 0 auto;
-  padding: 50px 0 0;
+  padding: 50px 0;
   list-style: none;
 }
 .grid .grid-item {
@@ -187,6 +181,7 @@ p {
   width: 100%;
   height: 180px;
   perspective: 1000px;
+  z-index: -2;
 }
 .card .cardBG {
   position: absolute;
@@ -194,7 +189,10 @@ p {
   height: 100%;
   background-color: #684a29;
   transform: scale(1.05);
-  transition: transform 0.8s;
+  transition: all 0.4s;
+}
+.card:hover .cardBG {
+  background-color: #c4a87f !important;
 }
 .card .cardInner {
   position: relative;
@@ -265,7 +263,7 @@ p {
   text-shadow: 0 0 5px #684a29, 0 0 5px #684a29;
 }
 .label .label_BG {
-  z-index: -1;
+  z-index: -3;
   width: 0%;
   height: 100%;
   padding: 2px 0px;
@@ -300,6 +298,7 @@ p {
   left: -32px;
   top: -16px;
   transform: rotateZ(-5deg);
+  z-index: -1;
   transition: transform 0.14s ease-in, text-shadow 0.1s ease-in;
 }
 .label .gift img {
@@ -330,6 +329,16 @@ p {
   left: 50%;
   transform: translate(-50%, -50%) scale(1) !important;
   transition: all 0.25s ease-out;
+}
+
+.author {
+  font-size: large;
+  font-family: "DFPT_AZ5", sans-serif;
+  color: white;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 /* Firefox */
