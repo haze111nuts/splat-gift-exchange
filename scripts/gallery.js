@@ -143,10 +143,12 @@ function setUpArtModalClickEvents() {
             var modalHtml = "";
             $(".modal").removeClass("hide");
 
-            modalHtml += "<div class='author'>";
-            modalHtml += ENTRIES[dataID].ocName+" By <a aref='"+ ENTRIES[dataID].artist+" target='_blank'>"+ ENTRIES[dataID].artist +"</a>"
-            modalHtml += "</div>";
+            modalHtml += "<div class='art_wrap'>"
             modalHtml += "<img class='art' src='" + getArtUrl(dataID, "sender") + "'>"
+            modalHtml += "<div class='author'>";
+            modalHtml += ENTRIES[dataID].ocName+"<br>By <a aref='"+ ENTRIES[dataID].artist+" target='_blank'>"+ ENTRIES[dataID].artist +"</a>"
+            modalHtml += "</div>";
+            modalHtml += "</div>";
             $(".modal_content").html(modalHtml);
             // $(document.body).addClass("noscroll");
             hideScrollBar();

@@ -322,23 +322,29 @@ p {
   opacity: 0.5;
 }
 
-.art {
+.art_wrap {
+  width: 100%;
+  max-width: 750px;
   position: absolute;
-  height: 90%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1) !important;
   transition: all 0.25s ease-out;
 }
 
+.art {
+  width: 100%;
+}
+
 .author {
-  font-size: large;
+  font-size: 2rem;
   font-family: "DFPT_AZ5", sans-serif;
   color: white;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translate(-50%, 0);
+  text-align: center;
+  padding-top: 10px;
+}
+.author a {
+  cursor: pointer;
 }
 
 /* Firefox */
@@ -363,9 +369,8 @@ p {
 }
 
 @media only screen and (max-width: 959px) {
-  .art {
+  .art_wrap {
     width: 90%;
-    height: auto;
   }
   .itemPanel {
     width: 100% !important;
