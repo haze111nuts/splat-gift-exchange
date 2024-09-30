@@ -14,6 +14,8 @@ var CURRENT_OC_INDEX = 0;
 
 var HOST_CURRENT_SIDE = 0;
 
+var CURRENT_SUMMARY_LANG = 0;
+
 //========================//
 //=== Custom Variables ===//
 //========================//
@@ -40,6 +42,7 @@ var placeholderGift = {
     giftName: "造型磁鐵香料罐",
     giftNameAlt: "Fresh Magnetic Spice Jars",
     giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
+    giftDescriptionAlt: "Some chestnut manju. Each bun is in the shape of a kokutama, and it is said to be blessed by the prayers of a psychic, and that eating it will replenish your spiritual energy.",
     artist: "2"
 }
 
@@ -127,6 +130,7 @@ function displayItemModal(gift) {
 
     itemModalHtml += "<div class='itemPanel'>";
     itemModalHtml += "<div class='itemSummary'>";
+    itemModalHtml += "<div class='langSwitch'>"+"⇆"+"</div>";
     itemModalHtml += "<div class='itemTitle'>";
     itemModalHtml += "<div class='itemTitle1'>"+gift.giftName+"</div>";
     itemModalHtml += "<div class='itemTitle2'>"+gift.giftNameAlt+"</div>";
@@ -140,6 +144,7 @@ function displayItemModal(gift) {
 
     $(".modal_content").html(itemModalHtml);
     $(document.body).addClass("noscroll");
+    setUpTraslateToggle(gift);
 }
 
 function getGiftLogHtml(currentOC, gift) {
@@ -363,6 +368,25 @@ function shuffleHostQuotes() {
         }, 500);
         $(".infoBubble").css("opacity", 0);
     }, 4000);
+}
+
+
+//=============================//
+//=== Handle traslate Event ===//
+//=============================//
+
+function setUpTraslateToggle(gift) {
+    var newSummary;
+    $(".langSwitch").click(function () {
+        if (CURRENT_SUMMARY_LANG === 0) {
+            newSummary = gift.giftDescriptionAlt;
+            CURRENT_SUMMARY_LANG = 1;
+        } else {
+            newSummary = gift.giftDescription;
+            CURRENT_SUMMARY_LANG = 0;
+        }
+        $(".itemSummary_inner").html(newSummary);
+    });
 }
 
 //===================//

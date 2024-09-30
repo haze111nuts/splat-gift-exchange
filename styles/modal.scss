@@ -101,5 +101,14 @@
                 }
             }
         }
+        .langSwitch{
+            position: absolute;
+            top: 2px;
+            right: 10px;
+            transition: all 0.14s ease-in;
+            &:hover {
+                color: rgb(184, 120, 2);
+            }
+        }
     }
 }
