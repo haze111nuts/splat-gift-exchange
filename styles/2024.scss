@@ -241,7 +241,7 @@ p {
 		transition: all 0.4s;
 	}
 	&:hover .cardBG {
-		background-color: $ACCENT4 !important;
+		// background-color: $ACCENT4 !important;
 	}
 	.cardInner {
 		position: relative;
@@ -355,7 +355,7 @@ p {
 		position: absolute;
 		left: $gift_toL;
 		top: $gift_toT;
-		transform: rotateZ(-5deg);
+		//transform: rotateZ(-5deg);
 		z-index: -1;
 		transition:
 			transform 0.14s ease-in,

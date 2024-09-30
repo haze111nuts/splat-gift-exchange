@@ -191,9 +191,6 @@ p {
   transform: scale(1.05);
   transition: all 0.4s;
 }
-.card:hover .cardBG {
-  background-color: #c4a87f !important;
-}
 .card .cardInner {
   position: relative;
   width: 100%;
@@ -297,7 +294,6 @@ p {
   position: absolute;
   left: -32px;
   top: -16px;
-  transform: rotateZ(-5deg);
   z-index: -1;
   transition: transform 0.14s ease-in, text-shadow 0.1s ease-in;
 }
@@ -382,7 +378,6 @@ p {
   }
   .itemPanel .itemArt {
     position: static !important;
-    transform: translate(0, 0) rotateZ(0) !important;
     margin: 0 auto !important;
   }
   .itemPanel .itemSummary {
