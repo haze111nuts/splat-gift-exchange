@@ -39,10 +39,10 @@ var HOST_QUOTES = [
 
 var placeholderGift = {
     ocName: "綾里春美",
-    giftName: "造型磁鐵香料罐",
-    giftNameAlt: "Fresh Magnetic Spice Jars",
+    giftName: "倉院特產饅頭",
+    giftNameAlt: "Kurain Buns",
     giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
-    giftDescriptionAlt: "Some chestnut manju. Each bun is in the shape of a kokutama, and it is said to be blessed by the prayers of a psychic, and that eating it will replenish your spiritual energy.",
+    giftDescriptionAlt: "Some chestnut manju. Each bun is in the shape of a magatama and is blessed by a certain spirital medium. It is said that eating it will replenish your spiritual energy.",
     artist: "2"
 }
 
@@ -377,10 +377,13 @@ function shuffleHostQuotes() {
 
 function setUpTraslateToggle(gift) {
     var newSummary;
+    if(gift.giftDescriptionAlt.length==0){
+        $(".langSwitch").css("display", "none");
+    }
     $(".langSwitch").click(function () {
-        if (CURRENT_SUMMARY_LANG === 0) {
+        if (CURRENT_SUMMARY_LANG === 0 && gift.giftDescriptionAlt.length>0) {
             newSummary = gift.giftDescriptionAlt;
-            CURRENT_SUMMARY_LANG = 1;
+            CURRENT_SUMMARY_LANG = 1
         } else {
             newSummary = gift.giftDescription;
             CURRENT_SUMMARY_LANG = 0;
