@@ -42,6 +42,22 @@ const ARTISTS = {
     "瑞拉": {
         link: "https://x.com/0121relladesuwa",
         selfTrade: false
+    },
+    "Silver Hawkling": {
+        link: "https://x.com/shawkling",
+        selfTrade: true
+    },
+    "七月": {
+        link: "https://x.com/nanagatsu_07",
+        selfTrade: true
+    },
+    "ヤキ": {
+        link: "https://x.com/YAKIyoRi_0001",
+        selfTrade: true
+    },
+    "缺缺": {
+        link: "https://x.com/bakori514",
+        selfTrade: true
     }
 };
 
@@ -76,7 +92,7 @@ const ENTRIES = [
     },
     {
         ocName: "托瑪",
-         artist: "牛牛"
+        artist: "牛牛"
     },
     {
         ocName: "Isol",
@@ -84,11 +100,11 @@ const ENTRIES = [
     },
     {
         ocName: "Isa",
-       artist: "Bel"
+        artist: "Bel"
     },
     {
         ocName: "Evie",
-         artist: "Bel"
+        artist: "Bel"
     },
     {
         ocName: "Blade",
@@ -108,10 +124,34 @@ const ENTRIES = [
     },
     {
         ocName: "B",
-       artist: "Bagaju"
+        artist: "Bagaju"
     },
     {
         ocName: "卡可",
         artist: "瑞拉"
+    },
+    {
+        ocName: "Leo",
+        artist: "Silver Hawkling"
+    },
+    {
+        ocName: "姆姆",
+        artist: "瑞拉"
+    },
+    {
+        ocName: "久人",
+        artist: "七月"
+    },
+    {
+        ocName: "焚",
+        artist: "ヤキ"
+    },
+    {
+        ocName: "莉莉",
+        artist: "瑞拉"
+    },
+    {
+        ocName: "薄荷",
+        artist: "缺缺"
     }
 ];
