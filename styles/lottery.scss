@@ -156,7 +156,7 @@ $LOG_PANEL_HIGHT: 600px;
                     height: 60px;
                     position: absolute;
                     top: 50%;
-                    left: 10px;
+                    left: 5px;
                     transform: translate(0, -50%) rotate(-5deg);
                 }
                 .gift {
@@ -164,7 +164,7 @@ $LOG_PANEL_HIGHT: 600px;
                     height: 60px;
                     position: absolute;
                     top: 50%;
-                    right: 8px;
+                    right: 1px;
                     transform: translate(0, -50%) rotate(5deg);
                     transition: all 0.2s;
                     &:hover {
@@ -181,7 +181,7 @@ $LOG_PANEL_HIGHT: 600px;
                     width: 180px;
                     div:nth-child(1) {
                         border-bottom: 1px solid $ACCENT3;
-                        padding: 20px 20px 0 27px;
+                        padding: 20px 20px 0 24px;
                         text-align: left;
                     }
                     div:nth-child(2) {
@@ -348,9 +348,9 @@ $preview_gapY: 20px;
                 }
             }
             .gift_back {
-                background-color: rgb(175, 168, 149);
+                background-color: rgba(122, 117, 104, 0.4);
                 // background: linear-gradient(0deg, rgba(175, 168, 149,1) 50%, rgb(151, 145, 129) 100%);
-                box-shadow: 0 0 8px 3px rgb(153, 147, 131) inset;
+                box-shadow: 0 0 8px 3px rgba(85, 82, 75, 0.4) inset;
                 color: white;
                 transform: rotateY(180deg);
                 img {
@@ -360,6 +360,7 @@ $preview_gapY: 20px;
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
+                    opacity: 0.7;
                 }
             }
         }

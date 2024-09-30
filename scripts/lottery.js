@@ -37,8 +37,8 @@ var HOST_QUOTES = [
 
 var placeholderGift = {
     ocName: "綾里春美",
-    giftName: "倉院特產饅頭",
-    giftNameAlt: "Kurain Buns",
+    giftName: "造型磁鐵香料罐",
+    giftNameAlt: "Fresh Magnetic Spice Jars",
     giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
     artist: "2"
 }
