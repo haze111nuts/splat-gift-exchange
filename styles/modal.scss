@@ -103,9 +103,12 @@
         }
         .langSwitch{
             position: absolute;
-            top: 2px;
+            top: 3px;
             right: 10px;
             transition: all 0.14s ease-in;
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
             &:hover {
                 color: rgb(184, 120, 2);
             }

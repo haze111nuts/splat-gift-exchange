@@ -120,9 +120,9 @@ function printGrid() {
     $(".grid").html(gridHtml);
 }
 
-function displayItemModal(gift) {
+function displayItemModal(entry) {
     if (YEAR != '0000' && dataMasking) { // set placeholder gift
-        gift = placeholderGift;
+        entry = placeholderGift;
     }
 
     $(".modal").removeClass("hide");
@@ -132,33 +132,33 @@ function displayItemModal(gift) {
     itemModalHtml += "<div class='itemSummary'>";
     itemModalHtml += "<div class='langSwitch'>"+"⇆"+"</div>";
     itemModalHtml += "<div class='itemTitle'>";
-    itemModalHtml += "<div class='itemTitle1'>"+gift.giftName+"</div>";
-    itemModalHtml += "<div class='itemTitle2'>"+gift.giftNameAlt+"</div>";
+    itemModalHtml += "<div class='itemTitle1'>"+entry.giftName+"</div>";
+    itemModalHtml += "<div class='itemTitle2'>"+entry.giftNameAlt+"</div>";
     itemModalHtml += "</div>";
-    itemModalHtml += "<div class='itemSummary_inner'>" + gift.giftDescription + "</div>";
+    itemModalHtml += "<div class='itemSummary_inner'>" + entry.giftDescription + "</div>";
     itemModalHtml += "</div>";
 
-    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(gift) + "' alt='item' draggable='false' >";
+    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(entry) + "' alt='item' draggable='false' >";
 
     itemModalHtml += "</div>";
 
     $(".modal_content").html(itemModalHtml);
     $(document.body).addClass("noscroll");
-    setUpTraslateToggle(gift);
+    setUpTraslateToggle(entry);
 }
 
-function getGiftLogHtml(currentOC, gift) {
+function getGiftLogHtml(currentOC, entry) {
     if (YEAR != '0000' && dataMasking) { // set placeholder gift
-        gift = placeholderGift;
+        entry = placeholderGift;
     }
     var logHtml = "";
     logHtml += "<li>";
     logHtml += "<div class='label'>";
     logHtml += "<div>" + currentOC.ocName + "</div>"
-    logHtml += "<div>" + gift.giftName + "</div>"
+    logHtml += "<div>" + entry.giftName + "</div>"
     logHtml += "</div>";
     logHtml += "<img class='chara no-select' src='" + getOcUrl(currentOC) + "' alt='chara' draggable='false'>";
-    logHtml += "<img class='gift no-select' src='" + getGiftUrl(gift) + "' alt='gift' draggable='false'>";
+    logHtml += "<img class='gift no-select' src='" + getGiftUrl(entry) + "' alt='gift' draggable='false'>";
     logHtml += "</li>";
     return logHtml;
 }
@@ -226,7 +226,7 @@ function drawGift() {
     console.log("group member: ");
     console.log(waitingOC.filter(oc => oc.artist === largestFamilyNoSelfTrade) );
     // find all the available gift for this group of oc
-    var giftPoolForFamily = GIFT_PILE.filter(gift => gift.artist !== largestFamilyNoSelfTrade);
+    var giftPoolForFamily = GIFT_PILE.filter(entry => entry.artist !== largestFamilyNoSelfTrade);
     console.log("available gift for this group: ");
     console.log(giftPoolForFamily);
 
@@ -237,7 +237,7 @@ function drawGift() {
         // assign current gift from any of this artist's oc
         console.log("danger of self trade!");    
 
-        var availableGifts = GIFT_PILE.filter(gift => gift.artist === largestFamilyNoSelfTrade);
+        var availableGifts = GIFT_PILE.filter(entry => entry.artist === largestFamilyNoSelfTrade);
         randomGift = availableGifts[Math.floor(Math.random() * availableGifts.length)];
         console.log("assign a random gift from the family to current OC: ");    
         console.log(availableGifts);
@@ -252,10 +252,10 @@ function drawGift() {
         console.log("self trade: " + ARTISTS[currentOCArtist].selfTrade);
         if (ARTISTS[currentOCArtist].selfTrade) {
             // only exclude current OC
-            giftPoolForCurrentOC = GIFT_PILE.filter(gift => gift !== OC_ARRANGED[CURRENT_OC_INDEX])        
+            giftPoolForCurrentOC = GIFT_PILE.filter(entry => entry !== OC_ARRANGED[CURRENT_OC_INDEX])        
         } else {
             // exclude all oc by this artist
-            giftPoolForCurrentOC = GIFT_PILE.filter(gift => gift.artist !== currentOCArtist);
+            giftPoolForCurrentOC = GIFT_PILE.filter(entry => entry.artist !== currentOCArtist);
         }
 
         console.log("available gift for current oc: ");
@@ -269,7 +269,7 @@ function drawGift() {
             randomGift = lonelyOCsGift;
         }
     }
-    GIFT_PILE = GIFT_PILE.filter(gift => gift != randomGift);
+    GIFT_PILE = GIFT_PILE.filter(entry => entry != randomGift);
     HOST_QUOTES[0] = getQuoteOfRemainingGiftCountZH(GIFT_PILE.length);
     return randomGift;
 }
@@ -320,6 +320,7 @@ function setUpFlipEvent() {
     $(".modal_bg").click(function () {
         $(".modal").addClass("hide");
         $(document.body).removeClass("noscroll");
+        CURRENT_SUMMARY_LANG = 0;
         //only do the rest when the long click is on a card
         if (currentGiftCard) {
             //flip card
@@ -375,17 +376,17 @@ function shuffleHostQuotes() {
 //=== Handle traslate Event ===//
 //=============================//
 
-function setUpTraslateToggle(gift) {
+function setUpTraslateToggle(entry) {
     var newSummary;
-    if(gift.giftDescriptionAlt.length==0){
+    if(entry.giftDescriptionAlt.length==0){
         $(".langSwitch").css("display", "none");
     }
     $(".langSwitch").click(function () {
-        if (CURRENT_SUMMARY_LANG === 0 && gift.giftDescriptionAlt.length>0) {
-            newSummary = gift.giftDescriptionAlt;
+        if (CURRENT_SUMMARY_LANG === 0 && entry.giftDescriptionAlt.length>0) {
+            newSummary = entry.giftDescriptionAlt;
             CURRENT_SUMMARY_LANG = 1
         } else {
-            newSummary = gift.giftDescription;
+            newSummary = entry.giftDescription;
             CURRENT_SUMMARY_LANG = 0;
         }
         $(".itemSummary_inner").html(newSummary);
