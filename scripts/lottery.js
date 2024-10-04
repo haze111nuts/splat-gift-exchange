@@ -16,6 +16,8 @@ var HOST_CURRENT_SIDE = 0;
 
 var CURRENT_SUMMARY_LANG = 0;
 
+var CURRENT_ALT_INDEX = 0;
+
 //========================//
 //=== Custom Variables ===//
 //========================//
@@ -45,6 +47,7 @@ var placeholderGift = {
     giftNameAlt: "Kurain Buns",
     giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
     giftDescriptionAlt: "Some chestnut manju. Each bun is in the shape of a magatama and is blessed by a certain spirital medium. It is said that eating it will replenish your spiritual energy.",
+    numOfAlt: 2,
     artist: "2"
 }
 
@@ -61,8 +64,18 @@ function getOcUrl(oc) {
 }
 
 function getGiftUrl(gift) {
-    if (YEAR != '0000' && dataMasking) { // set placeholder gift
+
+    //======= set placeholder gift =======
+    if (YEAR != '0000' && dataMasking) { 
+        if(CURRENT_ALT_INDEX > 0 ){
+            return "assets/placeholder-"+ CURRENT_ALT_INDEX + ".png";
+        }
         return "assets/placeholder.png";
+    }
+    //====================================
+
+    if(CURRENT_ALT_INDEX > 0 ){
+        return "assets/" + YEAR + "/item/" + ENTRIES.indexOf(gift) +"-"+ CURRENT_ALT_INDEX + ".png";
     }
     return "assets/" + YEAR + "/item/" + ENTRIES.indexOf(gift) + ".png";
 }
@@ -147,13 +160,38 @@ function displayItemModal(entry) {
     itemModalHtml += "<div class='itemSummary_inner'>" + entry.giftDescription + "</div>";
     itemModalHtml += "</div>";
 
+    itemModalHtml += "<div class='itemArtWrap'>";
     itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(entry) + "' alt='item' draggable='false' >";
-
+    if(entry.numOfAlt>0){
+        itemModalHtml += "<div class='itemArtList'>";
+        for (let i = 0; i < entry.numOfAlt+1 ; i++) {
+            itemModalHtml += "<span>◆</span>";
+        }
+        itemModalHtml += "</div>";
+    }
+    itemModalHtml += "</div>";
     itemModalHtml += "</div>";
 
     $(".modal_content").html(itemModalHtml);
     $(document.body).addClass("noscroll");
     setUpTraslateToggle(entry);
+    setUpGiftAltArt(entry);
+    //setUpRefImageModalClickEvents(entry);
+}
+
+function setUpGiftAltArt(entry) {
+    handleAltArtIndicator();
+    $(".itemArt").click(function () {
+        if(entry["numOfAlt"] != undefined){
+            CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
+            $(".itemArt")
+                .fadeOut(130, function() {
+                    $(".itemArt").attr('src', getGiftUrl(entry) );
+                    handleAltArtIndicator();
+                })
+                .fadeIn(130);
+        }
+    })
 }
 
 function getGiftLogHtml(currentOC, entry) {
@@ -171,6 +209,27 @@ function getGiftLogHtml(currentOC, entry) {
     logHtml += "</li>";
     return logHtml;
 }
+
+
+// This is an extra modal for future use
+// when ppl starts submitting detailed ref sheet for gift
+function setUpRefImageModalClickEvents(entry) {
+    $(".testLink").click(function () {
+        var modalHtml = "";
+        $(".modal2").removeClass("hide");
+
+        modalHtml += "<div class='ref_wrap'>"
+        modalHtml += "<img class='ref' src='" + "" + "'>"
+        modalHtml += "</div>";
+        $(".modal2_content").html(modalHtml);
+    })
+
+    //Events on modal close
+    $(".modal2_bg").click(function () {
+        $(".modal2").addClass("hide");
+    })
+}
+
 
 //=================================//
 //=== Randomize and Set Grid BG ===//
@@ -331,7 +390,9 @@ function setUpFlipEvent() {
         $(".modal").addClass("hide");
         $(document.body).removeClass("noscroll");
         CURRENT_SUMMARY_LANG = 0;
-        //only do the rest when the long click is on a card
+        CURRENT_ALT_INDEX = 0;
+
+        // only do the rest when this modal was a result of a lottery draw
         if (currentGiftCard) {
             //flip card
             doCardFlip(currentGiftCard.parent(".gridItem_inner"))
@@ -470,6 +531,12 @@ function triggerEnding() {
 
 function extraStyle() {
     $('.oc img').attr('draggable', false);
+}
+
+
+function handleAltArtIndicator(){
+    $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white' );
+    $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(82, 68, 61, 0.4)" );
 }
 
 function setUpCursor(){

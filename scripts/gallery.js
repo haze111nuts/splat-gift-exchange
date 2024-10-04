@@ -73,6 +73,9 @@ function setUpGridStyle(){
         // delay style for each grid tem
         $(".grid-item:nth-child(" + (i + 1) + ") .cardInner")
         .css("transition-delay", i * 0.03 + "s");
+
+        // $(".grid-item:nth-child(" + (i + 1) + ") .cardBG")
+        // .css("background-color",ART_COLOR[i]);
     }
 }
 
@@ -182,15 +185,15 @@ function setupStuff() {
 }
 
 function hideScrollBar(){
-    console.log("!");
     $('body').width($('body').width());
     $('body').css('overflow', 'hidden');
     $('.modal').css('display', 'block');
+    $('.decor_R').css('right','10px');
 }
 function resetScrollBar(){
     $('body, .modal').removeAttr('style')
+    $('.decor_R').css('right','0px');
 }
-
 //======================//
 //===                ===//
 //=== Ready Function ===//
