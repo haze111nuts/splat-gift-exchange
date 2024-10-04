@@ -173,13 +173,15 @@ function displayItemModal(entry) {
 function setUpGiftAltArt(entry) {
     handleAltArtIndicator();
     $(".itemArt").click(function () {
-        CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt)? CURRENT_ALT_INDEX+1 : 0;
-        $(".itemArt")
-            .fadeOut(150, function() {
-                $(".itemArt").attr('src', getGiftUrl(entry) );
-                handleAltArtIndicator();
-            })
-            .fadeIn(150);
+        if(entry["numOfAlt"] != undefined){
+            CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
+            $(".itemArt")
+                .fadeOut(130, function() {
+                    $(".itemArt").attr('src', getGiftUrl(entry) );
+                    handleAltArtIndicator();
+                })
+                .fadeIn(130);
+        }
     })
 }
 
