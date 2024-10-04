@@ -35,6 +35,7 @@ body {
 	padding: 0;
 	margin: 0;
 	transition: all 0.14s ease-in;
+	overflow-x: hidden;
 }
 
 a {
@@ -47,20 +48,64 @@ a {
 
 .day {
 	background-color: $ACCENT5;
-	background-image: url(../assets/0000/bg_top.png);
-	background-position: top center;
+	background-position: top left, top right;
 	background-repeat: no-repeat;
 	background-size: 100%;
 }
 
 .night {
 	background-color: #867e7e;
-	background-image: url(../assets/0000/bg_top.png);
 	background-position: top center;
 	background-repeat: no-repeat;
 	background-size: 100%;
 }
 
+.decor{
+	position: absolute;
+	width: 100%;
+
+	> div{
+		background-repeat: no-repeat;
+		z-index: -500;
+		background-size: 100%;
+		height: 390px;
+		position: absolute;
+		top: 0;
+	}
+	.decor_L{
+		background-image: url(../assets/banner_L.png);
+		// width: 41.2%;
+		width: 791px;
+		left: 0;
+	}
+	.decor_R{
+		background-image: url(../assets/banner_R.png);
+		// width: 40.8%;
+		width: 783px;
+		right: 0;
+	}
+}
+
+.logo {
+	padding: 115px 0 60px 0;
+	position: relative;
+	.logo_bg {
+		width: 380px;
+		height: 330px;
+		top: 0;
+		left: 50%;
+		position: absolute;
+		transform: translate(-50%, 0);
+		background-image: url(../assets/title.png);
+		background-position: center center;
+		background-size: 100% auto;
+		background-repeat: no-repeat;
+		z-index: -1;
+	}
+}
+
+
+//大標題
 h1 {
 	margin: 0 0 0.25rem;
 	font-size: 2.5rem;
@@ -69,7 +114,9 @@ h1 {
 	color: #333;
 	font-family: "DFPT_AZ5", sans-serif;
 	// font-family: ‘Noto Sans TC’, sans-serif;
+	z-index: 5;
 }
+//大標題上面的中標題
 h3 {
 	font-size: 1.3rem;
 	font-weight: 600;
@@ -79,6 +126,7 @@ h3 {
 	// text-shadow: 0 0 5px rgba(0, 0, 0, 0.24);
 	margin: 0 0 10px 0;
 }
+//英文副標題
 h4 {
 	margin: 0 0 1.2rem;
 	font-size: 1.25rem;
@@ -100,21 +148,6 @@ p {
 	color: #333;
 }
 
-.banner {
-	padding: 40px 0 60px 0;
-	position: relative;
-	.banner_bg {
-		width: 400px;
-		height: 220px;
-		top: 40%;
-		left: 50%;
-		position: absolute;
-		transform: translate(-50%, -50%) scaleX(1.2);
-		background-color: white;
-		clip-path: polygon(100% 0, 0 0, 50% 100%);
-		z-index: -1;
-	}
-}
 
 .navbar {
 	z-index: 10;
@@ -511,6 +544,47 @@ p {
 	}
 }
 
+@media only screen and (max-width: 1574px) {
+	.decor{
+		.decor_L{
+			width: 50%;
+			background-position-x: -100px;
+		}
+		.decor_R{
+			width: 50%;
+			background-position-x: 100px;
+		}
+	}
+}
+
+@media only screen and (max-width: 1024px) {
+	.decor{
+		> div{
+			background-size: 730px auto !important;
+		}
+		.decor_L{
+			width: 100%;
+			background-position-x: -420px;
+		}
+		.decor_R{
+			background-position-x: 100px;
+		}
+	}
+}
+
+@media only screen and (max-width: 765px) {
+	.logo .logo_bg {
+		z-index: 100;
+	}
+	.decor{
+		position: fixed;
+		z-index: -1;
+		.decor_L{
+			background-position-x: -520px;
+		}
+	}
+}
+
 @media only screen and (max-height: 765px) and (max-width: 959px) {
 	.itemArt {
 		height: 200px !important;
@@ -519,14 +593,17 @@ p {
 }
 
 @media only screen and (max-width: 481px) {
+	.decor{
+		.decor_L{
+			background-position-x: -530px;
+		}
+		.decor_R{
+			background-position-x: 50px;
+		}
+	}
 	.itemArt {
 		height: 200px !important;
 		width: 200px !important;
-	}
-	.banner .banner_bg {
-		width: 100%;
-		left: 0;
-		transform: translate(0, -50%) scaleX(1);
 	}
 	h1 {
 		font-size: 8vw;

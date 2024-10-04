@@ -73,6 +73,9 @@ function setUpGridStyle(){
         // delay style for each grid tem
         $(".grid-item:nth-child(" + (i + 1) + ") .cardInner")
         .css("transition-delay", i * 0.03 + "s");
+
+        // $(".grid-item:nth-child(" + (i + 1) + ") .cardBG")
+        // .css("background-color",ART_COLOR[i]);
     }
 }
 
@@ -190,7 +193,6 @@ function hideScrollBar(){
 function resetScrollBar(){
     $('body, .modal').removeAttr('style')
 }
-
 //======================//
 //===                ===//
 //=== Ready Function ===//

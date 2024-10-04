@@ -393,7 +393,7 @@ a:hover {
   position: absolute;
   top: 65%;
   left: -320%;
-  transform: rotate(1deg);
+  transform: rotate(3deg);
 }
 .indicator .icon {
   z-index: 84;
