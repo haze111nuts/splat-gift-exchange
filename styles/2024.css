@@ -338,6 +338,7 @@ p {
 .itemPanel .itemSummary {
   color: rgb(58, 49, 45);
 }
+
 .modal .modal_bg {
   background-color: rgb(58, 49, 45) !important;
   opacity: 0.5;
@@ -467,6 +468,12 @@ p {
   }
 }
 @media only screen and (max-width: 481px) {
+  .logo {
+    width: 100%;
+  }
+  .logo .logo_bg {
+    width: 90%;
+  }
   .decor .decor_L {
     background-position-x: -530px;
   }

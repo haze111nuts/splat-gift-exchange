@@ -273,9 +273,9 @@ p {
 		transform: scale(1.05);
 		transition: all 0.4s;
 	}
-	&:hover .cardBG {
-		// background-color: $ACCENT4 !important;
-	}
+	// &:hover .cardBG {
+	// 	background-color: $ACCENT4 !important;
+	// }
 	.cardInner {
 		position: relative;
 		width: 100%;
@@ -414,8 +414,7 @@ p {
 
 .itemPanel .itemSummary {
 	color: $ACCENT1;
-	.itemTitle {
-	}
+	// .itemTitle {}
 }
 
 .modal {
@@ -593,6 +592,12 @@ p {
 }
 
 @media only screen and (max-width: 481px) {
+	.logo{
+		width: 100%;
+		.logo_bg {
+			width: 90%;
+		}
+	}
 	.decor{
 		.decor_L{
 			background-position-x: -530px;
