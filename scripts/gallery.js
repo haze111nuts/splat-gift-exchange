@@ -185,13 +185,14 @@ function setupStuff() {
 }
 
 function hideScrollBar(){
-    console.log("!");
     $('body').width($('body').width());
     $('body').css('overflow', 'hidden');
     $('.modal').css('display', 'block');
+    $('.decor_R').css('right','10px');
 }
 function resetScrollBar(){
     $('body, .modal').removeAttr('style')
+    $('.decor_R').css('right','0px');
 }
 //======================//
 //===                ===//
