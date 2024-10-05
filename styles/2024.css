@@ -32,16 +32,10 @@ a:hover {
 
 .day {
   background-color: rgb(219, 213, 202);
-  background-position: top left, top right;
-  background-repeat: no-repeat;
-  background-size: 100%;
 }
 
 .night {
   background-color: rgb(219, 213, 202);
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: 100%;
 }
 
 .decor {
@@ -132,8 +126,8 @@ p {
   position: sticky;
   top: 0;
   transition: all 0.2s ease-in;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 }
 .navbar .exchangeButton {
   height: 110px;
@@ -368,14 +362,16 @@ p {
 
 .footer {
   width: 100%;
-  border-top: 20px solid #e6e6e6;
+  border-top: 20px solid #fcfcfc;
   background-color: #8b867a;
-  padding: 20px;
   margin-top: 20px;
   color: #fcfcfc;
   text-align: center;
   font-size: 0.9em;
   font-family: "Noto Sans TC", sans-serif;
+}
+.footer .content {
+  padding: 20px;
 }
 .footer a {
   cursor: pointer;
@@ -383,6 +379,30 @@ p {
 }
 .footer a:hover {
   color: rgb(126, 214, 255);
+}
+.footer .snowdeco {
+  width: 100%;
+}
+.footer .snowdeco > div {
+  z-index: -500;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.footer .snowdeco .snowocto {
+  left: -30px;
+  width: 450px;
+  height: 370px;
+  background-image: url(../assets/bg-deco1.png);
+  transform: translateY(-270px) scale(0.55);
+  opacity: 0.7;
+}
+.footer .snowdeco .snowika {
+  right: 0px;
+  width: 380px;
+  height: 325px;
+  background-image: url(../assets/bg-deco2.png);
+  transform: translateY(-225px) scale(0.4);
 }
 
 .noscroll {
@@ -405,12 +425,13 @@ p {
 }
 
 .modal .close {
+  z-index: 888;
   cursor: pointer;
   position: absolute;
   right: 10px;
   top: 10px;
-  width: 90px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
   opacity: 0.6;
   transition: all 0.3s ease-in;
 }
@@ -419,9 +440,9 @@ p {
 }
 .modal .close:before, .modal .close:after {
   position: absolute;
-  left: 45px;
+  left: 35px;
   content: " ";
-  height: 90px;
+  height: 70px;
   width: 2px;
   background-color: #dfdfdf;
 }
@@ -577,8 +598,8 @@ p {
     width: 90%;
   }
   .itemArt {
-    width: 300px !important;
-    height: 300px !important;
+    width: 290px !important;
+    height: 290px !important;
   }
   .decor .decor_L {
     background-position-x: -530px;
@@ -591,6 +612,9 @@ p {
   }
   h4 {
     font-size: 5vw;
+  }
+  .footer .snowdeco .snowocto {
+    opacity: 0;
   }
 }
 
