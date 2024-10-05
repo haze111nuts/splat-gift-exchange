@@ -68,7 +68,7 @@ a:hover {
 }
 
 .logo {
-  padding: 115px 0 130px 0;
+  padding: 115px 0 150px 0;
   position: relative;
 }
 .logo .logo_bg {
@@ -211,7 +211,7 @@ p {
   max-width: 1200px;
   height: 100%;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 50px 0;
   list-style: none;
 }
 .grid .grid-item {
@@ -366,6 +366,25 @@ p {
   width: 72px;
 }
 
+.footer {
+  width: 100%;
+  border-top: 20px solid #e6e6e6;
+  background-color: #8b867a;
+  padding: 20px;
+  margin-top: 20px;
+  color: #fcfcfc;
+  text-align: center;
+  font-size: 0.9em;
+  font-family: "Noto Sans TC", sans-serif;
+}
+.footer a {
+  cursor: pointer;
+  color: #dfb982;
+}
+.footer a:hover {
+  color: rgb(126, 214, 255);
+}
+
 .noscroll {
   overflow: hidden;
 }
@@ -379,6 +398,39 @@ p {
   color: rgb(58, 49, 45);
 }
 
+.langSwitch {
+  font-size: 1.15em !important;
+  top: -2px !important;
+  cursor: pointer;
+}
+
+.modal .close {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 90px;
+  height: 90px;
+  opacity: 0.6;
+  transition: all 0.3s ease-in;
+}
+.modal .close:hover {
+  opacity: 1;
+}
+.modal .close:before, .modal .close:after {
+  position: absolute;
+  left: 45px;
+  content: " ";
+  height: 90px;
+  width: 2px;
+  background-color: #dfdfdf;
+}
+.modal .close:before {
+  transform: rotate(45deg);
+}
+.modal .close:after {
+  transform: rotate(-45deg);
+}
 .modal .modal_bg {
   background-color: rgb(58, 49, 45) !important;
   opacity: 0.5;
@@ -399,14 +451,20 @@ p {
 }
 
 .author {
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-family: "DFPT_AZ5", sans-serif;
   color: white;
   text-align: center;
-  padding-top: 10px;
+  padding: 3px 0 5px 0;
 }
 .author a {
   cursor: pointer;
+  text-decoration: underline;
+  color: #dbb781;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+.author a:hover {
+  color: rgb(126, 214, 255);
 }
 
 ::selection {
