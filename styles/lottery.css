@@ -47,7 +47,7 @@ body {
   overflow: hidden;
   background-position: center 40%;
   background-size: auto;
-  background-image: url(../assets/lottery/bg2.jpg);
+  background-image: url(../assets/lottery/bg.jpg);
 }
 
 a {
@@ -393,7 +393,7 @@ a:hover {
   position: absolute;
   top: 65%;
   left: -320%;
-  transform: rotate(3deg);
+  transform: rotate(1deg);
 }
 .indicator .icon {
   z-index: 84;
