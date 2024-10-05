@@ -80,15 +80,19 @@ function setUpGridStyle(){
 }
 
 function setUpFlipToggle() {
-    $(".flipButton").click(function () {
+    $(".exchangeButton").click(function () {
         if (displayGroup === "sender") {
             //set to getter
             $(".cardInner").css("transform", "rotateY(180deg)");
             displayGroup = "getter";
             $("body").addClass("night");
             $("body").removeClass("day");
-            $(".flipButtonBG2").css("width", "50%");
-            $(".flipButtonBG").css("width", "0");
+
+            $(".exchangeIcon").css("left", "200px");
+            $(".exchangeBar_active").css("width", "284px");
+            $(".exchangeIcon img").attr('src', "assets/changeIcon_open.png" );
+
+            // $(".grid-item").css("background-color", "#fff");
             // $(".cardBG").css("transform", "scale(1.05) rotate(-93deg)");
             // $(".cardBG").css("background-color", "#94cbdb");
             
@@ -98,8 +102,12 @@ function setUpFlipToggle() {
             displayGroup = "sender";
             $("body").addClass("day");
             $("body").removeClass("night");
-            $(".flipButtonBG").css("width", "50%");
-            $(".flipButtonBG2").css("width", "0");
+
+            $(".exchangeIcon").css("left", "-80px");
+            $(".exchangeBar_active").css("width", "0px");
+            $(".exchangeIcon img").attr('src', "assets/changeIcon.png" );
+
+            // $(".grid-item").css("background-color", "#b38242");
             // $(".cardBG").css("transform", "scale(1.05) rotate(3deg)");
             // $(".cardBG").css("background-color", "#b37c3f");
             

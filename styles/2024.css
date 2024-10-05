@@ -38,7 +38,7 @@ a:hover {
 }
 
 .night {
-  background-color: #867e7e;
+  background-color: rgb(219, 213, 202);
   background-position: top center;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -68,12 +68,12 @@ a:hover {
 }
 
 .logo {
-  padding: 115px 0 60px 0;
+  padding: 115px 0 130px 0;
   position: relative;
 }
 .logo .logo_bg {
   width: 380px;
-  height: 330px;
+  height: 340px;
   top: 0;
   left: 50%;
   position: absolute;
@@ -130,39 +130,73 @@ p {
   position: sticky;
   top: 0;
   font-size: medium;
+  height: 110px;
 }
-.navbar .flipButton {
-  cursor: pointer;
-  font-family: "DFPT_AZ5", sans-serif;
-  text-decoration: wavy;
-  text-align: center;
-  display: flex;
-  transition: all 0.14s ease-in;
-}
-.navbar .flipButton .sender,
-.navbar .flipButton .getter {
-  z-index: 10;
-  flex: 1;
-  border-radius: 100px;
-}
-.navbar .flipButton .sender > div,
-.navbar .flipButton .getter > div {
-  position: relative;
-  margin: 0 auto;
-  width: 100px;
-  height: 100px;
-  background: #b38242;
-  background-image: url(../assets/0000/bg.png);
-  border-radius: 100px;
-}
-.navbar .flipButton .sender > div .text,
-.navbar .flipButton .getter > div .text {
-  position: absolute;
-  top: 50%;
+.navbar .exchangeButton {
+  height: 110px;
+  width: 284px;
   left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  cursor: pointer;
+}
+.navbar .exchangeButton .exchangeBar {
+  background-image: url(../assets/changebar.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+  width: 284px;
+  height: 60px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
 }
+.navbar .exchangeButton .exchangeBar_active {
+  background-image: url(../assets/changebar_active.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+  width: 0px;
+  height: 60px;
+  position: relative;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  transition: all 0.2s;
+}
+.navbar .exchangeButton .exchangeIcon {
+  width: 166px;
+  position: absolute;
+  left: -80px;
+  top: -20%;
+  transform: scale(0.95);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.navbar .exchangeButton .exchangeIcon img {
+  animation: wiggle 1s infinite;
+}
+.navbar .exchangeButton .exchangeIcon:hover {
+  transform: scale(1.02);
+}
 
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+  85% {
+    transform: rotate(10deg);
+  }
+  95% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 .grid {
   display: flex;
   flex-direction: row;
@@ -174,7 +208,7 @@ p {
   max-width: 1200px;
   height: 100%;
   margin: 0 auto;
-  padding: 50px 0;
+  padding: 40px 0;
   list-style: none;
 }
 .grid .grid-item {
@@ -215,6 +249,9 @@ p {
   background-color: #684a29;
   transform: scale(1.05);
   transition: all 0.4s;
+}
+.card:hover .cardBG {
+  background-color: #c4a87f !important;
 }
 .card .cardInner {
   position: relative;
@@ -367,6 +404,11 @@ p {
 }
 .author a {
   cursor: pointer;
+}
+
+::selection {
+  color: rgb(238, 236, 231);
+  background: rgb(58, 49, 45);
 }
 
 /* Firefox */
