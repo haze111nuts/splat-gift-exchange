@@ -127,10 +127,13 @@ p {
 
 .navbar {
   z-index: 10;
-  position: sticky;
-  top: 0;
   font-size: medium;
   height: 110px;
+  position: sticky;
+  top: 0;
+  transition: all 0.2s ease-in;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 .navbar .exchangeButton {
   height: 110px;
@@ -441,13 +444,12 @@ p {
     height: max-content !important;
     text-align: center;
   }
-  .itemPanel .itemArt_wapper {
+  .itemPanel .itemArtWrap {
     width: 100%;
-  }
-  .itemPanel .itemArt {
+    height: unset !important;
     position: static !important;
-    transform: translate(0, 0) rotateZ(0) !important;
     margin: 0 auto !important;
+    transform: translate(0, 0) !important;
   }
   .itemPanel .itemSummary {
     position: relative !important;
@@ -503,28 +505,28 @@ p {
     background-position-x: -520px;
   }
 }
-@media only screen and (max-height: 765px) and (max-width: 959px) {
-  .itemArt {
-    height: 200px !important;
-    width: 200px !important;
-  }
-}
 @media only screen and (max-width: 481px) {
+  .exchangeIcon, .exchangeIcon img {
+    display: none;
+  }
+  .navbar {
+    height: 96px;
+  }
   .logo {
     width: 100%;
   }
   .logo .logo_bg {
     width: 90%;
   }
+  .itemArt {
+    width: 300px !important;
+    height: 300px !important;
+  }
   .decor .decor_L {
     background-position-x: -530px;
   }
   .decor .decor_R {
     background-position-x: 50px;
-  }
-  .itemArt {
-    height: 200px !important;
-    width: 200px !important;
   }
   h1 {
     font-size: 8vw;

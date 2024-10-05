@@ -154,10 +154,14 @@ p {
 
 .navbar {
 	z-index: 10;
-	position: sticky;
-	top: 0;
 	font-size: medium;
 	height: 110px;
+	position: sticky;
+	top: 0;
+    transition: all 0.2s ease-in;
+
+	backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
 	.exchangeButton{
 		height: 110px;
@@ -167,7 +171,7 @@ p {
 		transform: translate(-50%,-50%);
 		position: absolute;
 		cursor: pointer;
-		
+
 		.exchangeBar{
 			background-image: url(../assets/changebar.png);
 			background-repeat: no-repeat;
@@ -497,11 +501,6 @@ p {
 	.art_wrap {
 		width: 90%;
 	}
-	// .art {
-	// 	width: 90%;
-	// 	height: auto;
-	// }
-
 	.itemPanel {
 		//still absolute
 		width: 100% !important;
@@ -510,14 +509,12 @@ p {
 		// top: 0 !important;
 		// transform: translate(-50%,0) !important;
 
-		.itemArt_wapper {
+		.itemArtWrap {
 			width: 100%;
-		}
-		.itemArt {
-			//STATIC***
+			height: unset !important;
 			position: static !important;
-			transform: translate(0, 0) rotateZ(0) !important;
 			margin: 0 auto !important;
+			transform: translate(0, 0) !important;
 		}
 		.itemSummary {
 			//STATIC***
@@ -593,19 +590,22 @@ p {
 	}
 }
 
-@media only screen and (max-height: 765px) and (max-width: 959px) {
-	.itemArt {
-		height: 200px !important;
-		width: 200px !important;
-	}
-}
-
 @media only screen and (max-width: 481px) {
+	.exchangeIcon, .exchangeIcon img{
+		display: none;
+	}
+	.navbar{
+		height: 96px;
+	}
 	.logo{
 		width: 100%;
 		.logo_bg {
 			width: 90%;
 		}
+	}
+	.itemArt{
+		width: 300px !important;
+		height: 300px !important;
 	}
 	.decor{
 		.decor_L{
@@ -614,10 +614,6 @@ p {
 		.decor_R{
 			background-position-x: 50px;
 		}
-	}
-	.itemArt {
-		height: 200px !important;
-		width: 200px !important;
 	}
 	h1 {
 		font-size: 8vw;

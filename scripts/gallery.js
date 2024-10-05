@@ -5,6 +5,10 @@
 
 var YEAR = "0000";
 
+var CURRENT_SUMMARY_LANG = 0;
+
+var CURRENT_ALT_INDEX = 0;
+
 //============================//
 //=== Functional Variables ===//
 //============================//
@@ -20,6 +24,9 @@ function getArtUrl(id, group) {
 }
 
 function getGiftUrl(id) {
+    if(CURRENT_ALT_INDEX > 0 ){
+        return "assets/" + YEAR + "/item/" + id +"-"+ CURRENT_ALT_INDEX + ".png";
+    }
     return "assets/" + YEAR + "/item/" + id + ".png";
 }
 
@@ -124,11 +131,16 @@ function setUpItemModalClickEvents(){
             var itemModalHtml = "";
 
             itemModalHtml += "<div class='itemPanel'>";
-
-            itemModalHtml += "<div class='itemArt_wapper'>";
+            itemModalHtml += "<div class='itemArtWrap'>";
             itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(dataID) + "' alt='item' draggable='false' >";
+            if(ENTRIES[dataID].numOfAlt>0){
+                itemModalHtml += "<div class='itemArtList'>";
+                for (let i = 0; i < ENTRIES[dataID].numOfAlt+1 ; i++) {
+                    itemModalHtml += "<span>◆</span>";
+                }
+                itemModalHtml += "</div>";
+            }
             itemModalHtml += "</div>";
- 
             itemModalHtml += "<div class='itemSummary'>";
             itemModalHtml += "<div class='itemTitle'>";
             itemModalHtml += "<div class='itemTitle1'>"+ENTRIES[dataID].giftName+"</div>";
@@ -140,12 +152,34 @@ function setUpItemModalClickEvents(){
 
             $(".modal_content").html(itemModalHtml);
             // $(document.body).addClass("noscroll");
-            hideScrollBar();
 
+            hideScrollBar();
+            setUpGiftAltArt(ENTRIES[dataID],dataID);
             setupCloseModalEvents();
         })
     })
 }
+
+function setUpGiftAltArt(entry,id) {
+    handleAltArtIndicator();
+    $(".itemArt").click(function () {
+        if(entry["numOfAlt"] != undefined){
+            CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
+            $(".itemArt")
+                .fadeOut(130, function() {
+                    $(".itemArt").attr('src', getGiftUrl(id) );
+                    handleAltArtIndicator();
+                })
+                .fadeIn(130);
+        }
+    })
+}
+
+function handleAltArtIndicator(){
+    $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white' );
+    $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(82, 68, 61, 0.4)" );
+}
+
 
 function setUpArtModalClickEvents() {
     $(".cardFront").each(function () {
@@ -178,10 +212,12 @@ function setUpArtModalClickEvents() {
 }
 
 function setupCloseModalEvents(){
-    $(".modal_bg, .itemArt_wapper").click(function () {
+    $(".modal_bg").click(function () {
         $(".modal").addClass("hide");
         //$(document.body).removeClass("noscroll");
         resetScrollBar();
+        CURRENT_SUMMARY_LANG = 0;
+        CURRENT_ALT_INDEX = 0;
     })
 }
 

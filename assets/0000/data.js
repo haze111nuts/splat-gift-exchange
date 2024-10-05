@@ -33,6 +33,7 @@ const ENTRIES = [
         giftNameAlt: "Grape Juice",
         giftDescription: "用特產巨峰葡萄做的100%無濃縮果汁﹐裝在漂亮的玻璃瓶裡面。當然不含酒精。",
         giftDescriptionAlt: "",
+        numOfAlt: 2,
         artist: "1"
     },
     {
