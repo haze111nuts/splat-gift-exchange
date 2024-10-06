@@ -432,6 +432,17 @@ function shuffleHostQuotes() {
     }, 4000);
 }
 
+function setUpCurtainEvent(){
+    $(".curtain").click(function () {
+        $(".curtain").css("top", "-2000px");
+
+        setTimeout(
+            function() {
+                $(".curtain").css("display", "none");
+            }, 300);
+    });
+}
+
 
 //=============================//
 //=== Handle traslate Event ===//
@@ -615,6 +626,7 @@ $(document).ready(function () {
     extraStyle();
     printSnow();
     setUpCursor();
+    setUpCurtainEvent();
 });
 
 $(document).keydown(function (keyPressed) {
