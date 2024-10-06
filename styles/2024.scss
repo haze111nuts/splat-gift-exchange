@@ -56,16 +56,13 @@ a {
 }
 
 
-
 //====================//
 //===    BANNER    ===//
 //====================//
-
 .decor{
-	position: absolute;
+	position: relative;
 	width: 100%;
-
-	> div{
+	.decor_L, .decor_R{
 		background-repeat: no-repeat;
 		z-index: -500;
 		background-size: 100%;
@@ -84,7 +81,7 @@ a {
 		// width: 40.8%;
 		width: 783px;
 		right: 0;
-	}
+	}	
 }
 
 .logo {
@@ -102,7 +99,7 @@ a {
 		background-size: 100% auto;
 		background-repeat: no-repeat;
 		z-index: -1;
-	}
+	}	
 }
 
 //大標題
@@ -419,6 +416,7 @@ h4 {
 	}
 	.snowdeco{
 		width: 100%;
+		position: relative;
 		> div{
 			z-index: -500;
 			position: absolute;
@@ -575,8 +573,6 @@ h4 {
 //===                   ===//
 //=========================//
 
-@media only screen and (max-width: 1200px) {
-}
 
 @media only screen and (max-width: 959px) {
 	.art_wrap {

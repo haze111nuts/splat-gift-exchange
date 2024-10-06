@@ -39,10 +39,10 @@ a:hover {
 }
 
 .decor {
-  position: absolute;
+  position: relative;
   width: 100%;
 }
-.decor > div {
+.decor .decor_L, .decor .decor_R {
   background-repeat: no-repeat;
   z-index: -500;
   background-size: 100%;
@@ -371,6 +371,7 @@ h4 {
 }
 .footer .snowdeco {
   width: 100%;
+  position: relative;
 }
 .footer .snowdeco > div {
   z-index: -500;
