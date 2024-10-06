@@ -62,12 +62,12 @@ a:hover {
 }
 
 .logo {
-  padding: 115px 0 150px 0;
+  padding: 120px 0 145px 0;
   position: relative;
 }
 .logo .logo_bg {
   width: 380px;
-  height: 340px;
+  height: 350px;
   top: 0;
   left: 50%;
   position: absolute;
@@ -106,17 +106,6 @@ h4 {
   font-family: "DFPT_AZ5", sans-serif;
   color: white;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-p {
-  max-width: 800px;
-  padding: 0px 20px;
-  margin: 0 auto;
-  font-size: 0.875rem;
-  font-weight: 400;
-  text-align: center;
-  letter-spacing: 0.25px;
-  color: #333;
 }
 
 .navbar {
@@ -205,7 +194,7 @@ p {
   max-width: 1200px;
   height: 100%;
   margin: 0 auto;
-  padding: 50px 0;
+  padding: 53px 0;
   list-style: none;
 }
 .grid .grid-item {
@@ -405,10 +394,6 @@ p {
   transform: translateY(-225px) scale(0.4);
 }
 
-.noscroll {
-  overflow: hidden;
-}
-
 .hide {
   opacity: 0 !important;
   z-index: -1 !important;
@@ -491,6 +476,10 @@ p {
 ::selection {
   color: rgb(238, 236, 231);
   background: rgb(58, 49, 45);
+}
+
+.noscroll {
+  overflow: hidden;
 }
 
 /* Firefox */
