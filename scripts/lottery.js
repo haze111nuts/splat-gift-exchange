@@ -442,16 +442,15 @@ function shuffleHostQuotes() {
     }, 4000);
 }
 
-function setUpCurtainEvent(){
-    $(".curtain").click(function () {
-        $(".curtain").css("top", "-2000px");
-
-        setTimeout(
-            function() {
-                $(".curtain").css("display", "none");
-            }, 300);
-    });
-}
+// function setUpCurtainEvent(){
+//     $(".curtain").click(function () {
+//         $(".curtain").css("top", "-2000px");
+//         setTimeout(
+//             function() {
+//                 $(".curtain").css("display", "none");
+//             }, 300);
+//     });
+// }
 
 
 //=============================//
@@ -498,11 +497,18 @@ function flipHost(imgUrl) {
 
 function handleKeyPress(keyPressed) {
     var letter = String.fromCharCode(keyPressed.keyCode).toUpperCase();
+    // console.log("key pressed: "+ letter);
     if (EMOTES.includes(letter) && HOST_CURRENT_LETTER !== letter) {
         flipHost(getHostEmoteUrl(letter));
         HOST_CURRENT_LETTER = letter;
     }
-
+    if(letter == "8"){
+        $(".waiting").css("top", "-2000px");
+        setTimeout(
+            function() {
+                $(".waiting").css("display", "none");
+            }, 300);
+    }
 }
 
 //====================//
@@ -636,7 +642,7 @@ $(document).ready(function () {
     extraStyle();
     printSnow();
     setUpCursor();
-    setUpCurtainEvent();
+    // setUpCurtainEvent();
 });
 
 $(document).keydown(function (keyPressed) {
