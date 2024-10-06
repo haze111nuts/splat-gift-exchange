@@ -83,6 +83,7 @@ a {
     height: 100%;
     backdrop-filter: blur(35px);
     transition: 0.5s all ease-in;
+    background-color: #493e3e46;
     top:0;
     > div{
         position: absolute;
@@ -90,15 +91,21 @@ a {
         top:50%;
         transform: translate(-50%,-50%);
         text-align: center;
-        span{
+        .starting{
             text-shadow:
-                3px 3px 0 #fdfae5,
-                -3px 3px 0 #fdfae5,
-                -3px -3px 0 #fdfae5,
-                3px -3px 0 #fdfae5;
+                3px 3px 0 #f5ece1,
+                -3px 3px 0 #f5ece1,
+                -3px -3px 0 #f5ece1,
+                3px -3px 0 #f5ece1;
             font-size: 6.5em;
             color: $ACCENT2;
             font-family: "DFPT_AZ5", sans-serif;
+        }
+        .divider{
+            border: 1px solid white;
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 5px;
         }
         p{
             text-align: left;
@@ -106,7 +113,15 @@ a {
             font-family: "DFPT_AZ5", sans-serif;
             font-size: 1.58rem;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-            line-height: 80%;
+            line-height: 110%;
+            margin: 20px auto;
+            span{
+                color: #eedfd5;
+                opacity: 0.85;
+                padding-left: 20px;
+                font-size: 1.4rem;
+                text-shadow: 1px 1px 6px rgba(0, 0, 0, 1);
+            }
         }
     }
 }
