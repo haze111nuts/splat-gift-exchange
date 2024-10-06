@@ -259,23 +259,19 @@ function setupCloseModalEvents(){
 //=============//
 
 function hideScrollBar(){
+    //prevent body content to shift right when scrollbar is gone
     $('body').width($('body').width());
     $('body').css('overflow', 'hidden');
-    $('.modal').css('display', 'block');
-    var windowWidth = $(window).width();
-    if (windowWidth >= 768) {
-        $('.decor_R').css('right','10px');
-    }
-
+    // $('.modal').css('display', 'block');
     
 }
-function resetScrollBar(){
-    $('body, .modal').removeAttr('style')
-    var windowWidth = $(window).width();
-    if (windowWidth >= 768) {
-        $('.decor_R').css('right','0px');
-    }
 
+function resetScrollBar(){
+    //fix slight position bump caused by scroll bar
+    setTimeout(
+    function() {
+        $('body').removeAttr('style')
+    }, 250);
 }
 
 function setupStuff() {
