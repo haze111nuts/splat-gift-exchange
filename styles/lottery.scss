@@ -76,7 +76,7 @@ a {
 //===   PRE-STREAM   ===//
 //======================//
 
-.curtain{
+.waiting{
     z-index: 998;
     position: absolute;
     width: 100%;
@@ -85,19 +85,29 @@ a {
     transition: 0.5s all ease-in;
     top:0;
     > div{
-        font-size: 4.5em;
-        color: $ACCENT2;
-        font-family: "DFPT_AZ5", sans-serif;
         position: absolute;
         left:50%;
         top:50%;
         transform: translate(-50%,-50%);
         text-align: center;
-        text-shadow:
-        2px 2px 0 #fff,
-        -2px 2px 0 #fff,
-        -2px -2px 0 #fff,
-        2px -2px 0 #fff;
+        span{
+            text-shadow:
+                3px 3px 0 #fdfae5,
+                -3px 3px 0 #fdfae5,
+                -3px -3px 0 #fdfae5,
+                3px -3px 0 #fdfae5;
+            font-size: 6.5em;
+            color: $ACCENT2;
+            font-family: "DFPT_AZ5", sans-serif;
+        }
+        p{
+            text-align: left;
+            color: white;
+            font-family: "DFPT_AZ5", sans-serif;
+            font-size: 1.58rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+            line-height: 80%;
+        }
     }
 }
 
