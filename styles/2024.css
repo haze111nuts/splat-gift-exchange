@@ -32,16 +32,10 @@ a:hover {
 
 .day {
   background-color: rgb(219, 213, 202);
-  background-position: top left, top right;
-  background-repeat: no-repeat;
-  background-size: 100%;
 }
 
 .night {
-  background-color: #867e7e;
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: 100%;
+  background-color: rgb(219, 213, 202);
 }
 
 .decor {
@@ -68,12 +62,12 @@ a:hover {
 }
 
 .logo {
-  padding: 115px 0 60px 0;
+  padding: 115px 0 150px 0;
   position: relative;
 }
 .logo .logo_bg {
   width: 380px;
-  height: 330px;
+  height: 340px;
   top: 0;
   left: 50%;
   position: absolute;
@@ -127,42 +121,79 @@ p {
 
 .navbar {
   z-index: 10;
+  font-size: medium;
+  height: 110px;
   position: sticky;
   top: 0;
-  font-size: medium;
+  transition: all 0.2s ease-in;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 }
-.navbar .flipButton {
-  cursor: pointer;
-  font-family: "DFPT_AZ5", sans-serif;
-  text-decoration: wavy;
-  text-align: center;
-  display: flex;
-  transition: all 0.14s ease-in;
-}
-.navbar .flipButton .sender,
-.navbar .flipButton .getter {
-  z-index: 10;
-  flex: 1;
-  border-radius: 100px;
-}
-.navbar .flipButton .sender > div,
-.navbar .flipButton .getter > div {
-  position: relative;
-  margin: 0 auto;
-  width: 100px;
-  height: 100px;
-  background: #b38242;
-  background-image: url(../assets/0000/bg.png);
-  border-radius: 100px;
-}
-.navbar .flipButton .sender > div .text,
-.navbar .flipButton .getter > div .text {
-  position: absolute;
-  top: 50%;
+.navbar .exchangeButton {
+  height: 110px;
+  width: 284px;
   left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  cursor: pointer;
+}
+.navbar .exchangeButton .exchangeBar {
+  background-image: url(../assets/changebar.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+  width: 284px;
+  height: 60px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
 }
+.navbar .exchangeButton .exchangeBar_active {
+  background-image: url(../assets/changebar_active.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+  width: 0px;
+  height: 60px;
+  position: relative;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  transition: all 0.2s;
+}
+.navbar .exchangeButton .exchangeIcon {
+  width: 166px;
+  position: absolute;
+  left: -80px;
+  top: -20%;
+  transform: scale(0.95);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.navbar .exchangeButton .exchangeIcon img {
+  animation: wiggle 1s infinite;
+}
+.navbar .exchangeButton .exchangeIcon:hover {
+  transform: scale(1.02);
+}
 
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+  85% {
+    transform: rotate(10deg);
+  }
+  95% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 .grid {
   display: flex;
   flex-direction: row;
@@ -215,6 +246,9 @@ p {
   background-color: #684a29;
   transform: scale(1.05);
   transition: all 0.4s;
+}
+.card:hover .cardBG {
+  background-color: #c4a87f !important;
 }
 .card .cardInner {
   position: relative;
@@ -326,6 +360,51 @@ p {
   width: 72px;
 }
 
+.footer {
+  width: 100%;
+  border-top: 20px solid #fcfcfc;
+  background-color: #8b867a;
+  margin-top: 20px;
+  color: #fcfcfc;
+  text-align: center;
+  font-size: 0.9em;
+  font-family: "Noto Sans TC", sans-serif;
+}
+.footer .content {
+  padding: 20px;
+}
+.footer a {
+  cursor: pointer;
+  color: #dfb982;
+}
+.footer a:hover {
+  color: rgb(126, 214, 255);
+}
+.footer .snowdeco {
+  width: 100%;
+}
+.footer .snowdeco > div {
+  z-index: -500;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.footer .snowdeco .snowocto {
+  left: -30px;
+  width: 450px;
+  height: 370px;
+  background-image: url(../assets/bg-deco1.png);
+  transform: translateY(-270px) scale(0.55);
+  opacity: 0.7;
+}
+.footer .snowdeco .snowika {
+  right: 0px;
+  width: 380px;
+  height: 325px;
+  background-image: url(../assets/bg-deco2.png);
+  transform: translateY(-225px) scale(0.4);
+}
+
 .noscroll {
   overflow: hidden;
 }
@@ -339,6 +418,40 @@ p {
   color: rgb(58, 49, 45);
 }
 
+.langSwitch {
+  font-size: 1.15em !important;
+  top: -2px !important;
+  cursor: pointer;
+}
+
+.modal .close {
+  z-index: 888;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 70px;
+  height: 70px;
+  opacity: 0.6;
+  transition: all 0.3s ease-in;
+}
+.modal .close:hover {
+  opacity: 1;
+}
+.modal .close:before, .modal .close:after {
+  position: absolute;
+  left: 35px;
+  content: " ";
+  height: 70px;
+  width: 2px;
+  background-color: #dfdfdf;
+}
+.modal .close:before {
+  transform: rotate(45deg);
+}
+.modal .close:after {
+  transform: rotate(-45deg);
+}
 .modal .modal_bg {
   background-color: rgb(58, 49, 45) !important;
   opacity: 0.5;
@@ -359,14 +472,25 @@ p {
 }
 
 .author {
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-family: "DFPT_AZ5", sans-serif;
   color: white;
   text-align: center;
-  padding-top: 10px;
+  padding: 3px 0 5px 0;
 }
 .author a {
   cursor: pointer;
+  text-decoration: underline;
+  color: #dbb781;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+.author a:hover {
+  color: rgb(126, 214, 255);
+}
+
+::selection {
+  color: rgb(238, 236, 231);
+  background: rgb(58, 49, 45);
 }
 
 /* Firefox */
@@ -399,13 +523,12 @@ p {
     height: max-content !important;
     text-align: center;
   }
-  .itemPanel .itemArt_wapper {
+  .itemPanel .itemArtWrap {
     width: 100%;
-  }
-  .itemPanel .itemArt {
+    height: unset !important;
     position: static !important;
-    transform: translate(0, 0) rotateZ(0) !important;
     margin: 0 auto !important;
+    transform: translate(0, 0) !important;
   }
   .itemPanel .itemSummary {
     position: relative !important;
@@ -461,18 +584,22 @@ p {
     background-position-x: -520px;
   }
 }
-@media only screen and (max-height: 765px) and (max-width: 959px) {
-  .itemArt {
-    height: 200px !important;
-    width: 200px !important;
-  }
-}
 @media only screen and (max-width: 481px) {
+  .exchangeIcon, .exchangeIcon img {
+    display: none;
+  }
+  .navbar {
+    height: 96px;
+  }
   .logo {
     width: 100%;
   }
   .logo .logo_bg {
     width: 90%;
+  }
+  .itemArt {
+    width: 290px !important;
+    height: 290px !important;
   }
   .decor .decor_L {
     background-position-x: -530px;
@@ -480,15 +607,14 @@ p {
   .decor .decor_R {
     background-position-x: 50px;
   }
-  .itemArt {
-    height: 200px !important;
-    width: 200px !important;
-  }
   h1 {
     font-size: 8vw;
   }
   h4 {
     font-size: 5vw;
+  }
+  .footer .snowdeco .snowocto {
+    opacity: 0;
   }
 }
 
