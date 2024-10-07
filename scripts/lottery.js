@@ -34,9 +34,11 @@ var HOST_CURRENT_LETTER = "W";
 
 var HOST_QUOTES = [
     getQuoteOfRemainingGiftCountZH(GIFT_PILE.length),
+    getQuoteOfRemainingGiftCountEN(GIFT_PILE.length),
     "卡片花色是<span>隨機</span>生成的，跟禮物沒有關係～",
-    "123123212",
-    "屋趴～～～"
+    "The card patterns are <span>random</span> and not related to the gifts!",
+    "屋趴～～～",
+    "Woop woop!"
 ]
 
 var placeholderGift = {
@@ -84,6 +86,13 @@ function getHostEmoteUrl(char) {
 
 function getQuoteOfRemainingGiftCountZH(count) {
     return "還有<span>" + count + "個禮物</span>還沒被打開～";
+}
+
+function getQuoteOfRemainingGiftCountEN(count) {
+    if (count !== 1) 
+        return "There are <span>" + count + " presents</span> left!";
+    else
+        return "There is <span>" + count + " present</span> left!";
 }
 
 function getCurrentOCPos() {
@@ -330,6 +339,7 @@ function drawGift() {
     }
     GIFT_PILE = GIFT_PILE.filter(entry => entry != randomGift);
     HOST_QUOTES[0] = getQuoteOfRemainingGiftCountZH(GIFT_PILE.length);
+    HOST_QUOTES[1] = getQuoteOfRemainingGiftCountEN(GIFT_PILE.length);
     return randomGift;
 }
 
