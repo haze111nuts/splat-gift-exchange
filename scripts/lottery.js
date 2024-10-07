@@ -1,5 +1,5 @@
 //============================//
-//=== Functional Variables ===//
+//    Functional Variables    //
 //============================//
 
 var OBTAINED_GIFT_INDEX = [];
@@ -19,7 +19,7 @@ var CURRENT_SUMMARY_LANG = 0;
 var CURRENT_ALT_INDEX = 0;
 
 //========================//
-//=== Custom Variables ===//
+//    Custom Variables    //
 //========================//
 
 var YEAR = "2024";
@@ -36,7 +36,7 @@ var HOST_QUOTES = [
     getQuoteOfRemainingGiftCountZH(GIFT_PILE.length),
     getQuoteOfRemainingGiftCountEN(GIFT_PILE.length),
     "卡片花色是<span>隨機</span>生成的，跟禮物沒有關係～",
-    "The card patterns are <span>random</span> and not related to the gifts!",
+    "The pattern on the card is <span>random</span>,<br>it has nothing to do with the gifts!",
     "屋趴～～～",
     "Woop woop!"
 ]
@@ -52,7 +52,7 @@ var placeholderGift = {
 }
 
 //======================//
-//=== Getter & Utils ===//
+//    Getter & Utils    //
 //======================//
 
 function fileFormat() {
@@ -65,7 +65,7 @@ function getOcUrl(oc) {
 
 function getGiftUrl(gift) {
 
-    //======= set placeholder gift =======
+    //======= for placeholder gift =======
     if (YEAR != '0000' && dataMasking) { 
         if(CURRENT_ALT_INDEX > 0 ){
             return "assets/placeholder-"+ CURRENT_ALT_INDEX + ".png";
@@ -106,8 +106,9 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
+
 //=======================//
-//=== HTML Generators ===//
+//    HTML Generators    //
 //=======================//
 
 function printOCs() {
@@ -143,10 +144,11 @@ function printGrid() {
 }
 
 function displayItemModal(entry) {
-    if (YEAR != '0000' && dataMasking) { // set placeholder gift
+    //======= for placeholder gift =======
+    if (YEAR != '0000' && dataMasking) {
         entry = placeholderGift;
     }
-
+    //====================================
     $(".modal").removeClass("hide");
     var itemModalHtml = "";
 
@@ -195,9 +197,11 @@ function setUpGiftAltArt(entry) {
 }
 
 function getGiftLogHtml(currentOC, entry) {
-    if (YEAR != '0000' && dataMasking) { // set placeholder gift
-        entry = placeholderGift;
-    }
+    //======= for placeholder gift =======
+        if (YEAR != '0000' && dataMasking) {
+            entry = placeholderGift;
+        }
+    //====================================
     var logHtml = "";
     logHtml += "<li>";
     logHtml += "<div class='label'>";
@@ -232,7 +236,7 @@ function setUpRefImageModalClickEvents(entry) {
 
 
 //=================================//
-//=== Randomize and Set Grid BG ===//
+//    Randomize and Set Card BG    //
 //=================================//
 
 function setGridBG() {
@@ -253,7 +257,7 @@ function setGridBG() {
 }
 
 //=========================//
-//=== Handle Gift Pulls ===//
+//    Handle Gift Pulls    //
 //=========================//
 
 function FindLargestFamilyNoSelfTrade(ocList) {
@@ -344,7 +348,7 @@ function drawGift() {
 }
 
 //=========================//
-//=== Handle Flip Click ===//
+//    Handle Flip Click    //
 //=========================//
 
 function setUpFlipEvent() {
@@ -442,19 +446,8 @@ function shuffleHostQuotes() {
     }, 4000);
 }
 
-// function setUpCurtainEvent(){
-//     $(".curtain").click(function () {
-//         $(".curtain").css("top", "-2000px");
-//         setTimeout(
-//             function() {
-//                 $(".curtain").css("display", "none");
-//             }, 300);
-//     });
-// }
-
-
 //=============================//
-//=== Handle traslate Event ===//
+//    Handle traslate Event    //
 //=============================//
 
 function setUpTraslateToggle(entry) {
@@ -475,7 +468,7 @@ function setUpTraslateToggle(entry) {
 }
 
 //===================//
-//=== Host Events ===//
+//    Host Events    //
 //===================//
 
 function setHostEmote(side, imgUrl) {
@@ -502,6 +495,7 @@ function handleKeyPress(keyPressed) {
         flipHost(getHostEmoteUrl(letter));
         HOST_CURRENT_LETTER = letter;
     }
+    // for removing the waiting screen
     if(letter == "8"){
         $(".waiting").css("top", "-2000px");
         setTimeout(
@@ -512,7 +506,7 @@ function handleKeyPress(keyPressed) {
 }
 
 //====================//
-//=== Other Events ===//
+//    Other Events    //
 //====================//
 
 function setSpotlightToNextOC() {
@@ -581,9 +575,9 @@ function setUpCursor(){
 
 
 //======================//
-//===                ===//
-//=== Handle Coockie ===//
-//===                ===//
+//                      //
+//    Handle Coockie    //
+//                      //
 //======================//
 
 function loadCookie() {
@@ -626,9 +620,9 @@ function loadCookie() {
 
 
 //======================//
-//===                ===//
-//=== Ready Function ===//
-//===                ===//
+//                      //
+//    Ready Function    //
+//                      //
 //======================//
 
 $(document).ready(function () {
@@ -642,7 +636,6 @@ $(document).ready(function () {
     extraStyle();
     printSnow();
     setUpCursor();
-    // setUpCurtainEvent();
 });
 
 $(document).keydown(function (keyPressed) {
