@@ -266,7 +266,7 @@ $LOG_PANEL_HIGHT: 600px;
 .lotteryPanel {
     margin-left: 16px !important;
     background-color: rgb(203, 193, 177, 0.5);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(6px);
     transition: all 0.4s;
     .lotteryBoard,
     .lotteryBoard_overlay {
@@ -488,7 +488,7 @@ $preview_gapY: 20px;
     .currentText,
     .currentName {
         color: $ACCENT4;
-        font-size: 2.2em;
+        font-size: 2.5em;
         font-family: "DFPT_ZY9", "HuakangZongyi";
         text-shadow: -5px 5px 0 rgba(0, 0, 0, 0.7);
     }
@@ -496,7 +496,7 @@ $preview_gapY: 20px;
         // background-color: grey;
         padding: 20px;
         position: absolute;
-        top: -12%;
+        top: -21%;
         left: -450%;
         transform: rotate(-2deg);
         span {
@@ -507,7 +507,7 @@ $preview_gapY: 20px;
         text-align: center;
         width: 210px;
         position: absolute;
-        top: 65%;
+        top: 59%;
         left: -320%;
         transform: rotate(1deg);
         // border: 1px solid black;

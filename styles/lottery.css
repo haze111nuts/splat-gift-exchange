@@ -228,7 +228,7 @@ a:hover {
 .lotteryPanel {
   margin-left: 16px !important;
   background-color: rgba(203, 193, 177, 0.5);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(6px);
   transition: all 0.4s;
 }
 .lotteryPanel .lotteryBoard,
@@ -419,14 +419,14 @@ a:hover {
 .indicator .currentText,
 .indicator .currentName {
   color: rgb(252, 241, 183);
-  font-size: 2.2em;
+  font-size: 2.5em;
   font-family: "DFPT_ZY9", "HuakangZongyi";
   text-shadow: -5px 5px 0 rgba(0, 0, 0, 0.7);
 }
 .indicator .currentText {
   padding: 20px;
   position: absolute;
-  top: -12%;
+  top: -21%;
   left: -450%;
   transform: rotate(-2deg);
 }
@@ -437,7 +437,7 @@ a:hover {
   text-align: center;
   width: 210px;
   position: absolute;
-  top: 65%;
+  top: 59%;
   left: -320%;
   transform: rotate(1deg);
 }
