@@ -161,7 +161,6 @@ function displayItemModal(entry) {
     itemModalHtml += "</div>";
     itemModalHtml += "<div class='itemSummary_inner'>" + entry.giftDescription + "</div>";
     itemModalHtml += "</div>";
-
     itemModalHtml += "<div class='itemArtWrap'>";
     itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(entry) + "' alt='item' draggable='false' >";
     if(entry.numOfAlt>0){
@@ -173,7 +172,6 @@ function displayItemModal(entry) {
     }
     itemModalHtml += "</div>";
     itemModalHtml += "</div>";
-
     $(".modal_content").html(itemModalHtml);
     $(document.body).addClass("noscroll");
     setUpTraslateToggle(entry);
@@ -242,7 +240,6 @@ function setUpRefImageModalClickEvents(entry) {
 function setGridBG() {
     var bgPattern;
     const bgPatternCookie = getCookie(COOKIE.BG_PATTEREN);
-
     if (bgPatternCookie === "") {
         bgPattern = [...Array(NUMBER_OF_BG).keys()];
         shuffleArray(bgPattern);
@@ -544,7 +541,6 @@ function extraStyle() {
     $('.oc img').attr('draggable', false);
 }
 
-
 function handleAltArtIndicator(){
     $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white' );
     $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(82, 68, 61, 0.4)" );
@@ -553,10 +549,6 @@ function handleAltArtIndicator(){
 function setUpCursor(){
 	var cursor = $(".cursor");
 	$(window).mousemove(function(e) {
-        // cursor.css({
-		// 	top: e.clientY - cursor.height() / 2,
-		// 	left: e.clientX - cursor.width() / 2
-		// });
 		cursor.css({
 			top: e.clientY,
 			left: e.clientX
@@ -572,7 +564,6 @@ function setUpCursor(){
         );
     });
 }
-
 
 //======================//
 //                      //
@@ -617,7 +608,6 @@ function loadCookie() {
     }
     printOCs();
 }
-
 
 //======================//
 //                      //
