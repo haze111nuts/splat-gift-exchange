@@ -58,6 +58,18 @@ const ARTISTS = {
     "缺缺": {
         link: "https://x.com/bakori514",
         selfTrade: true
+    },
+    "嘆子": {
+        link: "https://www.plurk.com/tanzzzz",
+        selfTrade: true
+    },
+    "般般般點": {
+        link: "https://x.com/BanBanBanDian",
+        selfTrade: false
+    },
+    "高湯": {
+        link: "https://x.com/dashijiru_",
+        selfTrade: true
     }
 };
 
@@ -153,5 +165,33 @@ const ENTRIES = [
     {
         ocName: "薄荷",
         artist: "缺缺"
+    },
+    {
+        ocName: "白桃",
+        artist: "嘆子"
+    },
+    {
+        ocName: "馬提歐拉",
+        artist: "般般般點"
+    },
+    {
+        ocName: "格庫拉",
+        artist: "般般般點"
+    },
+    {
+        ocName: "瑪尤嘉",
+        artist: "般般般點"
+    },
+    {
+        ocName: "阿斯特",
+        artist: "般般般點"
+    },
+    {
+        ocName: "鳩",
+        artist: "般般般點"
+    },
+    {
+        ocName: "奧斯",
+        artist: "高湯"
     }
 ];
