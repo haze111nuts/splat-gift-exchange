@@ -1,22 +1,21 @@
-
 //========================//
-//=== Custom Variables ===//
+//    Custom Variables    //
 //========================//
 
 var YEAR = "0000";
+
+//============================//
+//    Functional Variables    //
+//============================//
+
+var displayGroup = "sender";
 
 var CURRENT_SUMMARY_LANG = 0;
 
 var CURRENT_ALT_INDEX = 0;
 
-//============================//
-//=== Functional Variables ===//
-//============================//
-
-var displayGroup = "sender";
-
 //===================//
-//=== URL Getters ===//
+//    URL Getters    //
 //===================//
 
 function getArtUrl(id, group) {
@@ -30,9 +29,8 @@ function getGiftUrl(id) {
     return "assets/" + YEAR + "/item/" + id + ".png";
 }
 
-
 //=============================//
-//=== Handle Exchange Click ===//
+//    Handle Exchange Click    //
 //=============================//
 
 function setUpFlipToggle() {
@@ -63,7 +61,7 @@ function setUpFlipToggle() {
 }
 
 //======================//
-//=== Settingup Grid ===//
+//    Settingup Grid    //
 //======================//
 
 function generateGrid() {
@@ -115,9 +113,8 @@ function setUpGridStyle(){
     }
 }
 
-
 //============================//
-//=== Settingup Item Modal ===//
+//    Settingup Item Modal    //
 //============================//
 
 function setUpItemModalClickEvents(){
@@ -139,7 +136,7 @@ function setUpItemModalClickEvents(){
             }
             itemModalHtml += "</div>";
             itemModalHtml += "<div class='itemSummary'>";
-            itemModalHtml += "<div class='langSwitch'>"+"⇆"+"</div>";
+            // itemModalHtml += "<div class='langSwitch'>"+"⇆"+"</div>";
             itemModalHtml += "<div class='itemTitle'>";
             itemModalHtml += "<div class='itemTitle1'>"+ENTRIES[dataID].giftName+"</div>";
             itemModalHtml += "<div class='itemTitle2'>"+ENTRIES[dataID].giftNameAlt+"</div>";
@@ -182,7 +179,7 @@ function handleAltArtIndicator(){
 }
 
 //===========================//
-//=== Settingup Art Modal ===//
+//    Settingup Art Modal    //
 //===========================//
 
 function setUpArtModalClickEvents() {
@@ -218,7 +215,7 @@ function setUpArtModalClickEvents() {
 }
 
 //===================================//
-//=== Settingup Modal Close Event ===//
+//    Settingup Modal Close Event    //
 //===================================//
 
 function setupCloseModalEvents(){
@@ -232,9 +229,8 @@ function setupCloseModalEvents(){
     })
 }
 
-
 //=============================//
-//=== Handle traslate Event ===//
+//    Handle traslate Event    //
 //=============================//
 
 // function setUpTraslateToggle(entry) {
@@ -254,9 +250,9 @@ function setupCloseModalEvents(){
 //     });
 // }
 
-//=============//
-//=== Other ===//
-//=============//
+//==================//
+//    Other Stuff   //
+//==================//
 
 function hideScrollBar(){
     //prevent body content to shift right when scrollbar is gone
@@ -282,9 +278,9 @@ function setupStuff() {
 }
 
 //======================//
-//===                ===//
-//=== Ready Function ===//
-//===                ===//
+//                      //
+//    Ready Function    //
+//                      //
 //======================//
 
 $(document).ready(function () {
