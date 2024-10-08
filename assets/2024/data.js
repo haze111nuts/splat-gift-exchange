@@ -70,6 +70,10 @@ const ARTISTS = {
     "高湯": {
         link: "https://x.com/dashijiru_",
         selfTrade: true
+    },
+    "み": {
+        link: "https://x.com/dashijiru_",
+        selfTrade: true
     }
 };
 
@@ -193,5 +197,9 @@ const ENTRIES = [
     {
         ocName: "奧斯",
         artist: "高湯"
+    },
+    {
+        ocName: "咪家的海產",
+        artist: "み"
     }
 ];
