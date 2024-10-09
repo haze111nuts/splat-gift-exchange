@@ -18,6 +18,8 @@ var CURRENT_SUMMARY_LANG = 0;
 
 var CURRENT_ALT_INDEX = 0;
 
+var WAITING_SCREEN = false;
+
 //========================//
 //    Custom Variables    //
 //========================//
@@ -182,6 +184,7 @@ function displayItemModal(entry) {
 function setUpGiftAltArt(entry) {
     handleAltArtIndicator();
     $(".itemArt").click(function () {
+        getPageAudio().play();
         if(entry["numOfAlt"] != undefined){
             CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
             $(".itemArt")
@@ -355,17 +358,23 @@ function setUpFlipEvent() {
 
     $(".gridItem_inner").each(function () {
         var giftCard = $(this).find(".gift_front");
+        var tearAudio = getTearingAudio();
         //when long click stops
         giftCard.mouseup(function () {
             giftCard.find(".progress").removeClass("full_progress");
             clearTimeout(timeout);
+            tearAudio.pause();
+            tearAudio.currentTime = 0;
             return;
         })
         //when long click is pressed
         giftCard.mousedown(function () {
+            tearAudio.play();
             giftCard.find(".progress").addClass("full_progress");
             //upon long click completed
             timeout = window.setTimeout(function () {
+                //play sounds
+                getUnboxAudio().play();
                 currentGiftCard = giftCard;
                 giftCard.find(".progress").css("opacity", "0");
 
@@ -381,6 +390,8 @@ function setUpFlipEvent() {
                 FLIPPED_CARD.push(giftCard.parent().parent().index());
                 setCookie(COOKIE.OBTAINED_GIFT, OBTAINED_GIFT_INDEX.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
                 setCookie(COOKIE.FLIPPED_CARD, FLIPPED_CARD.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
+
+                popConfetti();
             }, 1500);
             return;
         })
@@ -460,9 +471,47 @@ function setUpTraslateToggle(entry) {
             newSummary = entry.giftDescription;
             CURRENT_SUMMARY_LANG = 0;
         }
+        getPageAudio().play();
         $(".itemSummary_inner").html(newSummary);
     });
 }
+
+//====================//
+//    Audio Events    //
+//====================//
+
+function getUnboxAudio(){
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', 'https://cdn.pixabay.com/audio/2022/03/10/audio_5b4d3bfb9e.mp3');
+    audioElement.setAttribute('autoplay', 'autoplay');
+    audioElement.volume = 0.4;
+    return audioElement;
+}
+
+function getKidsCheerAudio(){
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', 'https://www.myinstants.com/media/sounds/2024-kids-cheering-sound-effect-us-version.mp3');
+    audioElement.setAttribute('autoplay', 'autoplay');
+    audioElement.volume = 0.3;
+    return audioElement;
+}
+
+function getTearingAudio(){
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', 'https://cdn.pixabay.com/audio/2021/08/09/audio_35870a7667.mp3');
+    audioElement.setAttribute('autoplay', 'autoplay');
+    audioElement.volume = 1;
+    return audioElement;
+}
+
+function getPageAudio(){
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', 'https://cdn.pixabay.com/audio/2022/03/24/audio_580fe1fa67.mp3');
+    audioElement.setAttribute('autoplay', 'autoplay');
+    audioElement.volume = 1;
+    return audioElement;
+}
+
 
 //===================//
 //    Host Events    //
@@ -494,12 +543,20 @@ function handleKeyPress(keyPressed) {
     }
     // for removing the waiting screen
     if(letter == "8"){
-        $(".waiting").css("top", "-2000px");
-        setTimeout(
-            function() {
-                $(".waiting").css("display", "none");
-            }, 300);
+        if(WAITING_SCREEN){
+            removeWaitingScreen();
+            WAITING_SCREEN = false;
+        }else{
+            bringBackWaitingScreen();
+            WAITING_SCREEN = true;
+        }
     }
+    //Kids Cheer
+    if(letter == "Y" || letter == "P"){
+        getKidsCheerAudio().play();
+        popConfetti();
+    }
+    
 }
 
 //====================//
@@ -544,6 +601,22 @@ function extraStyle() {
 function handleAltArtIndicator(){
     $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white' );
     $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(82, 68, 61, 0.4)" );
+}
+
+function removeWaitingScreen(){
+    $(".waiting").css("top", "-1800px");
+    setTimeout(
+        function() {
+            $(".waiting").css("display", "none");
+        }, 300);
+}
+
+function bringBackWaitingScreen(){
+    $(".waiting").css("display", "block");    
+    setTimeout(
+        function() {
+            $(".waiting").css("top", "0");
+        }, 200);
 }
 
 function setUpCursor(){
@@ -626,6 +699,7 @@ $(document).ready(function () {
     extraStyle();
     printSnow();
     setUpCursor();
+    removeWaitingScreen();
 });
 
 $(document).keydown(function (keyPressed) {
