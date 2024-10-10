@@ -20,6 +20,8 @@ var CURRENT_ALT_INDEX = 0;
 
 var WAITING_SCREEN = false;
 
+var AUDIO_ELEMENTS = {};
+
 //========================//
 //    Custom Variables    //
 //========================//
@@ -184,7 +186,7 @@ function displayItemModal(entry) {
 function setUpGiftAltArt(entry) {
     handleAltArtIndicator();
     $(".itemArt").click(function () {
-        getFlipPageAudio().play();
+        generatePageFlipAudio().play();
         if(entry["numOfAlt"] != undefined){
             CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
             $(".itemArt")
@@ -358,23 +360,24 @@ function setUpFlipEvent() {
 
     $(".gridItem_inner").each(function () {
         var giftCard = $(this).find(".gift_front");
-        var tearAudio = getTearingAudio();
+        
         //when long click stops
         giftCard.mouseup(function () {
             giftCard.find(".progress").removeClass("full_progress");
             clearTimeout(timeout);
-            tearAudio.pause();
-            tearAudio.currentTime = 0;
+            AUDIO_ELEMENTS["paperTear"].pause();
+            AUDIO_ELEMENTS["paperTear"].currentTime = 0;
             return;
         })
         //when long click is pressed
         giftCard.mousedown(function () {
-            tearAudio.play();
+            AUDIO_ELEMENTS["paperTear"].play();
             giftCard.find(".progress").addClass("full_progress");
             //upon long click completed
             timeout = window.setTimeout(function () {
                 //play sounds
-                AUDIO_ELEMENT["UnboxPop"].play();
+                AUDIO_ELEMENTS["balloonPop"].play();
+                AUDIO_ELEMENTS["itemObtain"].play();
                 currentGiftCard = giftCard;
                 giftCard.find(".progress").css("opacity", "0");
 
@@ -406,9 +409,9 @@ function setUpFlipEvent() {
 
         // only do the rest when this modal was a result of a lottery draw
         if (currentGiftCard) {
-            var flipAudio = getFlipCardAudio();
-            flipAudio.setAttribute('autoplay', 'autoplay');
-            flipAudio.currentTime = 0.15;
+            // AUDIO_ELEMENTS["flipCard"].setAttribute('autoplay', 'autoplay');
+            AUDIO_ELEMENTS["flipCard"].currentTime = 0.3;
+            AUDIO_ELEMENTS["flipCard"].play();
             //flip card
             doCardFlip(currentGiftCard.parent(".gridItem_inner"))
             //add entry to gift log
@@ -433,7 +436,7 @@ function addEntryToGiftLog(gift) {
     setUpGiftLogStyle(CURRENT_OC_INDEX);
     $(".logPanelContent ul li:nth-child(" + (CURRENT_OC_INDEX + 1) + ") .gift").click(function () {
         displayItemModal(gift);
-        getFlipPageAudio().play();
+        AUDIO_ELEMENTS["flipPage"].play();
     });
 }
 
@@ -475,7 +478,7 @@ function setUpTraslateToggle(entry) {
             newSummary = entry.giftDescription;
             CURRENT_SUMMARY_LANG = 0;
         }
-        getFlipPageAudio().play();
+        AUDIO_ELEMENTS["flipPage"].play();
         $(".itemSummary_inner").html(newSummary);
     });
 }
@@ -484,45 +487,30 @@ function setUpTraslateToggle(entry) {
 //    Audio Events    //
 //====================//
 
-var AUDIO_ELEMENT = {};
-
-function setUpAudio(volume, src){
+function createAudioElement(volume, src){
     var audioElement = document.createElement('audio');
     audioElement.setAttribute('src', src);
     audioElement.volume = volume;
     return audioElement;
 }
 
-function getUnboxPopAudio(){
-    return setUpAudio(0.2, 'assets/sound/balloon_pop.mp3');
+function generateKidsCheerAudio(){
+    return createAudioElement(0.2, 'assets/sound/kids_cheer.mp3');
 }
 
-function getKidsCheerAudio(){
-    return setUpAudio(0.3, 'assets/sound/kids_cheer.mp3');
+function generatePageFlipAudio(){
+    return createAudioElement(0.25, 'assets/sound/flip_page.mp3');
 }
 
-function getTearingAudio(){
-    return setUpAudio(0.6, 'assets/sound/paper_tear.mp3');
-}
-
-function getFlipPageAudio(){
-    return setUpAudio(0.6, 'assets/sound/flip_page.mp3');
-}
-
-function getFlipCardAudio(){
-    return setUpAudio(0.1, 'assets/sound/flip_card.mp3')
-}
-
-function getBellAudio(){
-    return setUpAudio(0.3, 'assets/sound/bicycle_bell.mp3')
-}
-
-function getBlopAudio(){
-    return setUpAudio(0.2, 'assets/sound/blop.mp3')
-}
-
-function setAudio() {
-    AUDIO_ELEMENT["UnboxPop"] = getUnboxPopAudio();
+function setUpAudios() {
+    AUDIO_ELEMENTS["balloonPop"] = createAudioElement(0.1, 'assets/sound/balloon_pop.mp3');
+    AUDIO_ELEMENTS["itemObtain"] = createAudioElement(0.1, 'assets/sound/item_obtain.mp3');
+    AUDIO_ELEMENTS["paperTear"] = createAudioElement(0.4, 'assets/sound/paper_tear.mp3');
+    AUDIO_ELEMENTS["flipCard"] = createAudioElement(0.1, 'assets/sound/flip_card.mp3');
+    AUDIO_ELEMENTS["flipPage"] = createAudioElement(0.25, 'assets/sound/flip_page.mp3');
+    AUDIO_ELEMENTS["bell"] = createAudioElement(0.35, 'assets/sound/bicycle_bell.mp3');
+    AUDIO_ELEMENTS["blop"] = createAudioElement(0.1, 'assets/sound/blop.mp3');
+    AUDIO_ELEMENTS["click"] = createAudioElement(0.2, 'assets/sound/click.mp3');
 }
 
 //===================//
@@ -565,7 +553,7 @@ function handleKeyPress(keyPressed) {
     }
     //Kids Cheer
     if(letter == "Y" || letter == "P"){
-        getKidsCheerAudio().play();
+        generateKidsCheerAudio().play();
         popConfetti();
     }
     
@@ -579,7 +567,7 @@ function setSpotlightToNextOC() {
     $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
     $(".currentName").html(OC_ARRANGED[CURRENT_OC_INDEX]?.ocName);
     $(".frame").click(function () {
-        getBellAudio().play();
+        AUDIO_ELEMENTS["bell"].play();
     });
 
 }
@@ -621,7 +609,7 @@ function handleAltArtIndicator(){
 
 function removeWaitingScreen(){
     $(".waiting").css("top", "-1800px");
-    getBlopAudio().play();
+    AUDIO_ELEMENTS["blop"].play();
     setTimeout(
         function() {
             $(".waiting").css("display", "none");
@@ -715,7 +703,7 @@ function printOCList() {
 //======================//
 
 $(document).ready(function () {
-    setAudio();
+    setUpAudios();
     printGrid();
     setGridBG();
     loadCookie();
