@@ -406,7 +406,9 @@ function setUpFlipEvent() {
 
         // only do the rest when this modal was a result of a lottery draw
         if (currentGiftCard) {
-            getFlipCardAudio().currentTime = 0.15;
+            var flipAudio = getFlipCardAudio();
+            flipAudio.setAttribute('autoplay', 'autoplay');
+            flipAudio.currentTime = 0.15;
             //flip card
             doCardFlip(currentGiftCard.parent(".gridItem_inner"))
             //add entry to gift log
@@ -485,7 +487,6 @@ function setUpTraslateToggle(entry) {
 function setUpAudio(volume, src){
     var audioElement = document.createElement('audio');
     audioElement.setAttribute('src', src);
-    audioElement.setAttribute('autoplay', 'autoplay');
     audioElement.volume = volume;
     return audioElement;
 }
@@ -499,11 +500,11 @@ function getKidsCheerAudio(){
 }
 
 function getTearingAudio(){
-    return setUpAudio(0.7, 'assets/sound/paper_tear.mp3');
+    return setUpAudio(0.6, 'assets/sound/paper_tear.mp3');
 }
 
 function getFlipPageAudio(){
-    return setUpAudio(0.7, 'assets/sound/flip_page.mp3');
+    return setUpAudio(0.6, 'assets/sound/flip_page.mp3');
 }
 
 function getFlipCardAudio(){
