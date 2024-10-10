@@ -26,7 +26,7 @@ var WAITING_SCREEN = false;
 
 var YEAR = "2024";
 
-var dataMasking = true;
+var dataMasking = false;
 
 var NUMBER_OF_BG = 83;
 
@@ -374,7 +374,7 @@ function setUpFlipEvent() {
             //upon long click completed
             timeout = window.setTimeout(function () {
                 //play sounds
-                getUnboxPopAudio().play();
+                AUDIO_ELEMENT["UnboxPop"].play();
                 currentGiftCard = giftCard;
                 giftCard.find(".progress").css("opacity", "0");
 
@@ -484,6 +484,8 @@ function setUpTraslateToggle(entry) {
 //    Audio Events    //
 //====================//
 
+var AUDIO_ELEMENT = {};
+
 function setUpAudio(volume, src){
     var audioElement = document.createElement('audio');
     audioElement.setAttribute('src', src);
@@ -517,6 +519,10 @@ function getBellAudio(){
 
 function getBlopAudio(){
     return setUpAudio(0.2, 'assets/sound/blop.mp3')
+}
+
+function setAudio() {
+    AUDIO_ELEMENT["UnboxPop"] = getUnboxPopAudio();
 }
 
 //===================//
@@ -693,6 +699,15 @@ function loadCookie() {
     printOCs();
 }
 
+function printOCList() {
+    let output = "";
+    let rank = 1;
+    for (var oc of OC_ARRANGED)
+        output += rank++ + ". " + oc.ocName + "  ------  " + oc.artist + "\n";
+
+    console.log(output);
+}
+
 //======================//
 //                      //
 //    Ready Function    //
@@ -700,6 +715,7 @@ function loadCookie() {
 //======================//
 
 $(document).ready(function () {
+    setAudio();
     printGrid();
     setGridBG();
     loadCookie();
@@ -710,6 +726,7 @@ $(document).ready(function () {
     extraStyle();
     printSnow();
     setUpCursor();
+    printOCList();
 });
 
 $(document).keydown(function (keyPressed) {
