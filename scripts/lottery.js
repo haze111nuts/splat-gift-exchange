@@ -184,7 +184,7 @@ function displayItemModal(entry) {
 function setUpGiftAltArt(entry) {
     handleAltArtIndicator();
     $(".itemArt").click(function () {
-        getPageAudio().play();
+        getFlipPageAudio().play();
         if(entry["numOfAlt"] != undefined){
             CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
             $(".itemArt")
@@ -374,7 +374,7 @@ function setUpFlipEvent() {
             //upon long click completed
             timeout = window.setTimeout(function () {
                 //play sounds
-                getUnboxAudio().play();
+                getUnboxPopAudio().play();
                 currentGiftCard = giftCard;
                 giftCard.find(".progress").css("opacity", "0");
 
@@ -406,6 +406,7 @@ function setUpFlipEvent() {
 
         // only do the rest when this modal was a result of a lottery draw
         if (currentGiftCard) {
+            getFlipCardAudio().currentTime = 0.15;
             //flip card
             doCardFlip(currentGiftCard.parent(".gridItem_inner"))
             //add entry to gift log
@@ -430,6 +431,7 @@ function addEntryToGiftLog(gift) {
     setUpGiftLogStyle(CURRENT_OC_INDEX);
     $(".logPanelContent ul li:nth-child(" + (CURRENT_OC_INDEX + 1) + ") .gift").click(function () {
         displayItemModal(gift);
+        getFlipPageAudio().play();
     });
 }
 
@@ -471,7 +473,7 @@ function setUpTraslateToggle(entry) {
             newSummary = entry.giftDescription;
             CURRENT_SUMMARY_LANG = 0;
         }
-        getPageAudio().play();
+        getFlipPageAudio().play();
         $(".itemSummary_inner").html(newSummary);
     });
 }
@@ -480,38 +482,41 @@ function setUpTraslateToggle(entry) {
 //    Audio Events    //
 //====================//
 
-function getUnboxAudio(){
+function setUpAudio(volume, src){
     var audioElement = document.createElement('audio');
-    audioElement.setAttribute('src', 'https://cdn.pixabay.com/audio/2022/03/10/audio_5b4d3bfb9e.mp3');
+    audioElement.setAttribute('src', src);
     audioElement.setAttribute('autoplay', 'autoplay');
-    audioElement.volume = 0.4;
+    audioElement.volume = volume;
     return audioElement;
+}
+
+function getUnboxPopAudio(){
+    return setUpAudio(0.2, 'assets/sound/balloon_pop.mp3');
 }
 
 function getKidsCheerAudio(){
-    var audioElement = document.createElement('audio');
-    audioElement.setAttribute('src', 'https://www.myinstants.com/media/sounds/2024-kids-cheering-sound-effect-us-version.mp3');
-    audioElement.setAttribute('autoplay', 'autoplay');
-    audioElement.volume = 0.3;
-    return audioElement;
+    return setUpAudio(0.3, 'assets/sound/kids_cheer.mp3');
 }
 
 function getTearingAudio(){
-    var audioElement = document.createElement('audio');
-    audioElement.setAttribute('src', 'https://cdn.pixabay.com/audio/2021/08/09/audio_35870a7667.mp3');
-    audioElement.setAttribute('autoplay', 'autoplay');
-    audioElement.volume = 1;
-    return audioElement;
+    return setUpAudio(0.7, 'assets/sound/paper_tear.mp3');
 }
 
-function getPageAudio(){
-    var audioElement = document.createElement('audio');
-    audioElement.setAttribute('src', 'https://cdn.pixabay.com/audio/2022/03/24/audio_580fe1fa67.mp3');
-    audioElement.setAttribute('autoplay', 'autoplay');
-    audioElement.volume = 1;
-    return audioElement;
+function getFlipPageAudio(){
+    return setUpAudio(0.7, 'assets/sound/flip_page.mp3');
 }
 
+function getFlipCardAudio(){
+    return setUpAudio(0.1, 'assets/sound/flip_card.mp3')
+}
+
+function getBellAudio(){
+    return setUpAudio(0.3, 'assets/sound/bicycle_bell.mp3')
+}
+
+function getBlopAudio(){
+    return setUpAudio(0.2, 'assets/sound/blop.mp3')
+}
 
 //===================//
 //    Host Events    //
@@ -566,6 +571,10 @@ function handleKeyPress(keyPressed) {
 function setSpotlightToNextOC() {
     $(".turingBar").css("transform", "translate(" + getCurrentOCPos() + "px, 0)");
     $(".currentName").html(OC_ARRANGED[CURRENT_OC_INDEX]?.ocName);
+    $(".frame").click(function () {
+        getBellAudio().play();
+    });
+
 }
 
 function setUpGiftLogStyle(index) {
@@ -605,6 +614,7 @@ function handleAltArtIndicator(){
 
 function removeWaitingScreen(){
     $(".waiting").css("top", "-1800px");
+    getBlopAudio().play();
     setTimeout(
         function() {
             $(".waiting").css("display", "none");
@@ -616,7 +626,7 @@ function bringBackWaitingScreen(){
     setTimeout(
         function() {
             $(".waiting").css("top", "0");
-        }, 200);
+        }, 1);
 }
 
 function setUpCursor(){
@@ -699,7 +709,6 @@ $(document).ready(function () {
     extraStyle();
     printSnow();
     setUpCursor();
-    removeWaitingScreen();
 });
 
 $(document).keydown(function (keyPressed) {

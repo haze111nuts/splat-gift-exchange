@@ -84,7 +84,8 @@ a {
     backdrop-filter: blur(35px);
     transition: 0.5s all ease-in;
     background-color: #493e3e46;
-    top:0;
+    top: -1800px;
+    display: none;
     .waitingWrap{
         position: absolute;
         left:50%;
