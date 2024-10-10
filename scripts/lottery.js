@@ -26,7 +26,7 @@ var WAITING_SCREEN = false;
 
 var YEAR = "2024";
 
-var dataMasking = false;
+var dataMasking = true;
 
 var NUMBER_OF_BG = 83;
 
