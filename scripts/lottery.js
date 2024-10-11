@@ -685,6 +685,9 @@ function loadCookie() {
         }
         CURRENT_OC_INDEX = index;
         GIFT_PILE = GIFT_PILE.filter(gift => !obtainedGifts.includes(gift));
+        if (GIFT_PILE.length == 0) {
+            triggerEnding();
+        }
         printOCs();
         fadeFinishedOCs();
         return;
