@@ -694,6 +694,7 @@ function loadCookie() {
         }
         printOCs();
         fadeFinishedOCs();
+        $(".oc:nth-child(n+1):nth-child(-n+"+(CURRENT_OC_INDEX-4)+")").css("opacity", 0);
         return;
     }
     printOCs();
