@@ -33,7 +33,7 @@ const ARTISTS = {
     },
     "Hazy": {
         link: "https://x.com/haze1splashit",
-        selfTrade: true
+        selfTrade: false
     },
     "Bagaju": {
         link: "https://x.com/BaGaJu_Tw",
@@ -82,6 +82,10 @@ const ARTISTS = {
     "奈奈": {
         link: "https://x.com/LWY69805700",
         selfTrade: false
+    },
+    "IAP": {
+        link: "",
+        selfTrade: true
     }
 };
 
@@ -225,5 +229,25 @@ const ENTRIES = [
     {
         ocName: "哲",
         artist: "奈奈"
+    },
+    {
+        ocName: "小莫",
+        artist: "IAP"
+    },
+    {
+        ocName: "諾亞",
+        artist: "IAP"
+    },
+    {
+        ocName: "阿了",
+        artist: "IAP"
+    },
+    {
+        ocName: "小知",
+        artist: "IAP"
+    },
+    {
+        ocName: "潮騷",
+        artist: "IAP"
     }
 ];
