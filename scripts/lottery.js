@@ -28,7 +28,7 @@ var AUDIO_ELEMENTS = {};
 
 var YEAR = "2024";
 
-var dataMasking = true;
+var dataMasking = false;
 
 var NUMBER_OF_BG = 83;
 
@@ -654,7 +654,7 @@ function loadCookie() {
     const obtainedGIftCookie = getCookie(COOKIE.OBTAINED_GIFT);
     const flippedCardCookie = getCookie(COOKIE.FLIPPED_CARD);
 
-    var ocArrangementData = "15,22,27,11,26,19,23,33,13,30,10,31,14,4,8,6,32,21,34,2,1,0,5,20,29,9,3,7,25,12,17,18,28,24,16";
+    var ocArrangementData = "15,22,27,12,26,19,23,33,13,30,10,31,14,4,8,6,32,21,34,2,1,0,5,20,29,9,3,7,25,11,17,18,28,24,16";
 
     if (YEAR != "0000" && ocArrangementData != null) {
         ocArrangementCookie = ocArrangementData;
