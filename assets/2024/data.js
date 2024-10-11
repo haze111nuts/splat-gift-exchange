@@ -74,6 +74,14 @@ const ARTISTS = {
     "み": {
         link: "https://x.com/dashijiru_",
         selfTrade: true
+    },
+    "ㄈㄉ": {
+        link: "https://www.instagram.com/vanto_chien/",
+        selfTrade: true
+    },
+    "奈奈": {
+        link: "https://x.com/LWY69805700",
+        selfTrade: false
     }
 };
 
@@ -201,5 +209,21 @@ const ENTRIES = [
     {
         ocName: "咪家的海產",
         artist: "み"
+    },
+    {
+        ocName: "黛黛",
+        artist: "ㄈㄉ"
+    },
+    {
+        ocName: "小莓",
+        artist: "奈奈"
+    },
+    {
+        ocName: "春花",
+        artist: "奈奈"
+    },
+    {
+        ocName: "哲",
+        artist: "奈奈"
     }
 ];
