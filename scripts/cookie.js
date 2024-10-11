@@ -1,6 +1,6 @@
 const ENABLE_COOKIE = true;
 
-const COOKIE_EXPIRE_DEFAULT_DAYS = 1;
+const COOKIE_EXPIRE_DEFAULT_DAYS = 7;
 // const MINUTE = (1/1440);
 
 const COOKIE = {

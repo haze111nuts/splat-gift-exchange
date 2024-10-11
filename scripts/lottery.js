@@ -650,9 +650,16 @@ function setUpCursor(){
 //======================//
 
 function loadCookie() {
-    const ocArrangementCookie = getCookie(COOKIE.OC_ARRANGEMENT);
+    var ocArrangementCookie = getCookie(COOKIE.OC_ARRANGEMENT);
     const obtainedGIftCookie = getCookie(COOKIE.OBTAINED_GIFT);
     const flippedCardCookie = getCookie(COOKIE.FLIPPED_CARD);
+
+    var ocArrangementData = "15,22,27,11,26,19,23,33,13,30,10,31,14,4,8,6,32,21,34,2,1,0,5,20,29,9,3,7,25,12,17,18,28,24,16";
+
+    if (YEAR != "0000" && ocArrangementData != null) {
+        ocArrangementCookie = ocArrangementData;
+        setCookie(COOKIE.OC_ARRANGEMENT, ocArrangementCookie, COOKIE_EXPIRE_DEFAULT_DAYS);
+    }
 
     if (ocArrangementCookie === "") {
         OC_ARRANGED = [].concat(ENTRIES);
@@ -677,10 +684,7 @@ function loadCookie() {
             $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index]) + 1) + ") .gridItem_inner .gift_back").html("<img src='" + getGiftUrl(gift) + "' alt='gift' />");
             $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index]) + 1) + ") .gridItem_inner").css("transform", "rotateY(180deg)");
 
-            $(".logPanelContent ul li:nth-child(" + (index + 1) + ") .gift").click(function () {
-                displayItemModal(gift);
-                AUDIO_ELEMENTS["flipPage"].play();
-            });
+            addLogClick(index, gift);
             index++;
         }
         CURRENT_OC_INDEX = index;
@@ -693,6 +697,13 @@ function loadCookie() {
         return;
     }
     printOCs();
+}
+
+function addLogClick(index, gift) { // has to seperate this out due rules of closure capture in javascript
+    $(".logPanelContent ul li:nth-child(" + (index + 1) + ") .gift").click(function () {
+        displayItemModal(gift);
+        AUDIO_ELEMENTS["flipPage"].play();
+    });
 }
 
 function printOCList() {
