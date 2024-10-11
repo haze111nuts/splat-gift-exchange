@@ -676,6 +676,11 @@ function loadCookie() {
 
             $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index]) + 1) + ") .gridItem_inner .gift_back").html("<img src='" + getGiftUrl(gift) + "' alt='gift' />");
             $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index]) + 1) + ") .gridItem_inner").css("transform", "rotateY(180deg)");
+
+            $(".logPanelContent ul li:nth-child(" + (index + 1) + ") .gift").click(function () {
+                displayItemModal(gift);
+                AUDIO_ELEMENTS["flipPage"].play();
+            });
             index++;
         }
         CURRENT_OC_INDEX = index;
