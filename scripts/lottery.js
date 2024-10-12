@@ -495,7 +495,7 @@ function createAudioElement(volume, src){
 }
 
 function generateKidsCheerAudio(){
-    return createAudioElement(0.2, 'assets/sound/kids_cheer.mp3');
+    return createAudioElement(0.25, 'assets/sound/kids_cheer.mp3');
 }
 
 function generatePageFlipAudio(){
@@ -511,6 +511,7 @@ function setUpAudios() {
     AUDIO_ELEMENTS["bell"] = createAudioElement(0.6, 'assets/sound/bicycle_bell.mp3');
     AUDIO_ELEMENTS["blop"] = createAudioElement(0.2, 'assets/sound/blop.mp3');
     AUDIO_ELEMENTS["click"] = createAudioElement(0.2, 'assets/sound/click.mp3');
+    AUDIO_ELEMENTS["wow"] = createAudioElement(0.2, 'assets/sound/wow.mp3');
 }
 
 //===================//
@@ -556,7 +557,11 @@ function handleKeyPress(keyPressed) {
         generateKidsCheerAudio().play();
         popConfetti();
     }
-    
+    //Wow
+    if(letter == "O"){
+        AUDIO_ELEMENTS["wow"].play();
+        popConfetti();
+    }
 }
 
 //====================//
