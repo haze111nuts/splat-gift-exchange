@@ -1,31 +1,177 @@
-#giftForm {
-  width: 400px;
-  margin: 50px auto;
-  text-align: center;
-  position: relative;
+body {
+  font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
+  background-color: #424439;
 }
-#giftForm fieldset {
-  background: rgb(233, 228, 228);
-  border: 0 none;
-  border-radius: 3px;
+
+.wrapper {
+  width: 100%;
+  max-width: 700px;
+  margin: 50px auto;
+}
+
+#giftForm > div {
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-  padding: 20px 30px;
+}
+#giftForm .banner {
+  background-color: #7c3c40;
+  text-align: center;
+  color: #cfca9b;
+  padding: 8px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+#giftForm .banner img {
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+}
+#giftForm .banner img:nth-child(1) {
+  transform: rotate(180deg);
+}
+#giftForm .banner img:nth-child(3) {
+  margin-top: 5px;
+}
+#giftForm .banner .frame {
+  border: 1px solid #cfca9b;
+  padding: 22px;
+}
+#giftForm .banner .title {
+  font-size: 2.3em;
+}
+#giftForm .banner .summary {
+  padding-top: 20px;
+}
+#giftForm .nav {
+  background-color: #42252a;
+  width: 95%;
+  margin: 0 auto;
+}
+#giftForm .nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#giftForm .nav ul li {
+  display: inline-block;
+  width: 32%;
+  text-align: center;
+  padding: 16px 0;
+  color: white;
+}
+#giftForm .main {
+  background: rgb(233, 228, 228);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+#giftForm .main fieldset {
   box-sizing: border-box;
-  width: 80%;
-  margin: 0 10%;
+  border: 0 none;
+  padding: 30px;
   /*stacking fieldsets above each other*/
   position: relative;
 }
+#giftForm .main fieldset .label {
+  border: 5px solid rgb(223, 177, 92);
+  margin: 10px 0;
+}
 
-#giftForm input, #giftForm textarea {
+.lang_options {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+.lang_options input[type=radio] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.lang_options input[type=radio]:checked + span {
+  box-shadow: 0 0 0 0.0625em rgb(58, 49, 45);
+  background-color: rgb(223, 177, 92);
+  z-index: 1;
+  color: rgb(58, 49, 45);
+}
+.lang_options label span {
+  width: 100px;
+  display: block;
+  cursor: pointer;
+  padding: 0.375em 0.75em;
+  position: relative;
+  margin-left: 0.0625em;
+  box-shadow: 0 0 0 0.0625em rgb(223, 177, 92);
+  letter-spacing: 0.05em;
+  color: #3e4963;
+  text-align: center;
+  transition: background-color 0.5s ease;
+}
+.lang_options label:first-child span {
+  border-radius: 0.375em 0 0 0.375em;
+}
+.lang_options label:last-child span {
+  border-radius: 0 0.375em 0.375em 0;
+}
+
+#giftForm input,
+#giftForm textarea {
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 3px;
   margin-bottom: 10px;
   width: 100%;
   box-sizing: border-box;
-  color: #2C3E50;
-  font-size: 13px;
+  color: #2c3e50;
+}
+
+.selfTrade_options label {
+  display: flex;
+  cursor: pointer;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0.2em;
+}
+.selfTrade_options label input {
+  position: absolute;
+  left: -9999px;
+}
+.selfTrade_options label input:checked + span {
+  background-color: #414181;
+  color: white;
+}
+.selfTrade_options label input:checked + span:before {
+  box-shadow: inset 0 0 0 0.5em #00005c;
+}
+.selfTrade_options label span {
+  display: flex;
+  align-items: center;
+  padding: 0.15em 0.5em 0.25em 0.25em;
+  border-radius: 0.5em;
+  transition: 0.25s ease;
+  color: #414181;
+}
+.selfTrade_options label span:hover {
+  background-color: #d6d6e5;
+}
+.selfTrade_options label span:before {
+  display: flex;
+  flex-shrink: 0;
+  content: "";
+  background-color: #fff;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  margin-right: 0.375em;
+  transition: 0.25s ease;
+  box-shadow: inset 0 0 0 0.125em #00005c;
+}
+
+uc-copyright {
+  display: none !important;
 }
 
 /*# sourceMappingURL=form.css.map */

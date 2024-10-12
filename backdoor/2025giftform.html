@@ -1,32 +1,118 @@
 <!DOCTYPE html>
 
-<html>
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>2025神秘禮物投稿表單</title>
+  <title>2025海產神秘禮物投稿表單</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="" />
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-minimal.min.css">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-minimal.min.css">
   <link rel="stylesheet" type="text/css" href="../styles/modal.css" />
   <link rel="stylesheet" type="text/css" href="../styles/form.css" />
 </head>
 
 <body>
-  <form id="giftForm">
-    <fieldset>
-      <input type="text" name="artist" placeholder="投稿人名字">
-      <input type="text" name="OCname" placeholder="海產OC名字">
-      <input type="text" name="contact" placeholder="連路方式">
-      <input type="text" name="link" placeholder="個人網站連結">
-    </fieldset>
-    <button type="submit">Send</button>
-  </form>
+
+  <div class="wrapper">
+    <form id="giftForm">
+      <div class="banner">
+        <div class="frame">
+          <img src="../assets/form/HTC_decor.png" alt="decor">
+          <div class="title">2025海產神秘禮物投稿表單</div>
+          <img src="../assets/form/HTC_decor.png" alt="decor">
+          <div class="summary">⚠️ 請先跟58確認你要參加再填這個單唷 ⚠️</div>
+        </div>
+      </div>
+      <div class="nav">
+        <ul>
+          <li>參與須知</li>
+          <li>規則大綱</li>
+          <li>參考2024作品</li>
+        </ul>
+      </div>
+      <div class="main">
+        <fieldset>
+          <div class="lang_options">
+            <label>
+              <input type="radio" name="lang" checked="" value="CHN">
+              <span>中文</span>
+            </label>
+            <label>
+              <input type="radio" name="lang" value="ENG">
+              <span>English</span>
+            </label>
+          </div>
+
+          <label class="label">欲參加的海產OC名字</label>
+          <input type="text" name="OCname" placeholder="海產OC名字">
+
+          <label class="label">請提供這個OC的頭像</label>
+          <uc-config ctx-name="my-uploader" pubkey="94f43466c8ece62a70aa"></uc-config>
+          <uc-file-uploader-minimal ctx-name="my-uploader" class="uc-light uc-turquoise"></uc-file-uploader-minimal>
+
+          <label class="label">這個OC準備的禮物是？</label>
+          <input type="text" name="gift" placeholder="手工圍巾">
+
+          <label class="label">請繪製一個禮物的圖示</label>
+          <uc-config ctx-name="my-uploader" pubkey="94f43466c8ece62a70aa"></uc-config>
+          <uc-file-uploader-minimal ctx-name="my-uploader" class="uc-light uc-turquoise"></uc-file-uploader-minimal>
+
+          <label class="label">請提供禮物的文字介紹</label>
+          <textarea rows="4" cols="50" name="giftSummary" placeholder="請提供禮物的文字介紹"></textarea>
+
+          <hr>
+          </hr>
+
+          <label class="label">請繪製這位OC與這份禮物的圖</label>
+          <uc-config ctx-name="my-uploader" pubkey="94f43466c8ece62a70aa"></uc-config>
+          <uc-file-uploader-minimal ctx-name="my-uploader" class="uc-light uc-turquoise"></uc-file-uploader-minimal>
+          <hr>
+          </hr>
+
+          <label class="label">投稿人名字</label>
+          <input type="text" name="artist" placeholder="58">
+
+          <label class="label">聯絡方式</label>
+          <input type="text" name="contact" placeholder="58@woopa.com">
+
+          <label class="label">個人連結</label>
+          <input type="text" name="link" placeholder="twitter@xxxolot58">
+
+          <label class="label">你想要自家抽到自家禮物的可能性嗎？</label>
+          <div class="selfTrade_options">
+            <label>
+              <input type="radio" name="self_trade" value="false">
+              <span>我不想要我家角色抽到我家其他角色的禮物</span>
+            </label>
+            <label>
+              <input type="radio" name="self_trade" value="true">
+              <span>我可以接受我家角色抽到我家其他角色的禮物</span>
+            </label>
+            <label>
+              <input type="radio" checked="" name="self_trade" value="singleOC">
+              <span>我只打算投稿一隻OC</span>
+            </label>
+            <label>
+              <input type="radio" name="self_trade" value="tbd">
+              <span>目前不確定要投稿幾隻</span>
+            </label>
+          </div>
+
+        </fieldset>
+      </div>
+      <!-- <button type="submit">Send</button> -->
+    </form>
+  </div>
+
+  <script type="module">
+    import * as UC from 'https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-minimal.min.js';
+    UC.defineComponents(UC);
+  </script>
 </body>
 
 </html>

@@ -1,36 +1,190 @@
+
+$ACCENT1: rgb(58, 49, 45);
+$ACCENT2: rgb(82, 68, 61);
+$ACCENT3: rgb(223, 177, 92);
+
 //================//
 //===   FORM   ===//
 //================//
 
+body {
+    font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
+    background-color: #424439;
+}
+.wrapper{
+    width: 100%;
+    max-width: 700px;
+    margin: 50px auto;
+}
 #giftForm {
-	width: 400px;
-	margin: 50px auto;
-	text-align: center;
-	position: relative;
-
-    fieldset{
-        background: rgb(233, 228, 228);
-        border: 0 none;
-        border-radius: 3px;
+    >div{
         box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-        padding: 20px 30px;
-        box-sizing: border-box;
-        width: 80%;
-        margin: 0 10%;
-        
-        /*stacking fieldsets above each other*/
+    }
+    .banner{
+        background-color: #7c3c40;
+        text-align: center;
+        color: #cfca9b;
+        padding: 8px ;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        img{
+            width: 50%;
+            display: block;
+            margin: 0 auto;
+            &:nth-child(1){
+                transform: rotate(180deg);
+            }
+            &:nth-child(3){
+                margin-top:5px;
+            }
+        }
+        .frame{
+            border: 1px solid #cfca9b;
+            padding: 22px;
+        }
+        .title{
+            font-size: 2.3em;
+        }
+        .summary{
+            padding-top:20px;
+        }
+    }
+    .nav{
+        background-color: #42252a;
+        width: 95%;
+        margin: 0 auto;
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            li{
+                display: inline-block;
+                width:32%;
+                text-align: center;
+                padding: 16px 0;
+                color: white;
+            }
+        }
+    }
+    .main{
+        background: rgb(233, 228, 228);
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        fieldset {
+            box-sizing: border-box;
+            border: 0 none;
+            padding: 30px;
+            /*stacking fieldsets above each other*/
+            position: relative;
+            .label{
+                border: 5px solid $ACCENT3;
+                margin: 10px 0;
+            }
+        }
+
+    }
+
+}
+
+.lang_options {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    justify-content: center;
+    input[type="radio"] {
+        clip: rect(0 0 0 0);
+        clip-path: inset(100%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+    input[type="radio"]:checked + span {
+        box-shadow: 0 0 0 0.0625em $ACCENT1;
+        background-color: $ACCENT3;
+        z-index: 1;
+        color: $ACCENT1;
+    }
+    label span {
+        width: 100px;
+        display: block;
+        cursor: pointer;
+
+        padding: 0.375em 0.75em;
         position: relative;
+        margin-left: 0.0625em;
+        box-shadow: 0 0 0 0.0625em $ACCENT3;
+        letter-spacing: 0.05em;
+        color: #3e4963;
+        text-align: center;
+        transition: background-color 0.5s ease;
+    }
+    label:first-child span {
+        border-radius: 0.375em 0 0 0.375em;
+    }
+    label:last-child span {
+        border-radius: 0 0.375em 0.375em 0;
     }
 }
 
-#giftForm input, #giftForm textarea {
+
+#giftForm input,
+#giftForm textarea {
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 3px;
     margin-bottom: 10px;
     width: 100%;
     box-sizing: border-box;
-    color: #2C3E50;
-    font-size: 13px;
-  }
+    color: #2c3e50;
+}
 
+.selfTrade_options {
+    label {
+        display: flex;
+        cursor: pointer;
+        font-weight: 500;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 0.2em;
+        input {
+            position: absolute;
+            left: -9999px;
+        }
+        input:checked + span {
+            background-color: #414181;
+            color: white;
+        }
+        input:checked + span:before {
+            box-shadow: inset 0 0 0 0.5em #00005c;
+        }
+        span {
+            display: flex;
+            align-items: center;
+            padding: 0.15em 0.5em 0.25em 0.25em;
+            border-radius: 0.5em;
+            transition: 0.25s ease;
+            color: #414181;
+            &:hover {
+                background-color: #d6d6e5;
+            }
+            &:before {
+                display: flex;
+                flex-shrink: 0;
+                content: "";
+                background-color: #fff;
+                width: 1.5em;
+                height: 1.5em;
+                border-radius: 50%;
+                margin-right: 0.375em;
+                transition: 0.25s ease;
+                box-shadow: inset 0 0 0 0.125em #00005c;
+            }
+        }
+    }
+}
+
+uc-copyright {
+    display: none !important;
+}

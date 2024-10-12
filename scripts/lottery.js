@@ -186,8 +186,8 @@ function displayItemModal(entry) {
 function setUpGiftAltArt(entry) {
     handleAltArtIndicator();
     $(".itemArt").click(function () {
-        generatePageFlipAudio().play();
         if(entry["numOfAlt"] != undefined){
+            generatePageFlipAudio().play();
             CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
             $(".itemArt")
                 .fadeOut(130, function() {
@@ -503,13 +503,13 @@ function generatePageFlipAudio(){
 }
 
 function setUpAudios() {
-    AUDIO_ELEMENTS["balloonPop"] = createAudioElement(0.1, 'assets/sound/balloon_pop.mp3');
-    AUDIO_ELEMENTS["itemObtain"] = createAudioElement(0.1, 'assets/sound/item_obtain.mp3');
-    AUDIO_ELEMENTS["paperTear"] = createAudioElement(0.4, 'assets/sound/paper_tear.mp3');
-    AUDIO_ELEMENTS["flipCard"] = createAudioElement(0.1, 'assets/sound/flip_card.mp3');
-    AUDIO_ELEMENTS["flipPage"] = createAudioElement(0.25, 'assets/sound/flip_page.mp3');
-    AUDIO_ELEMENTS["bell"] = createAudioElement(0.35, 'assets/sound/bicycle_bell.mp3');
-    AUDIO_ELEMENTS["blop"] = createAudioElement(0.1, 'assets/sound/blop.mp3');
+    AUDIO_ELEMENTS["balloonPop"] = createAudioElement(0.2, 'assets/sound/balloon_pop.mp3');
+    AUDIO_ELEMENTS["itemObtain"] = createAudioElement(0.2, 'assets/sound/item_obtain.mp3');
+    AUDIO_ELEMENTS["paperTear"] = createAudioElement(0.45, 'assets/sound/paper_tear.mp3');
+    AUDIO_ELEMENTS["flipCard"] = createAudioElement(0.2, 'assets/sound/flip_card.mp3');
+    AUDIO_ELEMENTS["flipPage"] = createAudioElement(0.3, 'assets/sound/flip_page.mp3');
+    AUDIO_ELEMENTS["bell"] = createAudioElement(0.6, 'assets/sound/bicycle_bell.mp3');
+    AUDIO_ELEMENTS["blop"] = createAudioElement(0.2, 'assets/sound/blop.mp3');
     AUDIO_ELEMENTS["click"] = createAudioElement(0.2, 'assets/sound/click.mp3');
 }
 
@@ -682,7 +682,7 @@ function loadCookie() {
             setUpGiftLogStyle(index);
 
             $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index]) + 1) + ") .gridItem_inner .gift_back").html("<img src='" + getGiftUrl(gift) + "' alt='gift' />");
-            $(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index]) + 1) + ") .gridItem_inner").css("transform", "rotateY(180deg)");
+            doCardFlip($(".gridItem:nth-child(" + (parseInt(FLIPPED_CARD[index]) + 1) + ") .gridItem_inner"));
 
             addLogClick(index, gift);
             index++;
