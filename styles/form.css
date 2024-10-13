@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
   background-color: #424439;
@@ -11,6 +12,11 @@ body {
 
 #giftForm > div {
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+}
+
+a {
+  text-decoration: none;
+  transition: 0.25s ease;
 }
 
 .banner {
@@ -65,11 +71,16 @@ body {
   border-right: 2px solid #745f5e;
   transition: 0.25s ease;
 }
-.nav ul.navlist li:hover {
+.nav ul.navlist li:hover, .nav ul.navlist li a:hover {
   color: #a05c60 !important;
 }
+.nav ul.navlist li a {
+  color: rgb(233, 228, 228);
+}
 .nav .readme,
-.nav .guide {
+.nav .guide,
+.nav .deadlines,
+.nav .vips {
   border: 1px solid #42252a;
   font-size: 0.9em;
   padding: 24px 36px 8px 36px;
@@ -77,11 +88,15 @@ body {
   transition: all 0.3s ease-in-out;
 }
 .nav .readme ul,
-.nav .guide ul {
+.nav .guide ul,
+.nav .deadlines ul,
+.nav .vips ul {
   margin: 0;
 }
 .nav .readme ul li,
-.nav .guide ul li {
+.nav .guide ul li,
+.nav .deadlines ul li,
+.nav .vips ul li {
   line-height: 130%;
   margin: 12px auto;
 }
@@ -90,11 +105,83 @@ body {
 }
 .nav .guide ul {
   padding: 0;
+  padding-bottom: 8px;
   list-style: none;
+}
+.nav .guide ul li {
+  line-height: 120%;
+  margin: 8px auto;
+}
+.nav .deadlines {
+  text-align: center;
+  padding-top: 16px;
+}
+.nav .deadlines ul {
+  padding: 0;
+  list-style: none;
+  font-size: 1em;
+}
+.nav .deadlines ul li {
+  color: #745f5e;
+  line-height: 100%;
+}
+.nav .deadlines .countdown {
+  border-bottom: 1px solid #745f5e;
+  padding: 8px;
+}
+.nav .deadlines .countdown > span {
+  font-size: 2.5em;
+  padding: 0px 4px;
+}
+.nav .vips {
+  padding-right: 42px;
+  padding-left: 42px;
+}
+.nav .vips .memberWrap {
+  display: flex;
+  text-align: center;
+}
+.nav .vips .memberWrap > div {
+  width: 50%;
+}
+.nav .vips .memberWrap > div .memberType {
+  font-size: 1.5em;
+  border-bottom: 1px solid #745f5e;
+  padding-bottom: 4px;
+  width: 80%;
+  margin: 0 auto;
+}
+.nav .vips .memberWrap > div ul {
+  width: 80%;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  columns: 3;
+  column-gap: 0px;
+}
+.nav .vips .memberWrap > div ul li {
+  line-height: 100%;
+  padding: 8px 0px;
+  margin: 0px auto;
+}
+.nav .vips .memberWrap div:nth-child(2) ul {
+  columns: 1;
+  -webkit-columns: 1;
+  -moz-columns: 1;
 }
 
 .highlighted {
   color: #a05c60 !important;
+}
+
+.currentDeadline {
+  color: rgb(233, 228, 228) !important;
+}
+.currentDeadline:before {
+  content: "→ ";
+}
+.currentDeadline:after {
+  content: " ←";
 }
 
 .hiddenContent {
@@ -102,6 +189,12 @@ body {
   padding-bottom: 0 !important;
   height: 0;
   opacity: 0;
+  top: -1000px;
+  position: absolute;
+}
+
+.no-display {
+  display: none;
 }
 
 .no-select {

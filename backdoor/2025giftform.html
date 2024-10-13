@@ -20,7 +20,7 @@
 <body>
 
   <div class="wrapper">
-    <form id="giftForm" action="https://formspree.io/f/mnnqaeog" method="POST" enctype="multipart/form-data">
+    <form id="giftForm">
       <div class="banner">
         <div class="frame">
           <img src="../assets/form/HTC_decor.png" alt="decor">
@@ -34,30 +34,33 @@
       </div>
       <div class="nav">
         <ul class="navlist no-select">
-          <li>參加前必讀</li>
-          <li>請問怎麼玩</li>
-          <li>目前參加者</li>
-          <li>2024作品</li>
+          <li for="readme">參加前必讀</li>
+          <li for="guide">請問怎麼玩</li>
+          <li for="deadlines">活動時間</li>
+          <li for="vips">今年參加者</li>
+          <li><a href="https://www.google.com/" target="_blank">2024作品</a></li>
         </ul>
         <div class="navContent">
           <div class="readme hiddenContent">
             <ul>
               <li>一個禮物只能用一個OC的名義報名，但你可以用多個OC參加本活動，請注意丟越多OC要畫越多圖！</li>
+              <li>為了保持驚喜感，希望參加者們可以先將禮物內容跟畫作保密，尤其是不要發布在群組聊天頻道中或是SNS這種公共場合，謝謝！</li>
               <li>本活動僅給OC們提供禮物而非交流體驗，不一定有真實發生在角色所處時空！請不要太過認真看待！</li>
               <li>設定上這些禮物全部匿名，角色不需要知道禮物來自誰或是送給了誰、無須和其他角色有互動或接觸。</li>
               <li>參加者多時必定會有各式各樣的海產OC、時空、世界觀、甚至可能包含繪型海產跟武器擬人，如果你抽到的禮物是來自一個比較難以接受的世界觀的話，建議不要想太多，只專注在禮物上即可！</li>
               <li>如果你在參加者名單發現有自己想要迴避的人，可以斟酌再參加本企劃！</li>
-              <li>為了保持驚喜感，希望參加者們可以先將禮物內容跟畫作保密，尤其是不要發布在群組聊天頻道中或是SNS這種公共場合，謝謝！</li>
               <li>有任何參與事宜或是疑惑的話，請私訊主持人58的推特！</li>
             </ul>
           </div>
           <div class="guide hiddenContent">
             <ul>
+              <li>向主持人或工作人員報告你要參加，並確認自己已經在參加名單中</li>
+              <li>↓</li>
               <li>大家各自讓自己海產OC去準備某種神秘禮物，需以繪圖方式呈現，並繪製該物品小圖示</li>
               <li>↓</li>
-              <li>在九月底結束前私下將禮物投稿給主持人，主持人會將禮物放進禮物池</li>
+              <li>在九月底結束前私下將禮物投稿，主持人會幫你將禮物放進禮物池</li>
               <li>↓</li>
-              <li>十月中某日會舉辦開箱直播，每個OC都會隨機從禮物池抽一個禮物走</li>
+              <li>十月中會舉辦開箱直播，每個OC都會隨機從禮物池抽一個禮物走</li>
               <li>↓</li>
               <li>開箱直播結束後，大家各自繪製自己的OC獲得禮物的後續圖</li>
               <li>↓</li>
@@ -66,8 +69,43 @@
               <li>聖誕節當日會在SNS上公開所有作品</li>
             </ul>
           </div>
+          <div class="deadlines hiddenContent">
+            <div class="countdown">
+              <div class="countdown_label">距離<span></span>還有</div>
+              <span class="days"></span>天
+              <span class="hours"></span>小時
+              <span class="minutes"></span>分鐘
+              <span class="seconds"></span>秒
+            </div>
+            <ul>
+              <li><span>禮物投稿截止日</span>：<span>2025-09-29</span></li>
+              <li><span>開箱日直播</span>：<span>2025-10-12</span></li>
+              <li><span>收禮插圖截止日</span>：<span>2025-12-11</span></li>
+            </ul>
+          </div>
+          <div class="vips hiddenContent">
+            <div class="memberWrap">
+              <div>
+                <div class="memberType"><span>確定參加</span></div>
+                <ul>
+                  <!-- <li>Hazy</li>
+                  <li>22</li>
+                  <li>PAI</li> -->
+                </ul>
+              </div>
+              <div>
+                <div class="memberType"><span>觀望中</span></div>
+                <ul>
+                  <!-- <li>XXX</li>
+                  <li>OOO</li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!--ACTUAL FORM START-->
       <div class="main">
         <fieldset>
           <div class="question">
@@ -93,7 +131,7 @@
           <div class="question">
             <label class="label">這個OC準備的禮物是？</label>
             <div class="desc">
-              請確認禮物符合【禮物規範】不然58會來敲你的門！！不知要準備什麼的話可以參考【這裡】<br>
+              請先確認禮物符合【禮物規範】不然58會來敲你的門！！不知要準備什麼的話可以參考【這裡】<br>
               這會標註在展示網頁上，抽獎實況也會用此名稱展示這個物品。中文字符請盡量不要超過16字，不然排版會跑位！
             </div>
             <input type="text" name="gift" placeholder="手工圍巾">
@@ -180,7 +218,7 @@
             ⚠️⚠️ 請注意 ⚠️⚠️<br>
             投稿就代表你保證在開獎後一定一定會畫自家OC收禮物<br>
             要是因為任何原因交不出來，對那個準備禮物的人來說會非常尷尬！<br>
-            如果發生的話主持人有權力把你從本活動中黑單！
+            如果發生的話主持人可能會把你從本活動中黑單！
           </div>
           <div class="confirm">
             <input id="confirm" type="checkbox"><label for="confirm">我懂了！</label>
