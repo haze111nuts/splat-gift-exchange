@@ -9,9 +9,10 @@
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="../scripts/form.js"></script>
 
   <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-minimal.min.css">
+    href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-regular.min.css">
   <link rel="stylesheet" type="text/css" href="../styles/modal.css" />
   <link rel="stylesheet" type="text/css" href="../styles/form.css" />
 </head>
@@ -26,35 +27,32 @@
           <div class="title">2025海產神秘禮物投稿表單</div>
           <img src="../assets/form/HTC_decor.png" alt="decor">
           <div class="summary">
-            ⚠️ 請先跟主持螈58確認你有在參加名單中再填此表單 ⚠️<br>
-            ⚠️ 本表單截止日期為2025/09/29，請各位盡早策劃囉！ ⚠️<br>
-
+            ⚠️ 請先跟主持人58確認你有在參加名單中再填此表單 ⚠️<br>
+            ⚠️ 本表單截止日期為2025/09/29，還請各位盡早策劃唷 ⚠️<br>
           </div>
         </div>
       </div>
       <div class="nav">
-        <ul>
+        <ul class="navlist">
           <li>參加前必讀</li>
           <li>請問怎麼玩</li>
           <li>目前參加者</li>
           <li>2024作品</li>
         </ul>
+        <div class="readme">
+          <ul>
+            <li>一個禮物只能用一個OC的名義報名，但你可以用多個OC參加本活動，請注意丟越多OC要畫越多圖！</li>
+            <li>本活動僅給OC們提供禮物而非交流體驗，不一定有真實發生在角色所處時空！請不要太過認真看待！</li>
+            <li>設定上這些禮物全部匿名，角色不需要知道禮物來自誰或是送給了誰、無須和其他角色有互動或接觸。</li>
+            <li>參加者多時必定會有各式各樣的海產OC、時空、世界觀、甚至可能包含繪型海產跟武器擬人，如果你抽到的禮物是來自一個比較難以接受的世界觀的話，建議不要想太多，只專注在禮物上即可！</li>
+            <li>如果你在參加者名單發現有自己想要迴避的人，可以斟酌再參加本企劃！</li>
+            <li>為了保持驚喜感，希望參加者們可以先將禮物內容跟畫作保密，尤其是不要發布在群組聊天頻道中或是SNS這種公共場合！感謝🙏</li>
+            <li>有任何參與事宜或是疑惑的話，請私訊主持人58的推特。</li>
+          </ul>
+        </div>
       </div>
       <div class="main">
         <fieldset>
-          <div class="lang_options_wrap">
-            <div class="lang_options">
-              <label>
-                <input type="radio" name="lang" checked="" value="CHN">
-                <span>中文</span>
-              </label>
-              <label>
-                <input type="radio" name="lang" value="ENG">
-                <span>English</span>
-              </label>
-            </div>
-          </div>
-
           <div class="question">
             <label class="label">欲參加的海產OC名字</label>
             <div class="desc">
@@ -70,8 +68,9 @@
               請提供正方形PNG檔，此圖會以100px*100px形式呈現在抽獎版面上。可以用【這個】事先預覽。<br>
               只是辨認角色用，建議拿現有作品或圖片直接擷取頭部即可！有顯示脖子到肩膀為佳。
             </div>
-            <uc-config ctx-name="my-uploader" pubkey="94f43466c8ece62a70aa"></uc-config>
-            <uc-file-uploader-minimal ctx-name="my-uploader" class="uc-light uc-turquoise"></uc-file-uploader-minimal>
+            <uc-config ctx-name="my-uploader" use-cloud-image-editor="false" source-list="local, url"
+              pubkey="94f43466c8ece62a70aa" confirm-upload="true"></uc-config>
+            <uc-file-uploader-regular ctx-name="my-uploader" class="uc-light uc-green"></uc-file-uploader-regular>
           </div>
 
           <div class="question">
@@ -85,33 +84,30 @@
           <div class="question">
             <label class="label">請繪製此禮物的圖示</label>
             <div class="desc">
-              圖示規格是400px*400px，背景透明的PNG檔案。請畫整個物品本身而非包裝後的禮物盒！<br>
-              因為會影響展示所以不建議在上面標註文字或規格唷！
-              可以投稿多張，藉此展示此物件不同的狀態（例如開燈關燈版）<br>
+              圖示規格是400px*400px，背景透明的PNG檔案。請畫整個物品本身而非包裝後的禮物盒！可以投稿多張，藉此展示此物件不同的狀態（例如開燈版與關燈版）<br>
               風格不限，如果不想被別人透過畫風猜到自己是誰，建議可以用Splatoon官方風格的色塊作畫。<br>
               【我要看參考】【我要預覽】
             </div>
-            <uc-config ctx-name="my-uploader" pubkey="94f43466c8ece62a70aa"></uc-config>
-            <uc-file-uploader-minimal ctx-name="my-uploader" class="uc-light uc-turquoise"></uc-file-uploader-minimal>
+            <uc-file-uploader-regular ctx-name="my-uploader" class="uc-light uc-green"></uc-file-uploader-regular>
           </div>
 
           <div class="question">
             <label class="label">請提供禮物的文字介紹</label>
             <div class="desc">
-              可以寫禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！如果角色想附上祝賀小卡片的話，也可以把內文寫在這。若有需要也可以附上圖片或是URL，主持人會幫你整理內文跟排版。另外因為這是匿名禮物，請盡量不要包含你OC的名字。如果不確定怎麼寫，隨時歡迎私訊主持人叫他幫你想（？<br>
+              可以寫禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。另外因為這是匿名禮物，請盡量不要包含你OC的名字。<br>
+              如果不確定怎麼寫，隨時歡迎私訊主持人叫他幫你想！<br>
               【我要看參考】【我要預覽】
             </div>
             <textarea rows="5" cols="50" name="giftSummary" placeholder="請提供禮物的文字介紹"></textarea>
           </div>
 
           <div class="question">
-            <label class="label">請繪製欲參加的OC與這份禮物的圖</label>
+            <label class="label">請繪製欲參加的OC與這份禮物的插圖</label>
             <div class="desc">
-              圖片規格是1080px*1080px， PNG檔案。會在聖誕節當日才公開。 繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出你報名的這位OC以及他欲送出的禮物物品即可！（例如可以單純是OC將物品拿在手上的構圖、也可以是OC挑選禮物過程、OC製作禮物的心路歷程等等，請隨意發揮）<br>
-              作品的基礎完成度可以參考【Splatoon2的祭典插圖】此外，圖中的海產OC主角請以人型態為主，配角則不限。
+              圖片規格是1080px*1080px， PNG檔案。會在聖誕節當日才公開。
+              繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出你報名的這位OC以及他欲送出的禮物物品即可！圖中的海產OC主角請以人型態為主，配角則不限。
             </div>
-            <uc-config ctx-name="my-uploader" pubkey="94f43466c8ece62a70aa"></uc-config>
-            <uc-file-uploader-minimal ctx-name="my-uploader" class="uc-light uc-turquoise"></uc-file-uploader-minimal>
+            <uc-file-uploader-regular ctx-name="my-uploader" class="uc-light uc-green"></uc-file-uploader-regular>
           </div>
 
           <div class="question">
@@ -161,17 +157,29 @@
               </label>
             </div>
           </div>
-
         </fieldset>
+        <div class="submit_area">
+          <div>
+            ⚠️⚠️ 請注意 ⚠️⚠️<br>
+            投稿就代表你保證在開獎後一定會畫自家OC收禮物<br>
+            如果因為任何原因交不出來，對準備禮物的人來說會非常尷尬！<br>
+            要是發生的話主持人有權力把你從本活動中黑單！
+          </div>
+          <div class="confirm">
+            <input id="confirm" type="checkbox">
+            <label for="confirm">我懂了！</label>
+          </div>
+          <button class="submit" type="submit" disabled>投稿禮物 >></button>
+        </div>
       </div>
-      <!-- <button type="submit">Send</button> -->
     </form>
   </div>
 
   <script type="module">
-    import * as UC from 'https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-minimal.min.js';
+    import * as UC from 'https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-regular.min.js';
     UC.defineComponents(UC);
   </script>
+
 </body>
 
 </html>
