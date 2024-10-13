@@ -25,82 +25,141 @@
           <img src="../assets/form/HTC_decor.png" alt="decor">
           <div class="title">2025海產神秘禮物投稿表單</div>
           <img src="../assets/form/HTC_decor.png" alt="decor">
-          <div class="summary">⚠️ 請先跟58確認你要參加再填這個單唷 ⚠️</div>
+          <div class="summary">
+            ⚠️ 請先跟主持螈58確認你有在參加名單中再填此表單 ⚠️<br>
+            ⚠️ 本表單截止日期為2025/09/29，請各位盡早策劃囉！ ⚠️<br>
+
+          </div>
         </div>
       </div>
       <div class="nav">
         <ul>
-          <li>參與須知</li>
-          <li>規則大綱</li>
-          <li>參考2024作品</li>
+          <li>參加前必讀</li>
+          <li>請問怎麼玩</li>
+          <li>目前參加者</li>
+          <li>2024作品</li>
         </ul>
       </div>
       <div class="main">
         <fieldset>
-          <div class="lang_options">
-            <label>
-              <input type="radio" name="lang" checked="" value="CHN">
-              <span>中文</span>
-            </label>
-            <label>
-              <input type="radio" name="lang" value="ENG">
-              <span>English</span>
-            </label>
+          <div class="lang_options_wrap">
+            <div class="lang_options">
+              <label>
+                <input type="radio" name="lang" checked="" value="CHN">
+                <span>中文</span>
+              </label>
+              <label>
+                <input type="radio" name="lang" value="ENG">
+                <span>English</span>
+              </label>
+            </div>
           </div>
 
-          <label class="label">欲參加的海產OC名字</label>
-          <input type="text" name="OCname" placeholder="海產OC名字">
+          <div class="question">
+            <label class="label">欲參加的海產OC名字</label>
+            <div class="desc">
+              抽獎實況時主持人會使用這個名字來稱呼你的角色，<br>
+              這個欄位只能放一個角色！如果還想讓複數個OC參加，請另外再寫一次表單。
+            </div>
+            <input type="text" name="OCname" placeholder="Name">
+          </div>
 
-          <label class="label">請提供這個OC的頭像</label>
-          <uc-config ctx-name="my-uploader" pubkey="94f43466c8ece62a70aa"></uc-config>
-          <uc-file-uploader-minimal ctx-name="my-uploader" class="uc-light uc-turquoise"></uc-file-uploader-minimal>
+          <div class="question">
+            <label class="label">請提供這個OC的頭像</label>
+            <div class="desc">
+              請提供正方形PNG檔，此圖會以100px*100px形式呈現在抽獎版面上。可以用【這個】事先預覽。<br>
+              只是辨認角色用，建議拿現有作品或圖片直接擷取頭部即可！有顯示脖子到肩膀為佳。
+            </div>
+            <uc-config ctx-name="my-uploader" pubkey="94f43466c8ece62a70aa"></uc-config>
+            <uc-file-uploader-minimal ctx-name="my-uploader" class="uc-light uc-turquoise"></uc-file-uploader-minimal>
+          </div>
 
-          <label class="label">這個OC準備的禮物是？</label>
-          <input type="text" name="gift" placeholder="手工圍巾">
+          <div class="question">
+            <label class="label">這個OC準備的禮物是？</label>
+            <div class="desc">
+              請確認禮物符合【禮物規範】不然58會來敲你的門！！不知要準備什麼的話可以參考【這裡】<br>
+              這會標註在展示網頁上，抽獎實況也會用此名稱展示這個物品。中文字符請盡量不要超過16字，不然排版會跑位！
+            </div>
+            <input type="text" name="gift" placeholder="手工圍巾">
+          </div>
+          <div class="question">
+            <label class="label">請繪製此禮物的圖示</label>
+            <div class="desc">
+              圖示規格是400px*400px，背景透明的PNG檔案。請畫整個物品本身而非包裝後的禮物盒！<br>
+              因為會影響展示所以不建議在上面標註文字或規格唷！
+              可以投稿多張，藉此展示此物件不同的狀態（例如開燈關燈版）<br>
+              風格不限，如果不想被別人透過畫風猜到自己是誰，建議可以用Splatoon官方風格的色塊作畫。<br>
+              【我要看參考】【我要預覽】
+            </div>
+            <uc-config ctx-name="my-uploader" pubkey="94f43466c8ece62a70aa"></uc-config>
+            <uc-file-uploader-minimal ctx-name="my-uploader" class="uc-light uc-turquoise"></uc-file-uploader-minimal>
+          </div>
 
-          <label class="label">請繪製一個禮物的圖示</label>
-          <uc-config ctx-name="my-uploader" pubkey="94f43466c8ece62a70aa"></uc-config>
-          <uc-file-uploader-minimal ctx-name="my-uploader" class="uc-light uc-turquoise"></uc-file-uploader-minimal>
+          <div class="question">
+            <label class="label">請提供禮物的文字介紹</label>
+            <div class="desc">
+              可以寫禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！如果角色想附上祝賀小卡片的話，也可以把內文寫在這。若有需要也可以附上圖片或是URL，主持人會幫你整理內文跟排版。另外因為這是匿名禮物，請盡量不要包含你OC的名字。如果不確定怎麼寫，隨時歡迎私訊主持人叫他幫你想（？<br>
+              【我要看參考】【我要預覽】
+            </div>
+            <textarea rows="5" cols="50" name="giftSummary" placeholder="請提供禮物的文字介紹"></textarea>
+          </div>
 
-          <label class="label">請提供禮物的文字介紹</label>
-          <textarea rows="4" cols="50" name="giftSummary" placeholder="請提供禮物的文字介紹"></textarea>
+          <div class="question">
+            <label class="label">請繪製欲參加的OC與這份禮物的圖</label>
+            <div class="desc">
+              圖片規格是1080px*1080px， PNG檔案。會在聖誕節當日才公開。 繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出你報名的這位OC以及他欲送出的禮物物品即可！（例如可以單純是OC將物品拿在手上的構圖、也可以是OC挑選禮物過程、OC製作禮物的心路歷程等等，請隨意發揮）<br>
+              作品的基礎完成度可以參考【Splatoon2的祭典插圖】此外，圖中的海產OC主角請以人型態為主，配角則不限。
+            </div>
+            <uc-config ctx-name="my-uploader" pubkey="94f43466c8ece62a70aa"></uc-config>
+            <uc-file-uploader-minimal ctx-name="my-uploader" class="uc-light uc-turquoise"></uc-file-uploader-minimal>
+          </div>
 
-          <hr>
-          </hr>
+          <div class="question">
+            <label class="label">投稿人名字</label>
+            <div class="desc">
+              在成品展示的網頁上會放這個名字。
+            </div>
+            <input type="text" name="artist" placeholder="58">
+          </div>
+          <div class="question">
+            <label class="label">聯絡方式</label>
+            <div class="desc">
+              如果有需要討論的事項，主持人會用這個方式聯絡你。
+            </div>
+            <input type="text" name="contact" placeholder="58@woopa.com">
+          </div>
 
-          <label class="label">請繪製這位OC與這份禮物的圖</label>
-          <uc-config ctx-name="my-uploader" pubkey="94f43466c8ece62a70aa"></uc-config>
-          <uc-file-uploader-minimal ctx-name="my-uploader" class="uc-light uc-turquoise"></uc-file-uploader-minimal>
-          <hr>
-          </hr>
+          <div class="question">
+            <label class="label">個人連結</label>
+            <div class="desc">
+              展示時會在作品旁附上的連結，可以填個人網站或SNS帳號，也可以不填。
+            </div>
+            <input type="text" name="link" placeholder="twitter@xxxolot58">
+          </div>
 
-          <label class="label">投稿人名字</label>
-          <input type="text" name="artist" placeholder="58">
-
-          <label class="label">聯絡方式</label>
-          <input type="text" name="contact" placeholder="58@woopa.com">
-
-          <label class="label">個人連結</label>
-          <input type="text" name="link" placeholder="twitter@xxxolot58">
-
-          <label class="label">你想要自家抽到自家禮物的可能性嗎？</label>
-          <div class="selfTrade_options">
-            <label>
-              <input type="radio" name="self_trade" value="false">
-              <span>我不想要我家角色抽到我家其他角色的禮物</span>
-            </label>
-            <label>
-              <input type="radio" name="self_trade" value="true">
-              <span>我可以接受我家角色抽到我家其他角色的禮物</span>
-            </label>
-            <label>
-              <input type="radio" checked="" name="self_trade" value="singleOC">
-              <span>我只打算投稿一隻OC</span>
-            </label>
-            <label>
-              <input type="radio" name="self_trade" value="tbd">
-              <span>目前不確定要投稿幾隻</span>
-            </label>
+          <div class="question">
+            <label class="label">你想要自家抽到自家禮物的可能性嗎？</label>
+            <div class="desc">
+              這個選擇將會影響到你的角色能夠抽到的禮物。如果想要更改答案可以聯絡主持人58。另外為了保證抽獎機可以正常運作，如果你的角色數量多到一定的程度，主持人會私下找你調整這個選項。
+            </div>
+            <div class="selfTrade_options">
+              <label>
+                <input type="radio" name="self_trade" value="false">
+                <span>我不想要我家角色抽到我家其他角色的禮物</span>
+              </label>
+              <label>
+                <input type="radio" name="self_trade" value="true">
+                <span>我可以接受我家角色抽到我家其他角色的禮物</span>
+              </label>
+              <label>
+                <input type="radio" checked="" name="self_trade" value="singleOC">
+                <span>我只打算投稿一隻OC</span>
+              </label>
+              <label>
+                <input type="radio" name="self_trade" value="tbd">
+                <span>目前不確定要投稿幾隻</span>
+              </label>
+            </div>
           </div>
 
         </fieldset>
