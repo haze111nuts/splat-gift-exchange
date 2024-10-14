@@ -60,6 +60,52 @@ function setTimeBetweenDates(toDate) {
     }
 }
 
+function setUpOtherValidateStyle() {
+    $('input, textarea').on('focusout keyup', function () {
+
+        //dont do the rest when input is for selftrade question or confirm
+        //only do the rest when the wrapper of input is div 
+        if($(this).parent().is('div') && $(this).parent().attr("class") != "confirm"){
+            var index = $(this).parent().attr("class").split(" ")[1];
+            if (
+                ($(".question:nth-child("+index+")").children().length <= 3 || 
+                $(this).siblings(".error").css("display") == "none") && 
+                $(this).val().length > 0
+            ){
+                //set border to green
+                $(".question:nth-child("+index+")").css("border-color","#5d6836");
+
+            }else{
+                //set border to red
+                $(".question:nth-child("+index+")").css("border-color","#9e3038");
+            }
+        }
+    });
+}
+
+function validateForm() {
+    $("#giftForm").validate({
+        rules: {
+            OCname: "required",
+            gift: "required",
+            giftSummary: "required",
+            artist: "required",
+            contact: "required"
+        },
+        messages: {
+            OCname: "有東西沒填！",
+            gift: "有東西沒填！",
+            giftSummary: "有東西沒填！",
+            artist: "有東西沒填！",
+            contact: "有東西沒填！"            
+        },
+        submitHandler: function (form) {
+            alert("valid form submitted")
+            return false
+        },
+    })
+}
+
 //======================//
 //                      //
 //    Ready Function    //
@@ -70,5 +116,6 @@ $(document).ready(function () {
     setUpConfirmEvent();
     setUpNavClickEvents();
     setUpTimer();
-
+    validateForm();
+    setUpOtherValidateStyle();
 });
