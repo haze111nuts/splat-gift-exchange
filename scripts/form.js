@@ -1,5 +1,6 @@
 
 function setUpConfirmEvent() {
+    $("#confirm").prop("checked", false);    
     $('#confirm').click(function () {
         $('.submit').prop("disabled", !$(".submit").prop("disabled"));
     });
@@ -22,13 +23,13 @@ function setUpTimer() {
     var index = 1;
 
     //set deadline name
-    $(".countdown_label span").html($(".deadlines ul li:nth-child("+index+") span:nth-child(1)").html());
+    $(".countdown_label span").html($(".deadlines ul li:nth-child(" + index + ") span:nth-child(1)").html());
 
     //highlight the current deadline
-    var deadline = $(".deadlines ul li:nth-child("+index+")").addClass("currentDeadline");
+    var deadline = $(".deadlines ul li:nth-child(" + index + ")").addClass("currentDeadline");
 
     //grab deadline
-    var deadline = $(".deadlines ul li:nth-child("+index+") span:nth-child(2)").html();
+    var deadline = $(".deadlines ul li:nth-child(" + index + ") span:nth-child(2)").html();
     var compareDate = new Date(deadline);
     compareDate.setDate(compareDate.getDate());
 
@@ -60,26 +61,29 @@ function setTimeBetweenDates(toDate) {
     }
 }
 
-function setUpOtherValidateStyle() {
+function setUpOtherValidationStyle() {
     $('input, textarea').on('focusout keyup', function () {
-
         //dont do the rest when input is for selftrade question or confirm
         //only do the rest when the wrapper of input is div 
-        if($(this).parent().is('div') && $(this).parent().attr("class") != "confirm"){
+        if ($(this).parent().is('div') && $(this).parent().attr("class") != "confirm") {
             var index = $(this).parent().attr("class").split(" ")[1];
             if (
-                ($(".question:nth-child("+index+")").children().length <= 3 || 
-                $(this).siblings(".error").css("display") == "none") && 
+                ($(".question:nth-child(" + index + ")").children().length <= 3 ||
+                    $(this).siblings(".error").css("display") == "none") &&
                 $(this).val().length > 0
-            ){
+            ) {
                 //set border to green
-                $(".question:nth-child("+index+")").css("border-color","#5d6836");
+                $(".question:nth-child(" + index + ")").css("border-color", "#5d6836");
 
-            }else{
+            } else {
                 //set border to red
-                $(".question:nth-child("+index+")").css("border-color","#9e3038");
+                if(index != 9)
+                    $(".question:nth-child(" + index + ")").css("border-color", "#9e3038");
             }
         }
+    });
+    $('.selfTrade_options label').click(function () {
+        $(".question:nth-child(10)").css("border-color", "#5d6836");
     });
 }
 
@@ -97,12 +101,25 @@ function validateForm() {
             gift: "有東西沒填！",
             giftSummary: "有東西沒填！",
             artist: "有東西沒填！",
-            contact: "有東西沒填！"            
+            contact: "有東西沒填！"
         },
         submitHandler: function (form) {
             alert("valid form submitted")
             return false
         },
+        invalidHandler: function (event, validator) {
+
+            for (let x in validator.invalid) {
+                var index = "0";
+                if (x == "giftSummary") {
+                    index = 5;
+                } else {
+                    index = $("input[name='" + x + "']").parent().attr("class").split(" ")[1];
+                }
+                
+                $(".question:nth-child(" + index + ")").css("border-color", "#9e3038");
+            }
+        }
     })
 }
 
@@ -117,5 +134,5 @@ $(document).ready(function () {
     setUpNavClickEvents();
     setUpTimer();
     validateForm();
-    setUpOtherValidateStyle();
+    setUpOtherValidationStyle();
 });

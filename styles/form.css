@@ -286,6 +286,10 @@ a {
   border: 0px;
   font-size: 1.5em;
   border: 1px solid rgb(223, 177, 92);
+  transition: 0.25s ease;
+}
+.main .submit_area button:hover {
+  background-color: #d37e38;
 }
 .main .submit_area button:disabled, .main .submit_area button[disabled] {
   cursor: auto;
