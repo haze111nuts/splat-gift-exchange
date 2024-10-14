@@ -1,3 +1,15 @@
+// import { uploadFile } from '@uploadcare/upload-client'
+
+// // fileData must be `Blob`, `File`, `Buffer`, UUID, CDN URL or Remote URL
+// const result = await uploadFile(fileData, {
+//     publicKey: 'YOUR_PUBLIC_KEY',
+//     store: 'auto',
+//     metadata: {
+//       subsystem: 'uploader',
+//       pet: 'cat'
+//     }
+// })
+
 
 function setUpConfirmEvent() {
     $("#confirm").prop("checked", false);    
@@ -72,8 +84,9 @@ function setUpOtherValidationStyle() {
                     $(this).siblings(".error").css("display") == "none") &&
                 $(this).val().length > 0
             ) {
-                //set border to green
-                $(".question:nth-child(" + index + ")").css("border-color", "#5d6836");
+                //set border to normal
+                //green #5d6836
+                $(".question:nth-child(" + index + ")").css("border-color", "rgb(223, 177, 92)");
 
             } else {
                 //set border to red
@@ -83,7 +96,7 @@ function setUpOtherValidationStyle() {
         }
     });
     $('.selfTrade_options label').click(function () {
-        $(".question:nth-child(10)").css("border-color", "#5d6836");
+        $(".question:nth-child(10)").css("border-color", "rgb(223, 177, 92)");
     });
 }
 
@@ -135,4 +148,5 @@ $(document).ready(function () {
     setUpTimer();
     validateForm();
     setUpOtherValidationStyle();
+    // console.log(`URL: ${file.cdnUrl}`)
 });

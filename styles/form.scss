@@ -109,6 +109,15 @@ a{
             }
         }
     }
+    .readme{
+        ul {
+            li {
+                &:nth-child(even){
+                    color: #b5bd90;
+                }
+            }
+        }
+    }
     .guide {
         text-align: center;
         ul {
@@ -118,6 +127,13 @@ a{
             li {
                 line-height: 120%;
                 margin: 8px auto;
+                &:nth-child(even){
+                    color: #a09f92;
+                }
+                &:nth-child(4n+3){
+                    color: #b5bd90;
+                }
+
             }
         }
     }

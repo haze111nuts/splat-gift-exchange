@@ -12,6 +12,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
   <script type="text/javascript" src="../scripts/form.js"></script>
 
+  <script type="module" src="https://cdn.jsdelivr.net/npm/tsparticles-confetti/+esm" ></script>
+
   <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-regular.min.css">
   <link rel="stylesheet" type="text/css" href="../styles/modal.css" />
@@ -59,7 +61,7 @@
               <li>↓</li>
               <li>大家各自讓自己海產OC去準備某種神秘禮物，需以繪圖方式呈現，並繪製該物品小圖示</li>
               <li>↓</li>
-              <li>在九月底結束前私下將禮物投稿，主持人會幫你將禮物放進禮物池</li>
+              <li>在九月底前私下將禮物投稿，主持人會幫你把禮物打包放進禮物池</li>
               <li>↓</li>
               <li>十月中會舉辦開箱直播，每個OC都會隨機從禮物池抽一個禮物走</li>
               <li>↓</li>
@@ -110,7 +112,7 @@
       <div class="main">
         <fieldset>
           <div class="question 1">
-            <label class="label">欲參加的海產OC名字*</label>
+            <label class="label">欲參加的海產OC名字</label>
             <div class="desc">
               抽獎實況時主持人會使用這個名字來稱呼你的角色，<br>
               這個欄位只能放一個角色！如果還想讓複數個OC參加，請另外再寫一次表單。
@@ -119,7 +121,7 @@
           </div>
 
           <div class="question 2 upload">
-            <label class="label">請提供這個OC的頭像*</label>
+            <label class="label">請提供這個OC的頭像</label>
             <div class="desc">
               請提供正方形PNG檔，此圖會以100px*100px形式呈現在抽獎版面上。可以用【這個】事先預覽。<br>
               只是辨認角色用，建議拿現有作品或圖片直接擷取頭部即可！有畫出脖子肩膀為佳。
@@ -130,7 +132,7 @@
           </div>
 
           <div class="question 3">
-            <label class="label">這個OC準備的禮物是？*</label>
+            <label class="label">這個OC準備的禮物是？</label>
             <div class="desc">
               請先確認禮物符合【禮物規範】不然58會來敲你的門！！不知要準備什麼的話可以參考【這裡】<br>
               這會標註在展示網頁上，抽獎實況也會用此名稱展示這個物品。中文字符請盡量不要超過16字，不然排版會跑位！
@@ -138,27 +140,27 @@
             <input type="text" name="gift" placeholder="手工圍巾">
           </div>
           <div class="question 4 upload">
-            <label class="label">請繪製此禮物的圖示*</label>
+            <label class="label">請繪製此禮物的內容物</label>
             <div class="desc">
-              圖示規格是400px*400px，背景透明的PNG檔案。請畫整個物品本身而非包裝後的禮物盒！可以投稿多張，藉此展示此物件不同的狀態（例如開燈版與關燈版）<br>
-              風格不限，如果不想被別人透過畫風猜到自己是誰，建議可以用Splatoon官方風格的色塊作畫。<br>
+              圖示規格是400px*400px，背景透明的PNG檔案。請盡量畫出物品的完整樣貌，不要包裝紙！<br>
+              也可以投稿多張來藉此展示此物件不同的狀態唷（例如開燈版與關燈版）此圖風格不限，如果不想被別人透過畫風猜到自己是誰，建議可以用Splatoon官方風格的色塊作畫。<br>
               【我要看參考】【我要預覽】
             </div>
             <uc-file-uploader-regular ctx-name="my-uploader" class="uc-light uc-green"></uc-file-uploader-regular>
           </div>
 
           <div class="question 5">
-            <label class="label">請提供禮物的文字介紹*</label>
+            <label class="label">請提供禮物的文字介紹</label>
             <div class="desc">
-              可以寫禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。另外因為這是匿名禮物，請盡量不要包含你OC的名字。<br>
+              可以寫禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。另外因為這是匿名禮物，能的話請盡量不要包含你OC的名字。<br>
               如果不確定怎麼寫，隨時歡迎私訊主持人叫他幫你想！<br>
               【我要看參考】【我要預覽】
             </div>
             <textarea rows="5" cols="50" name="giftSummary" placeholder="請提供禮物的文字介紹"></textarea>
           </div>
 
-          <div class="question 6">
-            <label class="label">請繪製欲參加的OC與這份禮物的插圖*</label>
+          <div class="question 6 upload">
+            <label class="label">請繪製欲參加的OC與這份禮物的插圖</label>
             <div class="desc">
               圖片規格是1080px*1080px， PNG檔案。會在聖誕節當日才公開。
               繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出你報名的這位OC以及他欲送出的禮物物品即可！圖中的海產OC主角請以人型態為主，配角則不限。
@@ -167,14 +169,15 @@
           </div>
 
           <div class="question 7">
-            <label class="label">投稿人名字*</label>
+            <label class="label">投稿人名字</label>
             <div class="desc">
               在成品展示的網頁上會放這個名字。
             </div>
             <input type="text" name="artist" placeholder="58">
           </div>
+          
           <div class="question 8">
-            <label class="label">聯絡方式*</label>
+            <label class="label">聯絡方式</label>
             <div class="desc">
               如果有需要討論的事項，主持人會用這個方式聯絡你。
             </div>
@@ -190,7 +193,7 @@
           </div>
 
           <div class="question 10">
-            <label class="label">你想要自家抽到自家禮物的可能性嗎？*</label>
+            <label class="label">你想要自家抽到自家禮物的可能性嗎？</label>
             <div class="desc">
               這個選擇將會影響到你的角色能夠抽到的禮物。如果想要更改答案可以聯絡主持人58。另外為了保證抽獎機可以正常運作，如果你的角色數量多到一定的程度，主持人會私下找你調整這個選項。
             </div>
@@ -230,9 +233,16 @@
     </form>
   </div>
 
+  <uc-upload-ctx-provider ctx-name="my-uploader"></uc-upload-ctx-provider>
   <script type="module">
     import * as UC from 'https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-regular.min.js';
     UC.defineComponents(UC);
+  </script>
+  <script>
+    const ctx = document.querySelector('uc-upload-ctx-provider')
+    ctx.addEventListener('file-upload-success', e => {
+      console.log("SUCCESS!!")
+    })
   </script>
 
 </body>

@@ -100,6 +100,9 @@ a {
   line-height: 130%;
   margin: 12px auto;
 }
+.nav .readme ul li:nth-child(even) {
+  color: #b5bd90;
+}
 .nav .guide {
   text-align: center;
 }
@@ -111,6 +114,12 @@ a {
 .nav .guide ul li {
   line-height: 120%;
   margin: 8px auto;
+}
+.nav .guide ul li:nth-child(even) {
+  color: #a09f92;
+}
+.nav .guide ul li:nth-child(4n+3) {
+  color: #b5bd90;
 }
 .nav .deadlines {
   text-align: center;
