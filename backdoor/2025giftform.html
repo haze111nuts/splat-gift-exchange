@@ -129,7 +129,7 @@
             <input type="text" name="OCname" placeholder="Name">
           </div>
 
-          <div class="question 2 ocprofile-upload">
+          <div class="question 2 ocprofile-uploader-wrapper">
             <label class="label">請提供這個OC的頭像</label>
             <div class="desc">
               請提供一張正方形PNG檔，此圖會以100px*100px形式呈現在抽獎版面上。可以【<span>點這裡預覽</span>】<br>
@@ -138,6 +138,7 @@
             <uc-file-uploader-regular ctx-name="ocprofile-uploader"
               class="uc-light uc-green"></uc-file-uploader-regular>
             <div class="uploadResult"></div>
+            <input class="dummy" name="ocprofile_check" type="checkbox" autocomplete="off" >
           </div>
 
           <div class="question 3">
@@ -149,7 +150,7 @@
             <input type="text" name="gift" placeholder="手工圍巾">
           </div>
 
-          <div class="question 4 gift-upload">
+          <div class="question 4 gift-uploader-wrapper">
             <label class="label">請繪製此禮物的內容物圖示</label>
             <div class="desc">
               這是抽獎和展示用的圖示，規格是400px*400px且背景透明的PNG檔案。請盡量畫出物品的完整樣貌，不要包裝紙！<br>類似遊戲中常出現的道具圖示，可以【<span>點這裡看參考圖</span>】也可以【<span>點這裡預覽</span>】<br>
@@ -157,6 +158,7 @@
             </div>
             <uc-file-uploader-regular ctx-name="gift-uploader" class="uc-light uc-green"></uc-file-uploader-regular>
             <div class="uploadResult"></div>
+            <input class="dummy" name="gift_check" type="checkbox" autocomplete="off" >
 
             <div class="extraWrapper">
               <span class="extraLink no-select">
@@ -182,7 +184,7 @@
             <textarea rows="5" cols="50" name="giftSummary" placeholder="請提供禮物的文字介紹"></textarea>
           </div>
 
-          <div class="question 6 art-upload">
+          <div class="question 6 art-uploader-wrapper">
             <label class="label">請繪製這個OC準備這份禮物的插圖</label>
             <div class="desc">
               圖片規格是1080px*1080px， PNG檔案。會在聖誕節當日才公開。
@@ -190,6 +192,7 @@
             </div>
             <uc-file-uploader-regular ctx-name="art-uploader" class="uc-light uc-green"></uc-file-uploader-regular>
             <div class="uploadResult"></div>
+            <input class="dummy" name="art_check" type="checkbox" autocomplete="off" >
           </div>
 
           <div class="question 7">
@@ -288,17 +291,17 @@
   <script>
     //event for upload success
     const ctx_ocprofile = document.querySelector('uc-upload-ctx-provider[ctx-name="ocprofile-uploader"]')
-    ctx_ocprofile.addEventListener('file-upload-success', e => displayImageUploadSuccessMsg(e,"ocprofile-upload"));
+    ctx_ocprofile.addEventListener('file-upload-success', e => displayImageUploadSuccessMsg(e,"ocprofile-uploader-wrapper"));
 
     const ctx_gift = document.querySelector('uc-upload-ctx-provider[ctx-name="gift-uploader"]')
-    ctx_gift.addEventListener('file-upload-success', e => displayImageUploadSuccessMsg(e,"gift-upload"));
+    ctx_gift.addEventListener('file-upload-success', e => displayImageUploadSuccessMsg(e,"gift-uploader-wrapper"));
 
     const ctx_gift_ex = document.querySelector('uc-upload-ctx-provider[ctx-name="gift-ex-uploader"]')
     ctx_gift_ex.addEventListener('file-upload-success', e => displayMultiImageUploadSuccessMsg(e));
 
     const ctx_art = document.querySelector('uc-upload-ctx-provider[ctx-name="art-uploader"]')
     ctx_art.addEventListener('file-upload-success', e => {
-      displayImageUploadSuccessMsg(e,"art-upload");
+      displayImageUploadSuccessMsg(e,"art-uploader-wrapper");
     });
 
 

@@ -1,5 +1,5 @@
 function setUpConfirmEvent() {
-    $("#confirm").prop("checked", false);    
+    $("#confirm").prop("checked", false);
     $('#confirm').click(function () {
         $('.submit').prop("disabled", !$(".submit").prop("disabled"));
     });
@@ -77,14 +77,14 @@ function setUpOtherValidationStyle() {
 
             } else {
                 //set border to red
-                if(index != 9)
+                if (index != 9)
                     $(".question:nth-child(" + index + ")").css("border-color", "#9e3038");
             }
         }
     });
-    $('.selfTrade_options label').click(function () {
-        $(".question:nth-child(10)").css("border-color", "rgb(223, 177, 92)");
-    });
+    // $('.selfTrade_options label').click(function () {
+    //     $(".question:nth-child(10)").css("border-color", "rgb(223, 177, 92)");
+    // });
 }
 
 function validateForm() {
@@ -94,26 +94,36 @@ function validateForm() {
             gift: "required",
             giftSummary: "required",
             artist: "required",
-            contact: "required"
+            contact: "required",
+            ocprofile_check: "required",
+            gift_check: "required",
+            art_check: "required"
         },
         messages: {
             OCname: "有東西沒填！",
             gift: "有東西沒填！",
             giftSummary: "有東西沒填！",
             artist: "有東西沒填！",
-            contact: "有東西沒填！"
+            contact: "有東西沒填！",
+            ocprofile_check: "有圖片沒有提供！",
+            gift_check: "有圖片沒有提供！",
+            art_check: "有圖片沒有提供！"
         },
         submitHandler: function (form) {
             alert("valid form submitted")
             return false
         },
         invalidHandler: function (event, validator) {
+            // loop thru all invalid error
             for (let x in validator.invalid) {
                 var index = "0";
+                // find the owner(index) of the invalid question
+                // summary is a textarea not input therefore need manual setter
                 if (x == "giftSummary") {
                     index = 5;
                 } else {
                     index = $("input[name='" + x + "']").parent().attr("class").split(" ")[1];
+                    console.log(index);
                 }
                 $(".question:nth-child(" + index + ")").css("border-color", "#9e3038");
             }
@@ -121,40 +131,39 @@ function validateForm() {
     })
 }
 
-function setUpExtraUploadToggle(){
+function setUpExtraUploadToggle() {
     $('.extraLink').click(function () {
         $('.extraUploader').toggleClass('hiddenContent');
     });
 }
 
-function displayImageUploadSuccessMsg(e,parentDiv){
+function displayImageUploadSuccessMsg(e, parentDiv) {
     console.log("IMAGE UPLOAD SUCCESS");
-    var succHtml = 
+    var succHtml =
         '成功上傳了1張圖<img src="' + e.detail.cdnUrl + '">';
-    $('.'+parentDiv+' .uploadResult').html(succHtml);
+    $('.' + parentDiv + ' .uploadResult').html(succHtml);
+
+    //check the hidden check input
+    $('.' + parentDiv + ' input').prop("checked", true);
+
+    //clean up upload error
+    $('.' + parentDiv + ' .error').html('');
+
+    $("." + parentDiv).css("border-color", "rgb(223, 177, 92)");
 }
 
 var NUM_OF_EX_IMG = 0;
 var EX_IMG = []
 
-function displayMultiImageUploadSuccessMsg(e){
+function displayMultiImageUploadSuccessMsg(e) {
     console.log("MULTI-IMAGE UPLOAD SUCCESS");
     NUM_OF_EX_IMG++;
     EX_IMG.push(e.detail.cdnUrl);
-
-    console.log(NUM_OF_EX_IMG);
-    console.log(EX_IMG);
-
-    // var succHtml = '';
-
-    // if(NUM_OF_EX_IMG == 1){
-    //     succHtml += '成功上傳了N張圖<img src="' + EX_IMG[0] + '">';
-    // }else{
-    //     for (var i=1; i<EX_IMG.length; i++) {
-    //         succHtml += '<img src="' + EX_IMG[i] + '">' ;
-    //     }
-    // }
-    // $('multiUploadResult').html(succHtml);
+    var succHtml = "成功上傳了" + NUM_OF_EX_IMG + "張圖";
+    for (let url of EX_IMG) {
+        succHtml += '<img src="' + url + '">';
+    }
+    $('.multiUploadResult').html(succHtml);
 }
 
 //======================//
