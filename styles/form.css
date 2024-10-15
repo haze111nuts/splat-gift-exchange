@@ -360,14 +360,14 @@ a {
 
 .extraWrapper {
   padding: 8px 0 4px 0;
-  font-size: 0.95em;
+  font-size: 0.83em;
 }
-.extraWrapper span {
-  color: black;
+.extraWrapper > span {
+  color: #706041;
   transition: all 0.2s ease-in;
   text-decoration: underline;
 }
-.extraWrapper span:hover {
+.extraWrapper > span:hover {
   cursor: pointer;
   color: #9e3038;
 }

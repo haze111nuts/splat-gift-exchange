@@ -246,10 +246,6 @@ a{
         padding: 24px 24px 10px 24px;
         /*stacking fieldsets above each other*/
         position: relative;
-
-        // .label, .error{
-
-        // }
         .label {
             font-size: 1.3em;
             margin: 10px 0;
@@ -395,9 +391,9 @@ a{
 
 .extraWrapper{
     padding: 8px 0 4px 0;
-    font-size: 0.95em;
-    span{
-        color: black;
+    font-size: 0.83em;
+    >span{
+        color: #706041;
         transition: all 0.2s ease-in;
         text-decoration: underline;
         &:hover{
