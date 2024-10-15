@@ -226,25 +226,32 @@ a {
   position: relative;
 }
 .main fieldset .label {
-  font-size: 1.15em;
-  padding-left: 5px;
+  font-size: 1.3em;
   margin: 10px 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
 }
 .main fieldset .question {
   border-left: 5px solid rgb(223, 177, 92);
-  margin: 8px auto 20px auto;
-  padding-left: 5px;
+  margin: 16px auto 20px auto;
+  padding: 8px;
 }
 .main fieldset .desc {
-  font-size: 0.85em;
+  font-size: 0.83rem;
   padding: 5px;
   color: #706041;
+}
+.main fieldset .desc span {
+  color: #be9440;
+  transition: all 0.2s ease-in;
+  text-decoration: underline;
+}
+.main fieldset .desc span:hover {
+  cursor: pointer;
+  color: #9e3038;
 }
 .main fieldset .error {
   font-size: 0.85em;
   color: #9e3038;
-  padding-left: 5px;
 }
 .main fieldset input,
 .main fieldset textarea {
@@ -349,6 +356,42 @@ a {
   margin-right: 0.375em;
   transition: 0.25s ease;
   box-shadow: inset 0 0 0 0.125em rgb(223, 177, 92);
+}
+
+.extraWrapper {
+  padding: 8px 0 4px 0;
+  font-size: 0.95em;
+}
+.extraWrapper span {
+  color: black;
+  transition: all 0.2s ease-in;
+  text-decoration: underline;
+}
+.extraWrapper span:hover {
+  cursor: pointer;
+  color: #9e3038;
+}
+.extraWrapper .extraUploader {
+  border-left: 5px solid rgb(223, 177, 92);
+  margin: 8px 0 2px 5px;
+  padding: 2px 0 8px 5px;
+}
+.extraWrapper .extraUploader .desc {
+  padding-top: 0px;
+  padding-right: 50px;
+}
+
+.uploadResult, .multiUploadResult {
+  display: inline;
+  padding-left: 5px;
+  font-size: 0.85em;
+  color: #61741d;
+}
+.uploadResult img, .multiUploadResult img {
+  height: 28px;
+  vertical-align: bottom;
+  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.1);
+  margin-left: 5px;
 }
 
 uc-copyright {

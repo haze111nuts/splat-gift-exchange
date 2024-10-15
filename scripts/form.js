@@ -1,16 +1,3 @@
-// import { uploadFile } from '@uploadcare/upload-client'
-
-// // fileData must be `Blob`, `File`, `Buffer`, UUID, CDN URL or Remote URL
-// const result = await uploadFile(fileData, {
-//     publicKey: 'YOUR_PUBLIC_KEY',
-//     store: 'auto',
-//     metadata: {
-//       subsystem: 'uploader',
-//       pet: 'cat'
-//     }
-// })
-
-
 function setUpConfirmEvent() {
     $("#confirm").prop("checked", false);    
     $('#confirm').click(function () {
@@ -121,7 +108,6 @@ function validateForm() {
             return false
         },
         invalidHandler: function (event, validator) {
-
             for (let x in validator.invalid) {
                 var index = "0";
                 if (x == "giftSummary") {
@@ -129,11 +115,46 @@ function validateForm() {
                 } else {
                     index = $("input[name='" + x + "']").parent().attr("class").split(" ")[1];
                 }
-                
                 $(".question:nth-child(" + index + ")").css("border-color", "#9e3038");
             }
         }
     })
+}
+
+function setUpExtraUploadToggle(){
+    $('.extraLink').click(function () {
+        $('.extraUploader').toggleClass('hiddenContent');
+    });
+}
+
+function displayImageUploadSuccessMsg(e,parentDiv){
+    console.log("IMAGE UPLOAD SUCCESS");
+    var succHtml = 
+        '成功上傳了1張圖<img src="' + e.detail.cdnUrl + '">';
+    $('.'+parentDiv+' .uploadResult').html(succHtml);
+}
+
+var NUM_OF_EX_IMG = 0;
+var EX_IMG = []
+
+function displayMultiImageUploadSuccessMsg(e){
+    console.log("MULTI-IMAGE UPLOAD SUCCESS");
+    NUM_OF_EX_IMG++;
+    EX_IMG.push(e.detail.cdnUrl);
+
+    console.log(NUM_OF_EX_IMG);
+    console.log(EX_IMG);
+
+    // var succHtml = '';
+
+    // if(NUM_OF_EX_IMG == 1){
+    //     succHtml += '成功上傳了N張圖<img src="' + EX_IMG[0] + '">';
+    // }else{
+    //     for (var i=1; i<EX_IMG.length; i++) {
+    //         succHtml += '<img src="' + EX_IMG[i] + '">' ;
+    //     }
+    // }
+    // $('multiUploadResult').html(succHtml);
 }
 
 //======================//
@@ -148,5 +169,5 @@ $(document).ready(function () {
     setUpTimer();
     validateForm();
     setUpOtherValidationStyle();
-    // console.log(`URL: ${file.cdnUrl}`)
+    setUpExtraUploadToggle();
 });
