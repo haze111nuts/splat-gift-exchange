@@ -162,6 +162,22 @@ function displayMultiImageUploadSuccessMsg(e) {
     $('.multiUploadResult').html(succHtml);
 }
 
+function setUpClickModalEvents(){
+    $('span[for="giftRulePanel"]').click(function () {
+        $(".modal").removeClass("hide");
+        $(".modal_content >div").removeClass("fadeDown");
+        $(document.body).addClass("noscroll");
+    });
+}
+
+function setupCloseModalEvents(){
+    $(".modal_bg, .close").click(function () {
+        $(".modal").addClass("hide");
+        $(".modal_content >div").addClass("fadeDown");
+        $(document.body).removeClass("noscroll");
+    })
+}
+
 //======================//
 //                      //
 //    Ready Function    //
@@ -175,4 +191,6 @@ $(document).ready(function () {
     validateForm();
     setUpOtherValidationStyle();
     setUpExtraUploadToggle();
+    setUpClickModalEvents();
+    setupCloseModalEvents();
 });

@@ -132,7 +132,7 @@
           <div class="question 2 ocprofile-uploader-wrapper">
             <label class="label">請提供這個OC的頭像</label>
             <div class="desc">
-              請提供一張正方形PNG檔，此圖會以100px*100px形式呈現在抽獎版面上。可以【<span>點這裡預覽</span>】<br>
+              請提供一張正方形PNG檔，此圖會以100px*100px形式呈現在抽獎版面上。<br>
               只是辨認角色用，建議拿現有作品或圖片直接擷取頭部即可！有畫出脖子肩膀為佳。
             </div>
             <uc-file-uploader-regular ctx-name="ocprofile-uploader"
@@ -144,7 +144,7 @@
           <div class="question 3">
             <label class="label">這個OC準備的禮物是？</label>
             <div class="desc">
-              請先確認禮物符合【<span>禮物規範</span>】不然58會來敲你的門！！不知要準備什麼的話可以【<span>點這裡看範例禮物</span>】<br>
+              請先確認禮物符合【<span for="giftRulePanel">禮物規範</span>】不然58會來敲你的門！！不知要準備什麼的話可以【<span>點這裡看範例禮物</span>】<br>
               中文字符請盡量不要超過16字，不然排版會跑位！
             </div>
             <input type="text" name="gift" placeholder="手工圍巾etc">
@@ -261,7 +261,30 @@
       </div>
     </form>
   </div>
-
+  <!-- MODAL -->
+  <div class="modal hide">
+    <div class="modal_bg"></div>
+    <div class="modal_content">
+      <div class="giftRulePanel fadeDown">
+        <div class="giftRules">
+          <ul>
+            <li>請切記這個神秘禮物在之後會被別人的角色抽到，並且會被別人拿去作畫。</li>
+            <li>請盡力符合Splatoon系列大致世界觀！除此之外請盡情發揮創意🥺</li>
+            <li>由於哺乳類生物已滅絕，禮物內請勿包含哺乳類肉製品或相關的食品（請將肉類以雞肉或魚蝦貝類代替）</li>
+            <li>Splatoon世界存在奶製品﹐所以包含奶製品製成的食品OK。</li>
+            <li>Splatoon世界具有哺乳類生物的基本知識﹐所以哺乳類動物造型的物品OK。</li>
+            <li>請勿準備像是魔法物品這類不合乎常理的東西！</li>
+            <li>具有好玩或搞笑效果的藥物（例如長毛藥水）請先跟主持人討論後再作畫！</li>
+            <li>為了維持禮物正當性﹐主持人會私下先過目禮物﹐有可能會以上述沒概括到的標準來進行審核。</li>
+            <li>要是禮物因為某些原因不符合標準﹐主持人會私下和你協調＆一起想折衷方案。</li>
+            <li>主持人也有可能隨時更新禮物內容規範。請在Discord上關注規範有無更新！</li>
+            <li>為了保持開箱日的驚喜感，希望參加者們可以盡量將禮物內容保密！</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- UC STUFF -->
   <div class="uc-stuff">
     <uc-upload-ctx-provider ctx-name="ocprofile-uploader"></uc-upload-ctx-provider>
     <uc-upload-ctx-provider ctx-name="gift-uploader"></uc-upload-ctx-provider>
