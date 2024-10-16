@@ -67,13 +67,13 @@ a {
   cursor: pointer;
   display: inline-block;
   padding: 0 8px;
-  border-left: 2px solid #745f5e;
-  border-right: 2px solid #745f5e;
+  border-left: 2px solid #725c4f;
+  border-right: 2px solid #725c4f;
   transition: 0.25s ease;
 }
 .nav ul.navlist li:hover,
 .nav ul.navlist li a:hover {
-  color: #a05c60 !important;
+  color: #947e71 !important;
 }
 .nav ul.navlist li a {
   color: rgb(233, 228, 228);
@@ -135,11 +135,11 @@ a {
   font-size: 1em;
 }
 .nav .deadlines ul li {
-  color: #745f5e;
+  color: #725c4f;
   line-height: 100%;
 }
 .nav .deadlines .countdown {
-  border-bottom: 1px solid #745f5e;
+  border-bottom: 1px solid #725c4f;
   padding: 8px;
 }
 .nav .deadlines .countdown > span {
@@ -159,7 +159,7 @@ a {
 }
 .nav .vips .memberWrap > div .memberType {
   font-size: 1.5em;
-  border-bottom: 1px solid #745f5e;
+  border-bottom: 1px solid #725c4f;
   padding-bottom: 4px;
   width: 80%;
   margin: 0 auto;
@@ -184,7 +184,11 @@ a {
 }
 .nav .prologue > div {
   text-align: center;
-  padding: 8px 0px 16px 0px;
+  padding: 5px 0px 16px 0px;
+  line-height: 170%;
+}
+.nav .prologue > div span {
+  color: #947e71;
 }
 
 .hiddenContent {
@@ -197,7 +201,7 @@ a {
 }
 
 .highlighted {
-  color: #a05c60 !important;
+  color: #947e71 !important;
 }
 
 .currentDeadline {
@@ -237,7 +241,7 @@ a {
 .main fieldset .desc {
   font-size: 0.83rem;
   padding: 5px;
-  color: #706041;
+  color: #705c41;
 }
 .main fieldset .desc span {
   color: #be9440;
@@ -325,7 +329,7 @@ a {
   left: -9999px;
 }
 .selfTrade_options label input:checked + span {
-  background-color: #706041;
+  background-color: #705c41;
   color: white;
 }
 .selfTrade_options label input:checked + span:before {
@@ -360,7 +364,7 @@ a {
   font-size: 0.83em;
 }
 .extraWrapper > span {
-  color: #706041;
+  color: #705c41;
   transition: all 0.2s ease-in;
   text-decoration: underline;
 }

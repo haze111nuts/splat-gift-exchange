@@ -5,15 +5,18 @@ $BG_FORM: rgb(233, 228, 228);
 
 
 $TEXT_BANNER: #cfca9b;
-$TEXT_NAV: #745f5e;
+$TEXT_NAV: #725c4f;
+$TEXT_NAV_LOW: #947e71;
+$TEXT_NAV2: #b5bd90;
+
+
 $TEXT_MAIN: rgb(58, 49, 45);
 $TEXT_LINK: #be9440;
 $TEXT_LINK2: #d37e38;
-$TEXT_DESC: #706041;
+$TEXT_DESC: #705c41;
 $TEXT_ERROR: #9e3038;
 $TEXT_GOOD: #61741d;
 $TEXT_HIGHLIGHT: #c4a87f;
-$TEXT_SELECTED: #725c4f;
 $SELECT: #5d6836;
 $ACCENT_MAIN: rgb(223, 177, 92);
 
@@ -101,7 +104,7 @@ a {
             transition: 0.25s ease;
             &:hover,
             a:hover {
-                color: #a05c60 !important;
+                color: $TEXT_NAV_LOW !important;
             }
             a {
                 color: $BG_FORM;
@@ -134,7 +137,7 @@ a {
         ul {
             li {
                 &:nth-child(even) {
-                    color: #b5bd90;
+                    color: $TEXT_NAV2;
                 }
             }
         }
@@ -152,7 +155,7 @@ a {
                     color: #a09f92;
                 }
                 &:nth-child(4n + 3) {
-                    color: #b5bd90;
+                    color: $TEXT_NAV2;
                 }
             }
         }
@@ -222,7 +225,11 @@ a {
     .prologue{
         >div{
             text-align: center;
-            padding: 8px 0px 16px 0px;
+            padding: 5px 0px 16px 0px;
+            line-height: 170%;
+            span{
+                color: $TEXT_NAV_LOW;
+            }
         }
     }
 }
@@ -237,7 +244,7 @@ a {
 }
 
 .highlighted {
-    color: #a05c60 !important;
+    color: $TEXT_NAV_LOW !important;
 }
 
 .currentDeadline {
@@ -389,7 +396,7 @@ a {
             transition: 0.25s ease;
             color: $TEXT_MAIN;
             &:hover {
-                background-color: #c4a87f;
+                background-color: $TEXT_HIGHLIGHT;
             }
             &:before {
                 display: flex;
