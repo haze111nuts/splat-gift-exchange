@@ -82,9 +82,6 @@ function setUpOtherValidationStyle() {
             }
         }
     });
-    // $('.selfTrade_options label').click(function () {
-    //     $(".question:nth-child(10)").css("border-color", "rgb(223, 177, 92)");
-    // });
 }
 
 function validateForm() {
@@ -148,7 +145,6 @@ function displayImageUploadSuccessMsg(e, parentDiv) {
 
     //clean up upload error
     $('.' + parentDiv + ' .error').html('');
-
     $("." + parentDiv).css("border-color", "rgb(223, 177, 92)");
 }
 

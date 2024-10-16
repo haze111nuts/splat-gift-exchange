@@ -126,7 +126,7 @@
               抽獎實況時主持人會使用這個名字來稱呼你的角色，<br>
               這個欄位只能放一個角色！如果還想讓複數個OC參加，請另外再寫一次表單。
             </div>
-            <input type="text" name="OCname" placeholder="Name">
+            <input type="text" name="OCname" placeholder="OC名字">
           </div>
 
           <div class="question 2 ocprofile-uploader-wrapper">
@@ -147,7 +147,7 @@
               請先確認禮物符合【<span>禮物規範</span>】不然58會來敲你的門！！不知要準備什麼的話可以【<span>點這裡看範例禮物</span>】<br>
               中文字符請盡量不要超過16字，不然排版會跑位！
             </div>
-            <input type="text" name="gift" placeholder="手工圍巾">
+            <input type="text" name="gift" placeholder="手工圍巾etc">
           </div>
 
           <div class="question 4 gift-uploader-wrapper">
@@ -181,7 +181,7 @@
               可以寫禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。另外因為這是匿名禮物，能的話請盡量不要包含你OC的名字。<br>
               如果不確定怎麼寫，隨時歡迎私訊主持人叫他幫你想！也歡迎【<span>點這裡看參考</span>】或是【<span>點這裡預覽</span>】
             </div>
-            <textarea rows="5" cols="50" name="giftSummary" placeholder="請提供禮物的文字介紹"></textarea>
+            <textarea rows="5" cols="50" name="giftSummary" placeholder="用高級毛線織成的圍巾，光是看著就覺得暖。"></textarea>
           </div>
 
           <div class="question 6 art-uploader-wrapper">
@@ -216,7 +216,7 @@
             <div class="desc">
               展示時會在作品旁附上的連結，可以填個人網站或SNS帳號，也可以不填。
             </div>
-            <input type="text" name="link" placeholder="twitter@xxxolot58">
+            <input type="text" name="link" placeholder="推特@12345">
           </div>
 
           <div class="question 10">
@@ -303,7 +303,6 @@
     ctx_art.addEventListener('file-upload-success', e => {
       displayImageUploadSuccessMsg(e,"art-uploader-wrapper");
     });
-
 
     //event for file validation
     const imagesOnly = (outputEntry, api) => {
