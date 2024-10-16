@@ -1,3 +1,20 @@
+const times = {
+    giftDeadline: 1758988740000,         // new Date('2025-09-27T11:59:00').valueOf(); (EST)
+    unboxingDay: 1760184000000,          // new Date('2025-10-11T08:00:00').valueOf(); (EST)
+    receiveArtDeadline: 1765472340000   // new Date('2025-12-11T11:59:00').valueOf(); (EST)
+};
+
+// var yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+// var today = new Date();
+// var tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
+// var tomorroww = new Date(new Date().setDate(new Date().getDate() + 2));
+
+// const times = {
+//     giftDeadline: yesterday,
+//     unboxingDay: tomorrow,
+//     receiveArtDeadline: tomorroww
+// };
+
 function setUpConfirmEvent() {
     $("#confirm").prop("checked", false);
     $('#confirm').click(function () {
@@ -20,15 +37,25 @@ function setUpTimer() {
     //check which deadline is the closest one
     //and decide the index
     var index = 1;
+    var deadline = 0;
+    for (var x in times) {
+        if (times[x] > new Date().valueOf()) {
+            deadline = times[x];
+            break;
+        }
+        index++;
+    }
 
+    $(".giftDeadline").text(new Date(times.giftDeadline).toLocaleString("zh").replaceAll("/","-").slice(0, -3));
+    $(".unboxingDay").text(new Date(times.unboxingDay).toLocaleString("zh").replaceAll("/","-").slice(0, -3));
+    $(".receiveArtDeadline").text(new Date(times.receiveArtDeadline).toLocaleString("zh").replaceAll("/","-").slice(0, -3));
     //set deadline name
     $(".countdown_label span").html($(".deadlines ul li:nth-child(" + index + ") span:nth-child(1)").html());
 
     //highlight the current deadline
-    var deadline = $(".deadlines ul li:nth-child(" + index + ")").addClass("currentDeadline");
+    $(".deadlines ul li:nth-child(" + index + ")").addClass("currentDeadline");
 
     //grab deadline
-    var deadline = $(".deadlines ul li:nth-child(" + index + ") span:nth-child(2)").html();
     var compareDate = new Date(deadline);
     compareDate.setDate(compareDate.getDate());
 
