@@ -17,7 +17,7 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
-  function getCookie(cname) {
+function getCookie(cname) {
     if (ENABLE_COOKIE) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -33,7 +33,19 @@ function setCookie(cname, cvalue, exdays) {
         }
     }
     return "";
-  }
+}
+
+function deleteCookies(cname) {
+    document.cookie = cname + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+}
+
+function deleteAllCookies() {
+    document.cookie.split(';').forEach(cookie => {
+        const eqPos = cookie.indexOf('=');
+        const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
+        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    });
+}
 
 //   function checkCookie() {
 //     let username = getCookie("username");

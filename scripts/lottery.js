@@ -28,7 +28,15 @@ var AUDIO_ELEMENTS = {};
 
 var YEAR = "2024";
 
-var dataMasking = true;
+var dataMasking = false;
+
+const CONFIG = {
+    ORDER2024: "order2024",
+    RESULT2024: "result2024",
+    RANDOM: "random"
+}
+
+var DISPLAY = "";
 
 var NUMBER_OF_BG = 83;
 
@@ -41,8 +49,8 @@ var HOST_QUOTES = [
     getQuoteOfRemainingGiftCountEN(GIFT_PILE.length),
     "卡片花色是<span>隨機</span>生成的，跟禮物沒有關係～",
     "The pattern on the card is <span>random</span>,<br>it has nothing to do with the gifts!",
-    "屋趴～～～",
-    "Woop woop!"
+    "輪到你家角色的時候，請給我一個號碼！",
+    "Give me a number when its your OC's turn!"
 ]
 
 var placeholderGift = {
@@ -244,7 +252,18 @@ function setUpRefImageModalClickEvents(entry) {
 
 function setGridBG() {
     var bgPattern;
-    const bgPatternCookie = getCookie(COOKIE.BG_PATTEREN);
+    const bgPatternData = "67,25,38,24,53,6,81,44,71,56,17,68,50,20,41,49,77,78,70,7,29,39,23,59,11,32,57,46,43,60,13,2,40,8,79,1,21,14,69,22,37,52,18,58,34,72,27,61,75,74,54,62,16,10,12,42,26,4,31,51,5,45,15,28,36,0,82,48,47,80,76,66,55,3,33,9,64,73,63,65,19,35,30";
+    var bgPatternCookie = "";
+
+    if (DISPLAY === CONFIG.RESULT2024 || DISPLAY === CONFIG.ORDER2024) {
+        bgPatternCookie = bgPatternData;
+        setCookie(COOKIE.BG_PATTEREN, bgPatternData, COOKIE_EXPIRE_DEFAULT_DAYS);
+    } else if (DISPLAY === CONFIG.RANDOM) {
+        deleteCookies(COOKIE.BG_PATTEREN);
+    } else {
+        bgPatternCookie = getCookie(COOKIE.BG_PATTEREN);
+    }
+
     if (bgPatternCookie === "") {
         bgPattern = [...Array(NUMBER_OF_BG).keys()];
         shuffleArray(bgPattern);
@@ -655,15 +674,32 @@ function setUpCursor(){
 //======================//
 
 function loadCookie() {
-    var ocArrangementCookie = getCookie(COOKIE.OC_ARRANGEMENT);
-    const obtainedGIftCookie = getCookie(COOKIE.OBTAINED_GIFT);
-    const flippedCardCookie = getCookie(COOKIE.FLIPPED_CARD);
+    var ocArrangementCookie = "";
+    var obtainedGIftCookie = "";
+    var flippedCardCookie = "";
 
-    var ocArrangementData = "15,22,36,27,12,26,19,23,33,13,30,10,35,31,14,4,39,8,6,32,21,34,2,1,0,5,20,29,9,3,7,38,25,11,17,18,37,28,24,16";
+    const ocArrangementData = "15,22,36,27,12,26,19,23,33,13,30,10,35,31,14,4,39,8,6,32,21,34,2,1,0,5,20,29,9,3,7,38,25,11,17,18,37,28,24,16";
+    const obtainedGiftData = "18,11,16,12,26,10,0,35,28,6,25,32,17,2,27,5,1,33,20,21,34,19,7,31,30,36,13,3,23,15,24,14,8,4,38,9,29,37,22,39";
+    const flippedCardData = "13,11,10,38,14,22,17,21,12,7,34,1,19,0,4,6,20,36,32,18,2,33,31,27,16,28,37,29,23,35,26,25,30,3,5,24,15,9,8,39";
 
-    if (YEAR != "0000" && ocArrangementData != null) {
+    if (DISPLAY === CONFIG.RESULT2024) {
         ocArrangementCookie = ocArrangementData;
+        obtainedGIftCookie = obtainedGiftData;
+        flippedCardCookie = flippedCardData;
         setCookie(COOKIE.OC_ARRANGEMENT, ocArrangementCookie, COOKIE_EXPIRE_DEFAULT_DAYS);
+        setCookie(COOKIE.OBTAINED_GIFT, obtainedGiftData, COOKIE_EXPIRE_DEFAULT_DAYS);
+        setCookie(COOKIE.FLIPPED_CARD, flippedCardData, COOKIE_EXPIRE_DEFAULT_DAYS);
+    } else if (DISPLAY === CONFIG.ORDER2024) {
+        ocArrangementCookie = ocArrangementData;
+        deleteCookies(COOKIE.OBTAINED_GIFT);
+        deleteCookies(COOKIE.FLIPPED_CARD);
+        setCookie(COOKIE.OC_ARRANGEMENT, ocArrangementCookie, COOKIE_EXPIRE_DEFAULT_DAYS);
+    } else if (DISPLAY === CONFIG.RANDOM) {
+        deleteAllCookies();
+    } else {
+        ocArrangementCookie = getCookie(COOKIE.OC_ARRANGEMENT);
+        obtainedGIftCookie = getCookie(COOKIE.OBTAINED_GIFT);
+        flippedCardCookie = getCookie(COOKIE.FLIPPED_CARD);
     }
 
     if (ocArrangementCookie === "") {
@@ -699,7 +735,8 @@ function loadCookie() {
         }
         printOCs();
         fadeFinishedOCs();
-        $(".oc:nth-child(n+1):nth-child(-n+"+(CURRENT_OC_INDEX-4)+")").css("opacity", 0);
+        if (CURRENT_OC_INDEX >= 4)
+            $(".oc:nth-child(n+1):nth-child(-n+"+(CURRENT_OC_INDEX-4)+")").css("opacity", 0);
         return;
     }
     printOCs();
@@ -721,6 +758,14 @@ function printOCList() {
     console.log(output);
 }
 
+function setParams() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const result = searchParams.get("config");
+    if (Object.values(CONFIG).includes(result)) {
+        DISPLAY = result;
+    }
+}
+
 //======================//
 //                      //
 //    Ready Function    //
@@ -728,6 +773,7 @@ function printOCList() {
 //======================//
 
 $(document).ready(function () {
+    setParams()
     setUpAudios();
     printGrid();
     setGridBG();
