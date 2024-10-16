@@ -71,12 +71,14 @@ a {
   border-right: 2px solid #745f5e;
   transition: 0.25s ease;
 }
-.nav ul.navlist li:hover, .nav ul.navlist li a:hover {
+.nav ul.navlist li:hover,
+.nav ul.navlist li a:hover {
   color: #a05c60 !important;
 }
 .nav ul.navlist li a {
   color: rgb(233, 228, 228);
 }
+.nav .prologue,
 .nav .readme,
 .nav .guide,
 .nav .deadlines,
@@ -87,12 +89,14 @@ a {
   text-align: left;
   transition: all 0.3s ease-in-out;
 }
+.nav .prologue ul,
 .nav .readme ul,
 .nav .guide ul,
 .nav .deadlines ul,
 .nav .vips ul {
   margin: 0;
 }
+.nav .prologue ul li,
 .nav .readme ul li,
 .nav .guide ul li,
 .nav .deadlines ul li,
@@ -178,6 +182,19 @@ a {
   -webkit-columns: 1;
   -moz-columns: 1;
 }
+.nav .prologue > div {
+  text-align: center;
+  padding: 16px 0px;
+}
+
+.hiddenContent {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  height: 0;
+  opacity: 0;
+  top: -1000px;
+  position: absolute;
+}
 
 .highlighted {
   color: #a05c60 !important;
@@ -191,25 +208,6 @@ a {
 }
 .currentDeadline:after {
   content: " ←";
-}
-
-.hiddenContent {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  height: 0;
-  opacity: 0;
-  top: -1000px;
-  position: absolute;
-}
-
-.no-display {
-  display: none;
-}
-
-.no-select {
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
 }
 
 .main {
@@ -248,7 +246,7 @@ a {
 }
 .main fieldset .desc span:hover {
   cursor: pointer;
-  color: #9e3038;
+  color: #61741d;
 }
 .main fieldset .error {
   font-size: 0.85em;
@@ -285,12 +283,8 @@ a {
 }
 .main .submit_area .confirm label {
   cursor: pointer;
-  color: #575147;
   padding: 2px;
   transition: 0.25s ease;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
 }
 .main .submit_area .confirm input {
   margin-right: 1px;
@@ -331,7 +325,7 @@ a {
   left: -9999px;
 }
 .selfTrade_options label input:checked + span {
-  background-color: #725c4f;
+  background-color: #706041;
   color: white;
 }
 .selfTrade_options label input:checked + span:before {
@@ -343,7 +337,7 @@ a {
   padding: 0.15em 0.5em 0.25em 0.25em;
   border-radius: 0.5em;
   transition: 0.25s ease;
-  color: #575147;
+  color: rgb(58, 49, 45);
 }
 .selfTrade_options label span:hover {
   background-color: #c4a87f;
@@ -372,7 +366,7 @@ a {
 }
 .extraWrapper > span:hover {
   cursor: pointer;
-  color: #9e3038;
+  color: #61741d;
 }
 .extraWrapper .extraUploader {
   border-left: 5px solid rgb(223, 177, 92);
@@ -384,13 +378,15 @@ a {
   padding-right: 50px;
 }
 
-.uploadResult, .multiUploadResult {
+.uploadResult,
+.multiUploadResult {
   display: inline;
   padding-left: 5px;
   font-size: 0.85rem;
   color: #61741d;
 }
-.uploadResult img, .multiUploadResult img {
+.uploadResult img,
+.multiUploadResult img {
   height: 28px;
   vertical-align: bottom;
   box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.1);
@@ -409,6 +405,16 @@ a {
   overflow: hidden;
 }
 
+.no-display {
+  display: none;
+}
+
+.no-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
 .hide {
   opacity: 0 !important;
   z-index: -1 !important;
@@ -420,15 +426,16 @@ a {
 }
 
 .giftRulePanel {
-  width: 90%;
+  color: rgb(58, 49, 45);
+  width: 80%;
   max-width: 600px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) rotate(-1deg);
   transition: all 0.4s ease, opacity 0.6s ease;
-  background-color: rgb(233, 228, 228);
-  padding: 32px;
+  background-color: white;
+  padding: 45px 52px;
   border-radius: 5px;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.2);
 }
