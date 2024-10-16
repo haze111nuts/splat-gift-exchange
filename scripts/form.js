@@ -45,10 +45,11 @@ function setUpTimer() {
         }
         index++;
     }
-
-    $(".giftDeadline").text(new Date(times.giftDeadline).toLocaleString("zh").replaceAll("/","-").slice(0, -3));
-    $(".unboxingDay").text(new Date(times.unboxingDay).toLocaleString("zh").replaceAll("/","-").slice(0, -3));
-    $(".receiveArtDeadline").text(new Date(times.receiveArtDeadline).toLocaleString("zh").replaceAll("/","-").slice(0, -3));
+    
+    $(".giftDeadlineShort").text(new Date(times.giftDeadline).toLocaleString("zh").split(" ")[0]);
+    $(".giftDeadline").text(new Date(times.giftDeadline).toLocaleString("zh").replaceAll("/","-").replaceAll(" ",", ").slice(0, -3));
+    $(".unboxingDay").text(new Date(times.unboxingDay).toLocaleString("zh").replaceAll("/","-").replaceAll(" ",", ").slice(0, -3));
+    $(".receiveArtDeadline").text(new Date(times.receiveArtDeadline).toLocaleString("zh").replaceAll("/","-").replaceAll(" ",", ").slice(0, -3));
     //set deadline name
     $(".countdown_label span").html($(".deadlines ul li:nth-child(" + index + ") span:nth-child(1)").html());
 
