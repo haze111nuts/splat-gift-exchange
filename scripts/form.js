@@ -1,19 +1,42 @@
-const times = {
-    giftDeadline: 1758988740000,         // new Date('2025-09-27T11:59:00').valueOf(); (EST)
-    unboxingDay: 1760184000000,          // new Date('2025-10-11T08:00:00').valueOf(); (EST)
-    receiveArtDeadline: 1765472340000   // new Date('2025-12-11T11:59:00').valueOf(); (EST)
-};
 
-// var yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-// var today = new Date();
-// var tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
-// var tomorroww = new Date(new Date().setDate(new Date().getDate() + 2));
-
-// const times = {
-//     giftDeadline: yesterday,
-//     unboxingDay: tomorrow,
-//     receiveArtDeadline: tomorroww
-// };
+var placeholderGifts = [
+    {
+        ocName: "綾里春美",
+        giftName: "倉院特產饅頭",
+        giftNameAlt: "Kurain Buns",
+        giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
+        giftDescriptionAlt: "Some chestnut manju. Each bun is in the shape of a magatama and is blessed by a certain spirital medium. It is said that eating it will replenish your spiritual energy.",
+        numOfAlt: 2,
+        artist: "2"
+    },
+    {
+        ocName: "綾里春美",
+        giftName: "倉院特產饅頭",
+        giftNameAlt: "Kurain Buns",
+        giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
+        giftDescriptionAlt: "Some chestnut manju. Each bun is in the shape of a magatama and is blessed by a certain spirital medium. It is said that eating it will replenish your spiritual energy.",
+        numOfAlt: 2,
+        artist: "2"
+    },
+    {
+        ocName: "綾里春美",
+        giftName: "倉院特產饅頭",
+        giftNameAlt: "Kurain Buns",
+        giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
+        giftDescriptionAlt: "Some chestnut manju. Each bun is in the shape of a magatama and is blessed by a certain spirital medium. It is said that eating it will replenish your spiritual energy.",
+        numOfAlt: 2,
+        artist: "2"
+    },
+    {
+        ocName: "綾里春美",
+        giftName: "倉院特產饅頭",
+        giftNameAlt: "Kurain Buns",
+        giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
+        giftDescriptionAlt: "Some chestnut manju. Each bun is in the shape of a magatama and is blessed by a certain spirital medium. It is said that eating it will replenish your spiritual energy.",
+        numOfAlt: 2,
+        artist: "2"
+    }
+]
 
 function setUpConfirmEvent() {
     $("#confirm").prop("checked", false);
@@ -33,6 +56,34 @@ function setUpNavClickEvents() {
     });
 }
 
+function setUpExtraUploadToggle() {
+    $('.extraLink').click(function () {
+        $('.extraUploader').toggleClass('hiddenContent');
+    });
+}
+
+
+//========================//
+//    Settingup Timer     //
+//========================//
+
+const times = {
+    giftDeadline: 1758988740000,       // new Date('2025-09-27T11:59:00').valueOf(); (EST)
+    unboxingDay: 1760184000000,        // new Date('2025-10-11T08:00:00').valueOf(); (EST)
+    receiveArtDeadline: 1765472340000  // new Date('2025-12-11T11:59:00').valueOf(); (EST)
+};
+
+// var yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+// var today = new Date();
+// var tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
+// var tomorroww = new Date(new Date().setDate(new Date().getDate() + 2));
+
+// const times = {
+//     giftDeadline: yesterday,
+//     unboxingDay: tomorrow,
+//     receiveArtDeadline: tomorroww
+// };
+
 function setUpTimer() {
     //check which deadline is the closest one
     //and decide the index
@@ -45,11 +96,11 @@ function setUpTimer() {
         }
         index++;
     }
-    
+
     $(".giftDeadlineShort").text(new Date(times.giftDeadline).toLocaleString("zh").split(" ")[0]);
-    $(".giftDeadline").text(new Date(times.giftDeadline).toLocaleString("zh").replaceAll("/","-").replaceAll(" ",", ").slice(0, -3));
-    $(".unboxingDay").text(new Date(times.unboxingDay).toLocaleString("zh").replaceAll("/","-").replaceAll(" ",", ").slice(0, -3));
-    $(".receiveArtDeadline").text(new Date(times.receiveArtDeadline).toLocaleString("zh").replaceAll("/","-").replaceAll(" ",", ").slice(0, -3));
+    $(".giftDeadline").text(new Date(times.giftDeadline).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
+    $(".unboxingDay").text(new Date(times.unboxingDay).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
+    $(".receiveArtDeadline").text(new Date(times.receiveArtDeadline).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
     //set deadline name
     $(".countdown_label span").html($(".deadlines ul li:nth-child(" + index + ") span:nth-child(1)").html());
 
@@ -87,6 +138,10 @@ function setTimeBetweenDates(toDate) {
         $(".seconds").text(seconds);
     }
 }
+
+//==================================//
+//    Settingup Form Validation     //
+//==================================//
 
 function setUpOtherValidationStyle() {
     $('input, textarea').on('focusout keyup', function () {
@@ -156,11 +211,7 @@ function validateForm() {
     })
 }
 
-function setUpExtraUploadToggle() {
-    $('.extraLink').click(function () {
-        $('.extraUploader').toggleClass('hiddenContent');
-    });
-}
+
 
 function displayImageUploadSuccessMsg(e, parentDiv) {
     console.log("IMAGE UPLOAD SUCCESS");
@@ -190,20 +241,126 @@ function displayMultiImageUploadSuccessMsg(e) {
     $('.multiUploadResult').html(succHtml);
 }
 
-function setUpClickModalEvents(){
-    $('span[for="giftRulePanel"]').click(function () {
-        $(".modal").removeClass("hide");
-        $(".modal_content >div").removeClass("fadeDown");
-        $(document.body).addClass("noscroll");
+
+//========================//
+//    Settingup Modal     //
+//========================//
+
+function setUpClickModalEvents(panelName) {
+    $('span[for="' + panelName + '"]').each(function () {
+        $(this).click(function () {
+
+            //set item html if it's item panel
+            if (panelName.includes("Item")) {
+                setupItemModalHtml(placeholderGifts[0]);
+            } else if (panelName.includes("Gift")) {
+                setupSampleGiftModalHtml(placeholderGifts);
+            }
+
+            //unhide modal
+            $(".modal").removeClass("hide");
+
+            //unhide panel
+            setTimeout(function () {
+                $("." + panelName).removeClass("fadeDown");
+            }, 10);
+
+            //hide other panel
+            $("." + panelName).siblings().addClass("fadeDown");
+
+            //delay display adjustment
+            $("." + panelName).removeAttr('style')
+            setTimeout(function () {
+                $("." + panelName).siblings().css("display", "none")
+            }, 250);
+
+
+            setTimeout(function () {
+                for (var i = 0; i < placeholderGifts.length; i++) {
+                    $(".sampleGiftPanel ul li:nth-child(" + (i + 1) + ")")
+                    .css("opacity", "1");
+                }
+            }, 10);
+
+            // $(document.body).addClass("noscroll");
+            $('body').width($('body').width());
+            $('body').css('overflow', 'hidden');
+        });
     });
 }
 
-function setupCloseModalEvents(){
+function setupCloseModalEvents() {
     $(".modal_bg, .close").click(function () {
         $(".modal").addClass("hide");
         $(".modal_content >div").addClass("fadeDown");
-        $(document.body).removeClass("noscroll");
+        // $(document.body).removeClass("noscroll");
+        setTimeout(function () {
+            $(".modal_content").children().css("display", "none")
+            $('body').removeAttr('style')
+        }, 250);
+
     })
+}
+
+//=================================//
+//    Settingup Item Modal HTML    //
+//=================================//
+var CURRENT_ALT_INDEX = 0;
+function setupItemModalHtml(entry) {
+    var itemModalHtml = "";
+
+    itemModalHtml += "<div class='itemPanel'>";
+    itemModalHtml += "<div class='itemSummary'>";
+    itemModalHtml += "<div class='itemTitle'>";
+    itemModalHtml += "<div class='itemTitle1'>" + entry.giftName + "</div>";
+    itemModalHtml += "<div class='itemTitle2'>" + entry.giftNameAlt + "</div>";
+    itemModalHtml += "</div>";
+    itemModalHtml += "<div class='itemSummary_inner'>" + entry.giftDescription + "</div>";
+    itemModalHtml += "</div>";
+    itemModalHtml += "<div class='itemArtWrap'>";
+    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(entry) + "' alt='item' draggable='false' >";
+    if (entry.numOfAlt > 0) {
+        itemModalHtml += "<div class='itemArtList'>";
+        for (let i = 0; i < entry.numOfAlt + 1; i++) {
+            itemModalHtml += "<span>◆</span>";
+        }
+        itemModalHtml += "</div>";
+    }
+    itemModalHtml += "</div>";
+    itemModalHtml += "</div>";
+    $(".previewItemPanel").html(itemModalHtml);
+}
+
+function getGiftUrl(gift) {
+    if (CURRENT_ALT_INDEX > 0) {
+        return "../assets/placeholder-" + CURRENT_ALT_INDEX + ".png";
+    }
+    return "../assets/placeholder.png";
+}
+
+//========================================//
+//    Settingup Sample Gift Modal HTML    //
+//========================================//
+
+function setupSampleGiftModalHtml(entries) {
+    var sampleGiftModalHtml = "";
+    sampleGiftModalHtml += '<h2>禮物範例</h2>';
+    sampleGiftModalHtml += '<ul>';
+    for (let entry of entries) {
+        sampleGiftModalHtml += '<li>';
+        sampleGiftModalHtml += '<img src="'+ getGiftUrl(entry) +'" alt="gift">';
+        sampleGiftModalHtml += '<div class="sampleContent">';
+        sampleGiftModalHtml += entry.giftName;
+        sampleGiftModalHtml += '</div>';
+        sampleGiftModalHtml += '</li>';
+    }
+    sampleGiftModalHtml += '</ul>';
+    $(".sampleGiftPanel").html(sampleGiftModalHtml);
+
+    for (var i = 0; i < entries.length; i++) {
+        $(".sampleGiftPanel ul li:nth-child(" + (i + 1) + ")")
+        .css("transition-delay", i * 0.12 + "s");
+    }
 }
 
 //======================//
@@ -219,6 +376,8 @@ $(document).ready(function () {
     validateForm();
     setUpOtherValidationStyle();
     setUpExtraUploadToggle();
-    setUpClickModalEvents();
+    setUpClickModalEvents("giftRulePanel");
+    setUpClickModalEvents("previewItemPanel");
+    setUpClickModalEvents("sampleGiftPanel");
     setupCloseModalEvents();
 });

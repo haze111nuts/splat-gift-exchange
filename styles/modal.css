@@ -97,7 +97,7 @@
 .itemPanel .itemSummary .itemTitle {
   text-align: center;
   font-size: x-large;
-  font-family: "DFPT_ZY9", "HuakangZongyi";
+  font-family: "DFPT_ZY9", "HuakangZongyi" !important;
   background-image: url(../assets/paper.jpg);
   position: static;
   padding-bottom: 20px;

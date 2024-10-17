@@ -1,3 +1,16 @@
+@font-face {
+    font-family: "DFPT_ZY9";
+    src: url("../assets/fonts/DFPT_ZY9.otf");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "DFPT_ZY9";
+    src: url("../assets/fonts/DFPT_ZY9.otf");
+    font-style: normal;
+    font-weight: normal;
+}
+
 $BG_MAIN: #424439;
 $BG_BANNER: #7c3c40;
 $BG_NAV: #42252a;
@@ -5,9 +18,9 @@ $BG_FORM: rgb(233, 228, 228);
 
 
 $TEXT_BANNER: #cfca9b;
-$TEXT_NAV: #725c4f;
-$TEXT_NAV_LOW: #947e71;
-$TEXT_NAV2: #b5bd90;
+$TEXT_NAV: #776256;
+$TEXT_NAV_LOW: #c77263;
+$TEXT_NAV2: #bda990;
 
 
 $TEXT_MAIN: rgb(58, 49, 45);
@@ -17,7 +30,7 @@ $TEXT_DESC: #705c41;
 $TEXT_ERROR: #9e3038;
 $TEXT_GOOD: #61741d;
 $TEXT_HIGHLIGHT: #c4a87f;
-$SELECT: #5d6836;
+$SELECT: #6a7543;
 $ACCENT_MAIN: rgb(223, 177, 92);
 
 
@@ -149,12 +162,12 @@ a {
             padding-bottom: 8px;
             list-style: none;
             li {
-                line-height: 120%;
-                margin: 8px auto;
+                // line-height: 120%;
+                margin: 6px auto;
                 &:nth-child(even) {
                     color: #a09f92;
                 }
-                &:nth-child(4n + 3) {
+                &:nth-child(4n + 1) {
                     color: $TEXT_NAV2;
                 }
             }
@@ -223,12 +236,13 @@ a {
         }
     }
     .prologue{
+        padding-top: 30px;
+        padding-bottom: 24px;
         >div{
             text-align: center;
-            padding: 5px 0px 16px 0px;
             line-height: 160%;
             span{
-                color: $TEXT_NAV_LOW;
+                color: $TEXT_NAV2;
             }
         }
     }
@@ -424,6 +438,7 @@ a {
         color: $TEXT_DESC;
         transition: all 0.2s ease-in;
         text-decoration: underline;
+        animation: 0.5s infinite alternate ease-out breathing-color;
         &:hover {
             cursor: pointer;
             color: $TEXT_GOOD;
@@ -477,6 +492,17 @@ a {
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
 }
+
+@keyframes breathing-color {
+    from{
+        color: $TEXT_DESC;
+    }
+    to{
+        color: $TEXT_LINK;
+    }
+}
+
+
 //=========================//
 //===   POP-UP MODAL    ===//
 //=========================//
@@ -489,21 +515,81 @@ a {
     top: 53% !important;
     opacity: 0;
 }
+
+.modal_content > div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition:
+        all 0.4s ease,
+        opacity 0.6s ease;    
+}
+
 .giftRulePanel {
     color: $TEXT_MAIN;
     width: 80%;
     max-width: 600px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-1deg);
-    transition:
-        all 0.4s ease,
-        opacity 0.6s ease;
-    background-color: white;
-    padding: 45px 52px;
+    background-color: rgb(235, 230, 220);
+    background-image: url(../assets/paper.jpg);
+    padding: 35px 52px 52px 52px;
     border-radius: 5px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.2);
+    ul{
+        list-style-type: "⚠️";
+        padding-left: 24px;
+        padding-right: 24px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', Verdana, sans-serif;
+        li{
+            margin-bottom: 4px;
+            border-bottom: $TEXT_HIGHLIGHT 1px dashed;
+        }
+    }
+    .notice{
+        color: $TEXT_ERROR;
+        font-size: 0.9em;
+        >div{
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.itemPanel .itemSummary {
+	color: $TEXT_MAIN;
+}
+
+h2{
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.sampleGiftPanel{
+    width: 80%;
+    max-width: 600px;
+    ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li{
+            transition:all 0.4s ease;
+            display: flex;
+            background-color: rgb(235, 230, 220);
+            background-image: url(../assets/paper.jpg);
+            box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            margin-bottom: 8px;
+            opacity: 0;
+            img{
+                width: 150px;
+                height: 150px;
+            }
+            // .sampleContent{
+            //     display: inline-flex;
+            // }
+        }
+    }
 }
 
 //==============//

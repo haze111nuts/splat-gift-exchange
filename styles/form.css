@@ -1,4 +1,16 @@
 @charset "UTF-8";
+@font-face {
+  font-family: "DFPT_ZY9";
+  src: url("../assets/fonts/DFPT_ZY9.otf");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "DFPT_ZY9";
+  src: url("../assets/fonts/DFPT_ZY9.otf");
+  font-style: normal;
+  font-weight: normal;
+}
 body {
   font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
   background-color: #424439;
@@ -67,13 +79,13 @@ a {
   cursor: pointer;
   display: inline-block;
   padding: 0 8px;
-  border-left: 2px solid #725c4f;
-  border-right: 2px solid #725c4f;
+  border-left: 2px solid #776256;
+  border-right: 2px solid #776256;
   transition: 0.25s ease;
 }
 .nav ul.navlist li:hover,
 .nav ul.navlist li a:hover {
-  color: #947e71 !important;
+  color: #c77263 !important;
 }
 .nav ul.navlist li a {
   color: rgb(233, 228, 228);
@@ -105,7 +117,7 @@ a {
   margin: 12px auto;
 }
 .nav .readme ul li:nth-child(even) {
-  color: #b5bd90;
+  color: #bda990;
 }
 .nav .guide {
   text-align: center;
@@ -116,14 +128,13 @@ a {
   list-style: none;
 }
 .nav .guide ul li {
-  line-height: 120%;
-  margin: 8px auto;
+  margin: 6px auto;
 }
 .nav .guide ul li:nth-child(even) {
   color: #a09f92;
 }
-.nav .guide ul li:nth-child(4n+3) {
-  color: #b5bd90;
+.nav .guide ul li:nth-child(4n+1) {
+  color: #bda990;
 }
 .nav .deadlines {
   text-align: center;
@@ -135,11 +146,11 @@ a {
   font-size: 1em;
 }
 .nav .deadlines ul li {
-  color: #725c4f;
+  color: #776256;
   line-height: 100%;
 }
 .nav .deadlines .countdown {
-  border-bottom: 1px solid #725c4f;
+  border-bottom: 1px solid #776256;
   padding: 8px;
 }
 .nav .deadlines .countdown > span {
@@ -159,7 +170,7 @@ a {
 }
 .nav .vips .memberWrap > div .memberType {
   font-size: 1.5em;
-  border-bottom: 1px solid #725c4f;
+  border-bottom: 1px solid #776256;
   padding-bottom: 4px;
   width: 80%;
   margin: 0 auto;
@@ -182,13 +193,16 @@ a {
   -webkit-columns: 1;
   -moz-columns: 1;
 }
+.nav .prologue {
+  padding-top: 30px;
+  padding-bottom: 24px;
+}
 .nav .prologue > div {
   text-align: center;
-  padding: 5px 0px 16px 0px;
-  line-height: 170%;
+  line-height: 160%;
 }
 .nav .prologue > div span {
-  color: #947e71;
+  color: #bda990;
 }
 
 .hiddenContent {
@@ -201,7 +215,7 @@ a {
 }
 
 .highlighted {
-  color: #947e71 !important;
+  color: #c77263 !important;
 }
 
 .currentDeadline {
@@ -367,6 +381,7 @@ a {
   color: #705c41;
   transition: all 0.2s ease-in;
   text-decoration: underline;
+  animation: 0.5s infinite alternate ease-out breathing-color;
 }
 .extraWrapper > span:hover {
   cursor: pointer;
@@ -419,6 +434,14 @@ a {
   user-select: none; /* Standard syntax */
 }
 
+@keyframes breathing-color {
+  from {
+    color: #705c41;
+  }
+  to {
+    color: #be9440;
+  }
+}
 .hide {
   opacity: 0 !important;
   z-index: -1 !important;
@@ -429,19 +452,75 @@ a {
   opacity: 0;
 }
 
+.modal_content > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s ease, opacity 0.6s ease;
+}
+
 .giftRulePanel {
   color: rgb(58, 49, 45);
   width: 80%;
   max-width: 600px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-1deg);
-  transition: all 0.4s ease, opacity 0.6s ease;
-  background-color: white;
-  padding: 45px 52px;
+  background-color: rgb(235, 230, 220);
+  background-image: url(../assets/paper.jpg);
+  padding: 35px 52px 52px 52px;
   border-radius: 5px;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.2);
+}
+.giftRulePanel ul {
+  list-style-type: "⚠️";
+  padding-left: 24px;
+  padding-right: 24px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", Verdana, sans-serif;
+}
+.giftRulePanel ul li {
+  margin-bottom: 4px;
+  border-bottom: #c4a87f 1px dashed;
+}
+.giftRulePanel .notice {
+  color: #9e3038;
+  font-size: 0.9em;
+}
+.giftRulePanel .notice > div {
+  margin-bottom: 5px;
+}
+
+.itemPanel .itemSummary {
+  color: rgb(58, 49, 45);
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.sampleGiftPanel {
+  width: 80%;
+  max-width: 600px;
+}
+.sampleGiftPanel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sampleGiftPanel ul li {
+  transition: all 0.4s ease;
+  display: flex;
+  background-color: rgb(235, 230, 220);
+  background-image: url(../assets/paper.jpg);
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin-bottom: 8px;
+  opacity: 0;
+}
+.sampleGiftPanel ul li img {
+  width: 150px;
+  height: 150px;
 }
 
 uc-copyright {
@@ -459,7 +538,7 @@ dialog::backdrop {
 
 ::selection {
   color: rgb(238, 236, 231);
-  background: #5d6836;
+  background: #6a7543;
 }
 
 /*# sourceMappingURL=form.css.map */

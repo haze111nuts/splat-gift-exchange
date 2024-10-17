@@ -56,10 +56,11 @@
             <div>
               有一天，你的OC突然收到了一封神秘的信。<br>
               <br>
-              親愛的海洋生物，我們是神秘禮物交換組織，你被選中了。<br>
+              親愛的海洋生物，<br>
+              我們是神秘禮物交換組織，在此來通知——你被選中了！<br>
               我們專門收集來自各種時空的神秘禮物，並且將這些禮物進行交換。<br>
               如果你想參加的話，就準備一個冬季禮物並貼上我們附給你的郵票吧。<br>
-              參加成功的話，在冬季那個節日你會得到一個別人準備的禮物哦。<br>
+              參加成功的話，冬季節日那天你也會收到一個別人準備的禮物哦。<br>
               <span>P.S.請不要包裝禮物，本組織會幫你包</span><br>
               <span>P.S.請不要把郵票貼在你朋友身上</span>
               <br>
@@ -166,7 +167,7 @@
           <div class="question 3">
             <label class="label">這個OC準備的禮物是？</label>
             <div class="desc">
-              請先確認禮物符合【<span for="giftRulePanel">禮物規範</span>】不然58會來敲你的門！！不知要準備什麼的話可以【<span>點這裡看範例禮物</span>】<br>
+              請先確認禮物符合【<span for="giftRulePanel">禮物規範</span>】不然58會來敲你的門！！不知要準備什麼的話可以【<span for="sampleGiftPanel">點這裡看參考</span>】<br>
               中文字符請盡量不要超過16字，不然排版會跑位！
             </div>
             <input type="text" name="gift" placeholder="手工圍巾etc">
@@ -175,7 +176,7 @@
           <div class="question 4 gift-uploader-wrapper">
             <label class="label">請繪製此禮物的內容物圖示</label>
             <div class="desc">
-              這是抽獎和展示用的圖示，規格是400px*400px且背景透明的PNG檔案。請盡量畫出物品的完整樣貌，不要包裝紙！<br>類似遊戲中常出現的道具圖示，可以【<span>點這裡看參考圖</span>】也可以【<span>點這裡預覽</span>】<br>
+              這是抽獎和展示用的圖示，規格是400px*400px且背景透明的PNG檔案。請盡量畫出物品的完整樣貌，不要包裝紙！<br>類似遊戲中常出現的道具圖示，可以【<span for="sampleGiftPanel">點這裡看參考</span>】也可以【<span for="previewItemPanel">點這裡預覽</span>】<br>
               另外，此圖風格不限，如果不想被別人透過畫風猜到自己是誰，建議可以用Splatoon官方風格的色塊作畫。
             </div>
             <uc-file-uploader-regular ctx-name="gift-uploader" class="uc-light uc-orange"></uc-file-uploader-regular>
@@ -184,11 +185,11 @@
 
             <div class="extraWrapper">
               <span class="extraLink no-select">
-                >>想上傳更多圖示或是大張詳細設計圖請按這裡
+                >> 想上傳更多圖示或是大張詳細設計圖請按這裡
               </span>
               <div class="extraUploader hiddenContent">
                 <div class="desc">
-                  可以從這邊上傳更多張400px*400px的禮物圖示，藉此展示此物件不同的狀態或角度（例如說玩偶的正面背面、電燈打開前後的樣子等等甚至是附加的物品小卡都可以）也可以上傳自由規格的物品設計大圖喔！
+                  可以從這邊上傳更多張400px*400px的禮物圖示，藉此展示此物件不同的狀態或角度（例如說玩偶的側面版或背面版、電燈打開前後的樣子等等甚至是附加的物品小卡都可以）也可以上傳自由規格的物品設計大圖喔！
                 </div>
                 <uc-file-uploader-regular ctx-name="gift-ex-uploader"
                   class="uc-light uc-orange"></uc-file-uploader-regular>
@@ -201,7 +202,7 @@
             <label class="label">請提供禮物的文字介紹</label>
             <div class="desc">
               可以寫禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。另外因為這是匿名禮物，能的話請盡量不要包含你OC的名字。<br>
-              如果不確定怎麼寫，隨時歡迎私訊主持人叫他幫你想！也歡迎【<span>點這裡看參考</span>】或是【<span>點這裡預覽</span>】
+              如果不確定怎麼寫，隨時歡迎私訊主持人叫他幫你想！也歡迎【<span for="sampleGiftPanel">點這裡看參考</span>】或是【<span for="previewItemPanel">點這裡預覽</span>】
             </div>
             <textarea rows="5" cols="50" name="giftSummary" placeholder="用高級毛線織成的圍巾，光是看著就覺得暖。"></textarea>
           </div>
@@ -289,7 +290,7 @@
     <div class="modal_content">
       <div class="giftRulePanel fadeDown">
         <div class="giftRules">
-          <div>禮物規範</div>
+          <h2>禮物規範</h2>
           <ul> 
             <li>Splatoon世界中的哺乳類生物已滅絕，所以禮物內請勿包含哺乳類肉製品或相關的食品（請以雞肉或魚蝦貝類代替哺乳動物的肉類）</li>
             <li>Splatoon世界存在奶製品﹐所以包含奶製品製成的食品OK。</li>
@@ -297,13 +298,16 @@
             <li>請勿準備像是魔法物品這類不合乎普遍常理的東西！</li>
             <li>請勿準備效果會讓人困擾的藥物！若藥物造成的效果無傷大雅（如改變墨色）的話就OK，建議跟主持人討論後再作畫。</li>
           </ul>
-          <div>
-            請大家切記這個神秘禮物在之後會被別人的角色抽到，並且會被別人拿去作畫，所以能盡量配合基本的Splatoon世界觀為佳！<br>另外，
-            為了維持禮物正當性﹐主持人會私下先過目禮物﹐有可能會以上述沒概括到的標準來進行審核。要是禮物因為某些原因不符合標準﹐主持人會私下和你協調＆一起想折衷方案。主持人也有可能隨時更新禮物內容規範。請隨時關注規範有無更新！
+          <div class="notice">
+            <div>※請大家切記這個神秘禮物在之後會被別人的角色抽到，並且會被別人拿去作畫，所以能盡量配合基本的Splatoon世界觀為佳！</div>
+            <div>※為了維持禮物正當性﹐主持人會私下先過目禮物﹐可能會以上述之外的標準來進行審核。是禮物不符合標準的話﹐主持人會私下和你協調＆一起想折衷方案。禮物內容規範可能隨時更新，請隨時關注這個頁面！</div>
           </div>
-
         </div>
       </div>
+      <div class="previewItemPanel fadeDown">
+      </div>
+      <div class="sampleGiftPanel fadeDown">
+      </div>      
     </div>
   </div>
   <!-- UC STUFF -->
