@@ -335,26 +335,20 @@ function setupItemModalHtml(entry) {
     itemModalHtml += "</div>";
     itemModalHtml += "<div class='itemArtWrap'>";
 
-    itemModalHtml += "<div class='fakeUpload'> 按我選圖ㄅ </div>";
+    itemModalHtml += "<input class='hiddenSelectButton' type='file' accept='.png' style='display: none;' >";
+    itemModalHtml += "<div class='selectButton'>"+ "選張圖片" +"</div>";
 
-    if (MAIN_GIFT_IMG_URL.length > 0) {
-        itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(entry) + "' alt='item' draggable='false' >";
-    } else {
-        itemModalHtml += "<div class='noImage'> 假ㄉ圖 </div>";
-    }
-    if (entry.numOfAlt > 0) {
-        itemModalHtml += "<div class='itemArtList'>";
-        for (let i = 0; i < entry.numOfAlt + 1; i++) {
-            itemModalHtml += "<span>◆</span>";
-        }
-        itemModalHtml += "</div>";
-    }
+    itemModalHtml += "<div class='noImage'>";
+    itemModalHtml += "<div>尚無圖片<br>可以按右下按鈕選圖<br>※此圖並不會被上傳</div>";
+    itemModalHtml += "</div>";
+
     itemModalHtml += "</div>";
     itemModalHtml += "</div>";
     $(".previewItemPanel").html(itemModalHtml);
 
     setUpPreviwInputs();
     setUpPreviwTextArea();
+    setUpFakeUpload();
 }
 
 function getGiftUrl(gift) {
@@ -397,7 +391,7 @@ function setUpPreviwTextArea() {
         span.css("display", "none");
 
         $("<textarea></textarea>").insertBefore(span);
-        $("<div class='tip'>點打字框外任一處完成</div>").insertAfter(span);
+        $("<div class='tip'>戳打字框外任一處完成</div>").insertAfter(span);
         var ta = $(this).siblings("textarea");
         ta.val(span.html().replaceAll("<br>", "\n"));
         ta.attr("row", "15");
@@ -412,6 +406,50 @@ function setUpPreviwTextArea() {
         });
     });
 }
+
+//REF: https://jsfiddle.net/ugPDx/
+function setUpFakeUpload(){
+    $('.selectButton').click(function () {
+        $('.hiddenSelectButton').click();
+    });
+
+    $(".hiddenSelectButton").change(function(e) {
+        for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
+            var file = e.originalEvent.srcElement.files[i];
+            var img = document.createElement("img");
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                 img.src = reader.result;
+                 img.className = "itemArt";
+            }
+            reader.readAsDataURL(file);
+            $(".itemArtWrap img").remove();
+            $(".noImage").remove();
+            $(".selectButton").after(img);
+        }
+    });
+}
+
+// function setUpGiftAltArt(entry) {
+//     handleAltArtIndicator();
+//     $(".itemArt").click(function () {
+//         if(entry["numOfAlt"] != undefined){
+//             generatePageFlipAudio().play();
+//             CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
+//             $(".itemArt")
+//                 .fadeOut(130, function() {
+//                     $(".itemArt").attr('src', getGiftUrl(entry) );
+//                     handleAltArtIndicator();
+//                 })
+//                 .fadeIn(130);
+//         }
+//     })
+// }
+
+// function handleAltArtIndicator(){
+//     $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white' );
+//     $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(82, 68, 61, 0.4)" );
+// }
 
 //========================================//
 //    Settingup Sample Gift Modal HTML    //

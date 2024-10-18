@@ -540,17 +540,32 @@ h2 {
 .noImage {
   width: 350px;
   height: 350px;
-  background: gray;
+  box-shadow: inset 0 0 20px 10px rgba(0, 0, 0, 0.1294117647);
+  background-color: rgba(255, 255, 255, 0.158);
+  color: rgb(44, 44, 44);
+}
+.noImage > div {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
-.fakeUpload {
-  padding: 5px;
+.selectButton {
+  padding: 5px 10px;
   background-color: #61741d;
   color: white;
   border-radius: 8px;
   position: absolute;
-  right: 2px;
-  bottom: 20px;
+  right: 4px;
+  bottom: 24px;
+  opacity: 0.2;
+  transition: all 0.3s ease-in;
+}
+.selectButton:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .sampleGiftPanel {

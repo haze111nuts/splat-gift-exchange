@@ -602,16 +602,31 @@ h2{
 .noImage{
     width: 350px;
     height: 350px;
-    background: gray;
+    box-shadow: inset 0 0 20px 10px #00000021;
+    background-color: rgba(255, 255, 255, 0.158);
+    color: rgb(44, 44, 44);
+    > div{
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
 }
-.fakeUpload{
-    padding: 5px;
+.selectButton{
+    padding: 5px 10px;
     background-color: $TEXT_GOOD;
     color: white;
     border-radius: 8px;
     position: absolute;
     right: 4px;
     bottom: 24px;
+    opacity: 0.2;
+    transition: all 0.3s ease-in;
+    &:hover{
+        opacity: 1;
+        cursor: pointer;
+    }
 }
 
 //=========================//
