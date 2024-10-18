@@ -497,30 +497,98 @@ h2 {
   font-size: 1.5em;
   font-weight: bold;
   margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.editable {
+  z-index: -5;
+}
+.editable span {
+  cursor: pointer;
+}
+
+.itemPanel input, .itemPanel textarea {
+  color: rgb(58, 49, 45);
+}
+
+.itemTitle1 input {
+  padding: 6px;
+  font-size: x-large;
+  font-family: "DFPT_ZY9", "HuakangZongyi";
+}
+
+.itemTitle2 input {
+  padding: 4px;
+  font-size: medium;
+  font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
+}
+
+.itemSummary_inner textarea {
+  width: 90%;
+  height: 150px;
+  padding: 10px;
+  font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
+  font-size: 1.27rem !important;
+}
+
+.tip {
+  text-align: right;
+  font-size: 0.95rem;
+  color: #705c41;
 }
 
 .sampleGiftPanel {
   width: 80%;
   max-width: 600px;
 }
-.sampleGiftPanel ul {
+.sampleGiftPanel > ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.sampleGiftPanel ul li {
+.sampleGiftPanel > ul > li {
+  color: rgb(58, 49, 45);
   transition: all 0.4s ease;
   display: flex;
   background-color: rgb(235, 230, 220);
   background-image: url(../assets/paper.jpg);
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.2);
   width: 100%;
-  margin-bottom: 8px;
   opacity: 0;
 }
-.sampleGiftPanel ul li img {
+.sampleGiftPanel > ul > li img {
   width: 150px;
   height: 150px;
+  display: block;
+}
+.sampleGiftPanel > ul > li .giftName {
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 12px;
+  padding-left: 6px;
+  padding-bottom: 2px;
+}
+.sampleGiftPanel > ul > li .giftDesc {
+  padding: 20px;
+  padding-left: 6px;
+  padding-top: 2px;
+  overflow-y: auto;
+}
+.sampleGiftPanel > ul > li .giftDesc a {
+  color: #be9440;
+  transition: all 0.3s ease-out;
+}
+.sampleGiftPanel > ul > li .giftDesc a:hover {
+  color: rgb(199, 71, 21);
+}
+.sampleGiftPanel > ul > li:nth-child(1) {
+  transform: rotate(1deg);
+}
+.sampleGiftPanel > ul > li:nth-child(2) {
+  transform: rotate(-1.5deg);
+}
+.sampleGiftPanel > ul > li:nth-child(3) {
+  transform: rotate(0.8deg);
 }
 
 uc-copyright {

@@ -10,31 +10,20 @@ var placeholderGifts = [
         artist: "2"
     },
     {
-        ocName: "綾里春美",
-        giftName: "倉院特產饅頭",
-        giftNameAlt: "Kurain Buns",
-        giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
-        giftDescriptionAlt: "Some chestnut manju. Each bun is in the shape of a magatama and is blessed by a certain spirital medium. It is said that eating it will replenish your spiritual energy.",
-        numOfAlt: 2,
-        artist: "2"
+        ocName: "王泥喜法介",
+        giftName: "折疊式天文望遠鏡",
+        giftNameAlt: "Portable Telescope",
+        giftDescription: "口徑7公分、長為26公分的迷你形望遠鏡。有20mm和10mm的數位轉接目鏡和手機攝影轉接架﹐還附有簡易天文觀測指南。除了拿來觀星賞月以外﹐似乎也很適合拿來賞鳥或是湖中的不明生物。",
+        giftDescriptionAlt: "A mini portable telescope with a 70 mm lens and a length of 26 cm. It comes with 20mm and 10mm digital adapter eyepieces and a smartphone photography adapter. It also includes a basic astronomy observation guide. In addition to stargazing and moon watching, it also seems very suitable for bird watching or observing unidentified creatures in the lake.",
+        artist: "4"
     },
     {
-        ocName: "綾里春美",
-        giftName: "倉院特產饅頭",
-        giftNameAlt: "Kurain Buns",
-        giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
-        giftDescriptionAlt: "Some chestnut manju. Each bun is in the shape of a magatama and is blessed by a certain spirital medium. It is said that eating it will replenish your spiritual energy.",
-        numOfAlt: 2,
-        artist: "2"
-    },
-    {
-        ocName: "綾里春美",
-        giftName: "倉院特產饅頭",
-        giftNameAlt: "Kurain Buns",
-        giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
-        giftDescriptionAlt: "Some chestnut manju. Each bun is in the shape of a magatama and is blessed by a certain spirital medium. It is said that eating it will replenish your spiritual energy.",
-        numOfAlt: 2,
-        artist: "2"
+        ocName: "希月心音",
+        giftName: "碰可玩具機器人",
+        giftNameAlt: "PONCO Toy Robot",
+        giftDescription: "大河原宇宙中心的最新紀念品﹐1/8比例的多功能碰可玩具機器人﹐有著跟原物一樣的人工智能﹐可以透過聲控來做為日常的小幫手。有附一個機器人充電台。<br><b>功能：</b><ul><li>鬧鐘、備忘錄、上網查詢資料等通知等日常實用機能。</li><li>用專用的手機app跟這個機器人連動的話﹐可以跟它玩小遊戲。</li><li>帶去大河原宇宙中心的話，可以當作迷你導覽。</li><li>為了人類發展的未來，偶爾會推薦你捐錢給大河原宇宙中心。</li></ul>有一些跟<a href='https://www.amazon.com/b?node=18354642011' target='_blank'>ALEXA</a>類似的功能",
+        giftDescriptionAlt: "The newest souvenir from Robo ROM-en, it is a multifunctional toy robot modeled after their service robot, scaled to 1/8 size. It is equipped with basic AI software and can function as a digital assistant through voice control. A charging station is also included.<br><b>Features:</b><ul><li>Alarm clock, task reminder, internet search, and other useful functions for daily use.</li><li>You can play mini-game with it if you link it to the PONCO app.</li><li>If you bring it to GAYXA Space Center, it can serve as your mini tour guide.</li><li>For the future of mankind, it periodically ask you for donation to GYAXA Space Center.</li></ul>It has some functions similar to <a href='https://www.amazon.com/b?node=18354642011' target='_blank'>ALEXA</a>",
+        artist: "5"
     }
 ]
 
@@ -211,8 +200,6 @@ function validateForm() {
     })
 }
 
-
-
 function displayImageUploadSuccessMsg(e, parentDiv) {
     console.log("IMAGE UPLOAD SUCCESS");
     var succHtml =
@@ -302,20 +289,30 @@ function setupCloseModalEvents() {
     })
 }
 
-//=================================//
-//    Settingup Item Modal HTML    //
-//=================================//
+//====================================//
+//    Settingup Preview Modal HTML    //
+//====================================//
 var CURRENT_ALT_INDEX = 0;
 function setupItemModalHtml(entry) {
     var itemModalHtml = "";
 
     itemModalHtml += "<div class='itemPanel'>";
+
     itemModalHtml += "<div class='itemSummary'>";
+
     itemModalHtml += "<div class='itemTitle'>";
-    itemModalHtml += "<div class='itemTitle1'>" + entry.giftName + "</div>";
-    itemModalHtml += "<div class='itemTitle2'>" + entry.giftNameAlt + "</div>";
+    itemModalHtml += "<div class='itemTitle1'>";
+    itemModalHtml += "<div class='editable'><span>"+entry.giftName+"</span></div>";
     itemModalHtml += "</div>";
-    itemModalHtml += "<div class='itemSummary_inner'>" + entry.giftDescription + "</div>";
+    itemModalHtml += "<div class='itemTitle2'>";
+    itemModalHtml += "<div class='editable'><span>"+entry.giftNameAlt+"</span></div>";
+    itemModalHtml += "</div>";
+    itemModalHtml += "</div>";
+
+    itemModalHtml += "<div class='itemSummary_inner'>";
+    itemModalHtml += "<div class='editableTextArea'><span>"+entry.giftDescription+"</span></div>";
+    itemModalHtml += "</div>";
+
     itemModalHtml += "</div>";
     itemModalHtml += "<div class='itemArtWrap'>";
     itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(entry) + "' alt='item' draggable='false' >";
@@ -329,6 +326,9 @@ function setupItemModalHtml(entry) {
     itemModalHtml += "</div>";
     itemModalHtml += "</div>";
     $(".previewItemPanel").html(itemModalHtml);
+
+    setUpPreviwInputs();
+    setUpPreviwTextArea();
 }
 
 function getGiftUrl(gift) {
@@ -338,19 +338,72 @@ function getGiftUrl(gift) {
     return "../assets/placeholder.png";
 }
 
+//==========================//
+//    For Preview Inputs    //
+//==========================//
+function setUpPreviwInputs(){
+    $(".editable span").click(function (event) {
+        var span = $(this);
+        span.css("display", "none");
+
+        $("<input></input>").insertBefore(span);
+        var input = $(this).siblings("input");
+        input.val(span.text());
+        input.attr("type","text");
+        input.attr("size", span.text().length +5);
+        input.keypress(function(e) {
+            if(e.which == 13) {
+                input.blur();
+            }
+        });
+        input.focus();
+        input.blur(function() {
+            input.remove();
+            span.css("display", "inline");
+            span.html(input.val() == "" ? "?" : input.val())
+        });
+    });
+}
+
+function setUpPreviwTextArea(){
+    $(".editableTextArea span").click(function (event) {
+        var span = $(this);
+        span.css("display", "none");
+
+        $("<textarea></textarea>").insertBefore(span);
+        $("<div class='tip'>點打字框外任一處完成</div>").insertAfter(span);
+        var ta = $(this).siblings("textarea");
+        ta.val(span.text());
+        ta.attr("row","15");
+        ta.attr("col","100");
+        ta.focus();
+        ta.blur(function() {
+            $(".tip").remove();
+            ta.remove();
+            span.css("display", "inline");
+            span.html(ta.val() == "" ? "?" : ta.val())
+        });
+    });
+}
+
 //========================================//
 //    Settingup Sample Gift Modal HTML    //
 //========================================//
 
 function setupSampleGiftModalHtml(entries) {
     var sampleGiftModalHtml = "";
-    sampleGiftModalHtml += '<h2>禮物範例</h2>';
+    sampleGiftModalHtml += '<h2>禮物範本</h2>';
     sampleGiftModalHtml += '<ul>';
     for (let entry of entries) {
         sampleGiftModalHtml += '<li>';
         sampleGiftModalHtml += '<img src="'+ getGiftUrl(entry) +'" alt="gift">';
         sampleGiftModalHtml += '<div class="sampleContent">';
+        sampleGiftModalHtml += '<div class="giftName">';
         sampleGiftModalHtml += entry.giftName;
+        sampleGiftModalHtml += '</div>';
+        sampleGiftModalHtml += '<div class="giftDesc">';
+        sampleGiftModalHtml += entry.giftDescription;
+        sampleGiftModalHtml += '</div>';        
         sampleGiftModalHtml += '</div>';
         sampleGiftModalHtml += '</li>';
     }
@@ -380,4 +433,5 @@ $(document).ready(function () {
     setUpClickModalEvents("previewItemPanel");
     setUpClickModalEvents("sampleGiftPanel");
     setupCloseModalEvents();
+    
 });
