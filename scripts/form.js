@@ -200,8 +200,30 @@ function validateForm() {
     })
 }
 
+//====================================//
+//    Image Upload Event Handling     //
+//====================================//
+
+var NUM_OF_EX_IMG = 0;
+var EX_IMG_URLS = []
+
+var MAIN_GIFT_IMG_URL = "";
+var PROFILE_IMG_URL = "";
+var ART_IMG_URL = "";
+
 function displayImageUploadSuccessMsg(e, parentDiv) {
     console.log("IMAGE UPLOAD SUCCESS");
+
+    //save the upload image to global
+    if (parentDiv.includes("gift")) {
+        MAIN_GIFT_IMG_URL = e.detail.cdnUrl;
+    } else if (parentDiv.includes("ocprofile")) {
+        PROFILE_IMG_URL = e.detail.cdnUrl;
+    } else if (parentDiv.includes("art")) {
+        ART_IMG_URL = e.detail.cdnUrl;
+    }
+
+    //set success message
     var succHtml =
         '成功上傳了1張圖<img src="' + e.detail.cdnUrl + '">';
     $('.' + parentDiv + ' .uploadResult').html(succHtml);
@@ -214,15 +236,12 @@ function displayImageUploadSuccessMsg(e, parentDiv) {
     $("." + parentDiv).css("border-color", "rgb(223, 177, 92)");
 }
 
-var NUM_OF_EX_IMG = 0;
-var EX_IMG = []
-
 function displayMultiImageUploadSuccessMsg(e) {
     console.log("MULTI-IMAGE UPLOAD SUCCESS");
     NUM_OF_EX_IMG++;
-    EX_IMG.push(e.detail.cdnUrl);
+    EX_IMG_URLS.push(e.detail.cdnUrl);
     var succHtml = "成功上傳了" + NUM_OF_EX_IMG + "張圖";
-    for (let url of EX_IMG) {
+    for (let url of EX_IMG_URLS) {
         succHtml += '<img src="' + url + '">';
     }
     $('.multiUploadResult').html(succHtml);
@@ -265,7 +284,7 @@ function setUpClickModalEvents(panelName) {
             setTimeout(function () {
                 for (var i = 0; i < placeholderGifts.length; i++) {
                     $(".sampleGiftPanel ul li:nth-child(" + (i + 1) + ")")
-                    .css("opacity", "1");
+                        .css("opacity", "1");
                 }
             }, 10);
 
@@ -302,20 +321,27 @@ function setupItemModalHtml(entry) {
 
     itemModalHtml += "<div class='itemTitle'>";
     itemModalHtml += "<div class='itemTitle1'>";
-    itemModalHtml += "<div class='editable'><span>"+entry.giftName+"</span></div>";
+    itemModalHtml += "<div class='editable'><span>" + entry.giftName + "</span></div>";
     itemModalHtml += "</div>";
     itemModalHtml += "<div class='itemTitle2'>";
-    itemModalHtml += "<div class='editable'><span>"+entry.giftNameAlt+"</span></div>";
+    itemModalHtml += "<div class='editable'><span>" + entry.giftNameAlt + "</span></div>";
     itemModalHtml += "</div>";
     itemModalHtml += "</div>";
 
     itemModalHtml += "<div class='itemSummary_inner'>";
-    itemModalHtml += "<div class='editableTextArea'><span>"+entry.giftDescription+"</span></div>";
+    itemModalHtml += "<div class='editableTextArea'><span>" + entry.giftDescription + "</span></div>";
     itemModalHtml += "</div>";
 
     itemModalHtml += "</div>";
     itemModalHtml += "<div class='itemArtWrap'>";
-    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(entry) + "' alt='item' draggable='false' >";
+
+    itemModalHtml += "<div class='fakeUpload'> 按我選圖ㄅ </div>";
+
+    if (MAIN_GIFT_IMG_URL.length > 0) {
+        itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(entry) + "' alt='item' draggable='false' >";
+    } else {
+        itemModalHtml += "<div class='noImage'> 假ㄉ圖 </div>";
+    }
     if (entry.numOfAlt > 0) {
         itemModalHtml += "<div class='itemArtList'>";
         for (let i = 0; i < entry.numOfAlt + 1; i++) {
@@ -341,7 +367,7 @@ function getGiftUrl(gift) {
 //==========================//
 //    For Preview Inputs    //
 //==========================//
-function setUpPreviwInputs(){
+function setUpPreviwInputs() {
     $(".editable span").click(function (event) {
         var span = $(this);
         span.css("display", "none");
@@ -349,15 +375,15 @@ function setUpPreviwInputs(){
         $("<input></input>").insertBefore(span);
         var input = $(this).siblings("input");
         input.val(span.text());
-        input.attr("type","text");
-        input.attr("size", span.text().length +5);
-        input.keypress(function(e) {
-            if(e.which == 13) {
+        input.attr("type", "text");
+        input.attr("size", span.text().length + 5);
+        input.keypress(function (e) {
+            if (e.which == 13) {
                 input.blur();
             }
         });
         input.focus();
-        input.blur(function() {
+        input.blur(function () {
             input.remove();
             span.css("display", "inline");
             span.html(input.val() == "" ? "?" : input.val())
@@ -365,7 +391,7 @@ function setUpPreviwInputs(){
     });
 }
 
-function setUpPreviwTextArea(){
+function setUpPreviwTextArea() {
     $(".editableTextArea span").click(function (event) {
         var span = $(this);
         span.css("display", "none");
@@ -374,10 +400,10 @@ function setUpPreviwTextArea(){
         $("<div class='tip'>點打字框外任一處完成</div>").insertAfter(span);
         var ta = $(this).siblings("textarea");
         ta.val(span.html().replaceAll("<br>", "\n"));
-        ta.attr("row","15");
-        ta.attr("col","100");
+        ta.attr("row", "15");
+        ta.attr("col", "100");
         ta.focus();
-        ta.blur(function() {
+        ta.blur(function () {
             $(".tip").remove();
             ta.remove();
             span.css("display", "inline");
@@ -397,14 +423,14 @@ function setupSampleGiftModalHtml(entries) {
     sampleGiftModalHtml += '<ul>';
     for (let entry of entries) {
         sampleGiftModalHtml += '<li>';
-        sampleGiftModalHtml += '<img src="'+ getGiftUrl(entry) +'" alt="gift">';
+        sampleGiftModalHtml += '<img src="' + getGiftUrl(entry) + '" alt="gift">';
         sampleGiftModalHtml += '<div class="sampleContent">';
         sampleGiftModalHtml += '<div class="giftName">';
         sampleGiftModalHtml += entry.giftName;
         sampleGiftModalHtml += '</div>';
         sampleGiftModalHtml += '<div class="giftDesc">';
         sampleGiftModalHtml += entry.giftDescription;
-        sampleGiftModalHtml += '</div>';        
+        sampleGiftModalHtml += '</div>';
         sampleGiftModalHtml += '</div>';
         sampleGiftModalHtml += '</li>';
     }
@@ -413,7 +439,7 @@ function setupSampleGiftModalHtml(entries) {
 
     for (var i = 0; i < entries.length; i++) {
         $(".sampleGiftPanel ul li:nth-child(" + (i + 1) + ")")
-        .css("transition-delay", i * 0.12 + "s");
+            .css("transition-delay", i * 0.12 + "s");
     }
 }
 
@@ -434,5 +460,5 @@ $(document).ready(function () {
     setUpClickModalEvents("previewItemPanel");
     setUpClickModalEvents("sampleGiftPanel");
     setupCloseModalEvents();
-    
+
 });

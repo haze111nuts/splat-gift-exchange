@@ -537,6 +537,22 @@ h2 {
   color: #705c41;
 }
 
+.noImage {
+  width: 350px;
+  height: 350px;
+  background: gray;
+}
+
+.fakeUpload {
+  padding: 5px;
+  background-color: #61741d;
+  color: white;
+  border-radius: 8px;
+  position: absolute;
+  right: 2px;
+  bottom: 20px;
+}
+
 .sampleGiftPanel {
   width: 80%;
   max-width: 600px;
