@@ -373,7 +373,7 @@ function setUpPreviwTextArea(){
         $("<textarea></textarea>").insertBefore(span);
         $("<div class='tip'>點打字框外任一處完成</div>").insertAfter(span);
         var ta = $(this).siblings("textarea");
-        ta.val(span.text());
+        ta.val(span.html().replaceAll("<br>", "\n"));
         ta.attr("row","15");
         ta.attr("col","100");
         ta.focus();
@@ -381,7 +381,8 @@ function setUpPreviwTextArea(){
             $(".tip").remove();
             ta.remove();
             span.css("display", "inline");
-            span.html(ta.val() == "" ? "?" : ta.val())
+            var display = ta.val().replaceAll("\n","<br>");
+            span.html(ta.val() == "" ? "?" : display)
         });
     });
 }
