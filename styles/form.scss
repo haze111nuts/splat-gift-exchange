@@ -599,6 +599,20 @@ h2{
     font-size: 0.95rem;
     color: $TEXT_DESC;
 }
+.noImage{
+    width: 350px;
+    height: 350px;
+    background: gray;
+}
+.fakeUpload{
+    padding: 5px;
+    background-color: $TEXT_GOOD;
+    color: white;
+    border-radius: 8px;
+    position: absolute;
+    right: 2px;
+    bottom: 20px;
+}
 
 //=========================//
 //===   SAMPLE GIFTS    ===//
