@@ -255,7 +255,7 @@ function validateForm() {
         rules: {
             OCname: "required",
             gift: "required",
-            giftSummary: "required",
+            gift_summary: "required",
             artist: "required",
             contact: "required",
             ocprofile_url: "required",
@@ -265,7 +265,7 @@ function validateForm() {
         messages: {
             OCname: LOCAL_DATA.inputError,
             gift: LOCAL_DATA.inputError,
-            giftSummary: LOCAL_DATA.inputError,
+            gift_summary: LOCAL_DATA.inputError,
             artist: LOCAL_DATA.inputError,
             contact: LOCAL_DATA.inputError,
             ocprofile_url: LOCAL_DATA.imageError,
@@ -278,14 +278,14 @@ function validateForm() {
         // },
         invalidHandler: function (event, validator) {
             // loop thru all invalid error
-            for (let x in validator.invalid) {
+            for (let name in validator.invalid) {
                 var index = "0";
                 // find the owner(index) of the invalid question
                 // summary is a textarea not input therefore need manual setter
-                if (x == "giftSummary") {
+                if (name == "gift_summary") {
                     index = 5;
                 } else {
-                    index = $("input[name='" + x + "']").parent().attr("class").split(" ")[1];
+                    index = $("input[name='" + name + "']").parent().attr("class").split(" ")[1];
                 }
                 $(".question:nth-child(" + index + ")").css("border-color", "#9e3038");
             }
