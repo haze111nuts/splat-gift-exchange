@@ -659,7 +659,9 @@ h2 {
     font-size: 2.1em;
     text-align: center;
     color: white;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.8);
+    text-shadow:
+        0 0 10px rgba(0, 0, 0, 0.8),
+        0 0 5px rgba(0, 0, 0, 0.8);
     div {
         margin-top: 20px;
         span {
@@ -668,7 +670,7 @@ h2 {
             border-radius: 5px;
             box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
             transition: all 0.2s ease-in;
-            &:hover{
+            &:hover {
                 transform: scale(1.2);
             }
         }
@@ -807,7 +809,7 @@ dialog::backdrop {
             }
         }
     }
-    .confirmEdit{
+    .confirmEdit {
         width: 75%;
         font-size: 6vw;
     }
@@ -818,16 +820,16 @@ dialog::backdrop {
         .title {
             font-size: 8vw;
         }
-        .summary{
+        .summary {
             width: 90%;
             font-size: 15px;
             margin: 0px auto;
         }
     }
-    .confirmEdit{
+    .confirmEdit {
         width: 85%;
     }
-    .warning{
+    .warning {
         font-size: 15px;
     }
 }
