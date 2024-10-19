@@ -1,3 +1,8 @@
+//=======================//
+//    Variables/Data     //
+//=======================//
+
+var PREVIEW_IS_EDITED = false;
 
 var placeholderGifts = [
     {
@@ -296,16 +301,36 @@ function setUpClickModalEvents(panelName) {
 }
 
 function setupCloseModalEvents() {
+    //for regular modal close
     $(".modal_bg, .close").click(function () {
-        $(".modal").addClass("hide");
-        $(".modal_content >div").addClass("fadeDown");
-        // $(document.body).removeClass("noscroll");
-        setTimeout(function () {
-            $(".modal_content").children().css("display", "none")
-            $('body').removeAttr('style')
-        }, 250);
-
+        if(PREVIEW_IS_EDITED){
+            $(".modal2").removeClass("hide");
+        }else{
+            closeModals();
+        }
     })
+    $('.confirmEdit div span:nth-child(1)').click(function () {
+        $(".modal2").addClass("hide");
+        PREVIEW_IS_EDITED = false;
+        closeModals();
+        //IF USER CLICKS YES
+    });
+    $('.confirmEdit div span:nth-child(2)').click(function () {
+        $(".modal2").addClass("hide");
+        PREVIEW_IS_EDITED = false;
+        closeModals();
+        //IF USER CLICKS NO
+    });
+}
+
+function closeModals(){
+    $(".modal").addClass("hide");
+    $(".modal_content >div").addClass("fadeDown");
+    // $(document.body).removeClass("noscroll");
+    setTimeout(function () {
+        $(".modal_content").children().css("display", "none")
+        $('body').removeAttr('style')
+    }, 250);
 }
 
 //====================================//
@@ -321,27 +346,27 @@ function setupItemModalHtml(entry) {
 
     itemModalHtml += "<div class='itemTitle'>";
     itemModalHtml += "<div class='itemTitle1'>";
-    itemModalHtml += "<div class='editable'><span>" + entry.giftName + "</span></div>";
+    itemModalHtml += "<div class='editable'><span>" + "預覽用禮物名" + "</span></div>";
     itemModalHtml += "</div>";
     itemModalHtml += "<div class='itemTitle2'>";
-    itemModalHtml += "<div class='editable'><span>" + entry.giftNameAlt + "</span></div>";
+    itemModalHtml += "<div class='editable'><span>" + "English Gift Name" + "</span></div>";
     itemModalHtml += "</div>";
     itemModalHtml += "</div>";
 
     itemModalHtml += "<div class='itemSummary_inner'>";
-    itemModalHtml += "<div class='editableTextArea'><span>" + entry.giftDescription + "</span></div>";
+    itemModalHtml += "<div class='editableTextArea'><span>" + "可以寫禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。" + "</span></div>";
     itemModalHtml += "</div>";
-
+    
     itemModalHtml += "</div>";
     itemModalHtml += "<div class='itemArtWrap'>";
 
-    itemModalHtml += "<input class='hiddenSelectButton' type='file' accept='.png' style='display: none;' >";
-    itemModalHtml += "<div class='selectButton'>"+ "選張圖片" +"</div>";
-
     itemModalHtml += "<div class='noImage'>";
-    itemModalHtml += "<div>尚無圖片<br>可以按右下按鈕選圖<br>※此圖並不會被上傳</div>";
+    itemModalHtml += "<div>尚無圖片<br>可以按下方按鈕選圖<br>※此圖並不會被上傳</div>";
     itemModalHtml += "</div>";
 
+    itemModalHtml += "<input class='hiddenSelectButton' type='file' accept='.png' style='display: none;' >";
+    itemModalHtml += "<div class='selectButton'>"+ "選張圖片" +"</div>";
+    
     itemModalHtml += "</div>";
     itemModalHtml += "</div>";
     $(".previewItemPanel").html(itemModalHtml);
@@ -378,6 +403,7 @@ function setUpPreviwInputs() {
         });
         input.focus();
         input.blur(function () {
+            PREVIEW_IS_EDITED = true;
             input.remove();
             span.css("display", "inline");
             span.html(input.val() == "" ? "?" : input.val())
@@ -391,13 +417,14 @@ function setUpPreviwTextArea() {
         span.css("display", "none");
 
         $("<textarea></textarea>").insertBefore(span);
-        $("<div class='tip'>戳打字框外任一處完成</div>").insertAfter(span);
+        $("<div class='tip'>戳打字框外任一處離開</div>").insertAfter(span);
         var ta = $(this).siblings("textarea");
         ta.val(span.html().replaceAll("<br>", "\n"));
         ta.attr("row", "15");
         ta.attr("col", "100");
         ta.focus();
         ta.blur(function () {
+            PREVIEW_IS_EDITED = true;
             $(".tip").remove();
             ta.remove();
             span.css("display", "inline");
@@ -425,31 +452,10 @@ function setUpFakeUpload(){
             reader.readAsDataURL(file);
             $(".itemArtWrap img").remove();
             $(".noImage").remove();
-            $(".selectButton").after(img);
+            $(".selectButton").before(img);
         }
     });
 }
-
-// function setUpGiftAltArt(entry) {
-//     handleAltArtIndicator();
-//     $(".itemArt").click(function () {
-//         if(entry["numOfAlt"] != undefined){
-//             generatePageFlipAudio().play();
-//             CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
-//             $(".itemArt")
-//                 .fadeOut(130, function() {
-//                     $(".itemArt").attr('src', getGiftUrl(entry) );
-//                     handleAltArtIndicator();
-//                 })
-//                 .fadeIn(130);
-//         }
-//     })
-// }
-
-// function handleAltArtIndicator(){
-//     $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white' );
-//     $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(82, 68, 61, 0.4)" );
-// }
 
 //========================================//
 //    Settingup Sample Gift Modal HTML    //

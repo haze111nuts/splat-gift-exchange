@@ -25,8 +25,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   transition: all 0.2s ease-in;
 }
 .modal2 .modal2_bg {
@@ -97,7 +97,7 @@
 .itemPanel .itemSummary .itemTitle {
   text-align: center;
   font-size: x-large;
-  font-family: "DFPT_ZY9", "HuakangZongyi" !important;
+  font-family: "DFPT_ZY9", "HuakangZongyi";
   background-image: url(../assets/paper.jpg);
   position: static;
   padding-bottom: 20px;
