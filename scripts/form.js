@@ -7,6 +7,7 @@ var NEW_GIFT_DESC = "";
 var MAIN_GIFT_IMG_URL = "";
 var PROFILE_IMG_URL = "";
 var ART_IMG_URL = "";
+var CURRENT_PHASE = 0;
 
 var NUM_OF_EX_IMG = 0;
 var EX_IMG_URLS = []
@@ -16,7 +17,31 @@ var IS_ENG_FORM = false;
 var LOCAL_DATA = {};
 var PLACEHOLDER_GIFT = {};
 
-// Localizer data
+//==================//
+//    Time Data     //
+//==================//
+
+const phases = {
+    giftDeadline: 1758988740000,       // new Date('2025-09-27T11:59:00').valueOf(); (EST)
+    unboxingDay: 1760184000000,        // new Date('2025-10-11T08:00:00').valueOf(); (EST)
+    receiveArtDeadline: 1765472340000  // new Date('2025-12-11T11:59:00').valueOf(); (EST)
+};
+
+// var yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+// var today = new Date();
+// var tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
+// var tomorroww = new Date(new Date().setDate(new Date().getDate() + 2));
+
+// const phases = {
+//     giftDeadline: yesterday,
+//     unboxingDay: tomorrow,
+//     receiveArtDeadline: tomorroww
+// };
+
+//=======================//
+//    Localizer Data     //
+//=======================//
+
 var localData_CH = {
     sampleGiftTitle: "禮物範本",
     editTip: "可以用Discord部分語法做裝飾",
@@ -39,20 +64,25 @@ var localData_EN = {
     imageError: "An image is required!"
 }
 
-// placehoder gift data
+//=========================//
+//    Placeholder Data     //
+//=========================//
+
 var placehoderGift_CH = {
     giftName: "按我改禮物名",
     giftNameAlt: "Gift Name",
     giftDescription: "按這裡可以寫解釋，例如禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。"
 }
-
 var placehoderGift_EN = {
     giftName: "Click to Edit Gift Name",
     giftNameAlt: "禮物名",
     giftDescription: "Click here to write gift summary, you can write about things like what's included in the gift, what kind of texture this object has, what are the material used, or how it can be used..etc."
 }
 
-// sample gift data (CH)
+//=========================//
+//    Sample Gift Data     //
+//=========================//
+
 var sampleGifts = [
     {
         ocName: "綾里春美",
@@ -114,48 +144,36 @@ function setUpExtraUploadToggle() {
     });
 }
 
-//========================//
-//    Settingup Timer     //
-//========================//
+//==================================//
+//    Settingup Timer/CountDown     //
+//==================================//
 
-const times = {
-    giftDeadline: 1758988740000,       // new Date('2025-09-27T11:59:00').valueOf(); (EST)
-    unboxingDay: 1760184000000,        // new Date('2025-10-11T08:00:00').valueOf(); (EST)
-    receiveArtDeadline: 1765472340000  // new Date('2025-12-11T11:59:00').valueOf(); (EST)
-};
-
-// var yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-// var today = new Date();
-// var tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
-// var tomorroww = new Date(new Date().setDate(new Date().getDate() + 2));
-
-// const times = {
-//     giftDeadline: yesterday,
-//     unboxingDay: tomorrow,
-//     receiveArtDeadline: tomorroww
-// };
-
-function setUpTimer() {
+function checkPhase(){
     //check which deadline is the closest one and decide the index
-    var index = 1;
+    CURRENT_PHASE = 1
     var deadline = 0;
-    for (var x in times) {
-        if (times[x] > new Date().valueOf()) {
-            deadline = times[x];
+    for (var x in phases) {
+        if (phases[x] > new Date().valueOf()) {
+            deadline = phases[x];
             break;
         }
-        index++;
+        CURRENT_PHASE++;
     }
+    // CURRENT_PHASE = 3;
+    return deadline;
+}
 
-    $(".giftDeadlineShort").text(new Date(times.giftDeadline).toLocaleString("zh").split(" ")[0]);
-    $(".giftDeadline").text(new Date(times.giftDeadline).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
-    $(".unboxingDay").text(new Date(times.unboxingDay).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
-    $(".receiveArtDeadline").text(new Date(times.receiveArtDeadline).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
+function setUpTimer() {
+    var deadline = checkPhase();
+    $(".giftDeadlineShort").text(new Date(phases.giftDeadline).toLocaleString("zh").split(" ")[0]);
+    $(".giftDeadline").text(new Date(phases.giftDeadline).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
+    $(".unboxingDay").text(new Date(phases.unboxingDay).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
+    $(".receiveArtDeadline").text(new Date(phases.receiveArtDeadline).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
     //set deadline name
-    $(".countdown_label span").html($(".deadlines ul li:nth-child(" + index + ") span:nth-child(1)").html());
+    $(".countdown_label span").html($(".deadlines ul li:nth-child(" + CURRENT_PHASE + ") span:nth-child(1)").html());
 
     //highlight the current deadline
-    $(".deadlines ul li:nth-child(" + index + ")").addClass("currentDeadline");
+    $(".deadlines ul li:nth-child(" + CURRENT_PHASE + ")").addClass("currentDeadline");
 
     //grab deadline
     var compareDate = new Date(deadline);
@@ -164,6 +182,8 @@ function setUpTimer() {
     setInterval(function () {
         setTimeBetweenDates(compareDate);
     }, 500);
+
+    swapToSecondForm();
 }
 
 function setTimeBetweenDates(toDate) {
@@ -186,6 +206,19 @@ function setTimeBetweenDates(toDate) {
         $(".hours").text(hours);
         $(".minutes").text(minutes);
         $(".seconds").text(seconds);
+    }
+}
+
+//==========================//
+//    Setup Second Form     //
+//==========================//
+
+function swapToSecondForm(){
+    //swap to 2nd form if it's the last phase
+    if(CURRENT_PHASE>2){
+        $('#giftForm').remove();
+    }else{
+        $('#exchangeForm').remove();
     }
 }
 
@@ -358,6 +391,7 @@ function setupExtraCloseButton(className) {
 }
 
 function setupCloseModalEvents() {
+
     //for regular modal close
     $(".modal_bg").click(function () {
         if(PREVIEW_IS_EDITED){
@@ -579,9 +613,9 @@ function setupSampleGiftModalHtml(entries) {
 
 $(document).ready(function () {
     decideLocalization();
+    setUpTimer();
     setUpConfirmEvent();
     setUpNavClickEvents();
-    setUpTimer();
     validateForm();
     setUpOtherValidationStyle();
     setUpExtraUploadToggle();
