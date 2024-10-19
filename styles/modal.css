@@ -14,7 +14,7 @@
 .modal .modal_bg {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .modal2 {
@@ -32,7 +32,7 @@
 .modal2 .modal2_bg {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .ref_wrap {
@@ -91,7 +91,7 @@
   background-color: rgb(235, 230, 220);
   background-image: url(../assets/paper.jpg);
   font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
-  font-size: 1.27em;
+  font-size: 1.27rem;
   box-shadow: 8px 8px 9px 1px rgba(0, 0, 0, 0.2);
 }
 .itemPanel .itemSummary .itemTitle {
@@ -122,11 +122,13 @@
   width: 440px;
   height: 100%;
 }
-.itemPanel .itemSummary .itemSummary_inner ul, .itemPanel .itemSummary .itemSummary_inner ol {
+.itemPanel .itemSummary .itemSummary_inner ul,
+.itemPanel .itemSummary .itemSummary_inner ol {
   margin-top: 0px;
   margin-bottom: 10px;
 }
-.itemPanel .itemSummary .itemSummary_inner ul li, .itemPanel .itemSummary .itemSummary_inner ol li {
+.itemPanel .itemSummary .itemSummary_inner ul li,
+.itemPanel .itemSummary .itemSummary_inner ol li {
   padding-right: 20px;
 }
 .itemPanel .itemSummary .itemSummary_inner span {
@@ -143,6 +145,75 @@
 }
 .itemPanel .itemSummary .langSwitch:hover {
   color: rgb(184, 120, 2);
+}
+
+.close {
+  z-index: 888;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 70px;
+  height: 70px;
+  opacity: 0.6;
+  transition: all 0.3s ease-in;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 35px;
+  content: " ";
+  height: 70px;
+  width: 2px;
+  background-color: #dfdfdf;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
+@media only screen and (max-width: 959px) {
+  .itemPanel {
+    width: 100% !important;
+    height: max-content !important;
+    text-align: center;
+  }
+  .itemPanel .itemArtWrap {
+    width: 100%;
+    height: unset !important;
+    position: static !important;
+    margin: 0 auto !important;
+    transform: translate(0, 0) !important;
+  }
+  .itemPanel .itemSummary {
+    position: relative !important;
+    width: 90% !important;
+    margin: 0 auto !important;
+    right: auto !important;
+    padding: 0 0 20px 0 !important;
+    transform: translate(0, 0) rotateZ(2deg) !important;
+  }
+  .itemPanel .itemSummary .itemTitle {
+    max-width: none !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .itemPanel .itemSummary .itemSummary_inner {
+    width: 90% !important;
+    margin: 0 auto;
+  }
+}
+@media only screen and (max-width: 481px) {
+  .itemArt {
+    width: 290px !important;
+    height: 290px !important;
+  }
 }
 
 /*# sourceMappingURL=modal.css.map */

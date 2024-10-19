@@ -410,34 +410,6 @@ h4 {
   cursor: pointer;
 }
 
-.modal .close {
-  z-index: 888;
-  cursor: pointer;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 70px;
-  height: 70px;
-  opacity: 0.6;
-  transition: all 0.3s ease-in;
-}
-.modal .close:hover {
-  opacity: 1;
-}
-.modal .close:before, .modal .close:after {
-  position: absolute;
-  left: 35px;
-  content: " ";
-  height: 70px;
-  width: 2px;
-  background-color: #dfdfdf;
-}
-.modal .close:before {
-  transform: rotate(45deg);
-}
-.modal .close:after {
-  transform: rotate(-45deg);
-}
 .modal .modal_bg {
   background-color: rgb(58, 49, 45) !important;
   opacity: 0.5;
@@ -508,37 +480,6 @@ h4 {
   .art_wrap {
     width: 90%;
   }
-  .itemPanel {
-    width: 100% !important;
-    height: max-content !important;
-    text-align: center;
-  }
-  .itemPanel .itemArtWrap {
-    width: 100%;
-    height: unset !important;
-    position: static !important;
-    margin: 0 auto !important;
-    transform: translate(0, 0) !important;
-  }
-  .itemPanel .itemSummary {
-    position: relative !important;
-    width: 90% !important;
-    margin: 0 auto !important;
-    right: auto !important;
-    padding: 0 0 20px 0 !important;
-    transform: translate(0, 0) rotateZ(2deg) !important;
-  }
-  .itemPanel .itemSummary .itemTitle {
-    max-width: none !important;
-    padding-top: 12px !important;
-    padding-bottom: 12px !important;
-    width: 90%;
-    margin: 0 auto;
-  }
-  .itemPanel .itemSummary .itemSummary_inner {
-    width: 90% !important;
-    margin: 0 auto;
-  }
 }
 @media only screen and (max-width: 1574px) {
   .decor .decor_L {
@@ -586,10 +527,6 @@ h4 {
   }
   .logo .logo_bg {
     width: 90%;
-  }
-  .itemArt {
-    width: 290px !important;
-    height: 290px !important;
   }
   .decor .decor_L {
     background-position-x: -530px;

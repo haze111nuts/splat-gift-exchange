@@ -41,15 +41,15 @@ var localData_EN = {
 
 // placehoder gift data
 var placehoderGift_CH = {
-    giftName: "禮物名",
+    giftName: "按我改禮物名",
     giftNameAlt: "Gift Name",
-    giftDescription: "可以寫禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。"
+    giftDescription: "按這裡可以寫解釋，例如禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。"
 }
 
 var placehoderGift_EN = {
-    giftName: "Gift Name",
+    giftName: "Clike to Edit Gift Name",
     giftNameAlt: "禮物名",
-    giftDescription: "You can write about things like what's included in the gift, what kind of texture this object has, what are the material used, or how it can be used..etc."
+    giftDescription: "Click here to write, you can write about things like what's included in the gift, what kind of texture this object has, what are the material used, or how it can be used..etc."
 }
 
 // sample gift data (CH)
@@ -347,9 +347,19 @@ function setUpClickModalEvents(panelName) {
     });
 }
 
+function setupExtraCloseButton(className) {
+    $(className).click(function () {
+        if(PREVIEW_IS_EDITED){
+            $(".modal2").removeClass("hide");
+        }else{
+            closeModals();
+        }
+    })
+}
+
 function setupCloseModalEvents() {
     //for regular modal close
-    $(".modal_bg, .close").click(function () {
+    $(".modal_bg").click(function () {
         if(PREVIEW_IS_EDITED){
             $(".modal2").removeClass("hide");
         }else{
@@ -390,11 +400,19 @@ function setupItemModalHtml() {
     var previewData = setPreviewDataFromForm();
 
     var itemModalHtml = "";
-
+    itemModalHtml += "<div class='close'>"+"</div>";
     itemModalHtml += "<div class='itemPanel'>";
 
+    // ====== item art ======
+    itemModalHtml += "<div class='itemArtWrap'>";
+    itemModalHtml += "<div class='noImage itemArt'>";
+    itemModalHtml += "<div>"+LOCAL_DATA.noImage+"</div>";
+    itemModalHtml += "</div>";
+    itemModalHtml += "<input class='hiddenSelectButton' type='file' accept='.png' style='display: none;' >";
+    itemModalHtml += "<div class='selectButton'>"+ LOCAL_DATA.chooseImage +"</div>";
+    itemModalHtml += "</div>";
+    // ====== item summary ======
     itemModalHtml += "<div class='itemSummary'>";
-
     itemModalHtml += "<div class='itemTitle'>";
     itemModalHtml += "<div class='itemTitle1'>";
     itemModalHtml += "<div class='editable'><span>" + previewData.giftName + "</span></div>";
@@ -403,21 +421,9 @@ function setupItemModalHtml() {
     itemModalHtml += "<div class='editable'><span>" + PLACEHOLDER_GIFT.giftNameAlt + "</span></div>";
     itemModalHtml += "</div>";
     itemModalHtml += "</div>";
-
     itemModalHtml += "<div class='itemSummary_inner'>";
     itemModalHtml += "<div class='editableTextArea'><span>" + previewData.giftDescription + "</span></div>";
     itemModalHtml += "</div>";
-
-    itemModalHtml += "</div>";
-    itemModalHtml += "<div class='itemArtWrap'>";
-
-    itemModalHtml += "<div class='noImage'>";
-    itemModalHtml += "<div>"+LOCAL_DATA.noImage+"</div>";
-    itemModalHtml += "</div>";
-
-    itemModalHtml += "<input class='hiddenSelectButton' type='file' accept='.png' style='display: none;' >";
-    itemModalHtml += "<div class='selectButton'>"+ LOCAL_DATA.chooseImage +"</div>";
-    
     itemModalHtml += "</div>";
     itemModalHtml += "</div>";
     $(".previewItemPanel").html(itemModalHtml);
@@ -425,6 +431,7 @@ function setupItemModalHtml() {
     setUpPreviwInputs();
     setUpPreviwTextArea();
     setUpFakeUpload();
+    setupExtraCloseButton(".close");
 }
 
 function getGiftUrl(gift) {
@@ -537,7 +544,7 @@ function setUpFakeUpload(){
 
 function setupSampleGiftModalHtml(entries) {
     var sampleGiftModalHtml = "";
-    sampleGiftModalHtml += '<h2>'+LOCAL_DATA.sampleGiftTitle+'</h2>';
+    sampleGiftModalHtml += '<div>'+LOCAL_DATA.sampleGiftTitle+'<div class="miniClose">[x]</div></div>';
     sampleGiftModalHtml += '<ul>';
     for (let entry of entries) {
         sampleGiftModalHtml += '<li>';
@@ -559,6 +566,8 @@ function setupSampleGiftModalHtml(entries) {
         $(".sampleGiftPanel ul li:nth-child(" + (i + 1) + ")")
             .css("transition-delay", i * 0.12 + "s");
     }
+
+    setupExtraCloseButton(".miniClose");
 }
 
 //======================//
@@ -579,5 +588,4 @@ $(document).ready(function () {
     setUpClickModalEvents("previewItemPanel");
     setUpClickModalEvents("sampleGiftPanel");
     setupCloseModalEvents();
-
 });
