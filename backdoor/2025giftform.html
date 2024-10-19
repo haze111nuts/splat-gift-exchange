@@ -29,10 +29,10 @@
         <div class="title">2025海產OC神秘禮物投稿表單</div>
         <img src="../assets/form/HTC_decor.png" alt="decor">
         <div class="summary">
-          這是神秘禮物交換會繪圖企劃的第二部份！<br>
-          參加者需要根據禮物抽選結果畫自己的OC收到聖誕禮物。
-          <!-- ⚠️ 填之前請先跟主持人58確認你有在參加名單中 ⚠️<br>
-          ⚠️ 本表單截止日期為<span class="giftDeadlineShort"></span>，還請各位盡早策劃唷 ⚠️<br> -->
+          <!-- 這是神秘禮物交換會繪圖企劃的第二部份！<br>
+          參加者需要根據禮物抽選結果畫自己的OC收到聖誕禮物。 -->
+          ⚠️ 填之前請先跟主持人58確認你有在參加名單中 ⚠️<br>
+          ⚠️ 本表單截止日期為<span class="giftDeadlineShort"></span>，還請各位盡早策劃唷 ⚠️<br>
         </div>
       </div>
     </div>
@@ -141,7 +141,7 @@
     </div>
 
     <!-- ACTUAL FORM -->
-    <form id="giftForm">
+    <form id="giftForm" action="https://formspree.io/f/mnnqaeog" method="POST" enctype="multipart/form-data">
       <div class="main">
         <fieldset>
           <div class="question 1">
@@ -162,7 +162,7 @@
             <uc-file-uploader-regular ctx-name="ocprofile-uploader"
               class="uc-light uc-orange"></uc-file-uploader-regular>
             <div class="uploadResult"></div>
-            <input class="dummy" name="ocprofile_check" type="checkbox" autocomplete="off">
+            <input class="dummy" name="ocprofile_url" type="text" autocomplete="off">
           </div>
 
           <div class="question 3">
@@ -183,7 +183,7 @@
             </div>
             <uc-file-uploader-regular ctx-name="gift-uploader" class="uc-light uc-orange"></uc-file-uploader-regular>
             <div class="uploadResult"></div>
-            <input class="dummy" name="gift_check" type="checkbox" autocomplete="off">
+            <input class="dummy" name="gift_url" type="text" autocomplete="off">
 
             <div class="extraWrapper">
               <span class="extraLink no-select">
@@ -196,6 +196,7 @@
                 <uc-file-uploader-regular ctx-name="gift-ex-uploader"
                   class="uc-light uc-orange"></uc-file-uploader-regular>
                 <div class="multiUploadResult"></div>
+                <input class="dummy" name="gift_ex_url" type="text" autocomplete="off">
               </div>
             </div>
           </div>
@@ -217,7 +218,7 @@
             </div>
             <uc-file-uploader-regular ctx-name="art-uploader" class="uc-light uc-orange"></uc-file-uploader-regular>
             <div class="uploadResult"></div>
-            <input class="dummy" name="art_check" type="checkbox" autocomplete="off">
+            <input class="dummy" name="art_url" type="text" autocomplete="off">
           </div>
 
           <div class="question 7">

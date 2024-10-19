@@ -258,9 +258,9 @@ function validateForm() {
             giftSummary: "required",
             artist: "required",
             contact: "required",
-            ocprofile_check: "required",
-            gift_check: "required",
-            art_check: "required"
+            ocprofile_url: "required",
+            gift_url: "required",
+            art_url: "required"
         },
         messages: {
             OCname: LOCAL_DATA.inputError,
@@ -268,14 +268,14 @@ function validateForm() {
             giftSummary: LOCAL_DATA.inputError,
             artist: LOCAL_DATA.inputError,
             contact: LOCAL_DATA.inputError,
-            ocprofile_check: LOCAL_DATA.imageError,
-            gift_check: LOCAL_DATA.imageError,
-            art_check: LOCAL_DATA.imageError
+            ocprofile_url: LOCAL_DATA.imageError,
+            gift_url: LOCAL_DATA.imageError,
+            art_url: LOCAL_DATA.imageError
         },
-        submitHandler: function (form) {
-            alert("valid form submitted")
-            return false
-        },
+        // submitHandler: function (form) {
+        //     alert("valid form submitted")
+        //     return false
+        // },
         invalidHandler: function (event, validator) {
             // loop thru all invalid error
             for (let x in validator.invalid) {
@@ -315,8 +315,8 @@ function displayImageUploadSuccessMsg(e, parentDiv) {
         LOCAL_DATA.uploadSuccess + '<img src="' + e.detail.cdnUrl + '">';
     $('.' + parentDiv + ' .uploadResult').html(succHtml);
 
-    //check the hidden check input
-    $('.' + parentDiv + ' input').prop("checked", true);
+    //fill the hidden text input
+    $('.' + parentDiv + ' input').val(e.detail.cdnUrl);
 
     //clean up upload error
     $('.' + parentDiv + ' .error').html('');
@@ -327,11 +327,16 @@ function displayMultiImageUploadSuccessMsg(e) {
     console.log("MULTI-IMAGE UPLOAD SUCCESS");
     NUM_OF_EX_IMG++;
     EX_IMG_URLS.push(e.detail.cdnUrl);
+    var urlsToSend = "";
     var succHtml = LOCAL_DATA.mutiUploadSuccess[0] + NUM_OF_EX_IMG + LOCAL_DATA.mutiUploadSuccess[1];
     for (let url of EX_IMG_URLS) {
         succHtml += '<img src="' + url + '">';
+        urlsToSend += url + ", ";
     }
     $('.multiUploadResult').html(succHtml);
+
+    //check the hidden check input
+    $('.multiUploadResult').siblings("input").val(urlsToSend);
 }
 
 //========================//

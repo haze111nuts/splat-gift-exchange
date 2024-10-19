@@ -26,13 +26,13 @@ body {
   margin: 50px auto;
 }
 
-#giftForm > div {
-  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-}
-
 a {
   text-decoration: none;
   transition: 0.25s ease;
+}
+
+.banner, .nav, .main {
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
 }
 
 .banner {
@@ -420,7 +420,7 @@ a {
 
 .dummy {
   height: 0;
-  width: 0;
+  width: 0 !important;
   position: absolute;
   opacity: 0;
   z-index: -99;

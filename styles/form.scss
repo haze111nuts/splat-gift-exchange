@@ -469,7 +469,7 @@ a {
 .dummy {
     // display: none;
     height: 0;
-    width: 0;
+    width: 0 !important;
     position: absolute;
     opacity: 0;
     z-index: -99;
