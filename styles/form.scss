@@ -317,13 +317,14 @@ a {
 
         input,
         textarea {
+            color: black !important;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 3px;
             width: 100%;
             box-sizing: border-box;
             font-family: "Noto Sans TC", "Noto Sans SC";
-            font-size: 0.85rem;
+            font-size: 0.9rem;
 
             &::placeholder {
                 color: #a5a899;
@@ -334,10 +335,11 @@ a {
         text-align: center;
         margin: 0 auto;
         padding-bottom: 50px;
-        div {
+        .warning {
             color: $TEXT_ERROR;
             font-weight: bold;
             margin-bottom: 10px;
+            padding: 0px 16px;
         }
         .confirm {
             color: $TEXT_MAIN;
@@ -610,10 +612,16 @@ h2 {
     font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
     font-size: 1.27rem !important;
 }
-.tip {
+.itemSummary .tip {
     text-align: right;
     font-size: 0.95rem;
     color: $TEXT_DESC;
+}
+.wrapper .tip {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: $TEXT_BANNER;
 }
 .noImage {
     display: inline-block;
@@ -628,7 +636,6 @@ h2 {
         transform: translateX(-50%) translateY(-50%);
     }
 }
-
 .selectButton {
     font-size: 0.9em;
     text-align: center;
@@ -668,12 +675,12 @@ h2 {
         span:nth-child(1) {
             margin-left: 20px;
             float: left;
-            background-color: #679915;
+            background-color: #b82731;
         }
         span:nth-child(2) {
             margin-right: 20px;
             float: right;
-            background-color: #b82731;
+            background-color: #679915;
         }
     }
 }
@@ -819,5 +826,8 @@ dialog::backdrop {
     }
     .confirmEdit{
         width: 85%;
+    }
+    .warning{
+        font-size: 15px;
     }
 }

@@ -366,19 +366,20 @@ function setupCloseModalEvents() {
             closeModals();
         }
     })
-    //IF USER CLICKS YES ON PREVIEW CONFIRM
+    //IF USER CLICKS NO ON PREVIEW CONFIRM
     $('.confirmEdit div span:nth-child(1)').click(function () {
+        $(".modal2").addClass("hide");
+        PREVIEW_IS_EDITED = false;
+        closeModals();
+    });
+    //IF USER CLICKS YES ON PREVIEW CONFIRM
+    $('.confirmEdit div span:nth-child(2)').click(function () {
         $(".modal2").addClass("hide");
         PREVIEW_IS_EDITED = false;
         closeModals();
         applyDataToForm(NEW_GIFT_NAME,NEW_GIFT_DESC);
     });
-    //IF USER CLICKS NO ON PREVIEW CONFIRM
-    $('.confirmEdit div span:nth-child(2)').click(function () {
-        $(".modal2").addClass("hide");
-        PREVIEW_IS_EDITED = false;
-        closeModals();
-    });
+
 }
 
 function closeModals(){

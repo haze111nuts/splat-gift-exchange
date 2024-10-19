@@ -276,13 +276,14 @@ a {
 }
 .main fieldset input,
 .main fieldset textarea {
+  color: black !important;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
   width: 100%;
   box-sizing: border-box;
   font-family: "Noto Sans TC", "Noto Sans SC";
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 .main fieldset input::placeholder,
 .main fieldset textarea::placeholder {
@@ -293,10 +294,11 @@ a {
   margin: 0 auto;
   padding-bottom: 50px;
 }
-.main .submit_area div {
+.main .submit_area .warning {
   color: #9e3038;
   font-weight: bold;
   margin-bottom: 10px;
+  padding: 0px 16px;
 }
 .main .submit_area .confirm {
   color: rgb(58, 49, 45);
@@ -553,10 +555,17 @@ h2 {
   font-size: 1.27rem !important;
 }
 
-.tip {
+.itemSummary .tip {
   text-align: right;
   font-size: 0.95rem;
   color: #705c41;
+}
+
+.wrapper .tip {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #cfca9b;
 }
 
 .noImage {
@@ -614,12 +623,12 @@ h2 {
 .confirmEdit div span:nth-child(1) {
   margin-left: 20px;
   float: left;
-  background-color: #679915;
+  background-color: #b82731;
 }
 .confirmEdit div span:nth-child(2) {
   margin-right: 20px;
   float: right;
-  background-color: #b82731;
+  background-color: #679915;
 }
 
 .sampleGiftPanel {
@@ -740,6 +749,9 @@ dialog::backdrop {
   }
   .confirmEdit {
     width: 85%;
+  }
+  .warning {
+    font-size: 15px;
   }
 }
 
