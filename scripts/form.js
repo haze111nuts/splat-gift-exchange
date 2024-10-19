@@ -410,6 +410,7 @@ function setPreviewDataFromForm(){
 function setUpPreviwInputs() {
     $(".editable span").click(function (event) {
         var span = $(this);
+        var text = span.text();
         span.css("display", "none");
 
         $("<input></input>").insertBefore(span);
@@ -424,7 +425,8 @@ function setUpPreviwInputs() {
         });
         input.focus();
         input.blur(function () {
-            PREVIEW_IS_EDITED = true;
+            if (input.val() !== text)
+               PREVIEW_IS_EDITED = true;
             input.remove();
             span.css("display", "inline");
             span.html(input.val() == "" ? "?" : input.val())
@@ -445,7 +447,8 @@ function setUpPreviwTextArea() {
         ta.attr("col", "100");
         ta.focus();
         ta.blur(function () {
-            PREVIEW_IS_EDITED = true;
+            if (ta.val() !== span.html().replaceAll("<br>", "\n"))
+                PREVIEW_IS_EDITED = true;
             $(".tip").remove();
             ta.remove();
             span.css("display", "inline");
