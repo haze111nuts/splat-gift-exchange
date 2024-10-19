@@ -2,8 +2,14 @@
 //    Variables/Data     //
 //=======================//
 
+var NEW_GIFT_NAME = "";
+var NEW_GIFT_DESC = "";
+var NUM_OF_EX_IMG = 0;
+var EX_IMG_URLS = []
+var MAIN_GIFT_IMG_URL = "";
+var PROFILE_IMG_URL = "";
+var ART_IMG_URL = "";
 var PREVIEW_IS_EDITED = false;
-
 
 // placehoder gift data
 var placehoderGift = {
@@ -37,6 +43,10 @@ var sampleGifts = [
         artist: "5"
     }
 ]
+
+//====================//
+//    Misc Events     //
+//====================//
 
 function setUpConfirmEvent() {
     $("#confirm").prop("checked", false);
@@ -215,13 +225,6 @@ function validateForm() {
 //    Image Upload Event Handling     //
 //====================================//
 
-var NUM_OF_EX_IMG = 0;
-var EX_IMG_URLS = []
-
-var MAIN_GIFT_IMG_URL = "";
-var PROFILE_IMG_URL = "";
-var ART_IMG_URL = "";
-
 function displayImageUploadSuccessMsg(e, parentDiv) {
     console.log("IMAGE UPLOAD SUCCESS");
 
@@ -257,7 +260,6 @@ function displayMultiImageUploadSuccessMsg(e) {
     }
     $('.multiUploadResult').html(succHtml);
 }
-
 
 //========================//
 //    Settingup Modal     //
@@ -314,17 +316,18 @@ function setupCloseModalEvents() {
             closeModals();
         }
     })
+    //IF USER CLICKS YES ON PREVIEW CONFIRM
     $('.confirmEdit div span:nth-child(1)').click(function () {
         $(".modal2").addClass("hide");
         PREVIEW_IS_EDITED = false;
         closeModals();
-        //IF USER CLICKS YES
+        applyDataToForm(NEW_GIFT_NAME,NEW_GIFT_DESC);
     });
+    //IF USER CLICKS NO ON PREVIEW CONFIRM
     $('.confirmEdit div span:nth-child(2)').click(function () {
         $(".modal2").addClass("hide");
         PREVIEW_IS_EDITED = false;
         closeModals();
-        //IF USER CLICKS NO
     });
 }
 
@@ -397,11 +400,14 @@ function setPreviewDataFromForm(){
         giftNameAlt: "",
         giftDescription: ""
     };
-
     previewData.giftName = $('.3 input').val()? $('.3 input').val(): placehoderGift.giftName;
     previewData.giftDescription = $('.5 textarea').val()? $('.5 textarea').val(): placehoderGift.giftDescription;
-
     return previewData;
+}
+
+function applyDataToForm(giftName,giftDesc){
+    $('.3 input').val(giftName);
+    $('.5 textarea').val(giftDesc);
 }
 
 //==========================//
@@ -425,8 +431,10 @@ function setUpPreviwInputs() {
         });
         input.focus();
         input.blur(function () {
-            if (input.val() !== text)
-               PREVIEW_IS_EDITED = true;
+            if (input.val() !== text){
+                NEW_GIFT_NAME = input.val();
+                PREVIEW_IS_EDITED = true;
+            }
             input.remove();
             span.css("display", "inline");
             span.html(input.val() == "" ? "?" : input.val())
@@ -447,8 +455,10 @@ function setUpPreviwTextArea() {
         ta.attr("col", "100");
         ta.focus();
         ta.blur(function () {
-            if (ta.val() !== span.html().replaceAll("<br>", "\n"))
+            if (ta.val() !== span.html().replaceAll("<br>", "\n")){
+                NEW_GIFT_DESC = ta.val()
                 PREVIEW_IS_EDITED = true;
+            }
             $(".tip").remove();
             ta.remove();
             span.css("display", "inline");
