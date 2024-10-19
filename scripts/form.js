@@ -4,18 +4,52 @@
 
 var NEW_GIFT_NAME = "";
 var NEW_GIFT_DESC = "";
-var NUM_OF_EX_IMG = 0;
-var EX_IMG_URLS = []
 var MAIN_GIFT_IMG_URL = "";
 var PROFILE_IMG_URL = "";
 var ART_IMG_URL = "";
+
+var NUM_OF_EX_IMG = 0;
+var EX_IMG_URLS = []
+
 var PREVIEW_IS_EDITED = false;
+var IS_ENG_FORM = false;
+var LOCAL_DATA = {};
+var PLACEHOLDER_GIFT = {};
+
+// Localizer data
+var localData_CH = {
+    sampleGiftTitle: "禮物範本",
+    editTip: "可以用Discord部分語法做裝飾",
+    chooseImage: "選張圖片",
+    noImage: "尚無圖片<br>可以按下方按鈕選圖<br>※此圖並不會被上傳",
+    uploadSuccess: "成功上傳了1張圖",
+    mutiUploadSuccess: ["成功上傳了", "張圖"],
+    inputError: "有東西沒填！",
+    imageError: "有圖片沒有提供！"
+}
+
+var localData_EN = {
+    sampleGiftTitle: "Sample Gifts",
+    editTip: "You can use certain Discord Markdowns",
+    chooseImage: "Choose Image",
+    noImage: "Select Image from the button below<br>*This image will not get uploaded",
+    uploadSuccess: "Successfully upload 1 image!",
+    mutiUploadSuccess: ["Successfully upload ", " image!"],
+    inputError: "This field is required!",
+    imageError: "An image is required!"
+}
 
 // placehoder gift data
-var placehoderGift = {
-    giftName: "預覽用禮物名",
-    giftNameAlt: "Gift Name To Preview",
+var placehoderGift_CH = {
+    giftName: "禮物名",
+    giftNameAlt: "Gift Name",
     giftDescription: "可以寫禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。"
+}
+
+var placehoderGift_EN = {
+    giftName: "Gift Name",
+    giftNameAlt: "禮物名",
+    giftDescription: "You can write about things like what's included in the gift, what kind of texture this object has, what are the material used, or how it can be used..etc."
 }
 
 // sample gift data (CH)
@@ -48,6 +82,14 @@ var sampleGifts = [
 //    Misc Events     //
 //====================//
 
+function decideLocalization(){
+    if($('head title').text().includes("Gift")){
+        IS_ENG_FORM = true;
+    }
+    LOCAL_DATA = IS_ENG_FORM?localData_EN:localData_CH;
+    PLACEHOLDER_GIFT = IS_ENG_FORM?placehoderGift_EN:placehoderGift_CH;
+}
+
 function setUpConfirmEvent() {
     $("#confirm").prop("checked", false);
     $('#confirm').click(function () {
@@ -72,7 +114,6 @@ function setUpExtraUploadToggle() {
     });
 }
 
-
 //========================//
 //    Settingup Timer     //
 //========================//
@@ -95,8 +136,7 @@ const times = {
 // };
 
 function setUpTimer() {
-    //check which deadline is the closest one
-    //and decide the index
+    //check which deadline is the closest one and decide the index
     var index = 1;
     var deadline = 0;
     for (var x in times) {
@@ -190,14 +230,14 @@ function validateForm() {
             art_check: "required"
         },
         messages: {
-            OCname: "有東西沒填！",
-            gift: "有東西沒填！",
-            giftSummary: "有東西沒填！",
-            artist: "有東西沒填！",
-            contact: "有東西沒填！",
-            ocprofile_check: "有圖片沒有提供！",
-            gift_check: "有圖片沒有提供！",
-            art_check: "有圖片沒有提供！"
+            OCname: LOCAL_DATA.inputError,
+            gift: LOCAL_DATA.inputError,
+            giftSummary: LOCAL_DATA.inputError,
+            artist: LOCAL_DATA.inputError,
+            contact: LOCAL_DATA.inputError,
+            ocprofile_check: LOCAL_DATA.imageError,
+            gift_check: LOCAL_DATA.imageError,
+            art_check: LOCAL_DATA.imageError
         },
         submitHandler: function (form) {
             alert("valid form submitted")
@@ -213,7 +253,6 @@ function validateForm() {
                     index = 5;
                 } else {
                     index = $("input[name='" + x + "']").parent().attr("class").split(" ")[1];
-                    console.log(index);
                 }
                 $(".question:nth-child(" + index + ")").css("border-color", "#9e3038");
             }
@@ -229,6 +268,7 @@ function displayImageUploadSuccessMsg(e, parentDiv) {
     console.log("IMAGE UPLOAD SUCCESS");
 
     //save the upload image to global
+    //these are not used right now
     if (parentDiv.includes("gift")) {
         MAIN_GIFT_IMG_URL = e.detail.cdnUrl;
     } else if (parentDiv.includes("ocprofile")) {
@@ -239,7 +279,7 @@ function displayImageUploadSuccessMsg(e, parentDiv) {
 
     //set success message
     var succHtml =
-        '成功上傳了1張圖<img src="' + e.detail.cdnUrl + '">';
+        LOCAL_DATA.uploadSuccess + '<img src="' + e.detail.cdnUrl + '">';
     $('.' + parentDiv + ' .uploadResult').html(succHtml);
 
     //check the hidden check input
@@ -254,7 +294,7 @@ function displayMultiImageUploadSuccessMsg(e) {
     console.log("MULTI-IMAGE UPLOAD SUCCESS");
     NUM_OF_EX_IMG++;
     EX_IMG_URLS.push(e.detail.cdnUrl);
-    var succHtml = "成功上傳了" + NUM_OF_EX_IMG + "張圖";
+    var succHtml = LOCAL_DATA.mutiUploadSuccess[0] + NUM_OF_EX_IMG + LOCAL_DATA.mutiUploadSuccess[1];
     for (let url of EX_IMG_URLS) {
         succHtml += '<img src="' + url + '">';
     }
@@ -360,7 +400,7 @@ function setupItemModalHtml() {
     itemModalHtml += "<div class='editable'><span>" + previewData.giftName + "</span></div>";
     itemModalHtml += "</div>";
     itemModalHtml += "<div class='itemTitle2'>";
-    itemModalHtml += "<div class='editable'><span>" + placehoderGift.giftNameAlt + "</span></div>";
+    itemModalHtml += "<div class='editable'><span>" + PLACEHOLDER_GIFT.giftNameAlt + "</span></div>";
     itemModalHtml += "</div>";
     itemModalHtml += "</div>";
 
@@ -372,11 +412,11 @@ function setupItemModalHtml() {
     itemModalHtml += "<div class='itemArtWrap'>";
 
     itemModalHtml += "<div class='noImage'>";
-    itemModalHtml += "<div>尚無圖片<br>可以按下方按鈕選圖<br>※此圖並不會被上傳</div>";
+    itemModalHtml += "<div>"+LOCAL_DATA.noImage+"</div>";
     itemModalHtml += "</div>";
 
     itemModalHtml += "<input class='hiddenSelectButton' type='file' accept='.png' style='display: none;' >";
-    itemModalHtml += "<div class='selectButton'>"+ "選張圖片" +"</div>";
+    itemModalHtml += "<div class='selectButton'>"+ LOCAL_DATA.chooseImage +"</div>";
     
     itemModalHtml += "</div>";
     itemModalHtml += "</div>";
@@ -400,8 +440,8 @@ function setPreviewDataFromForm(){
         giftNameAlt: "",
         giftDescription: ""
     };
-    previewData.giftName = $('.3 input').val()? $('.3 input').val(): placehoderGift.giftName;
-    previewData.giftDescription = $('.5 textarea').val()? $('.5 textarea').val(): placehoderGift.giftDescription;
+    previewData.giftName = $('.3 input').val()? $('.3 input').val(): PLACEHOLDER_GIFT.giftName;
+    previewData.giftDescription = $('.5 textarea').val()? $('.5 textarea').val(): PLACEHOLDER_GIFT.giftDescription;
     return previewData;
 }
 
@@ -448,7 +488,7 @@ function setUpPreviwTextArea() {
         span.css("display", "none");
 
         $("<textarea></textarea>").insertBefore(span);
-        $("<div class='tip'>戳打字框外任一處離開</div>").insertAfter(span);
+        $("<div class='tip'>"+LOCAL_DATA.editTip+"</div>").insertAfter(span);
         var ta = $(this).siblings("textarea");
         ta.val(span.html().replaceAll("<br>", "\n"));
         ta.attr("row", "15");
@@ -497,7 +537,7 @@ function setUpFakeUpload(){
 
 function setupSampleGiftModalHtml(entries) {
     var sampleGiftModalHtml = "";
-    sampleGiftModalHtml += '<h2>禮物範本</h2>';
+    sampleGiftModalHtml += '<h2>'+LOCAL_DATA.sampleGiftTitle+'</h2>';
     sampleGiftModalHtml += '<ul>';
     for (let entry of entries) {
         sampleGiftModalHtml += '<li>';
@@ -528,6 +568,7 @@ function setupSampleGiftModalHtml(entries) {
 //======================//
 
 $(document).ready(function () {
+    decideLocalization();
     setUpConfirmEvent();
     setUpNavClickEvents();
     setUpTimer();
