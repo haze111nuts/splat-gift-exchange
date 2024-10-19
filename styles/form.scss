@@ -625,8 +625,10 @@ h2 {
 }
 .noImage {
     display: inline-block;
+    border: 1px dashed white;
     box-shadow: inset 0 0 20px 10px rgba(0, 0, 0, 0.12);
-    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.4);
     color: rgb(34, 34, 34);
     > div {
         text-align: center;
@@ -795,12 +797,14 @@ dialog::backdrop {
         opacity: 1;
     }
     .giftRulePanel {
-        padding: 35px 22px 52px 22px;
+        padding: 35px 22px 48px 22px;
+        ul{
+            padding-right: 16px;
+        }
     }
     .sampleGiftPanel {
         width: 95%;
         > ul {
-            overflow-y: auto;
             > li {
                 img {
                     width: 90px;
@@ -831,5 +835,9 @@ dialog::backdrop {
     }
     .warning {
         font-size: 15px;
+    }
+    .giftDesc{
+        max-height: 310px;
+        overflow-y: auto;
     }
 }
