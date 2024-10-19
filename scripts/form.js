@@ -47,9 +47,9 @@ var placehoderGift_CH = {
 }
 
 var placehoderGift_EN = {
-    giftName: "Clike to Edit Gift Name",
+    giftName: "Click to Edit Gift Name",
     giftNameAlt: "禮物名",
-    giftDescription: "Click here to write, you can write about things like what's included in the gift, what kind of texture this object has, what are the material used, or how it can be used..etc."
+    giftDescription: "Click here to write gift summary, you can write about things like what's included in the gift, what kind of texture this object has, what are the material used, or how it can be used..etc."
 }
 
 // sample gift data (CH)

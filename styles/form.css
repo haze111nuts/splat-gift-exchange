@@ -589,11 +589,11 @@ h2 {
   text-align: center;
   line-height: 110%;
   padding-top: 4px;
-  padding-bottom: 6px;
+  padding: 4px 8px 6px 8px;
+  width: 100px;
   background-color: #61741d;
   color: white;
   border-radius: 8px;
-  width: 100px;
   margin: 0 auto;
   margin-top: 5px;
   transition: all 0.2s ease-in;
