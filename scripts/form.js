@@ -238,10 +238,11 @@ function setUpArtistSelect() {
     $('#artist_select option').after(artistListHtml)
 
     $("#artist_select").on("change", function () {
-            $("select option:selected").each(function () {
-                setUpOCSelectForArtist($(this).text());
-            });
-        }).trigger("change");
+        $("#artist_select option:selected").each(function () {
+            setUpOCSelectForArtist($(this).text());
+            console.log("TEST");
+        });
+    })
 }
 
 function setUpOCSelectForArtist(artistName) {
