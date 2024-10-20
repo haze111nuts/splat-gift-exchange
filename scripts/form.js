@@ -238,26 +238,24 @@ function setUpArtistSelect() {
     $('#artist_select option').after(artistListHtml)
 
     $("#artist_select").on("change", function () {
-            $("select option:selected").each(function () {
-                setUpOCSelectForArtist($(this).text());
-            });
-        }).trigger("change");
+        $("#artist_select option:selected").each(function () {
+            setUpOCSelectForArtist($(this).text());
+            console.log("TEST");
+        });
+    })
 }
 
 function setUpOCSelectForArtist(artistName) {
     var artistEntries = ENTRIES.filter(e => e.artist === artistName);
     var OCListHtml = "";
+    console.log(artistEntries);
+
     for (var artistEntry of artistEntries) {
         var ocName = artistEntry.ocName;
         OCListHtml += "<option value='" + ocName + "'>" + ocName + "</option>";
-        $('#oc_select option').after(OCListHtml)
-        $('#oc_select').prop("disabled", false);
-
-        // $('#confirm').click(function () {});
-
-        // var receivedGiftPNG = "assets/" + YEAR + "/item/" + artistEntry.received + ".png";
-        // var receivedGiftName = ENTRIES[artistEntry.received].giftName;
     }
+    $('#oc_select option:nth-child(1)').after(OCListHtml)
+    $('#oc_select').prop("disabled", false);
 }
 
 
