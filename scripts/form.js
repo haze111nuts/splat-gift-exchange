@@ -37,6 +37,10 @@ var PLACEHOLDER_GIFT = {};
 //      var receivedGiftName = ENTRIES[artistEntry.received].giftName;
 //}
 
+// GET GIFT BY OC NAME
+// var OCEntry = ENTRIES.find(e => e.ocName === "_OCNAME_");
+// var receivedGiftPNG = "assets/" + YEAR + "/item/" + OCEntry.received + ".png";
+// var receivedGiftName = ENTRIES[OCEntry.received].giftName;
 
 //==================//
 //    Time Data     //
@@ -559,7 +563,9 @@ function setUpPreviwTextArea() {
         $("<textarea></textarea>").insertBefore(span);
         $("<div class='tip'>"+LOCAL_DATA.editTip+"</div>").insertAfter(span);
         var ta = $(this).siblings("textarea");
-        ta.val(span.html().replaceAll("<br>", "\n"));
+//        ta.val(span.html().replaceAll("<br>", "\n"));
+        ta.val(span.text());
+
         ta.attr("row", "15");
         ta.attr("col", "100");
         ta.focus();
@@ -571,7 +577,10 @@ function setUpPreviwTextArea() {
             $(".tip").remove();
             ta.remove();
             span.css("display", "inline");
-            var display = ta.val().replaceAll("\n","<br>");
+            // var display = ta.val().replaceAll("\n","<br>");
+            var display = simpleMarkdownToHTML(ta.val());
+            console.log(ta.val());
+            console.log(display);
             span.html(ta.val() == "" ? "?" : display)
         });
     });
