@@ -47,8 +47,10 @@ a {
     text-decoration: none;
     transition: 0.25s ease;
 }
-.banner, .nav, .main {
-        box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+.banner,
+.nav,
+.main {
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
 }
 //====================//
 //===    BANNER    ===//
@@ -81,7 +83,7 @@ a {
     .summary {
         padding-top: 20px;
     }
-    .line{
+    .line {
         width: 60%;
         margin: 8px auto;
         border-bottom: 1px solid $TEXT_BANNER;
@@ -275,7 +277,7 @@ a {
     border-bottom-right-radius: 10px;
     transition: all 0.3s ease-in;
 
-    a{
+    a {
         color: $TEXT_MAIN;
         transition: all 0.2s ease-in;
         text-decoration: underline;
@@ -285,7 +287,7 @@ a {
         }
     }
 
-    .result{
+    .result {
         padding: 24px;
         text-align: center;
     }
@@ -311,7 +313,8 @@ a {
             font-size: 0.83rem;
             padding: 5px;
             color: $TEXT_DESC;
-            span, a{
+            span,
+            a {
                 color: $TEXT_LINK;
                 transition: all 0.2s ease-in;
                 text-decoration: underline;
@@ -437,6 +440,47 @@ a {
                 box-shadow: inset 0 0 0 0.125em $ACCENT_MAIN;
             }
         }
+    }
+}
+
+//=======================//
+//===    DROP-DOWN    ===//
+//=======================//
+.dropdown {
+    width: 250px;
+    position: relative;
+    select {
+        appearance: none;
+        width: 100%;
+        font-size: 1rem;
+        padding: 0.675em 6em 0.675em 1em;
+        background-color: #fff;
+        border: 1px solid #caced1;
+        border-radius: 0.25rem;
+        color: $TEXT_MAIN;
+        cursor: pointer;
+    }
+
+    &::before,
+    &::after {
+        --size: 0.3rem;
+        content: "";
+        position: absolute;
+        right: 1rem;
+        pointer-events: none;
+    }
+
+    &::before {
+        border-left: var(--size) solid transparent;
+        border-right: var(--size) solid transparent;
+        border-bottom: var(--size) solid black;
+        top: 40%;
+    }
+    &::after {
+        border-left: var(--size) solid transparent;
+        border-right: var(--size) solid transparent;
+        border-top: var(--size) solid black;
+        top: 55%;
     }
 }
 
@@ -809,7 +853,7 @@ dialog::backdrop {
     }
     .giftRulePanel {
         padding: 35px 22px 48px 22px;
-        ul{
+        ul {
             padding-right: 16px;
         }
     }
@@ -847,7 +891,7 @@ dialog::backdrop {
     .warning {
         font-size: 15px;
     }
-    .giftDesc{
+    .giftDesc {
         max-height: 310px;
         overflow-y: auto;
     }

@@ -31,7 +31,9 @@ a {
   transition: 0.25s ease;
 }
 
-.banner, .nav, .main {
+.banner,
+.nav,
+.main {
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
 }
 
@@ -279,12 +281,14 @@ a {
   padding: 5px;
   color: #705c41;
 }
-.main fieldset .desc span, .main fieldset .desc a {
+.main fieldset .desc span,
+.main fieldset .desc a {
   color: #be9440;
   transition: all 0.2s ease-in;
   text-decoration: underline;
 }
-.main fieldset .desc span:hover, .main fieldset .desc a:hover {
+.main fieldset .desc span:hover,
+.main fieldset .desc a:hover {
   cursor: pointer;
   color: #61741d;
 }
@@ -395,6 +399,41 @@ a {
   margin-right: 0.375em;
   transition: 0.25s ease;
   box-shadow: inset 0 0 0 0.125em rgb(223, 177, 92);
+}
+
+.dropdown {
+  width: 250px;
+  position: relative;
+}
+.dropdown select {
+  appearance: none;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.675em 6em 0.675em 1em;
+  background-color: #fff;
+  border: 1px solid #caced1;
+  border-radius: 0.25rem;
+  color: rgb(58, 49, 45);
+  cursor: pointer;
+}
+.dropdown::before, .dropdown::after {
+  --size: 0.3rem;
+  content: "";
+  position: absolute;
+  right: 1rem;
+  pointer-events: none;
+}
+.dropdown::before {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-bottom: var(--size) solid black;
+  top: 40%;
+}
+.dropdown::after {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid black;
+  top: 55%;
 }
 
 .extraWrapper {
