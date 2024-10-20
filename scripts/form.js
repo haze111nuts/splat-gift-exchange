@@ -21,22 +21,22 @@ var PLACEHOLDER_GIFT = {};
 //    Time Data     //
 //==================//
 
-const phases = {
-    giftDeadline: 1758988740000,       // new Date('2025-09-27T11:59:00').valueOf(); (EST)
-    unboxingDay: 1760184000000,        // new Date('2025-10-11T08:00:00').valueOf(); (EST)
-    receiveArtDeadline: 1765472340000  // new Date('2025-12-11T11:59:00').valueOf(); (EST)
-};
+const phases = [
+    1758988740000, // new Date('2025-09-27T11:59:00').valueOf(); (EST)
+    1760184000000, // new Date('2025-10-11T08:00:00').valueOf(); (EST)
+    1765472340000  // new Date('2025-12-11T11:59:00').valueOf(); (EST)
+];
 
 // var yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
 // var today = new Date();
 // var tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
 // var tomorroww = new Date(new Date().setDate(new Date().getDate() + 2));
 
-// const phases = {
-//     giftDeadline: yesterday,
-//     unboxingDay: tomorrow,
-//     receiveArtDeadline: tomorroww
-// };
+// const phases = [
+//      yesterday,
+//      tomorrow,
+//      tomorroww
+// ];
 
 //=======================//
 //    Localizer Data     //
@@ -150,27 +150,23 @@ function setUpExtraUploadToggle() {
 
 function checkPhase(){
     //check which deadline is the closest one and decide the index
-    CURRENT_PHASE = 1
-    var deadline = 0;
-    for (var x in phases) {
-        if (phases[x] > new Date().valueOf()) {
-            deadline = phases[x];
+    CURRENT_PHASE = 1;
+    for (var phase of phases) {
+        if (phase > new Date().valueOf()) {
             break;
         }
         CURRENT_PHASE++;
     }
-    // CURRENT_PHASE = 3;
-    return deadline;
 }
 
 function setUpTimer() {
-    var deadline = checkPhase();
+    checkPhase();
     swapToSecondForm();
 
-    // $(".giftDeadlineShort").text(new Date(phases.giftDeadline).toLocaleString("zh").split(" ")[0]);
-    $(".giftDeadline").text(new Date(phases.giftDeadline).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
-    $(".unboxingDay").text(new Date(phases.unboxingDay).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
-    $(".receiveArtDeadline").text(new Date(phases.receiveArtDeadline).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
+    // $(".giftDeadlineShort").text(new Date(phases[0]).toLocaleString("zh").split(" ")[0]);
+    $(".giftDeadline").text(new Date(phases[0]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
+    $(".unboxingDay").text(new Date(phases[1]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
+    $(".receiveArtDeadline").text(new Date(phases[2]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
     //set deadline name
     $(".countdown_label span").html($(".deadlines ul li:nth-child(" + CURRENT_PHASE + ") span:nth-child(1)").html());
 
@@ -178,12 +174,14 @@ function setUpTimer() {
     $(".deadlines ul li:nth-child(" + CURRENT_PHASE + ")").addClass("currentDeadline");
 
     //grab deadline
-    var compareDate = new Date(deadline);
-    compareDate.setDate(compareDate.getDate());
+    var compareDate = new Date(phases[CURRENT_PHASE-1]);
+    if (!isNaN(compareDate)) {
+        compareDate.setDate(compareDate.getDate());
 
-    setInterval(function () {
-        setTimeBetweenDates(compareDate);
-    }, 500);
+        setInterval(function () {
+            setTimeBetweenDates(compareDate);
+        }, 500);        
+    }
 }
 
 function setTimeBetweenDates(toDate) {
