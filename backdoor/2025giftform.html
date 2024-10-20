@@ -304,30 +304,35 @@
               </select>
             </div>
           </div>
-          <div class="question 2">
-            <label class="label">這份投稿是給哪位OC的？</label>
-            <div class="desc">
-              主持人確認內容用。
-            </div>
-            <div class="dropdown">
-              <select id="oc_select" name="oc_select" disabled>
-                <option value="">請從下面選一個OC</option>
-              </select>
+
+          <div class="ocIconWrapper">
+            <div class="question 2">
+              <label class="label">這份投稿是給哪位OC的？</label>
+              <div class="desc">
+                主持人確認內容用。
+              </div>
+              <div class="dropdown">
+                <select id="oc_select" name="oc_select" disabled>
+                  <option value="">請從下面選一個OC</option>
+                </select>
+              </div>
             </div>
           </div>
+          <div class="question giftInfo">
+          </div>
 
-          <div class="question 3 art-uploader-wrapper">
-            <label class="label">請繪製這個OC收到禮物的插圖</label>
+          <div class="question 3 final-art-uploader-wrapper">
+            <label class="label">請繪製這個OC和抽到的禮物的插圖</label>
             <div class="desc">
               圖片規格是1080px*1080px，PNG檔案，最多10MB。會在聖誕節那天公開在展示網頁上。繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出這位OC以及他收到的禮物物品即可！可以單純是OC將物品拿在手上的構圖、也可以是OC使用禮物的過程、或是OC收到該禮物的反應等，請隨意發揮。圖中的海產OC主角請以人型為主，配角則不限。禮物物品盡量不要被包裝遮到為佳！最低完成度可以參考【<a
                 href="https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art" target="_blank">二代官方的祭典插圖</a>】
             </div>
-            <uc-file-uploader-regular ctx-name="art-uploader" class="uc-light uc-orange"></uc-file-uploader-regular>
+            <uc-file-uploader-regular ctx-name="final-art-uploader"
+              class="uc-light uc-orange"></uc-file-uploader-regular>
             <div class="uploadResult"></div>
-            <input class="dummy" name="art_check" type="checkbox" autocomplete="off">
+            <input class="dummy" name="final_art_url" type="text" autocomplete="off">
           </div>
         </fieldset>
-
 
         <div class="submit_area">
           <button class="submit" type="submit">送出 >></button>
@@ -382,6 +387,7 @@
     <uc-upload-ctx-provider ctx-name="gift-uploader"></uc-upload-ctx-provider>
     <uc-upload-ctx-provider ctx-name="gift-ex-uploader"></uc-upload-ctx-provider>
     <uc-upload-ctx-provider ctx-name="art-uploader"></uc-upload-ctx-provider>
+    <uc-upload-ctx-provider ctx-name="final-art-uploader"></uc-upload-ctx-provider>
 
     <uc-config locale-name="zhtw" ctx-name="ocprofile-uploader" use-cloud-image-editor="false" source-list="local, url"
       pubkey="94f43466c8ece62a70aa" confirm-upload="true" multiple="false">
@@ -393,6 +399,9 @@
       pubkey="94f43466c8ece62a70aa" confirm-upload="true">
     </uc-config>
     <uc-config locale-name="zhtw" ctx-name="art-uploader" use-cloud-image-editor="false" source-list="local, url"
+      pubkey="94f43466c8ece62a70aa" confirm-upload="true" multiple="false">
+    </uc-config>
+    <uc-config locale-name="zhtw" ctx-name="final-art-uploader" use-cloud-image-editor="false" source-list="local, url"
       pubkey="94f43466c8ece62a70aa" confirm-upload="true" multiple="false">
     </uc-config>
   </div>
@@ -417,6 +426,11 @@
     const ctx_art = document.querySelector('uc-upload-ctx-provider[ctx-name="art-uploader"]')
     ctx_art.addEventListener('file-upload-success', e => {
       displayImageUploadSuccessMsg(e, "art-uploader-wrapper");
+    });
+
+    const ctx_final_art = document.querySelector('uc-upload-ctx-provider[ctx-name="final-art-uploader"]')
+    ctx_final_art.addEventListener('file-upload-success', e => {
+      displayImageUploadSuccessMsg(e, "final-art-uploader-wrapper");
     });
 
     //event for file validation

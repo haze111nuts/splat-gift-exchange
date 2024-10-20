@@ -1,42 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap");
-@font-face {
-    font-family: "DFPT_AZ5";
-    src: url("../assets/fonts/DFPT_AZ5.otf");
-    font-style: normal;
-    font-weight: normal;
-}
-@font-face {
-    font-family: "DFPT_ZY9";
-    src: url("../assets/fonts/DFPT_ZY9.otf");
-    font-style: normal;
-    font-weight: normal;
-}
-@font-face {
-    font-family: "Thelma";
-    src: url("../assets/fonts/ThelmaPersonalUse.otf");
-    font-style: normal;
-    font-weight: normal;
-}
-
-/* Chinese (Simplified) */
-@font-face {
-    font-family: "HanyiZongyi";
-    src: url("../assets/fonts/hanyi_zongyi.ttf");
-    font-style: normal;
-    font-weight: normal;
-}
-@font-face {
-    font-family: "HuakangZongyi";
-    src: url("../assets/fonts/huakang_xinzongyi.ttc");
-    font-style: normal;
-    font-weight: normal;
-}
-@font-face {
-    font-family: "Noto Sans SC";
-    src: url("../assets/fonts/NotoSansSC-Regular.ttf");
-    font-style: normal;
-    font-weight: normal;
-  }
 
 $PROFILE_SIZE: 100px;
 $SPOTLIGHT_BORDER_SIZE: 8px;
