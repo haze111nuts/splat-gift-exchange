@@ -157,6 +157,7 @@ function checkPhase(){
         }
         CURRENT_PHASE++;
     }
+    CURRENT_PHASE = 3;
 }
 
 function setUpTimer() {

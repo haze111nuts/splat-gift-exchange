@@ -81,6 +81,11 @@ a {
     .summary {
         padding-top: 20px;
     }
+    .line{
+        width: 60%;
+        margin: 8px auto;
+        border-bottom: 1px solid $TEXT_BANNER;
+    }
 }
 
 //=================//
@@ -269,6 +274,17 @@ a {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     transition: all 0.3s ease-in;
+
+    a{
+        color: $TEXT_MAIN;
+        transition: all 0.2s ease-in;
+        text-decoration: underline;
+        &:hover {
+            cursor: pointer;
+            color: $TEXT_GOOD;
+        }
+    }
+
     .result{
         padding: 24px;
         text-align: center;

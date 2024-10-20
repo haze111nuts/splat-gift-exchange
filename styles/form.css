@@ -64,6 +64,11 @@ a {
 .banner .summary {
   padding-top: 20px;
 }
+.banner .line {
+  width: 60%;
+  margin: 8px auto;
+  border-bottom: 1px solid #cfca9b;
+}
 
 .nav {
   background-color: #42252a;
@@ -237,6 +242,15 @@ a {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   transition: all 0.3s ease-in;
+}
+.main a {
+  color: rgb(58, 49, 45);
+  transition: all 0.2s ease-in;
+  text-decoration: underline;
+}
+.main a:hover {
+  cursor: pointer;
+  color: #61741d;
 }
 .main .result {
   padding: 24px;
