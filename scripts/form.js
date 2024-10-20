@@ -17,6 +17,15 @@ var IS_ENG_FORM = false;
 var LOCAL_DATA = {};
 var PLACEHOLDER_GIFT = {};
 
+//====================//
+//    ARTIST & OC     //
+//====================//
+
+// ARTISTS[]
+
+// GET OCs
+// ENTRIES.filter(e => e.artist === "_ARTISTNAME_").map(e => e.ocName)
+
 //==================//
 //    Time Data     //
 //==================//
@@ -157,7 +166,7 @@ function checkPhase(){
         }
         CURRENT_PHASE++;
     }
-    CURRENT_PHASE = 3;
+    // CURRENT_PHASE = 3;
 }
 
 function setUpTimer() {
