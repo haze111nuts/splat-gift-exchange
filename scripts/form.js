@@ -159,13 +159,15 @@ function checkPhase(){
         }
         CURRENT_PHASE++;
     }
-    // CURRENT_PHASE = 3;
+    CURRENT_PHASE = 3;
     return deadline;
 }
 
 function setUpTimer() {
     var deadline = checkPhase();
-    $(".giftDeadlineShort").text(new Date(phases.giftDeadline).toLocaleString("zh").split(" ")[0]);
+    swapToSecondForm();
+
+    // $(".giftDeadlineShort").text(new Date(phases.giftDeadline).toLocaleString("zh").split(" ")[0]);
     $(".giftDeadline").text(new Date(phases.giftDeadline).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
     $(".unboxingDay").text(new Date(phases.unboxingDay).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
     $(".receiveArtDeadline").text(new Date(phases.receiveArtDeadline).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
@@ -182,8 +184,6 @@ function setUpTimer() {
     setInterval(function () {
         setTimeBetweenDates(compareDate);
     }, 500);
-
-    swapToSecondForm();
 }
 
 function setTimeBetweenDates(toDate) {
@@ -217,8 +217,10 @@ function swapToSecondForm(){
     //swap to 2nd form if it's the last phase
     if(CURRENT_PHASE>2){
         $('#giftForm').remove();
+        $('.phase1').remove();
     }else{
         $('#exchangeForm').remove();
+        $('.phase2').remove();
     }
 }
 

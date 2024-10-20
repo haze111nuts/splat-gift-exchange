@@ -261,12 +261,12 @@ a {
   padding: 5px;
   color: #705c41;
 }
-.main fieldset .desc span {
+.main fieldset .desc span, .main fieldset .desc a {
   color: #be9440;
   transition: all 0.2s ease-in;
   text-decoration: underline;
 }
-.main fieldset .desc span:hover {
+.main fieldset .desc span:hover, .main fieldset .desc a:hover {
   cursor: pointer;
   color: #61741d;
 }

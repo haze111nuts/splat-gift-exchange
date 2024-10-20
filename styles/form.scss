@@ -293,7 +293,7 @@ a {
             font-size: 0.83rem;
             padding: 5px;
             color: $TEXT_DESC;
-            span {
+            span, a{
                 color: $TEXT_LINK;
                 transition: all 0.2s ease-in;
                 text-decoration: underline;
