@@ -447,7 +447,7 @@ a {
 //===    DROP-DOWN    ===//
 //=======================//
 .dropdown {
-    width: 250px;
+    width: 310px;
     position: relative;
     select {
         appearance: none;
@@ -459,6 +459,15 @@ a {
         border-radius: 0.25rem;
         color: $TEXT_MAIN;
         cursor: pointer;
+
+        &:disabled,
+        &[disabled] {
+            cursor: auto;
+            opacity: 0.6;
+            border: 1px solid #999999;
+            background-color: #cccccc;
+            color: #666666;
+        }
     }
 
     &::before,
@@ -693,7 +702,7 @@ h2 {
         transform: translateX(-50%) translateY(-50%);
     }
 }
-.selectButton {
+.selectImageButton {
     font-size: 0.9em;
     text-align: center;
     line-height: 110%;

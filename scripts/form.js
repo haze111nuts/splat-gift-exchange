@@ -17,31 +17,6 @@ var IS_ENG_FORM = false;
 var LOCAL_DATA = {};
 var PLACEHOLDER_GIFT = {};
 
-//====================//
-//    ARTIST & OC     //
-//====================//
-
-// GET ARTISTS NAME
-
-// for (var artistName in ARTISTS) {
-//}
-
-
-// GET OC NAME GIVEN ARTIST &
-// GET GIFT THIS OC received
-
-// var artistEntries = ENTRIES.filter(e => e.artist === "_ARTISTNAME_");
-// for (var artistEntry of artistEntries) {
-//      var ocName = artistEntry.ocName;
-//      var receivedGiftPNG = "assets/" + YEAR + "/item/" + artistEntry.received + ".png";
-//      var receivedGiftName = ENTRIES[artistEntry.received].giftName;
-//}
-
-// GET GIFT BY OC NAME
-// var OCEntry = ENTRIES.find(e => e.ocName === "_OCNAME_");
-// var receivedGiftPNG = "assets/" + YEAR + "/item/" + OCEntry.received + ".png";
-// var receivedGiftName = ENTRIES[OCEntry.received].giftName;
-
 //==================//
 //    Time Data     //
 //==================//
@@ -75,7 +50,8 @@ var localData_CH = {
     uploadSuccess: "成功上傳了1張圖",
     mutiUploadSuccess: ["成功上傳了", "張圖"],
     inputError: "有東西沒填！",
-    imageError: "有圖片沒有提供！"
+    imageError: "有圖片沒有提供！",
+    select:"請從下面選一個"
 }
 
 var localData_EN = {
@@ -182,7 +158,7 @@ function checkPhase(){
         }
         CURRENT_PHASE++;
     }
-    // CURRENT_PHASE = 3;
+    CURRENT_PHASE = 3;
 }
 
 function setUpTimer() {
@@ -240,13 +216,66 @@ function setTimeBetweenDates(toDate) {
 function swapToSecondForm(){
     //swap to 2nd form if it's the last phase
     if(CURRENT_PHASE>2){
+        $('.wrapper').css("margin-bottom",100);
         $('#giftForm').remove();
         $('.phase1').remove();
+        setUpArtistSelect();
     }else{
         $('#exchangeForm').remove();
         $('.phase2').remove();
     }
 }
+
+//==========================//
+//    ARTIST & OC SELECT    //
+//==========================//
+
+function setUpArtistSelect() {
+    var artistListHtml = "";
+    for (var artistName in ARTISTS) {
+        artistListHtml += "<option value='" + artistName + "'>" + artistName + "</option>";
+    }
+    $('#artist_select option').after(artistListHtml)
+
+    $("#artist_select").on("change", function () {
+            $("select option:selected").each(function () {
+                setUpOCSelectForArtist($(this).text());
+            });
+        }).trigger("change");
+}
+
+function setUpOCSelectForArtist(artistName) {
+    var artistEntries = ENTRIES.filter(e => e.artist === artistName);
+    var OCListHtml = "";
+    for (var artistEntry of artistEntries) {
+        var ocName = artistEntry.ocName;
+        OCListHtml += "<option value='" + ocName + "'>" + ocName + "</option>";
+        $('#oc_select option').after(OCListHtml)
+        $('#oc_select').prop("disabled", false);
+
+        // $('#confirm').click(function () {});
+
+        // var receivedGiftPNG = "assets/" + YEAR + "/item/" + artistEntry.received + ".png";
+        // var receivedGiftName = ENTRIES[artistEntry.received].giftName;
+    }
+}
+
+
+// GET OC NAME GIVEN ARTIST &
+// GET GIFT THIS OC received
+
+// var artistEntries = ENTRIES.filter(e => e.artist === "_ARTISTNAME_");
+// for (var artistEntry of artistEntries) {
+//      var ocName = artistEntry.ocName;
+//      var receivedGiftPNG = "assets/" + YEAR + "/item/" + artistEntry.received + ".png";
+//      var receivedGiftName = ENTRIES[artistEntry.received].giftName;
+//}
+
+// GET GIFT BY OC NAME
+// var OCEntry = ENTRIES.find(e => e.ocName === "_OCNAME_");
+// var receivedGiftPNG = "assets/" + YEAR + "/item/" + OCEntry.received + ".png";
+// var receivedGiftName = ENTRIES[OCEntry.received].giftName;
+
 
 //==================================//
 //    Settingup Form Validation     //
@@ -475,7 +504,7 @@ function setupItemModalHtml() {
     itemModalHtml += "<div>"+LOCAL_DATA.noImage+"</div>";
     itemModalHtml += "</div>";
     itemModalHtml += "<input class='hiddenSelectButton' type='file' accept='.png' style='display: none;' >";
-    itemModalHtml += "<div class='selectButton'>"+ LOCAL_DATA.chooseImage +"</div>";
+    itemModalHtml += "<div class='selectImageButton'>"+ LOCAL_DATA.chooseImage +"</div>";
     itemModalHtml += "</div>";
     // ====== item summary ======
     itemModalHtml += "<div class='itemSummary'>";
@@ -588,7 +617,7 @@ function setUpPreviwTextArea() {
 
 //REF: https://jsfiddle.net/ugPDx/
 function setUpFakeUpload(){
-    $('.selectButton').click(function () {
+    $('.selectImageButton').click(function () {
         $('.hiddenSelectButton').click();
     });
 
@@ -604,7 +633,7 @@ function setUpFakeUpload(){
             reader.readAsDataURL(file);
             $(".itemArtWrap img").remove();
             $(".noImage").remove();
-            $(".selectButton").before(img);
+            $(".selectImageButton").before(img);
         }
     });
 }

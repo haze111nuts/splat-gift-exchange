@@ -402,7 +402,7 @@ a {
 }
 
 .dropdown {
-  width: 250px;
+  width: 310px;
   position: relative;
 }
 .dropdown select {
@@ -415,6 +415,13 @@ a {
   border-radius: 0.25rem;
   color: rgb(58, 49, 45);
   cursor: pointer;
+}
+.dropdown select:disabled, .dropdown select[disabled] {
+  cursor: auto;
+  opacity: 0.6;
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }
 .dropdown::before, .dropdown::after {
   --size: 0.3rem;
@@ -641,7 +648,7 @@ h2 {
   transform: translateX(-50%) translateY(-50%);
 }
 
-.selectButton {
+.selectImageButton {
   font-size: 0.9em;
   text-align: center;
   line-height: 110%;
@@ -656,7 +663,7 @@ h2 {
   transition: all 0.2s ease-in;
   cursor: pointer;
 }
-.selectButton:hover {
+.selectImageButton:hover {
   transform: scale(1.2);
 }
 
