@@ -159,7 +159,7 @@ function checkPhase(){
         }
         CURRENT_PHASE++;
     }
-    CURRENT_PHASE = 3;
+    // CURRENT_PHASE = 3;
     return deadline;
 }
 
