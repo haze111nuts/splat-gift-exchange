@@ -21,10 +21,22 @@ var PLACEHOLDER_GIFT = {};
 //    ARTIST & OC     //
 //====================//
 
-// ARTISTS[]
+// GET ARTISTS NAME
 
-// GET OCs
-// ENTRIES.filter(e => e.artist === "_ARTISTNAME_").map(e => e.ocName)
+// for (var artistName in ARTISTS) {
+//}
+
+
+// GET OC NAME GIVEN ARTIST &
+// GET GIFT THIS OC received
+
+// var artistEntries = ENTRIES.filter(e => e.artist === "_ARTISTNAME_");
+// for (var artistEntry of artistEntries) {
+//      var ocName = artistEntry.ocName;
+//      var receivedGiftPNG = "assets/" + YEAR + "/item/" + artistEntry.received + ".png";
+//      var receivedGiftName = ENTRIES[artistEntry.received].giftName;
+//}
+
 
 //==================//
 //    Time Data     //
