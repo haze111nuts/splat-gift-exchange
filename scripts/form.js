@@ -754,7 +754,6 @@ function setUpPreviwTextArea(previewData) {
             $(".tip").remove();
             ta.remove();
             span.css("display", "inline");
-            // var display = ta.val().replaceAll("\n","<br>");
             span.html(simpleMarkdownToHTML(NEW_GIFT_DESC))
         });
     });
