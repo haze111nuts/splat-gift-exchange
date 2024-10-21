@@ -170,7 +170,7 @@ function checkPhase(){
         }
         CURRENT_PHASE++;
     }
-    CURRENT_PHASE = 3;
+    // CURRENT_PHASE = 3;
 }
 
 function setUpTimer() {
@@ -221,9 +221,9 @@ function setTimeBetweenDates(toDate) {
     }
 }
 
-//==========================//
-//    Setup Second Form     //
-//==========================//
+//===============================//
+//    Setup First/Second Form    //
+//===============================//
 
 function swapToSecondForm(){
     //swap to 2nd form if it's the last phase
@@ -242,6 +242,7 @@ function swapToSecondForm(){
 }
 
 //==========================//
+//       SECOND FORM        //
 //    ARTIST & OC SELECT    //
 //==========================//
 
@@ -292,6 +293,7 @@ function setUpOCSelectForArtist(artistName) {
 
 }
 
+//setup action for when user select an OC
 function printProfileAndGiftRecievedByOC(ocName) {
     var OCEntry = ENTRIES.find(e => e.ocName === ocName);
     var receivedGift = ENTRIES[OCEntry.received];
@@ -312,6 +314,21 @@ function printProfileAndGiftRecievedByOC(ocName) {
     })
 }
 
+//border color change helper
+function secondFormBorderChange(fieldName, borderColor){
+    if( fieldName == "artist_select"){
+        $(".question:eq(0)").css("border-color", borderColor);
+    }
+    if( fieldName == "oc_select"){
+        $(".question:eq(1)").css("border-color", borderColor);
+        $(".question:eq(2)").css("border-color", borderColor);
+    }                
+    if( fieldName == "final_art_url"){
+        $(".question:eq(3)").css("border-color", borderColor);
+    }
+}
+
+//setup standard item panel
 function setUpRegularItemPanel(entry, imgUrl){
     var itemModalHtml = "";
     itemModalHtml += "<div class='standardItemPanel'>";
@@ -482,10 +499,10 @@ function validateExchangeForm() {
             oc_select: LOCAL_DATA.selectError,
             final_art_url: LOCAL_DATA.imageError
         },
-        submitHandler: function (form) {
-            alert("valid form submitted")
-            return false
-        },
+        // submitHandler: function (form) {
+        //     alert("valid form submitted")
+        //     return false
+        // },
         invalidHandler: function (event, validator) {
             // loop thru all invalid error
             for (let name in validator.invalid) {
@@ -494,19 +511,6 @@ function validateExchangeForm() {
             }
         }
     })
-}
-
-function secondFormBorderChange(fieldName, borderColor){
-    if( fieldName == "artist_select"){
-        $(".question:eq(0)").css("border-color", borderColor);
-    }
-    if( fieldName == "oc_select"){
-        $(".question:eq(1)").css("border-color", borderColor);
-        $(".question:eq(2)").css("border-color", borderColor);
-    }                
-    if( fieldName == "final_art_url"){
-        $(".question:eq(3)").css("border-color", borderColor);
-    }
 }
 
 //====================================//
@@ -548,7 +552,6 @@ function displayMultiImageUploadSuccessMsg(e) {
 //========================//
 //    Settingup Modal     //
 //========================//
-
 function setUpClickModalEvents(panelName) {
     $('span[for="' + panelName + '"]').each(function () {
         $(this).click(function () {
