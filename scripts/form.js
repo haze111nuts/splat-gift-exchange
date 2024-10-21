@@ -53,7 +53,7 @@ var localData_CH = {
     mutiUploadSuccess: ["成功上傳了", "張圖"],
     inputError: "有東西沒填！",
     selectError: "有東西沒選！",
-    imageError: "有圖片沒有提供！",
+    imageError: "請提供圖片！",
     yourGiftIs: "這個OC抽到的禮物是："
 }
 
@@ -314,15 +314,9 @@ function printProfileAndGiftRecievedByOC(ocName) {
 
 function setUpRegularItemPanel(entry, imgUrl){
     var itemModalHtml = "";
+    itemModalHtml += "<div class='standardItemPanel'>";
+    itemModalHtml += "<div class='close'>"+"</div>";
     itemModalHtml += "<div class='itemPanel'>";
-    itemModalHtml += "<div class='itemSummary'>";
-    itemModalHtml += "<div class='langSwitch'>"+"⇆"+"</div>";
-    itemModalHtml += "<div class='itemTitle'>";
-    itemModalHtml += "<div class='itemTitle1'>"+entry.giftName+"</div>";
-    itemModalHtml += "<div class='itemTitle2'>"+entry.giftNameAlt+"</div>";
-    itemModalHtml += "</div>";
-    itemModalHtml += "<div class='itemSummary_inner'>" + entry.giftDescription + "</div>";
-    itemModalHtml += "</div>";
     itemModalHtml += "<div class='itemArtWrap'>";
     itemModalHtml += "<img class='itemArt' src='" + imgUrl + "' alt='item' draggable='false' >";
     if(entry.numOfAlt>0){
@@ -333,12 +327,22 @@ function setUpRegularItemPanel(entry, imgUrl){
         itemModalHtml += "</div>";
     }
     itemModalHtml += "</div>";
+    itemModalHtml += "<div class='itemSummary'>";
+    itemModalHtml += "<div class='langSwitch'>"+"⇆"+"</div>";
+    itemModalHtml += "<div class='itemTitle'>";
+    itemModalHtml += "<div class='itemTitle1'>"+entry.giftName+"</div>";
+    itemModalHtml += "<div class='itemTitle2'>"+entry.giftNameAlt+"</div>";
+    itemModalHtml += "</div>";
+    itemModalHtml += "<div class='itemSummary_inner'>" + entry.giftDescription + "</div>";
+    itemModalHtml += "</div>";    
+    itemModalHtml += "</div>";
     itemModalHtml += "</div>";
     $(".modal_content").html(itemModalHtml);
 
     unhideModel();
     setUpTraslateToggle(entry);
     setUpGiftAltArt(entry);
+    setupExtraCloseButton(".close");
 
     //===========================//
     //    Simple Unhide Event    //
@@ -391,7 +395,7 @@ function setUpRegularItemPanel(entry, imgUrl){
     //================================//
     function handleAltArtIndicator(){
         $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white' );
-        $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(82, 68, 61, 0.4)" );
+        $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(72, 58, 51, 0.6)" );
     }
 }
 

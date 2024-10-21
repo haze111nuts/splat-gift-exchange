@@ -394,10 +394,11 @@ a {
   position: relative;
 }
 .dropdown select {
+  font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
   appearance: none;
   width: 100%;
   font-size: 16px !important;
-  padding: 0.675em 4em 0.675em 0.8em;
+  padding: 0.625em 4em 0.625em 0.8em;
   background-color: #fff;
   border: 1px solid #caced1;
   border-radius: 0.25rem;
@@ -413,6 +414,7 @@ a {
 }
 .dropdown select option {
   transition: 0.25s ease;
+  font-size: 0.9em;
 }
 .dropdown select option:nth-child(even) {
   background-color: #eee3d5;
@@ -424,9 +426,10 @@ a {
   justify-content: center;
 }
 .ocIconWrapper img {
-  padding-top: 16px;
+  margin-top: 16px;
   width: 100px;
   height: 100px;
+  border-radius: 15%;
 }
 .ocIconWrapper .question {
   margin-bottom: 0 !important;
@@ -547,7 +550,7 @@ a {
   color: #be9440;
 }
 
-.modal_content > div:not(.previewItemPanel),
+.modal_content > div:not(.previewItemPanel):not(.standardItemPanel),
 .modal2_content > div {
   position: absolute;
   top: 50%;
