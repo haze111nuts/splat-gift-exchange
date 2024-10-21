@@ -412,7 +412,7 @@ function setUpRegularItemPanel(entry, imgUrl){
     //================================//
     function handleAltArtIndicator(){
         $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white' );
-        $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(72, 58, 51, 0.6)" );
+        $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(0, 0, 0, 0.4)" );
     }
 }
 

@@ -24,6 +24,8 @@ html {
 body {
     font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
     background-color: $BG_MAIN;
+    background-image: url(../assets/form/bg.png);
+    background-attachment: fixed;
 }
 .wrapper {
     width: 100%;
@@ -35,7 +37,6 @@ a {
     transition: 0.25s ease;
 }
 .banner,
-.nav,
 .main {
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
 }
@@ -44,6 +45,10 @@ a {
 //====================//
 .banner {
     background-color: $BG_BANNER;
+    background-image: url(../assets/form/splashL.png), url(../assets/form/splashR.png);
+    background-repeat: no-repeat;
+    //background: $BG_BANNER url(../assets/form/splashR.png) no-repeat ;
+    background-position: bottom -100px left -110px,top -80px right -90px;
     text-align: center;
     color: $TEXT_BANNER;
     padding: 8px;
@@ -88,6 +93,10 @@ a {
     text-align: center;
     padding: 16px 0;
     transition: all 0.3s ease-in-out;
+    box-shadow: 
+        0 10px 15px 1px rgba(0, 0, 0, 0.2), 
+        10px 0 15px 1px rgba(0, 0, 0, 0.2),
+        0 0 8px 1px rgba(0, 0, 0, 0.15) inset ;
     ul.navlist {
         list-style-type: none;
         margin: 0;
@@ -106,6 +115,27 @@ a {
             a {
                 color: $BG_FORM;
             }
+        }
+    }
+
+    .letter{
+        border: 1px solid white;
+        transform: rotate(2deg);
+        padding: 16px 32px;
+        width: 68%;
+        background-color: $BG_FORM;
+        background-image: url(../assets/paper.jpg);;
+        color: black;
+        margin: 10px auto;
+        font-size: 1.1em;
+        box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
+        border: 1px solid $BG_MAIN;
+        .hr{
+            padding-bottom: 8px;
+        }
+        span {
+            color: $TEXT_NAV !important;
+            font-size: 14px;;
         }
     }
 
@@ -173,6 +203,7 @@ a {
             border-bottom: 1px solid $TEXT_NAV;
             padding: 8px;
             > span {
+                color: $TEXT_NAV2;
                 font-size: 2.5em;
                 padding: 0px 4px;
             }
@@ -224,7 +255,7 @@ a {
         padding-bottom: 24px;
         > div {
             text-align: center;
-            line-height: 160%;
+            line-height: 170%;
             span {
                 color: $TEXT_NAV2;
             }
