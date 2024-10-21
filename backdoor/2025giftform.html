@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>2025海產OC神秘禮物交換繪 投稿函</title>
+  <title>2025海產OC神秘禮物交換會 投稿函</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="" />
 
@@ -27,9 +27,10 @@
     <!-- BANNER -->
     <div class="banner">
       <div class="frame">
-        <img src="../assets/form/HTC_decor.png" alt="decor">
-        <div class="title">2025海產OC神秘禮物投稿表單</div>
-        <img src="../assets/form/HTC_decor.png" alt="decor">
+        <img src="../assets/form/title_decor.png" alt="decor">
+        <div class="title phase1">2025冬季神秘禮物投稿表單</div>
+        <div class="title phase2">2025冬季神秘禮物後續圖表單</div>
+        <img src="../assets/form/title_decor.png" alt="decor">
         <div class="summary phase1">
           ⚠️ 填之前請先跟主持人58確認你有在參加名單中 ⚠️<br>
         </div>
@@ -48,7 +49,7 @@
         <li for="prologue">開場白</li>
         <li for="guide">請問怎麼玩</li>
         <li for="readme">參加前必讀</li>
-        <li for="deadlines">活動時間</li>
+        <li for="deadlines">截止日期</li>
         <li for="vips">今年參加者</li>
         <!-- <li><a href="https://www.google.com/" target="_blank">2024作品</a></li> -->
       </ul>
@@ -58,16 +59,14 @@
         <div class="prologue hiddenContent">
           <div>
             有一天，你的OC突然收到了一封神秘的信。<br>
-            <br>
-            親愛的海洋生物，<br>
-            我們是神秘禮物交換組織，在此來通知——你被選中了！<br>
-            我們專門收集來自各種時空的神秘禮物，並且將這些禮物進行交換。<br>
-            如果你想參加的話，就準備一個冬季禮物並貼上我們附給你的郵票吧。<br>
-            參加成功的話，冬季節日那天你也會收到一個別人準備的禮物哦。<br>
-            <span>P.S.請不要包裝禮物，本組織會幫你包</span><br>
-            <span>P.S.請不要把郵票貼在你朋友身上</span>
-            <br>
-            <br>
+            <div class="letter">
+              親愛的海洋生物，<br>
+              我們是神秘禮物交換組織，在此來通知——你被選中了！<br>
+              我們專門收集來自各種時空的神秘禮物，並且將這些禮物進行交換。如果想參加的話，就準備一個冬季禮物並貼上我們附給你的郵票吧。參加成功的話，冬季節日那天你也會收到一個別人準備的禮物哦。<br>
+              <div class="hr"></div>
+              <span>P.S.請不要包裝禮物，我們會幫你包</span><br>
+              <span>P.S.請不要把郵票貼在你朋友身上</span>
+            </div>
             信封上竟然沒有地址也沒有署名，只附了一張看起來充滿奇特力量的郵票。<br>
             到底是怎麼寄到這裡的呢？真是太可疑了。<br>
             <br>
@@ -300,35 +299,40 @@
               主持人確認內容用。
             </div>
             <div class="dropdown">
-              <select id="artist_select" name="artist_select">
+              <select id="artist_select" name="artist_select"  >
                 <option value="">請從下面選一個名字</option>
               </select>
             </div>
           </div>
-          <div class="question 2">
-            <label class="label">這份投稿是給哪位OC的？</label>
-            <div class="desc">
-              主持人確認內容用。
-            </div>
-            <div class="dropdown">
-              <select id="oc_select" name="oc_select" disabled>
-                <option value="">請從下面選一個OC</option>
-              </select>
+
+          <div class="ocIconWrapper">
+            <div class="question 2">
+              <label class="label">這份投稿是給哪位OC的？</label>
+              <div class="desc">
+                主持人確認內容用。
+              </div>
+              <div class="dropdown">
+                <select id="oc_select" name="oc_select" disabled>
+                  <option value="">請從下面選一個OC</option>
+                </select>
+              </div>
             </div>
           </div>
+          <div class="question giftInfo">
+          </div>
 
-          <div class="question 3 art-uploader-wrapper">
-            <label class="label">請繪製這個OC收到禮物的插圖</label>
+          <div class="question 3 final-art-uploader-wrapper">
+            <label class="label">請繪製這個OC和抽到的禮物的插圖</label>
             <div class="desc">
               圖片規格是1080px*1080px，PNG檔案，最多10MB。會在聖誕節那天公開在展示網頁上。繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出這位OC以及他收到的禮物物品即可！可以單純是OC將物品拿在手上的構圖、也可以是OC使用禮物的過程、或是OC收到該禮物的反應等，請隨意發揮。圖中的海產OC主角請以人型為主，配角則不限。禮物物品盡量不要被包裝遮到為佳！最低完成度可以參考【<a
                 href="https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art" target="_blank">二代官方的祭典插圖</a>】
             </div>
-            <uc-file-uploader-regular ctx-name="art-uploader" class="uc-light uc-orange"></uc-file-uploader-regular>
+            <uc-file-uploader-regular ctx-name="final-art-uploader"
+              class="uc-light uc-orange"></uc-file-uploader-regular>
             <div class="uploadResult"></div>
-            <input class="dummy" name="art_check" type="checkbox" autocomplete="off">
+            <input class="dummy" name="final_art_url" type="text" autocomplete="off">
           </div>
         </fieldset>
-
 
         <div class="submit_area">
           <button class="submit" type="submit">送出 >></button>
@@ -383,6 +387,7 @@
     <uc-upload-ctx-provider ctx-name="gift-uploader"></uc-upload-ctx-provider>
     <uc-upload-ctx-provider ctx-name="gift-ex-uploader"></uc-upload-ctx-provider>
     <uc-upload-ctx-provider ctx-name="art-uploader"></uc-upload-ctx-provider>
+    <uc-upload-ctx-provider ctx-name="final-art-uploader"></uc-upload-ctx-provider>
 
     <uc-config locale-name="zhtw" ctx-name="ocprofile-uploader" use-cloud-image-editor="false" source-list="local, url"
       pubkey="94f43466c8ece62a70aa" confirm-upload="true" multiple="false">
@@ -394,6 +399,9 @@
       pubkey="94f43466c8ece62a70aa" confirm-upload="true">
     </uc-config>
     <uc-config locale-name="zhtw" ctx-name="art-uploader" use-cloud-image-editor="false" source-list="local, url"
+      pubkey="94f43466c8ece62a70aa" confirm-upload="true" multiple="false">
+    </uc-config>
+    <uc-config locale-name="zhtw" ctx-name="final-art-uploader" use-cloud-image-editor="false" source-list="local, url"
       pubkey="94f43466c8ece62a70aa" confirm-upload="true" multiple="false">
     </uc-config>
   </div>
@@ -418,6 +426,11 @@
     const ctx_art = document.querySelector('uc-upload-ctx-provider[ctx-name="art-uploader"]')
     ctx_art.addEventListener('file-upload-success', e => {
       displayImageUploadSuccessMsg(e, "art-uploader-wrapper");
+    });
+
+    const ctx_final_art = document.querySelector('uc-upload-ctx-provider[ctx-name="final-art-uploader"]')
+    ctx_final_art.addEventListener('file-upload-success', e => {
+      displayImageUploadSuccessMsg(e, "final-art-uploader-wrapper");
     });
 
     //event for file validation

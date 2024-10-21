@@ -4,9 +4,6 @@
 
 var NEW_GIFT_NAME = "";
 var NEW_GIFT_DESC = "";
-var MAIN_GIFT_IMG_URL = "";
-var PROFILE_IMG_URL = "";
-var ART_IMG_URL = "";
 var CURRENT_PHASE = 0;
 
 var NUM_OF_EX_IMG = 0;
@@ -16,6 +13,11 @@ var PREVIEW_IS_EDITED = false;
 var IS_ENG_FORM = false;
 var LOCAL_DATA = {};
 var PLACEHOLDER_GIFT = {};
+
+var CURRENT_ALT_INDEX = 0;
+var CURRENT_SUMMARY_LANG = 0;
+
+var DATA_YEAR = 2024;
 
 //==================//
 //    Time Data     //
@@ -50,8 +52,9 @@ var localData_CH = {
     uploadSuccess: "成功上傳了1張圖",
     mutiUploadSuccess: ["成功上傳了", "張圖"],
     inputError: "有東西沒填！",
-    imageError: "有圖片沒有提供！",
-    select:"請從下面選一個"
+    selectError: "有東西沒選！",
+    imageError: "請提供圖片！",
+    yourGiftIs: "這個OC抽到的禮物是："
 }
 
 var localData_EN = {
@@ -62,7 +65,9 @@ var localData_EN = {
     uploadSuccess: "Successfully upload 1 image!",
     mutiUploadSuccess: ["Successfully upload ", " image!"],
     inputError: "This field is required!",
-    imageError: "An image is required!"
+    selectError: "A selection is required!",
+    imageError: "An image is required!",
+    yourGiftIs: "The gift this OC recieved is:"
 }
 
 //=========================//
@@ -145,6 +150,13 @@ function setUpExtraUploadToggle() {
     });
 }
 
+function getGiftUrl(gift) {
+    if(CURRENT_ALT_INDEX > 0 ){
+        return "../assets/" + DATA_YEAR + "/item/" + ENTRIES.indexOf(gift) +"-"+ CURRENT_ALT_INDEX + ".png";
+    }
+    return "../assets/" + DATA_YEAR + "/item/" + ENTRIES.indexOf(gift) + ".png";
+}
+
 //==================================//
 //    Settingup Timer/CountDown     //
 //==================================//
@@ -158,6 +170,7 @@ function checkPhase(){
         }
         CURRENT_PHASE++;
     }
+    // CURRENT_PHASE = 3;
 }
 
 function setUpTimer() {
@@ -208,9 +221,9 @@ function setTimeBetweenDates(toDate) {
     }
 }
 
-//==========================//
-//    Setup Second Form     //
-//==========================//
+//===============================//
+//    Setup First/Second Form    //
+//===============================//
 
 function swapToSecondForm(){
     //swap to 2nd form if it's the last phase
@@ -218,17 +231,22 @@ function swapToSecondForm(){
         $('.wrapper').css("margin-bottom",100);
         $('#giftForm').remove();
         $('.phase1').remove();
+        $('.modal_content').children().remove();
         setUpArtistSelect();
+        validateExchangeForm();
     }else{
         $('#exchangeForm').remove();
         $('.phase2').remove();
+        validateGiftForm();
     }
 }
 
 //==========================//
+//       SECOND FORM        //
 //    ARTIST & OC SELECT    //
 //==========================//
 
+//setup artist drop-down
 function setUpArtistSelect() {
     var artistListHtml = "";
     for (var artistName in ARTISTS) {
@@ -236,18 +254,28 @@ function setUpArtistSelect() {
     }
     $('#artist_select option').after(artistListHtml)
 
+    //upon selecting an artist
     $("#artist_select").on("change", function () {
         $("#artist_select option:selected").each(function () {
+            $('#oc_select option:nth-child(1)').nextAll().remove();
+            $('.ocIconWrapper').children('img').remove();
+            $('.giftInfo').html('');
             setUpOCSelectForArtist($(this).text());
-            console.log("TEST");
         });
     })
+
+    $('select').on('change', function () {
+    if( $(this).val().length !== 0 ){
+        var selectName = $(this).attr("name");;
+        secondFormBorderChange(selectName, "rgb(223, 177, 92)");
+    }
+});    
 }
 
+//setup OC drop-down
 function setUpOCSelectForArtist(artistName) {
     var artistEntries = ENTRIES.filter(e => e.artist === artistName);
     var OCListHtml = "";
-    console.log(artistEntries);
 
     for (var artistEntry of artistEntries) {
         var ocName = artistEntry.ocName;
@@ -255,24 +283,138 @@ function setUpOCSelectForArtist(artistName) {
     }
     $('#oc_select option:nth-child(1)').after(OCListHtml)
     $('#oc_select').prop("disabled", false);
+
+    $("#oc_select").on("change", function () {
+        $("#oc_select option:selected").each(function () {
+            if( $("#oc_select").val().length !== 0 )
+                printProfileAndGiftRecievedByOC($(this).text());
+        });
+    })
+
 }
 
+//setup action for when user select an OC
+function printProfileAndGiftRecievedByOC(ocName) {
+    var OCEntry = ENTRIES.find(e => e.ocName === ocName);
+    var receivedGift = ENTRIES[OCEntry.received];
+    var receivedGiftPNG = getGiftUrl(receivedGift);
+    var OCprofilePNG = "../assets/" + DATA_YEAR + "/profile/" + ENTRIES.findIndex(e => e.ocName === ocName) + ".png";
 
-// GET OC NAME GIVEN ARTIST &
-// GET GIFT THIS OC received
+    //remove other OC profile pic and insert
+    $('.ocIconWrapper').children('img').remove();
+    $('.2').after("<img src='" + OCprofilePNG + "' alt='selected oc'>");
 
-// var artistEntries = ENTRIES.filter(e => e.artist === "_ARTISTNAME_");
-// for (var artistEntry of artistEntries) {
-//      var ocName = artistEntry.ocName;
-//      var receivedGiftPNG = "assets/" + YEAR + "/item/" + artistEntry.received + ".png";
-//      var receivedGiftName = ENTRIES[artistEntry.received].giftName;
-//}
+    //remove other gift pic and insert
+    $('.giftInfo').children('img').remove();
+    $('.giftInfo').html("<div class='giftTip'>" + LOCAL_DATA.yourGiftIs + " " + receivedGift.giftName + "</div>")
+    $('.giftTip').after("<img class='recievedGift' src='" + receivedGiftPNG + "' alt='recieved gift'>");
 
-// GET GIFT BY OC NAME
-// var OCEntry = ENTRIES.find(e => e.ocName === "_OCNAME_");
-// var receivedGiftPNG = "assets/" + YEAR + "/item/" + OCEntry.received + ".png";
-// var receivedGiftName = ENTRIES[OCEntry.received].giftName;
+    $('.recievedGift').click(function () {
+        setUpRegularItemPanel(receivedGift, receivedGiftPNG);
+    })
+}
 
+//border color change helper
+function secondFormBorderChange(fieldName, borderColor){
+    if( fieldName == "artist_select"){
+        $(".question:eq(0)").css("border-color", borderColor);
+    }
+    if( fieldName == "oc_select"){
+        $(".question:eq(1)").css("border-color", borderColor);
+        $(".question:eq(2)").css("border-color", borderColor);
+    }                
+    if( fieldName == "final_art_url"){
+        $(".question:eq(3)").css("border-color", borderColor);
+    }
+}
+
+//setup standard item panel
+function setUpRegularItemPanel(entry, imgUrl){
+    var itemModalHtml = "";
+    itemModalHtml += "<div class='standardItemPanel'>";
+    itemModalHtml += "<div class='close'>"+"</div>";
+    itemModalHtml += "<div class='itemPanel'>";
+    itemModalHtml += "<div class='itemArtWrap'>";
+    itemModalHtml += "<img class='itemArt' src='" + imgUrl + "' alt='item' draggable='false' >";
+    if(entry.numOfAlt>0){
+        itemModalHtml += "<div class='itemArtList'>";
+        for (let i = 0; i < entry.numOfAlt+1 ; i++) {
+            itemModalHtml += "<span>◆</span>";
+        }
+        itemModalHtml += "</div>";
+    }
+    itemModalHtml += "</div>";
+    itemModalHtml += "<div class='itemSummary'>";
+    itemModalHtml += "<div class='langSwitch'>"+"⇆"+"</div>";
+    itemModalHtml += "<div class='itemTitle'>";
+    itemModalHtml += "<div class='itemTitle1'>"+entry.giftName+"</div>";
+    itemModalHtml += "<div class='itemTitle2'>"+entry.giftNameAlt+"</div>";
+    itemModalHtml += "</div>";
+    itemModalHtml += "<div class='itemSummary_inner'>" + entry.giftDescription + "</div>";
+    itemModalHtml += "</div>";    
+    itemModalHtml += "</div>";
+    itemModalHtml += "</div>";
+    $(".modal_content").html(itemModalHtml);
+
+    unhideModel();
+    setUpTraslateToggle(entry);
+    setUpGiftAltArt(entry);
+    setupExtraCloseButton(".close");
+
+    //===========================//
+    //    Simple Unhide Event    //
+    //===========================//
+    function unhideModel() {
+        $(".modal").removeClass("hide");
+        $('body').width($('body').width());
+        $('body').css('overflow', 'hidden');
+    }
+
+    //=============================//
+    //    Handle traslate Event    //
+    //=============================//
+    function setUpTraslateToggle(entry) {
+
+        var newSummary;
+        if (entry.giftDescriptionAlt.length == 0) {
+            $(".langSwitch").css("display", "none");
+        }
+        $(".langSwitch").click(function () {
+            if (CURRENT_SUMMARY_LANG === 0 && entry.giftDescriptionAlt.length > 0) {
+                newSummary = entry.giftDescriptionAlt;
+                CURRENT_SUMMARY_LANG = 1
+            } else {
+                newSummary = entry.giftDescription;
+                CURRENT_SUMMARY_LANG = 0;
+            }            
+            $(".itemSummary_inner").html(newSummary);
+        });
+    }
+    //=============================//
+    //    Handle alt art clicks    //
+    //=============================//
+    function setUpGiftAltArt(entry) {
+        handleAltArtIndicator();
+        $(".itemArt").click(function () {
+            if(entry["numOfAlt"] != undefined){
+                CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
+                $(".itemArt")
+                    .fadeOut(130, function() {
+                        $(".itemArt").attr('src', getGiftUrl(entry) );
+                        handleAltArtIndicator();
+                    })
+                    .fadeIn(130);
+            }
+        })
+    }
+    //================================//
+    //    Handle alt art indicator    //
+    //================================//
+    function handleAltArtIndicator(){
+        $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white' );
+        $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(0, 0, 0, 0.4)" );
+    }
+}
 
 //==================================//
 //    Settingup Form Validation     //
@@ -302,7 +444,7 @@ function setUpOtherValidationStyle() {
     });
 }
 
-function validateForm() {
+function validateGiftForm() {
     $("#giftForm").validate({
         rules: {
             OCname: "required",
@@ -345,22 +487,38 @@ function validateForm() {
     })
 }
 
+function validateExchangeForm() {
+    $("#exchangeForm").validate({
+        rules: {
+            artist_select: "required",
+            oc_select: "required",
+            final_art_url: "required"
+        },
+        messages: {
+            artist_select: LOCAL_DATA.selectError,
+            oc_select: LOCAL_DATA.selectError,
+            final_art_url: LOCAL_DATA.imageError
+        },
+        // submitHandler: function (form) {
+        //     alert("valid form submitted")
+        //     return false
+        // },
+        invalidHandler: function (event, validator) {
+            // loop thru all invalid error
+            for (let name in validator.invalid) {
+                //since there's only 3 question, manually setting red border this time
+                secondFormBorderChange(name, "#9e3038");
+            }
+        }
+    })
+}
+
 //====================================//
 //    Image Upload Event Handling     //
 //====================================//
 
 function displayImageUploadSuccessMsg(e, parentDiv) {
     console.log("IMAGE UPLOAD SUCCESS");
-
-    //save the upload image to global
-    //these are not used right now
-    if (parentDiv.includes("gift")) {
-        MAIN_GIFT_IMG_URL = e.detail.cdnUrl;
-    } else if (parentDiv.includes("ocprofile")) {
-        PROFILE_IMG_URL = e.detail.cdnUrl;
-    } else if (parentDiv.includes("art")) {
-        ART_IMG_URL = e.detail.cdnUrl;
-    }
 
     //set success message
     var succHtml =
@@ -394,7 +552,6 @@ function displayMultiImageUploadSuccessMsg(e) {
 //========================//
 //    Settingup Modal     //
 //========================//
-
 function setUpClickModalEvents(panelName) {
     $('span[for="' + panelName + '"]').each(function () {
         $(this).click(function () {
@@ -448,13 +605,14 @@ function setupExtraCloseButton(className) {
 }
 
 function setupCloseModalEvents() {
-
     //for regular modal close
     $(".modal_bg").click(function () {
         if(PREVIEW_IS_EDITED){
             $(".modal2").removeClass("hide");
         }else{
             closeModals();
+            CURRENT_ALT_INDEX = 0;
+            CURRENT_SUMMARY_LANG = 0;
         }
     })
     //IF USER CLICKS NO ON PREVIEW CONFIRM
@@ -486,7 +644,6 @@ function closeModals(){
 //====================================//
 //    Settingup Preview Modal HTML    //
 //====================================//
-var CURRENT_ALT_INDEX = 0;
 function setupItemModalHtml() {
 
     var previewData = setPreviewDataFromForm();
@@ -524,13 +681,6 @@ function setupItemModalHtml() {
     setUpPreviwTextArea(previewData);
     setUpFakeUpload();
     setupExtraCloseButton(".close");
-}
-
-function getGiftUrl(gift) {
-    if (CURRENT_ALT_INDEX > 0) {
-        return "../assets/placeholder-" + CURRENT_ALT_INDEX + ".png";
-    }
-    return "../assets/placeholder.png";
 }
 
 function setPreviewDataFromForm(){
@@ -643,7 +793,7 @@ function setupSampleGiftModalHtml(entries) {
     sampleGiftModalHtml += '<ul>';
     for (let entry of entries) {
         sampleGiftModalHtml += '<li>';
-        sampleGiftModalHtml += '<img src="' + getGiftUrl(entry) + '" alt="gift">';
+        sampleGiftModalHtml += '<img src="' + '" alt="gift">';
         sampleGiftModalHtml += '<div class="sampleContent">';
         sampleGiftModalHtml += '<div class="giftName">';
         sampleGiftModalHtml += entry.giftName;
@@ -676,7 +826,6 @@ $(document).ready(function () {
     setUpTimer();
     setUpConfirmEvent();
     setUpNavClickEvents();
-    validateForm();
     setUpOtherValidationStyle();
     setUpExtraUploadToggle();
     setUpClickModalEvents("giftRulePanel");

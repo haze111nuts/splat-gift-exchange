@@ -1,15 +1,3 @@
-@font-face {
-  font-family: "DFPT_AZ5";
-  src: url("../assets/fonts/DFPT_AZ5.otf");
-  font-style: normal;
-  font-weight: normal;
-}
-@font-face {
-  font-family: "DFPT_ZY9";
-  src: url("../assets/fonts/DFPT_ZY9.otf");
-  font-style: normal;
-  font-weight: normal;
-}
 html {
   font-size: 16px;
 }
@@ -42,7 +30,8 @@ a:hover {
   position: relative;
   width: 100%;
 }
-.decor .decor_L, .decor .decor_R {
+.decor .decor_L,
+.decor .decor_R {
   background-repeat: no-repeat;
   z-index: -500;
   background-size: 100%;
@@ -516,7 +505,8 @@ h4 {
   }
 }
 @media only screen and (max-width: 481px) {
-  .exchangeIcon, .exchangeIcon img {
+  .exchangeIcon,
+.exchangeIcon img {
     display: none;
   }
   .navbar {

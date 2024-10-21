@@ -1,5 +1,43 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap");
+@font-face {
+    font-family: "DFPT_AZ5";
+    src: url("../assets/fonts/DFPT_AZ5.otf");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "DFPT_ZY9";
+    src: url("../assets/fonts/DFPT_ZY9.otf");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "Thelma";
+    src: url("../assets/fonts/ThelmaPersonalUse.otf");
+    font-style: normal;
+    font-weight: normal;
+}
 
+/* Chinese (Simplified) */
+@font-face {
+    font-family: "HanyiZongyi";
+    src: url("../assets/fonts/hanyi_zongyi.ttf");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "HuakangZongyi";
+    src: url("../assets/fonts/huakang_xinzongyi.ttc");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "Noto Sans SC";
+    src: url("../assets/fonts/NotoSansSC-Regular.ttf");
+    font-style: normal;
+    font-weight: normal;
+  }
+  
 //=========================//
 //===                   ===//
 //===   POP-UP MODALS   ===//
@@ -81,7 +119,7 @@
         }
         .itemArtList {
             color: rgb(233, 223, 211);
-            font-size: 1.2em;
+            font-size: 15px;
             text-align: center;
             margin-bottom: 10px;
             span {
@@ -156,6 +194,7 @@
             -webkit-user-select: none; /* Safari */
             -ms-user-select: none; /* IE 10 and IE 11 */
             user-select: none; /* Standard syntax */
+            cursor: pointer;
             &:hover {
                 color: rgb(184, 120, 2);
             }
