@@ -72,12 +72,12 @@ var localData_EN = {
 var placehoderGift_CH = {
     giftName: "按我改禮物名",
     giftNameAlt: "Gift Name",
-    giftDescription: "按這裡可以寫解釋，例如禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。"
+    giftDescription: "按這裡可以寫解釋，例如禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，**越詳細越好**！\n\n也可以附上圖片或是URL，主持人會幫你整理內文跟排版。"
 }
 var placehoderGift_EN = {
     giftName: "Click to Edit Gift Name",
     giftNameAlt: "禮物名",
-    giftDescription: "Click here to write gift summary, you can write about things like what's included in the gift, what kind of texture this object has, what are the material used, or how it can be used..etc."
+    giftDescription: "Click here to write gift summary.\n\nyou can write about things like what's included in the gift, what kind of texture this object has, what are the material used, or how it can be used..etc."
 }
 
 //=========================//
@@ -158,7 +158,6 @@ function checkPhase(){
         }
         CURRENT_PHASE++;
     }
-    CURRENT_PHASE = 3;
 }
 
 function setUpTimer() {
@@ -515,14 +514,14 @@ function setupItemModalHtml() {
     itemModalHtml += "</div>";
     itemModalHtml += "</div>";
     itemModalHtml += "<div class='itemSummary_inner'>";
-    itemModalHtml += "<div class='editableTextArea'><span>" + previewData.giftDescription + "</span></div>";
+    itemModalHtml += "<div class='editableTextArea'><span>" + simpleMarkdownToHTML(previewData.giftDescription) + "</span></div>";
     itemModalHtml += "</div>";
     itemModalHtml += "</div>";
     itemModalHtml += "</div>";
     $(".previewItemPanel").html(itemModalHtml);
 
-    setUpPreviwInputs();
-    setUpPreviwTextArea();
+    setUpPreviwInputs(previewData);
+    setUpPreviwTextArea(previewData);
     setUpFakeUpload();
     setupExtraCloseButton(".close");
 }
@@ -541,7 +540,7 @@ function setPreviewDataFromForm(){
         giftDescription: ""
     };
     previewData.giftName = $('.3 input').val()? $('.3 input').val(): PLACEHOLDER_GIFT.giftName;
-    previewData.giftDescription = $('.5 textarea').val()? $('.5 textarea').val(): PLACEHOLDER_GIFT.giftDescription;
+    previewData.giftDescription = $('.5 textarea').val() ? $('.5 textarea').val(): PLACEHOLDER_GIFT.giftDescription;
     return previewData;
 }
 
@@ -553,7 +552,7 @@ function applyDataToForm(giftName,giftDesc){
 //==========================//
 //    For Preview Inputs    //
 //==========================//
-function setUpPreviwInputs() {
+function setUpPreviwInputs(previewData) {
     $(".editable span").click(function (event) {
         var span = $(this);
         var text = span.text();
@@ -582,33 +581,31 @@ function setUpPreviwInputs() {
     });
 }
 
-function setUpPreviwTextArea() {
-    $(".editableTextArea span").click(function (event) {
+function setUpPreviwTextArea(previewData) {
+    NEW_GIFT_DESC = previewData.giftDescription;
+    $(".editableTextArea").click(function (event) {
         var span = $(this);
         span.css("display", "none");
 
         $("<textarea></textarea>").insertBefore(span);
         $("<div class='tip'>"+LOCAL_DATA.editTip+"</div>").insertAfter(span);
         var ta = $(this).siblings("textarea");
-//        ta.val(span.html().replaceAll("<br>", "\n"));
-        ta.val(span.text());
 
+        ta.val(NEW_GIFT_DESC);
         ta.attr("row", "15");
         ta.attr("col", "100");
         ta.focus();
         ta.blur(function () {
-            if (ta.val() !== span.html().replaceAll("<br>", "\n")){
-                NEW_GIFT_DESC = ta.val()
+            if (ta.val() !== "")
+                NEW_GIFT_DESC = ta.val();
+            if (NEW_GIFT_DESC !== previewData.giftDescription){
                 PREVIEW_IS_EDITED = true;
             }
             $(".tip").remove();
             ta.remove();
             span.css("display", "inline");
             // var display = ta.val().replaceAll("\n","<br>");
-            var display = simpleMarkdownToHTML(ta.val());
-            console.log(ta.val());
-            console.log(display);
-            span.html(ta.val() == "" ? "?" : display)
+            span.html(simpleMarkdownToHTML(NEW_GIFT_DESC))
         });
     });
 }
