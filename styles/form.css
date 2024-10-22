@@ -100,7 +100,9 @@ a {
   padding: 16px 32px;
   width: 68%;
   background-color: rgb(233, 228, 228);
-  background-image: url(../assets/paper.jpg);
+  background-image: url(../assets/form/postmark.png), url(../assets/paper.jpg);
+  background-repeat: no-repeat, repeat;
+  background-position: bottom -50px left -24px, center center;
   color: black;
   margin: 10px auto;
   font-size: 1.1em;
@@ -221,15 +223,42 @@ a {
 .nav .prologue {
   padding-top: 30px;
   padding-bottom: 24px;
+  position: relative;
 }
 .nav .prologue > div {
   text-align: center;
   line-height: 170%;
 }
-.nav .prologue > div span {
-  color: #bda990;
+.nav .prologue > div img {
+  transition: all 0.25s ease-in;
+}
+.nav .prologue > div .stamp {
+  position: absolute;
+  right: 40px;
+  bottom: 10px;
+  transform: rotate(10deg) scale(0.5);
+  z-index: 58;
+}
+.nav .prologue > div .letterDeco {
+  position: absolute;
+  left: 40px;
+  bottom: 280px;
+  transform: rotate(-20deg);
+  z-index: 58;
 }
 
+.hueLoop {
+  animation-name: backgroundColorPalette;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes backgroundColorPalette {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
 .hiddenContent {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
@@ -863,6 +892,16 @@ dialog::backdrop {
   .confirmEdit {
     width: 75%;
     font-size: 6vw;
+  }
+  .nav .prologue > div .stamp {
+    right: -10px;
+    bottom: -40px;
+    transform: rotate(10deg) scale(0.4);
+  }
+  .nav .prologue > div .letterDeco {
+    left: -10px;
+    bottom: -10px;
+    transform: rotate(-10deg) scale(0.7);
   }
 }
 @media only screen and (max-width: 481px) {

@@ -140,6 +140,17 @@ function setUpNavClickEvents() {
             $('.' + $(this).attr("for")).siblings().addClass("hiddenContent");
             $(this).siblings().removeClass("highlighted");
             $(this).toggleClass("highlighted");
+
+            if($(this).attr("for") === "prologue"){
+                setTimeout(function () {
+                    $('.letterDeco').toggleClass("hide");
+                }, 150);    
+                setTimeout(function () {
+                    $('.stamp').toggleClass("hide");
+                }, 350);
+            }else{
+                $('.letterDeco, .stamp').addClass("hide");
+            }
         })
     });
 }
@@ -751,7 +762,7 @@ function setUpPreviwTextArea(previewData) {
             if (NEW_GIFT_DESC !== previewData.giftDescription){
                 PREVIEW_IS_EDITED = true;
             }
-            $(".tip").remove();
+            $(".itemSummary_inner .tip").remove();
             ta.remove();
             span.css("display", "inline");
             span.html(simpleMarkdownToHTML(NEW_GIFT_DESC))
