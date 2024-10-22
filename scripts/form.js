@@ -91,26 +91,22 @@ var placehoderGift_EN = {
 
 var sampleGifts = [
     {
-        ocName: "綾里春美",
         giftName: "倉院特產饅頭",
         giftNameAlt: "Kurain Buns",
         giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
-        numOfAlt: 2,
-        artist: "2"
+        url: "../assets/form/sample1.png"
     },
     {
-        ocName: "王泥喜法介",
         giftName: "折疊式天文望遠鏡",
         giftNameAlt: "Portable Telescope",
         giftDescription: "口徑7公分、長為26公分的迷你形望遠鏡。有20mm和10mm的數位轉接目鏡和手機攝影轉接架﹐還附有簡易天文觀測指南。除了拿來觀星賞月以外﹐似乎也很適合拿來賞鳥或是湖中的不明生物。",
-        artist: "4"
+        url: "../assets/form/sample2.png"
     },
     {
-        ocName: "希月心音",
         giftName: "碰可玩具機器人",
         giftNameAlt: "PONCO Toy Robot",
         giftDescription: "大河原宇宙中心的最新紀念品﹐1/8比例的多功能碰可玩具機器人﹐有著跟原物一樣的人工智能﹐可以透過聲控來做為日常的小幫手。有附一個機器人充電台。<br><b>功能：</b><ul><li>鬧鐘、備忘錄、上網查詢資料等通知等日常實用機能。</li><li>用專用的手機app跟這個機器人連動的話﹐可以跟它玩小遊戲。</li><li>帶去大河原宇宙中心的話，可以當作迷你導覽。</li><li>為了人類發展的未來，偶爾會推薦你捐錢給大河原宇宙中心。</li></ul>有一些跟<a href='https://www.amazon.com/b?node=18354642011' target='_blank'>ALEXA</a>類似的功能",
-        artist: "5"
+        url: "../assets/form/sample3.png"        
     }
 ]
 
@@ -803,7 +799,7 @@ function setupSampleGiftModalHtml(entries) {
     sampleGiftModalHtml += '<ul>';
     for (let entry of entries) {
         sampleGiftModalHtml += '<li>';
-        sampleGiftModalHtml += '<img src="' + '" alt="gift">';
+        sampleGiftModalHtml += '<img src="' +entry.url+ '" alt="gift">';
         sampleGiftModalHtml += '<div class="sampleContent">';
         sampleGiftModalHtml += '<div class="giftName">';
         sampleGiftModalHtml += entry.giftName;
