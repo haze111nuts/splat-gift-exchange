@@ -77,7 +77,7 @@ var localData_EN = {
 var placehoderGift_CH = {
     giftName: "按我改禮物名",
     giftNameAlt: "Gift Name",
-    giftDescription: "按這裡可以寫解釋，例如禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，**越詳細越好**！\n\n也可以附上圖片或是URL，主持人會幫你整理內文跟排版。"
+    giftDescription: "按這裡可以寫解釋，字數不限。\n**包括但不限於:**\n1. 禮物詳細內容物\n2. 外觀材質\n3. 用途\n這有助於抽到者理解禮物，*越詳細越好*！\n**也可以附上**：\n- 圖片\n- [URL](https://www.amazon.com/)\n要好好打喔！~~否則主持人會擅自幫你亂改。~~"
 }
 var placehoderGift_EN = {
     giftName: "Click to Edit Gift Name",
