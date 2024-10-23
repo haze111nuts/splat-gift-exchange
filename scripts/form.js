@@ -91,22 +91,22 @@ var placehoderGift_EN = {
 
 var sampleGifts = [
     {
-        giftName: "倉院特產饅頭",
-        giftNameAlt: "Kurain Buns",
-        giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
+        giftName: "可疑船員錢包",
+        giftNameAlt: "Suspicious Crewmate Wallet",
+        giftDescription: "一個形狀非常特別的錢包，把像是嘴巴的拉鍊拉開後裡面有尖牙和血盆大口，不知道做這個錢包的廠商是抱著什麼心態去設計的。\n據說把錢放在裡面就會拿不出來…這錢包實在是太可疑了。",
         url: "../assets/form/sample1.png"
     },
     {
-        giftName: "折疊式天文望遠鏡",
-        giftNameAlt: "Portable Telescope",
-        giftDescription: "口徑7公分、長為26公分的迷你形望遠鏡。有20mm和10mm的數位轉接目鏡和手機攝影轉接架﹐還附有簡易天文觀測指南。除了拿來觀星賞月以外﹐似乎也很適合拿來賞鳥或是湖中的不明生物。",
+        giftName: "神秘招財生物",
+        giftNameAlt: "Mysterious Lucky Creature",
+        giftDescription: "一個神秘生物小雕像，他舉起的那隻掌只要戳一下就會開始擺動，你感覺它可能會招來許多奇怪的生物。",
         url: "../assets/form/sample2.png",
         numOfAlt: 1
     },
     {
-        giftName: "碰可玩具機器人",
-        giftNameAlt: "PONCO Toy Robot",
-        giftDescription: "大河原宇宙中心的最新紀念品﹐1/8比例的多功能碰可玩具機器人﹐有著跟原物一樣的人工智能﹐可以透過聲控來做為日常的小幫手。有附一個機器人充電台。<br><b>功能：</b><ul><li>鬧鐘、備忘錄、上網查詢資料等通知等日常實用機能。</li><li>用專用的手機app跟這個機器人連動的話﹐可以跟它玩小遊戲。</li><li>帶去大河原宇宙中心的話，可以當作迷你導覽。</li><li>為了人類發展的未來，偶爾會推薦你捐錢給大河原宇宙中心。</li></ul>有一些跟<a href='https://www.amazon.com/b?node=18354642011' target='_blank'>ALEXA</a>類似的功能",
+        giftName: "莫名海豹平底鍋",
+        giftNameAlt: "Seal Frying Pan",
+        giftDescription: "一個平底鍋，中間有隻倒過來的海豹。中間這個莫名的海豹似乎拿不起來的樣子，看來只能就這樣使用了。\n\n這平底鍋似乎有些奇怪的功能：\n- 當這個平底鍋預熱完成時，海豹的眼睛會發出紅光。\n- 甩動這個平底鍋時，海豹似乎會發出一些揪揪叫好的怪聲。\n\n當你把這平底鍋洗好拿去倒扣晾乾時，看起來像海豹頂著一個巨大的平底鍋…",
         url: "../assets/form/sample3.png",
         numOfAlt: 2
     }
@@ -817,7 +817,7 @@ function setupSampleGiftModalHtml(entries) {
         sampleGiftModalHtml += entry.giftName;
         sampleGiftModalHtml += '</div>';
         sampleGiftModalHtml += '<div class="giftDesc">';
-        sampleGiftModalHtml += entry.giftDescription;
+        sampleGiftModalHtml += simpleMarkdownToHTML(entry.giftDescription);
         sampleGiftModalHtml += '</div>';
         sampleGiftModalHtml += '</div>';
         sampleGiftModalHtml += '</li>';
