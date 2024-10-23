@@ -649,6 +649,13 @@ a {
     .modal_bg {
         background-color: rgba(59, 55, 53, 0.425);
     }
+    a {
+        color: $TEXT_LINK;
+        transition: all 0.3s ease-out;
+        &:hover {
+            color: rgb(199, 71, 21);
+        }
+    }
 }
 .hide {
     opacity: 0 !important;
@@ -783,14 +790,12 @@ h2 {
     font-size: 0.9em;
     text-align: center;
     line-height: 110%;
-    padding-top: 4px;
     padding: 4px 8px 6px 8px;
     width: 100px;
     background-color: $TEXT_GOOD;
     color: white;
     border-radius: 8px;
-    margin: 0 auto;
-    margin-top: 5px;
+    margin: 4px auto 8px auto;
     transition: all 0.2s ease-in;
     cursor: pointer;
     &:hover {
@@ -858,6 +863,12 @@ h2 {
             width: 100%;
             opacity: 0;
             // max-height: 150px;
+            .itemArtList{
+                font-size: 0.8em ;
+                position: absolute;
+                left: -10px;
+                top: 25px;
+            }
             img {
                 width: 150px;
                 height: 150px;
@@ -874,15 +885,7 @@ h2 {
                 padding: 20px;
                 padding-left: 6px;
                 padding-top: 2px;
-                // max-height: 96px;
                 overflow-y: auto;
-                a {
-                    color: $TEXT_LINK;
-                    transition: all 0.3s ease-out;
-                    &:hover {
-                        color: rgb(199, 71, 21);
-                    }
-                }
             }
             &:nth-child(1) {
                 transform: rotate(1deg);

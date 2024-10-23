@@ -46,7 +46,7 @@ const phases = [
 
 var localData_CH = {
     sampleGiftTitle: "禮物範本",
-    editTip: "可以用Discord部分語法做裝飾",
+    editTip: "點框外任意一處結束修改",
     chooseImage: "選張圖片",
     noImage: "尚無圖片<br>可以按下方按鈕選圖<br>※此圖並不會被上傳",
     uploadSuccess: "成功上傳了1張圖",
@@ -59,7 +59,7 @@ var localData_CH = {
 
 var localData_EN = {
     sampleGiftTitle: "Sample Gifts",
-    editTip: "You can use certain Discord Markdowns",
+    editTip: "Click anywhere outside to end edit",
     chooseImage: "Choose Image",
     noImage: "Select Image from the button below<br>*This image will not get uploaded",
     uploadSuccess: "Successfully upload 1 image!",
@@ -77,7 +77,7 @@ var localData_EN = {
 var placehoderGift_CH = {
     giftName: "按我改禮物名",
     giftNameAlt: "Gift Name",
-    giftDescription: "按這裡可以寫解釋，字數不限。\n**包括但不限於:**\n1. 禮物詳細內容物\n2. 外觀材質\n3. 用途\n這有助於抽到者理解禮物，*越詳細越好*！\n**也可以附上**：\n- 圖片\n- [URL](https://www.amazon.com/)\n要好好打喔！~~否則主持人會擅自幫你亂改。~~"
+    giftDescription: "按這裡可以寫解釋，*字數不限*。\n可以用的語法：\n1. **粗體**\n2. *斜體*\n3. ~~刪除線~~\n4. [URL](#)\n也可以用普通清單\n- 請大家發揮創意\n- 也可以寫小卡片喔"
 }
 var placehoderGift_EN = {
     giftName: "Click to Edit Gift Name",
@@ -100,13 +100,15 @@ var sampleGifts = [
         giftName: "神秘招財生物",
         giftNameAlt: "Mysterious Lucky Creature",
         giftDescription: "一個神秘生物小雕像，他舉起的那隻掌只要戳一下就會開始擺動，你感覺它可能會招來許多奇怪的生物。",
-        url: "../assets/form/sample2.png"        
+        url: "../assets/form/sample2.png",
+        numOfAlt: 1
     },
     {
         giftName: "莫名海豹平底鍋",
         giftNameAlt: "Seal Frying Pan",
         giftDescription: "一個平底鍋，中間有隻倒過來的海豹。中間這個莫名的海豹似乎拿不起來的樣子，看來只能就這樣使用了。\n\n這平底鍋似乎有些奇怪的功能：\n- 當這個平底鍋預熱完成時，海豹的眼睛會發出紅光。\n- 甩動這個平底鍋時，海豹似乎會發出一些揪揪叫好的怪聲。\n\n當你把這平底鍋洗好拿去倒扣晾乾時，看起來像海豹頂著一個巨大的平底鍋…",
-        url: "../assets/form/sample3.png"
+        url: "../assets/form/sample3.png",
+        numOfAlt: 2
     }
 ]
 
@@ -114,12 +116,12 @@ var sampleGifts = [
 //    Misc Events     //
 //====================//
 
-function decideLocalization(){
-    if($('head title').text().includes("Gift")){
+function decideLocalization() {
+    if ($('head title').text().includes("Gift")) {
         IS_ENG_FORM = true;
     }
-    LOCAL_DATA = IS_ENG_FORM?localData_EN:localData_CH;
-    PLACEHOLDER_GIFT = IS_ENG_FORM?placehoderGift_EN:placehoderGift_CH;
+    LOCAL_DATA = IS_ENG_FORM ? localData_EN : localData_CH;
+    PLACEHOLDER_GIFT = IS_ENG_FORM ? placehoderGift_EN : placehoderGift_CH;
 }
 
 function setUpConfirmEvent() {
@@ -137,14 +139,14 @@ function setUpNavClickEvents() {
             $(this).siblings().removeClass("highlighted");
             $(this).toggleClass("highlighted");
 
-            if($(this).attr("for") === "prologue"){
+            if ($(this).attr("for") === "prologue") {
                 setTimeout(function () {
                     $('.letterDeco').toggleClass("hide");
-                }, 150);    
+                }, 150);
                 setTimeout(function () {
                     $('.stamp').toggleClass("hide");
                 }, 350);
-            }else{
+            } else {
                 $('.letterDeco, .stamp').addClass("hide");
             }
         })
@@ -158,8 +160,8 @@ function setUpExtraUploadToggle() {
 }
 
 function getGiftUrl(gift) {
-    if(CURRENT_ALT_INDEX > 0 ){
-        return "../assets/" + DATA_YEAR + "/item/" + ENTRIES.indexOf(gift) +"-"+ CURRENT_ALT_INDEX + ".png";
+    if (CURRENT_ALT_INDEX > 0) {
+        return "../assets/" + DATA_YEAR + "/item/" + ENTRIES.indexOf(gift) + "-" + CURRENT_ALT_INDEX + ".png";
     }
     return "../assets/" + DATA_YEAR + "/item/" + ENTRIES.indexOf(gift) + ".png";
 }
@@ -168,7 +170,7 @@ function getGiftUrl(gift) {
 //    Settingup Timer/CountDown     //
 //==================================//
 
-function checkPhase(){
+function checkPhase() {
     //check which deadline is the closest one and decide the index
     CURRENT_PHASE = 1;
     for (var phase of phases) {
@@ -195,13 +197,13 @@ function setUpTimer() {
     $(".deadlines ul li:nth-child(" + CURRENT_PHASE + ")").addClass("currentDeadline");
 
     //grab deadline
-    var compareDate = new Date(phases[CURRENT_PHASE-1]);
+    var compareDate = new Date(phases[CURRENT_PHASE - 1]);
     if (!isNaN(compareDate)) {
         compareDate.setDate(compareDate.getDate());
 
         setInterval(function () {
             setTimeBetweenDates(compareDate);
-        }, 500);        
+        }, 500);
     }
 }
 
@@ -232,16 +234,16 @@ function setTimeBetweenDates(toDate) {
 //    Setup First/Second Form    //
 //===============================//
 
-function swapToSecondForm(){
+function swapToSecondForm() {
     //swap to 2nd form if it's the last phase
-    if(CURRENT_PHASE>2){
-        $('.wrapper').css("margin-bottom",100);
+    if (CURRENT_PHASE > 2) {
+        $('.wrapper').css("margin-bottom", 100);
         $('#giftForm').remove();
         $('.phase1').remove();
         $('.modal_content').children().remove();
         setUpArtistSelect();
         validateExchangeForm();
-    }else{
+    } else {
         $('#exchangeForm').remove();
         $('.phase2').remove();
         validateGiftForm();
@@ -272,11 +274,11 @@ function setUpArtistSelect() {
     })
 
     $('select').on('change', function () {
-    if( $(this).val().length !== 0 ){
-        var selectName = $(this).attr("name");;
-        secondFormBorderChange(selectName, "rgb(223, 177, 92)");
-    }
-});    
+        if ($(this).val().length !== 0) {
+            var selectName = $(this).attr("name");;
+            secondFormBorderChange(selectName, "rgb(223, 177, 92)");
+        }
+    });
 }
 
 //setup OC drop-down
@@ -293,7 +295,7 @@ function setUpOCSelectForArtist(artistName) {
 
     $("#oc_select").on("change", function () {
         $("#oc_select option:selected").each(function () {
-            if( $("#oc_select").val().length !== 0 )
+            if ($("#oc_select").val().length !== 0)
                 printProfileAndGiftRecievedByOC($(this).text());
         });
     })
@@ -322,50 +324,50 @@ function printProfileAndGiftRecievedByOC(ocName) {
 }
 
 //border color change helper
-function secondFormBorderChange(fieldName, borderColor){
-    if( fieldName == "artist_select"){
+function secondFormBorderChange(fieldName, borderColor) {
+    if (fieldName == "artist_select") {
         $(".question:eq(0)").css("border-color", borderColor);
     }
-    if( fieldName == "oc_select"){
+    if (fieldName == "oc_select") {
         $(".question:eq(1)").css("border-color", borderColor);
         $(".question:eq(2)").css("border-color", borderColor);
-    }                
-    if( fieldName == "final_art_url"){
+    }
+    if (fieldName == "final_art_url") {
         $(".question:eq(3)").css("border-color", borderColor);
     }
 }
 
 //setup standard item panel
-function setUpRegularItemPanel(entry, imgUrl){
+function setUpRegularItemPanel(entry, imgUrl) {
     var itemModalHtml = "";
     itemModalHtml += "<div class='standardItemPanel'>";
-    itemModalHtml += "<div class='close'>"+"</div>";
+    itemModalHtml += "<div class='close'>" + "</div>";
     itemModalHtml += "<div class='itemPanel'>";
     itemModalHtml += "<div class='itemArtWrap'>";
     itemModalHtml += "<img class='itemArt' src='" + imgUrl + "' alt='item' draggable='false' >";
-    if(entry.numOfAlt>0){
+    if (entry.numOfAlt > 0) {
         itemModalHtml += "<div class='itemArtList'>";
-        for (let i = 0; i < entry.numOfAlt+1 ; i++) {
+        for (let i = 0; i < entry.numOfAlt + 1; i++) {
             itemModalHtml += "<span>◆</span>";
         }
         itemModalHtml += "</div>";
     }
     itemModalHtml += "</div>";
     itemModalHtml += "<div class='itemSummary'>";
-    itemModalHtml += "<div class='langSwitch'>"+"⇆"+"</div>";
+    itemModalHtml += "<div class='langSwitch'>" + "⇆" + "</div>";
     itemModalHtml += "<div class='itemTitle'>";
-    itemModalHtml += "<div class='itemTitle1'>"+entry.giftName+"</div>";
-    itemModalHtml += "<div class='itemTitle2'>"+entry.giftNameAlt+"</div>";
+    itemModalHtml += "<div class='itemTitle1'>" + entry.giftName + "</div>";
+    itemModalHtml += "<div class='itemTitle2'>" + entry.giftNameAlt + "</div>";
     itemModalHtml += "</div>";
     itemModalHtml += "<div class='itemSummary_inner'>" + entry.giftDescription + "</div>";
-    itemModalHtml += "</div>";    
+    itemModalHtml += "</div>";
     itemModalHtml += "</div>";
     itemModalHtml += "</div>";
     $(".modal_content").html(itemModalHtml);
 
     unhideModel();
     setUpTraslateToggle(entry);
-    setUpGiftAltArt(entry);
+    setUpGiftAltArt(entry, $(".itemArt"));
     setupExtraCloseButton(".close");
 
     //===========================//
@@ -393,33 +395,31 @@ function setUpRegularItemPanel(entry, imgUrl){
             } else {
                 newSummary = entry.giftDescription;
                 CURRENT_SUMMARY_LANG = 0;
-            }            
+            }
             $(".itemSummary_inner").html(newSummary);
         });
     }
+
     //=============================//
     //    Handle alt art clicks    //
     //=============================//
-    function setUpGiftAltArt(entry) {
+    function setUpGiftAltArt(entry, element) {
         handleAltArtIndicator();
-        $(".itemArt").click(function () {
-            if(entry["numOfAlt"] != undefined){
-                CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
-                $(".itemArt")
-                    .fadeOut(130, function() {
-                        $(".itemArt").attr('src', getGiftUrl(entry) );
+        element.click(function () {
+            if (entry["numOfAlt"] != undefined) {
+                CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt) ? CURRENT_ALT_INDEX + 1 : 0;
+                element
+                    .fadeOut(130, function () {
+                        element.attr('src', getGiftUrl(entry));
                         handleAltArtIndicator();
                     })
                     .fadeIn(130);
             }
         })
-    }
-    //================================//
-    //    Handle alt art indicator    //
-    //================================//
-    function handleAltArtIndicator(){
-        $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white' );
-        $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(0, 0, 0, 0.4)" );
+        function handleAltArtIndicator() {
+            $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white');
+            $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(0, 0, 0, 0.4)");
+        }
     }
 }
 
@@ -603,9 +603,9 @@ function setUpClickModalEvents(panelName) {
 
 function setupExtraCloseButton(className) {
     $(className).click(function () {
-        if(PREVIEW_IS_EDITED){
+        if (PREVIEW_IS_EDITED) {
             $(".modal2").removeClass("hide");
-        }else{
+        } else {
             closeModals();
         }
     })
@@ -614,9 +614,9 @@ function setupExtraCloseButton(className) {
 function setupCloseModalEvents() {
     //for regular modal close
     $(".modal_bg").click(function () {
-        if(PREVIEW_IS_EDITED){
+        if (PREVIEW_IS_EDITED) {
             $(".modal2").removeClass("hide");
-        }else{
+        } else {
             closeModals();
             CURRENT_ALT_INDEX = 0;
             CURRENT_SUMMARY_LANG = 0;
@@ -633,12 +633,13 @@ function setupCloseModalEvents() {
         $(".modal2").addClass("hide");
         PREVIEW_IS_EDITED = false;
         closeModals();
-        applyDataToForm(NEW_GIFT_NAME,NEW_GIFT_DESC);
+        applyDataToForm(NEW_GIFT_NAME, NEW_GIFT_DESC);
     });
 
 }
 
-function closeModals(){
+function closeModals() {
+    console.log("close");
     $(".modal").addClass("hide");
     $(".modal_content >div").addClass("fadeDown");
     // $(document.body).removeClass("noscroll");
@@ -656,16 +657,16 @@ function setupItemModalHtml() {
     var previewData = setPreviewDataFromForm();
 
     var itemModalHtml = "";
-    itemModalHtml += "<div class='close'>"+"</div>";
+    itemModalHtml += "<div class='close'>" + "</div>";
     itemModalHtml += "<div class='itemPanel'>";
 
     // ====== item art ======
     itemModalHtml += "<div class='itemArtWrap'>";
     itemModalHtml += "<div class='noImage itemArt'>";
-    itemModalHtml += "<div>"+LOCAL_DATA.noImage+"</div>";
+    itemModalHtml += "<div>" + LOCAL_DATA.noImage + "</div>";
     itemModalHtml += "</div>";
     itemModalHtml += "<input class='hiddenSelectButton' type='file' accept='.png' style='display: none;' >";
-    itemModalHtml += "<div class='selectImageButton'>"+ LOCAL_DATA.chooseImage +"</div>";
+    itemModalHtml += "<div class='selectImageButton'>" + LOCAL_DATA.chooseImage + "</div>";
     itemModalHtml += "</div>";
     // ====== item summary ======
     itemModalHtml += "<div class='itemSummary'>";
@@ -690,18 +691,18 @@ function setupItemModalHtml() {
     setupExtraCloseButton(".close");
 }
 
-function setPreviewDataFromForm(){
+function setPreviewDataFromForm() {
     var previewData = {
         giftName: "",
         giftNameAlt: "",
         giftDescription: ""
     };
-    previewData.giftName = $('.3 input').val()? $('.3 input').val(): PLACEHOLDER_GIFT.giftName;
-    previewData.giftDescription = $('.5 textarea').val() ? $('.5 textarea').val(): PLACEHOLDER_GIFT.giftDescription;
+    previewData.giftName = $('.3 input').val() ? $('.3 input').val() : PLACEHOLDER_GIFT.giftName;
+    previewData.giftDescription = $('.5 textarea').val() ? $('.5 textarea').val() : PLACEHOLDER_GIFT.giftDescription;
     return previewData;
 }
 
-function applyDataToForm(giftName,giftDesc){
+function applyDataToForm(giftName, giftDesc) {
     $('.3 input').val(giftName);
     $('.5 textarea').val(giftDesc);
 }
@@ -727,7 +728,7 @@ function setUpPreviwInputs(previewData) {
         });
         input.focus();
         input.blur(function () {
-            if (input.val() !== text){
+            if (input.val() !== text) {
                 NEW_GIFT_NAME = input.val();
                 PREVIEW_IS_EDITED = true;
             }
@@ -745,7 +746,7 @@ function setUpPreviwTextArea(previewData) {
         span.css("display", "none");
 
         $("<textarea></textarea>").insertBefore(span);
-        $("<div class='tip'>"+LOCAL_DATA.editTip+"</div>").insertAfter(span);
+        $("<div class='tip'>" + LOCAL_DATA.editTip + "</div>").insertAfter(span);
         var ta = $(this).siblings("textarea");
 
         ta.val(NEW_GIFT_DESC);
@@ -755,7 +756,7 @@ function setUpPreviwTextArea(previewData) {
         ta.blur(function () {
             if (ta.val() !== "")
                 NEW_GIFT_DESC = ta.val();
-            if (NEW_GIFT_DESC !== previewData.giftDescription){
+            if (NEW_GIFT_DESC !== previewData.giftDescription) {
                 PREVIEW_IS_EDITED = true;
             }
             $(".itemSummary_inner .tip").remove();
@@ -767,19 +768,19 @@ function setUpPreviwTextArea(previewData) {
 }
 
 //REF: https://jsfiddle.net/ugPDx/
-function setUpFakeUpload(){
+function setUpFakeUpload() {
     $('.selectImageButton').click(function () {
         $('.hiddenSelectButton').click();
     });
 
-    $(".hiddenSelectButton").change(function(e) {
+    $(".hiddenSelectButton").change(function (e) {
         for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
             var file = e.originalEvent.srcElement.files[i];
             var img = document.createElement("img");
             var reader = new FileReader();
-            reader.onloadend = function() {
-                 img.src = reader.result;
-                 img.className = "itemArt";
+            reader.onloadend = function () {
+                img.src = reader.result;
+                img.className = "itemArt";
             }
             reader.readAsDataURL(file);
             $(".itemArtWrap img").remove();
@@ -789,17 +790,28 @@ function setUpFakeUpload(){
     });
 }
 
+var SAMPLE_ART_INDEX = [0,0,0];
+
 //========================================//
 //    Settingup Sample Gift Modal HTML    //
 //========================================//
 
 function setupSampleGiftModalHtml(entries) {
     var sampleGiftModalHtml = "";
-    sampleGiftModalHtml += '<div>'+LOCAL_DATA.sampleGiftTitle+'<div class="miniClose">[x]</div></div>';
+    sampleGiftModalHtml += '<div>' + LOCAL_DATA.sampleGiftTitle + '<div class="miniClose">[x]</div></div>';
     sampleGiftModalHtml += '<ul>';
     for (let entry of entries) {
         sampleGiftModalHtml += '<li>';
-        sampleGiftModalHtml += '<img src="' +entry.url+ '" alt="gift">';
+        sampleGiftModalHtml += '<div class="itemArtList">';
+        if (entry.numOfAlt > 0) {
+            sampleGiftModalHtml += "<div class='itemArtList'>";
+            for (let i = 0; i < entry.numOfAlt + 1; i++) {
+                sampleGiftModalHtml += "<span>◆</span><br>";
+            }
+            sampleGiftModalHtml += "</div>";
+        }
+        sampleGiftModalHtml += '</div>';
+        sampleGiftModalHtml += '<img class="sampleItemArt" src="' + entry.url + '" alt="gift">';
         sampleGiftModalHtml += '<div class="sampleContent">';
         sampleGiftModalHtml += '<div class="giftName">';
         sampleGiftModalHtml += entry.giftName;
@@ -813,12 +825,46 @@ function setupSampleGiftModalHtml(entries) {
     sampleGiftModalHtml += '</ul>';
     $(".sampleGiftPanel").html(sampleGiftModalHtml);
 
+    $(".sampleItemArt").each(function (index) {
+        setUpMiniAltArt(entries[index], $(this), index);
+    });
+
     for (var i = 0; i < entries.length; i++) {
         $(".sampleGiftPanel ul li:nth-child(" + (i + 1) + ")")
             .css("transition-delay", i * 0.12 + "s");
     }
-
     setupExtraCloseButton(".miniClose");
+
+    //==================================//
+    //    Handle mini alt art clicks    //
+    //==================================//
+    function setUpMiniAltArt(entry, element, sampleIndex) {
+        handleMiniAltArtIndicator(element, sampleIndex);
+
+        element.click(function () {
+            if (entry["numOfAlt"] != undefined) {
+                SAMPLE_ART_INDEX[sampleIndex] = (SAMPLE_ART_INDEX[sampleIndex] < entry.numOfAlt) ? SAMPLE_ART_INDEX[sampleIndex] + 1 : 0;
+                element
+                    .fadeOut(130, function () {
+                        element.attr('src', getSampleGiftUrl(sampleIndex));
+                        handleMiniAltArtIndicator(element, sampleIndex);
+                    })
+                    .fadeIn(130);
+            }
+        })
+        function handleMiniAltArtIndicator(e, i) {
+            e.siblings(".itemArtList").children().children("span:eq("+SAMPLE_ART_INDEX[i]+")").css('color', 'white');
+            e.siblings(".itemArtList").children().children("span:not(:eq("+SAMPLE_ART_INDEX[i]+"))").css('color', 'rgba(0, 0, 0, 0.4)');
+        }
+        function getSampleGiftUrl(giftIndex, artIndex) {
+            if (artIndex > 0) {
+                return "../assets/form/sample" + (giftIndex+1) + "-" + artIndex + ".png";
+            }
+            return "../assets/form/sample" + (giftIndex+1) + ".png";
+        }
+        
+    }
+
 }
 
 //======================//
