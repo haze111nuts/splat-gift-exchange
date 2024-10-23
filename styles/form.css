@@ -582,6 +582,13 @@ a {
 .modal .modal_bg {
   background-color: rgba(59, 55, 53, 0.425);
 }
+.modal a {
+  color: #be9440;
+  transition: all 0.3s ease-out;
+}
+.modal a:hover {
+  color: rgb(199, 71, 21);
+}
 
 .hide {
   opacity: 0 !important;
@@ -719,14 +726,12 @@ h2 {
   font-size: 0.9em;
   text-align: center;
   line-height: 110%;
-  padding-top: 4px;
   padding: 4px 8px 6px 8px;
   width: 100px;
   background-color: #61741d;
   color: white;
   border-radius: 8px;
-  margin: 0 auto;
-  margin-top: 5px;
+  margin: 4px auto 8px auto;
   transition: all 0.2s ease-in;
   cursor: pointer;
 }
@@ -790,6 +795,12 @@ h2 {
   width: 100%;
   opacity: 0;
 }
+.sampleGiftPanel > ul > li .itemArtList {
+  font-size: 0.8em;
+  position: absolute;
+  left: -10px;
+  top: 25px;
+}
 .sampleGiftPanel > ul > li img {
   width: 150px;
   height: 150px;
@@ -807,13 +818,6 @@ h2 {
   padding-left: 6px;
   padding-top: 2px;
   overflow-y: auto;
-}
-.sampleGiftPanel > ul > li .giftDesc a {
-  color: #be9440;
-  transition: all 0.3s ease-out;
-}
-.sampleGiftPanel > ul > li .giftDesc a:hover {
-  color: rgb(199, 71, 21);
 }
 .sampleGiftPanel > ul > li:nth-child(1) {
   transform: rotate(1deg);

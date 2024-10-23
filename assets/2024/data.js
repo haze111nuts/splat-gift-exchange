@@ -114,7 +114,7 @@ const ENTRIES = [
         giftNameAlt: "Scented Candle",
         giftDescription: "柑橘味的香薰蜡烛，看似平平无奇但点燃后会呈现出一座小城市，无论是从气味还是外观都有着治愈的效果！<br><br>消耗完后还可以根据自己的喜好填入新的蜡液等待凝固便可再次使用。",
         giftDescriptionAlt: "A citrus-scented candle. It may appear ordinary at first, but once lit a small city emerges from the candle. Both the scent and the visual effect can light up your day!<br><br>It can be refilled with liquid wax of your liking, and it will be as good as new once the wax solidifies.",
-      "numOfAlt": 1,
+        numOfAlt: 1,
         artist: "Huko",
         received: 7
     },
@@ -214,7 +214,7 @@ const ENTRIES = [
         giftNameAlt: "Multi-purpose Army Knife",
         giftDescription: "有16種工具的木製手柄多功能軍刀，很適合野外露營時用。<br>內含工具有：可鎖定大刀、可鎖定小刀、開罐器、開瓶器、木塞鑽、螺絲起子﹑剪刀、木鋸、鑷子﹑鉗子、尺、電線剪、多用途鉤子、原子筆、放大鏡。<br>末端附有LED燈，可在使用上述工具時當作照明。<br><br>總之就是方便拿來解決各種生活上的『疑難雜症』的工具。",
         giftDescriptionAlt: "A multi-purpose army knife with wooden handle, there are 16 tools included in the knife, suitable for camping.<br><br>Included tools: large locking blade, small locking blade, can opener, bottle opener, corkscrew, screwdriver, scissors, tweezers, pliers, ruler, wire stripper, multi-purpose hook, ballpoint pen, magnifying glass.<br>There is a LED flashlight as well, giving you more light while using the tool listed above.<br><br>Let's just say it's a tool that's great for solving all kinds of \"issue\" you have in life. ",
-      "numOfAlt": 1,
+        numOfAlt: 1,
         artist: "Hazy",
         received: 6
     },
@@ -278,7 +278,7 @@ const ENTRIES = [
         giftNameAlt: "3 Pieces Handmade Soft Accessories",
         giftDescription: "<ol><li><b>純棉毛絨手套</b>：材質摸上去有點硬邦邦，手套中間的聯結處可以拆下來。雖然考慮到了連結處很累贅，但為了聖誕氛圍又沒摘下來，最後變成了可拆卸的樣子。</li><li><b>針織圍巾</b>：參考了某個儲物櫃玩偶，但是設計做的很不盡人意，所幸保暖程度很好，不過真的會有人帶著麼奇怪的圍脖嗎？</li><li><b>電池鯰魚掛件</b>：也是針織。但是由於丟三落四的老毛病在製作的時候忘記加上掛件使用的扣環，只能用來當擺件</li></ol>每個做的都差點意思，最後只好把它們都塞在一起試圖彌補失誤。",
         giftDescriptionAlt: "<ol><li><b>100% Pure Cotton Mitten</b>:<br>The texture is a bit stiff, the string between the mitten is detachable. The maker thought the string might not be necessary, but they wanted to maintain the holiday vibe, so they made it detachable.</li><li><b>Knitted Scarf</b>:<br>The design is inspired by a certain locker doll. It has a quirky look, but it offers plenty of warmth. Would anyone actually wear this scarf on street though?</li><li><b>Zapfish Accessory</b>:<br>Another knitted item, it was originally intended to be a keychain, but the maker is a bit scatterbrained and they forgot to attach the keyring hook, so it can only serve as a decoration.</li></ol>Each of these item has its own flaw, so the maker bundled them together into one gift, hoping it would make up for the individual imperfections.",
-      "numOfAlt": 1,
+        numOfAlt: 1,
         artist: "ヤキ",
         received: 13
     },
