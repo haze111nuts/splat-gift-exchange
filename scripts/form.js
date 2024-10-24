@@ -91,22 +91,22 @@ var placehoderGift_EN = {
 
 var sampleGifts = [
     {
-        giftName: "神秘招財生物",
+        giftName: "神秘的招財生物",
         giftNameAlt: "Mysterious Lucky Creature",
-        giftDescription: "一個神秘生物的小雕像。只要有一點光，他舉起的那隻掌就會開始不斷擺動，而且還會發出很難解釋的奇怪叫聲。除了招財以外，也許還會招來什麼其他生物也說不定。",
+        giftDescription: "一個神秘生物的小雕像。只要有光，他的一隻手掌就會開始不斷擺動，而且還會發出難以解釋的奇怪叫聲。除了招財以外，也許還會招來什麼其他生物也說不定。",
         url: "../assets/form/sample1.png"
     },
     {
-        giftName: "可疑船員錢包",
-        giftNameAlt: "Suspicious Crewmate Wallet",
-        giftDescription: "一個形狀非常特別的錢包，把像是嘴巴的拉鍊拉開後裡面有尖牙和血盆大口，不知道做這個錢包的廠商是抱著什麼心態去設計的。\n據說把錢放在裡面就會拿不出來…這錢包實在是太可疑了。",
+        giftName: "可疑的零錢包",
+        giftNameAlt: "Suspicious Wallet",
+        giftDescription: "一個形狀非常特別，像太空人一樣的錢包。把錢包的拉鍊拉開後可以看到內有尖牙和血盆大口，真不知道做這個錢包的廠商是抱著什麼心態去設計的。\n據說把錢放在裡面就會拿不出來…真是太可疑了！",
         url: "../assets/form/sample2.png",
         numOfAlt: 1
     },
     {
-        giftName: "奇特海豹平底鍋",
+        giftName: "奇怪的平底鍋",
         giftNameAlt: "Seal Frying Pan",
-        giftDescription: "一個平底鍋，中間有隻倒過來的海豹。中間這個海豹公仔似乎拿不起來的樣子，看來只能就這樣使用了。\n\n這平底鍋似乎有些奇怪的功能：\n- 當這個平底鍋預熱完成時，海豹的眼睛會發出紅光。\n- 甩動這個平底鍋時，海豹似乎會發出一些揪揪叫好的怪聲。\n\n當你把這平底鍋洗好拿去倒扣晾乾時，看起來就像海豹頂著一個巨大的平底鍋。",
+        giftDescription: "一個看似普通的平底鍋，中間有隻倒過來的海豹公仔，也不知道是用來做什麼的，似乎拿不起來的樣子，看來只能直接這樣使用了。\n另外，這平底鍋似乎有些奇怪的功能：\n- 當這個平底鍋預熱完成時，海豹的眼睛會發出紅光。\n- 甩動這個平底鍋時，海豹似乎會發出一些「揪揪！」或是「吃肉！」的怪聲。\n\n當你把這平底鍋洗好拿去倒扣晾乾時，看起來就像海豹頂著一個巨大的平底鍋。",
         url: "../assets/form/sample3.png",
         numOfAlt: 1
     }
