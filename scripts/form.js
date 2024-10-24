@@ -108,7 +108,7 @@ var sampleGifts = [
         giftNameAlt: "Seal Frying Pan",
         giftDescription: "一個平底鍋，中間有隻倒過來的海豹。中間這個莫名的海豹公仔似乎拿不起來的樣子，看來只能就這樣使用了。\n\n這平底鍋似乎有些奇怪的功能：\n- 當這個平底鍋預熱完成時，海豹的眼睛會發出紅光。\n- 甩動這個平底鍋時，海豹似乎會發出一些揪揪叫好的怪聲。\n\n當你把這平底鍋洗好拿去倒扣晾乾時，看起來就像海豹頂著一個巨大的平底鍋。",
         url: "../assets/form/sample3.png",
-        numOfAlt: 2
+        numOfAlt: 1
     }
 ]
 
@@ -846,7 +846,7 @@ function setupSampleGiftModalHtml(entries) {
                 SAMPLE_ART_INDEX[sampleIndex] = (SAMPLE_ART_INDEX[sampleIndex] < entry.numOfAlt) ? SAMPLE_ART_INDEX[sampleIndex] + 1 : 0;
                 element
                     .fadeOut(130, function () {
-                        element.attr('src', getSampleGiftUrl(sampleIndex));
+                        element.attr('src', getSampleGiftUrl(sampleIndex,SAMPLE_ART_INDEX[sampleIndex]));
                         handleMiniAltArtIndicator(element, sampleIndex);
                     })
                     .fadeIn(130);
