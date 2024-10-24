@@ -873,6 +873,7 @@ function setupSampleGiftModalHtml(entries) {
 //======================//
 
 $(document).ready(function () {
+    applyLocalData(htmlLocalData_EN);
     decideLocalization();
     setUpTimer();
     setUpConfirmEvent();
