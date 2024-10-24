@@ -58,13 +58,13 @@ a {
 		top: 0;
 	}
 	.decor_L {
-		background-image: url(../assets/banner_L.png);
+		background-image: url(../../assets/gallery/banner_L.png);
 		// width: 41.2%;
 		width: 791px;
 		left: 0;
 	}
 	.decor_R {
-		background-image: url(../assets/banner_R.png);
+		background-image: url(../../assets/gallery/banner_R.png);
 		// width: 40.8%;
 		width: 783px;
 		right: 0;
@@ -81,7 +81,7 @@ a {
 		left: 50%;
 		position: absolute;
 		transform: translate(-50%, 0);
-		background-image: url(../assets/title.png);
+		background-image: url(../../assets/gallery/title.png);
 		background-position: center center;
 		background-size: 100% auto;
 		background-repeat: no-repeat;
@@ -145,7 +145,7 @@ h4 {
 		cursor: pointer;
 
 		.exchangeBar {
-			background-image: url(../assets/changebar.png);
+			background-image: url(../../assets/gallery/changebar.png);
 			background-repeat: no-repeat;
 			background-position: left center;
 			width: 284px;
@@ -156,7 +156,7 @@ h4 {
 			transform: translate(-50%, -50%);
 		}
 		.exchangeBar_active {
-			background-image: url(../assets/changebar_active.png);
+			background-image: url(../../assets/gallery/changebar_active.png);
 			background-repeat: no-repeat;
 			background-position: left center;
 			width: 0px;
@@ -424,7 +424,7 @@ h4 {
 			left: -30px;
 			width: 450px;
 			height: 370px;
-			background-image: url(../assets/bg-deco1.png);
+			background-image: url(../../assets/gallery/bg-deco1.png);
 			transform: translateY(-270px) scale(0.55);
 			opacity: 0.7;
 		}
@@ -432,7 +432,7 @@ h4 {
 			right: 0px;
 			width: 380px;
 			height: 325px;
-			background-image: url(../assets/bg-deco2.png);
+			background-image: url(../../assets/gallery/bg-deco2.png);
 			transform: translateY(-225px) scale(0.4);
 		}
 	}

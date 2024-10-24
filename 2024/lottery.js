@@ -71,29 +71,23 @@ function fileFormat() {
     return YEAR === "0000" ? ".jpg" : ".png";
 }
 
+function assetBaseUrl(fileName){
+    return "../assets/lottery/" + fileName;
+}
+
 function getOcUrl(oc) {
-    return "assets/" + YEAR + "/profile/" + ENTRIES.indexOf(oc) + fileFormat();
+    return "profile/" + ENTRIES.indexOf(oc) + fileFormat();
 }
 
 function getGiftUrl(gift) {
-
-    //======= for placeholder gift =======
-    if (YEAR != '0000' && dataMasking) { 
-        if(CURRENT_ALT_INDEX > 0 ){
-            return "assets/placeholder-"+ CURRENT_ALT_INDEX + ".png";
-        }
-        return "assets/placeholder.png";
-    }
-    //====================================
-
     if(CURRENT_ALT_INDEX > 0 ){
-        return "assets/" + YEAR + "/item/" + ENTRIES.indexOf(gift) +"-"+ CURRENT_ALT_INDEX + ".png";
+        return "gift/" + ENTRIES.indexOf(gift) +"-"+ CURRENT_ALT_INDEX + ".png";
     }
-    return "assets/" + YEAR + "/item/" + ENTRIES.indexOf(gift) + ".png";
+    return "gift/" + ENTRIES.indexOf(gift) + ".png";
 }
 
 function getHostEmoteUrl(char) {
-    return "assets/lottery/host/" + char + ".png";
+    return assetBaseUrl("host/" + char + ".png");
 }
 
 function getQuoteOfRemainingGiftCountZH(count) {
@@ -156,11 +150,7 @@ function printGrid() {
 }
 
 function displayItemModal(entry) {
-    //======= for placeholder gift =======
-    if (YEAR != '0000' && dataMasking) {
-        entry = placeholderGift;
-    }
-    //====================================
+
     $(".modal").removeClass("hide");
     var itemModalHtml = "";
 
@@ -208,11 +198,6 @@ function setUpGiftAltArt(entry) {
 }
 
 function getGiftLogHtml(currentOC, entry) {
-    //======= for placeholder gift =======
-        if (YEAR != '0000' && dataMasking) {
-            entry = placeholderGift;
-        }
-    //====================================
     var logHtml = "";
     logHtml += "<li>";
     logHtml += "<div class='label'>";
@@ -245,7 +230,6 @@ function setUpRefImageModalClickEvents(entry) {
     })
 }
 
-
 //=================================//
 //    Randomize and Set Card BG    //
 //=================================//
@@ -273,7 +257,7 @@ function setGridBG() {
         bgPattern = bgPatternCookie.split(",");
     }
     for (var i = 0; i < ENTRIES.length; i++) {
-        $(".grid .gridItem:nth-of-type(" + (i + 1) + ") .gift_front").css("background-image", "url(assets/lottery/bg/" + bgPattern[i] + ".png)");
+        $(".grid .gridItem:nth-of-type(" + (i + 1) + ") .gift_front").css("background-image", "url(" + assetBaseUrl("bg/" + bgPattern[i] + ".png)"));
     }
 }
 
@@ -514,23 +498,23 @@ function createAudioElement(volume, src){
 }
 
 function generateKidsCheerAudio(){
-    return createAudioElement(0.25, 'assets/sound/kids_cheer.mp3');
+    return createAudioElement(0.25, assetBaseUrl('sound/kids_cheer.mp3') );
 }
 
 function generatePageFlipAudio(){
-    return createAudioElement(0.25, 'assets/sound/flip_page.mp3');
+    return createAudioElement(0.25, assetBaseUrl('sound/flip_page.mp3') );
 }
 
 function setUpAudios() {
-    AUDIO_ELEMENTS["balloonPop"] = createAudioElement(0.2, 'assets/sound/balloon_pop.mp3');
-    AUDIO_ELEMENTS["itemObtain"] = createAudioElement(0.2, 'assets/sound/item_obtain.mp3');
-    AUDIO_ELEMENTS["paperTear"] = createAudioElement(0.45, 'assets/sound/paper_tear.mp3');
-    AUDIO_ELEMENTS["flipCard"] = createAudioElement(0.2, 'assets/sound/flip_card.mp3');
-    AUDIO_ELEMENTS["flipPage"] = createAudioElement(0.3, 'assets/sound/flip_page.mp3');
-    AUDIO_ELEMENTS["bell"] = createAudioElement(0.6, 'assets/sound/bicycle_bell.mp3');
-    AUDIO_ELEMENTS["blop"] = createAudioElement(0.2, 'assets/sound/blop.mp3');
-    AUDIO_ELEMENTS["click"] = createAudioElement(0.2, 'assets/sound/click.mp3');
-    AUDIO_ELEMENTS["wow"] = createAudioElement(0.2, 'assets/sound/wow.mp3');
+    AUDIO_ELEMENTS["balloonPop"] = createAudioElement(0.2, assetBaseUrl('sound/balloon_pop.mp3') );
+    AUDIO_ELEMENTS["itemObtain"] = createAudioElement(0.2, assetBaseUrl('sound/item_obtain.mp3') );
+    AUDIO_ELEMENTS["paperTear"] = createAudioElement(0.45, assetBaseUrl('sound/paper_tear.mp3') );
+    AUDIO_ELEMENTS["flipCard"] = createAudioElement(0.2, assetBaseUrl('sound/flip_card.mp3') );
+    AUDIO_ELEMENTS["flipPage"] = createAudioElement(0.3, assetBaseUrl('sound/flip_page.mp3') );
+    AUDIO_ELEMENTS["bell"] = createAudioElement(0.6, assetBaseUrl('sound/bicycle_bell.mp3') );
+    AUDIO_ELEMENTS["blop"] = createAudioElement(0.2, assetBaseUrl('sound/blop.mp3') );
+    AUDIO_ELEMENTS["click"] = createAudioElement(0.2, assetBaseUrl('sound/click.mp3') );
+    AUDIO_ELEMENTS["wow"] = createAudioElement(0.2, assetBaseUrl('sound/wow.mp3') );
 }
 
 //===================//
@@ -658,11 +642,11 @@ function setUpCursor(){
 	});
     $(".gift_front").mouseenter(function() {
         cursor.css(
-            "background-image", "url(assets/lottery/cursor/pointer_gift.png)"
+            "background-image", "url(" + assetBaseUrl("cursor/pointer_gift.png") + ")"
         );
     }).mouseleave(function() {
         cursor.css(
-            "background-image", "url(assets/lottery/cursor/pointer.png)"
+            "background-image", "url(" + assetBaseUrl("cursor/pointer.png") + ")"
         );
     });
 }

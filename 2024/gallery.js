@@ -18,15 +18,19 @@ var CURRENT_ALT_INDEX = 0;
 //    URL Getters    //
 //===================//
 
-function getArtUrl(id, group) {
-    return "assets/" + YEAR + "/art_" + group + "/" + id + ".jpg";
+function assetBaseUrl(fileName){
+    return "../assets/gallery/" + fileName;
+}
+
+function getArtUrl(group,id) {
+    return "/art_" + group + "/" + id + ".jpg";
 }
 
 function getGiftUrl(id) {
     if(CURRENT_ALT_INDEX > 0 ){
-        return "assets/" + YEAR + "/item/" + id +"-"+ CURRENT_ALT_INDEX + ".png";
+        return "gift/" + id +"-"+ CURRENT_ALT_INDEX + ".png";
     }
-    return "assets/" + YEAR + "/item/" + id + ".png";
+    return "gift/" + id + ".png";
 }
 
 //=============================//
@@ -44,7 +48,7 @@ function setUpFlipToggle() {
 
             $(".exchangeIcon").css("left", "200px");
             $(".exchangeBar_active").css("width", "284px");
-            $(".exchangeIcon img").attr('src', "assets/changeIcon_open.png" );
+            $(".exchangeIcon img").attr('src', assetBaseUrl("changeIcon_open.png") );
             
         } else {
             //set to sender
@@ -55,7 +59,7 @@ function setUpFlipToggle() {
 
             $(".exchangeIcon").css("left", "-80px");
             $(".exchangeBar_active").css("width", "0px");
-            $(".exchangeIcon img").attr('src', "assets/changeIcon.png" );
+            $(".exchangeIcon img").attr('src', assetBaseUrl("changeIcon.png") );
         }
     });
 }

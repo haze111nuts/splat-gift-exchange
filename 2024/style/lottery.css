@@ -10,7 +10,7 @@ body {
   overflow: hidden;
   background-position: center 40%;
   background-size: auto;
-  background-image: url(../assets/lottery/bg.jpg);
+  background-image: url(../../assets/lottery/bg.jpg);
 }
 
 a {
@@ -660,7 +660,7 @@ a:hover {
 .cursor {
   width: 48px;
   height: 48px;
-  background-image: url(../assets/lottery/cursor/pointer.png);
+  background-image: url(../../assets/lottery/cursor/pointer.png);
   position: fixed;
   pointer-events: none;
   z-index: 999;

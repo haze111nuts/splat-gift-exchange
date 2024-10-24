@@ -17,8 +17,6 @@ var PLACEHOLDER_GIFT = {};
 var CURRENT_ALT_INDEX = 0;
 var CURRENT_SUMMARY_LANG = 0;
 
-var DATA_YEAR = 2024;
-
 //==================//
 //    Time Data     //
 //==================//
@@ -93,21 +91,18 @@ var sampleGifts = [
     {
         giftName: "神秘的招財生物",
         giftNameAlt: "Mysterious Lucky Creature",
-        giftDescription: "一個神秘生物的小雕像。只要有光，他的一隻手掌就會開始不斷擺動，而且還會發出難以解釋的奇怪叫聲。除了招財以外，也許還會招來什麼其他生物也說不定。",
-        url: "../assets/form/sample1.png"
+        giftDescription: "一個神秘生物的小雕像。只要有光，他的一隻手掌就會開始不斷擺動，而且還會發出難以解釋的奇怪叫聲。除了招財以外，也許還會招來什麼其他生物也說不定。"
     },
     {
         giftName: "可疑的零錢包",
         giftNameAlt: "Suspicious Wallet",
         giftDescription: "一個形狀非常特別，像太空人一樣的錢包。把錢包的拉鍊拉開後可以看到內有尖牙和血盆大口，真不知道做這個錢包的廠商是抱著什麼心態去設計的。\n據說把錢放在裡面就會拿不出來…真是太可疑了！",
-        url: "../assets/form/sample2.png",
         numOfAlt: 1
     },
     {
         giftName: "奇怪的平底鍋",
         giftNameAlt: "Seal Frying Pan",
         giftDescription: "一個看似普通的平底鍋，中間有隻倒過來的海豹公仔，也不知道是用來做什麼的，似乎拿不起來的樣子，看來只能直接這樣使用了。\n另外，這平底鍋似乎有些奇怪的功能：\n- 當這個平底鍋預熱完成時，海豹的眼睛會發出紅光。\n- 甩動這個平底鍋時，海豹似乎會發出一些「揪揪！」或是「吃肉！」的怪聲。\n\n當你把這平底鍋洗好拿去倒扣晾乾時，看起來就像海豹頂著一個巨大的平底鍋。",
-        url: "../assets/form/sample3.png",
         numOfAlt: 1
     }
 ]
@@ -159,11 +154,23 @@ function setUpExtraUploadToggle() {
     });
 }
 
+
 function getGiftUrl(gift) {
     if (CURRENT_ALT_INDEX > 0) {
-        return "../assets/" + DATA_YEAR + "/item/" + ENTRIES.indexOf(gift) + "-" + CURRENT_ALT_INDEX + ".png";
+        return "../gift/" + ENTRIES.indexOf(gift) + "-" + CURRENT_ALT_INDEX + ".png";
     }
-    return "../assets/" + DATA_YEAR + "/item/" + ENTRIES.indexOf(gift) + ".png";
+    return "../gift" + ENTRIES.indexOf(gift) + ".png";
+}
+
+function getProfileUrl(ocName) {
+    return "../profile/" + ENTRIES.findIndex(e => e.ocName === ocName) + ".png";
+}
+
+function getSampleGiftUrl(gift, artIndex) {
+    if (artIndex > 0){
+        return "../../assets/form/sample-gift/" + sampleGifts.indexOf(gift) + "-" + artIndex + ".png";
+    }
+    return "../../assets/form/sample-gift/" + sampleGifts.indexOf(gift) + ".png";
 }
 
 //==================================//
@@ -307,7 +314,7 @@ function printProfileAndGiftRecievedByOC(ocName) {
     var OCEntry = ENTRIES.find(e => e.ocName === ocName);
     var receivedGift = ENTRIES[OCEntry.received];
     var receivedGiftPNG = getGiftUrl(receivedGift);
-    var OCprofilePNG = "../assets/" + DATA_YEAR + "/profile/" + ENTRIES.findIndex(e => e.ocName === ocName) + ".png";
+    var OCprofilePNG = getProfileUrl(ocName);
 
     //remove other OC profile pic and insert
     $('.ocIconWrapper').children('img').remove();
@@ -811,7 +818,7 @@ function setupSampleGiftModalHtml(entries) {
             sampleGiftModalHtml += "</div>";
         }
         sampleGiftModalHtml += '</div>';
-        sampleGiftModalHtml += '<img class="sampleItemArt" src="' + entry.url + '" alt="gift">';
+        sampleGiftModalHtml += '<img class="sampleItemArt" src="' + getSampleGiftUrl(entry, 0) + '" alt="gift">';
         sampleGiftModalHtml += '<div class="sampleContent">';
         sampleGiftModalHtml += '<div class="giftName">';
         sampleGiftModalHtml += entry.giftName;
@@ -846,25 +853,17 @@ function setupSampleGiftModalHtml(entries) {
                 SAMPLE_ART_INDEX[sampleIndex] = (SAMPLE_ART_INDEX[sampleIndex] < entry.numOfAlt) ? SAMPLE_ART_INDEX[sampleIndex] + 1 : 0;
                 element
                     .fadeOut(130, function () {
-                        element.attr('src', getSampleGiftUrl(sampleIndex,SAMPLE_ART_INDEX[sampleIndex]));
+                        element.attr('src', getSampleGiftUrl(entry,SAMPLE_ART_INDEX[sampleIndex]));
                         handleMiniAltArtIndicator(element, sampleIndex);
                     })
                     .fadeIn(130);
             }
         })
-        function handleMiniAltArtIndicator(e, i) {
-            e.siblings(".itemArtList").children().children("span:eq("+SAMPLE_ART_INDEX[i]+")").css('color', 'white');
-            e.siblings(".itemArtList").children().children("span:not(:eq("+SAMPLE_ART_INDEX[i]+"))").css('color', 'rgba(0, 0, 0, 0.4)');
-        }
-        function getSampleGiftUrl(giftIndex, artIndex) {
-            if (artIndex > 0) {
-                return "../assets/form/sample" + (giftIndex+1) + "-" + artIndex + ".png";
-            }
-            return "../assets/form/sample" + (giftIndex+1) + ".png";
-        }
-        
     }
-
+    function handleMiniAltArtIndicator(e, i) {
+        e.siblings(".itemArtList").children().children("span:eq("+SAMPLE_ART_INDEX[i]+")").css('color', 'white');
+        e.siblings(".itemArtList").children().children("span:not(:eq("+SAMPLE_ART_INDEX[i]+"))").css('color', 'rgba(0, 0, 0, 0.4)');
+    }
 }
 
 //======================//
