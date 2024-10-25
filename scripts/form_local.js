@@ -6,11 +6,8 @@ var htmlLocalData_CH = {
     phase1_title: "<span>2025</span>冬季神秘禮物投稿表單",
     phase2_title: "<span>2025</span>冬季神秘禮物後續圖表單",
     phase1_summary: "⚠️ 填之前請先跟主持人58確認你有在參加名單中 ⚠️",
-    phase2_summray: [
-        "這是神秘禮物交換會繪圖企劃的第二部份！",
-        "參加者需要根據禮物抽選結果畫自己的OC收到聖誕禮物。"
-    ],
-    navList: ["開場白", "請問怎麼玩", "參加前必讀", "截止日期", "今年參加者"],
+    phase2_summary: "這是神秘禮物交換會繪圖企劃的第二部份！<br>參加者需要根據禮物抽選結果畫自己的OC收到聖誕禮物。",
+    nav_list: ["開場白", "請問怎麼玩", "參加前必讀", "截止日期", "今年參加者"],
     prologue: {
         first_line: "有一天，你的OC突然收到了一封神秘的信。",
         letter: [
@@ -196,11 +193,10 @@ var htmlLocalData_CH = {
 
 var htmlLocalData_EN = {
     phase1_title: "<span>2025 Splatoon Gift Exchange<br>Submission Form</span>",
-    phase2_title: "<span>2025 Splatoon Mystery Gift Unbox Art Submission Form</span>",
-    phase1_summary: "⚠️ This form is only for members who are invited ⚠️",
-    phase2_summray: [
-        "This is the second part of Squidmas Gift Exchange Art Project! You will draw your Splatoon OC with the holiday gift you received during Unboxing Day."
-    ],
+    phase2_title: "<span>2025 Splatoon Gift Exchange<br>Unbox Art Submission Form</span>",
+    phase1_summary: "⚠️ <span>This form is only for members who are invited</span> ⚠️",
+    phase2_summary: "<span>This is the second part of Splatoon Gift Exchange Art Project!<br>You will have to draw your OC with the gift they received during Unboxing Day.</span>"
+    ,
     nav_list: ["Prologue", "Guide", "Read Me", "Deadlines", "Members"],
     prologue: {
         first_line: "有一天，你的OC突然收到了一封神秘的信。",
@@ -388,9 +384,22 @@ var htmlLocalData_EN = {
 
 function applyLocalData(data){
     $(".title.phase1").html(data.phase1_title);
-    $(".title.phase2").html(data.phase1_title1);
+    $(".title.phase2").html(data.phase2_title);
     $(".summary.phase1").html(data.phase1_summary);
-    for (let i = 0 ; i < data.nav_list.length; i++) {
-        $(".nav ul.navlist li:nth-child("+(i+1)+")").text(data.nav_list[i]);
-    }
+    $(".summary.phase2").html(data.phase2_summary);
+    $(".nav ul.navlist li").each((i, el) => $(el).text(data.nav_list[i]));
+    $('.letterDeco').after(data.prologue.first_line+"<br>");
+    $('.letter').html(data.prologue.letter.join("<br>"));
+    $('.letter').after(data.prologue.lines.join("<br>"));
+    $(".guide ul").html(data.guide.map(item => `<li>${item}</li>`).join('<li>↓</li>'));
+    $('.readme ul').html(data.readme.map(item => `<li>${item}</li>`));
+    $('.countdown_label').html(data.countdown.until_1 + "<span></span>" + data.countdown.until_2);
+    $('.days').after(data.countdown.day);
+    $('.hours').after(data.countdown.hour);
+    $('.minutes').after(data.countdown.min);
+    $('.seconds').after(data.countdown.sec);
+    $(".deadlines ul li span:first-child").each((i, el) => $(el).text(data.deadlines[i])).after(" : ");
+
+
+
 }

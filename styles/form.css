@@ -52,11 +52,12 @@ a {
   border: 1px solid #cfca9b;
   padding: 32px;
 }
+.banner .frame span {
+  font-family: Garamond, serif;
+  font-size: 1.15em;
+}
 .banner .title {
   font-size: 2.3em;
-}
-.banner .title span {
-  font-family: Garamond, serif;
 }
 .banner .summary {
   padding-top: 20px;
@@ -150,19 +151,23 @@ a {
 .nav .deadlines ul {
   padding: 0;
   list-style: none;
-  font-size: 1em;
+  font-size: 1.1em;
 }
 .nav .deadlines ul li {
   color: #776256;
   line-height: 100%;
 }
+.nav .deadlines .countdown_label {
+  padding-bottom: 10px;
+}
 .nav .deadlines .countdown {
+  font-family: Garamond, serif, "Noto Sans TC", "Noto Sans SC", sans-serif;
   border-bottom: 1px solid #776256;
-  padding: 8px;
+  padding: 8px 0px 5px 0px;
 }
 .nav .deadlines .countdown > span {
   color: #bda990;
-  font-size: 2.5em;
+  font-size: 3.4em;
   padding: 0px 4px;
 }
 .nav .vips {

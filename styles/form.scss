@@ -70,12 +70,13 @@ a {
     .frame {
         border: 1px solid $TEXT_BANNER;
         padding: 32px;
+        span{
+            font-family: Garamond, serif;
+            font-size: 1.15em;
+        }
     }
     .title {
         font-size: 2.3em;
-        span{
-            font-family: Garamond, serif;
-        }
     }
     .summary {
         padding-top: 20px;
@@ -177,18 +178,22 @@ a {
         ul {
             padding: 0;
             list-style: none;
-            font-size: 1em;
+            font-size: 1.1em;
             li {
                 color: $TEXT_NAV;
                 line-height: 100%;
             }
         }
+        .countdown_label{
+            padding-bottom: 10px;
+        }
         .countdown {
+            font-family: Garamond, serif, "Noto Sans TC", "Noto Sans SC", sans-serif;
             border-bottom: 1px solid $TEXT_NAV;
-            padding: 8px;
+            padding: 8px 0px 5px 0px;
             > span {
                 color: $TEXT_NAV2;
-                font-size: 2.5em;
+                font-size: 3.4em;
                 padding: 0px 4px;
             }
         }

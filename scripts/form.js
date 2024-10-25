@@ -108,8 +108,30 @@ var sampleGifts = [
 ]
 
 //====================//
-//    Misc Events     //
+//    URL GETTERS     //
 //====================//
+
+function getGiftUrl(gift) {
+    if (CURRENT_ALT_INDEX > 0) {
+        return "../gift/" + ENTRIES.indexOf(gift) + "-" + CURRENT_ALT_INDEX + ".png";
+    }
+    return "../gift" + ENTRIES.indexOf(gift) + ".png";
+}
+
+function getProfileUrl(ocName) {
+    return "../profile/" + ENTRIES.findIndex(e => e.ocName === ocName) + ".png";
+}
+
+function getSampleGiftUrl(gift, artIndex) {
+    if (artIndex > 0){
+        return "../../assets/form/sample-gift/" + sampleGifts.indexOf(gift) + "-" + artIndex + ".png";
+    }
+    return "../../assets/form/sample-gift/" + sampleGifts.indexOf(gift) + ".png";
+}
+
+//=========================//
+//    Misc Form Events     //
+//=========================//
 
 function decideLocalization() {
     if ($('head title').text().includes("Gift")) {
@@ -154,25 +176,6 @@ function setUpExtraUploadToggle() {
     });
 }
 
-
-function getGiftUrl(gift) {
-    if (CURRENT_ALT_INDEX > 0) {
-        return "../gift/" + ENTRIES.indexOf(gift) + "-" + CURRENT_ALT_INDEX + ".png";
-    }
-    return "../gift" + ENTRIES.indexOf(gift) + ".png";
-}
-
-function getProfileUrl(ocName) {
-    return "../profile/" + ENTRIES.findIndex(e => e.ocName === ocName) + ".png";
-}
-
-function getSampleGiftUrl(gift, artIndex) {
-    if (artIndex > 0){
-        return "../../assets/form/sample-gift/" + sampleGifts.indexOf(gift) + "-" + artIndex + ".png";
-    }
-    return "../../assets/form/sample-gift/" + sampleGifts.indexOf(gift) + ".png";
-}
-
 //==================================//
 //    Settingup Timer/CountDown     //
 //==================================//
@@ -186,13 +189,14 @@ function checkPhase() {
         }
         CURRENT_PHASE++;
     }
-    // CURRENT_PHASE = 3;
+    //CURRENT_PHASE = 3;
 }
 
 function setUpTimer() {
     checkPhase();
     swapToSecondForm();
-
+    applyLocalData(htmlLocalData_EN);
+    
     // $(".giftDeadlineShort").text(new Date(phases[0]).toLocaleString("zh").split(" ")[0]);
     $(".giftDeadline").text(new Date(phases[0]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
     $(".unboxingDay").text(new Date(phases[1]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
@@ -264,11 +268,8 @@ function swapToSecondForm() {
 
 //setup artist drop-down
 function setUpArtistSelect() {
-    var artistListHtml = "";
-    for (var artistName in ARTISTS) {
-        artistListHtml += "<option value='" + artistName + "'>" + artistName + "</option>";
-    }
-    $('#artist_select option').after(artistListHtml)
+    const artistListHtml = Object.keys(ARTISTS).map(artistName => `<option value='${artistName}'>${artistName}</option>`).join('');
+    $('#artist_select option').after(artistListHtml);
 
     //upon selecting an artist
     $("#artist_select").on("change", function () {
@@ -373,7 +374,7 @@ function setUpRegularItemPanel(entry, imgUrl) {
     $(".modal_content").html(itemModalHtml);
 
     unhideModel();
-    setUpTraslateToggle(entry);
+    setUpItemTraslateToggle(entry);
     setUpGiftAltArt(entry, $(".itemArt"));
     setupExtraCloseButton(".close");
 
@@ -386,11 +387,10 @@ function setUpRegularItemPanel(entry, imgUrl) {
         $('body').css('overflow', 'hidden');
     }
 
-    //=============================//
-    //    Handle traslate Event    //
-    //=============================//
-    function setUpTraslateToggle(entry) {
-
+    //==================================//
+    //    Handle Item traslate Event    //
+    //==================================//
+    function setUpItemTraslateToggle(entry) {
         var newSummary;
         if (entry.giftDescriptionAlt.length == 0) {
             $(".langSwitch").css("display", "none");
@@ -873,7 +873,6 @@ function setupSampleGiftModalHtml(entries) {
 //======================//
 
 $(document).ready(function () {
-    applyLocalData(htmlLocalData_EN);
     decideLocalization();
     setUpTimer();
     setUpConfirmEvent();
