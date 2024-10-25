@@ -90,19 +90,12 @@
         <div class="vips hiddenContent">
           <div class="memberWrap">
             <div>
-              <div class="memberType"><span>確定參加</span></div>
-              <ul>
-                <!-- <li>Hazy</li>
-                <li>22</li>
-                <li>PAI</li> -->
-              </ul>
+              <div class="memberType"><span></span></div>
+              <ul></ul>
             </div>
             <div>
-              <div class="memberType"><span>觀望中</span></div>
-              <ul>
-                <!-- <li>XXX</li>
-                <li>OOO</li> -->
-              </ul>
+              <div class="memberType"><span></span></div>
+              <ul></ul>
             </div>
           </div>
         </div>
@@ -114,20 +107,14 @@
       <div class="main">
         <fieldset>
           <div class="question 1">
-            <label class="label">欲參加的海產OC名字</label>
-            <div class="desc">
-              抽獎實況時主持人會使用這個名字來稱呼你的角色，<br>
-              這個欄位只能放一個角色！如果還想讓複數個OC參加，請另外再寫一次表單。
-            </div>
-            <input type="text" name="OCname" placeholder="OC名字">
+            <label class="label"></label>
+            <div class="desc"></div>
+            <input type="text" name="OCname">
           </div>
 
           <div class="question 2 ocprofile-uploader-wrapper">
-            <label class="label">請提供這個OC的頭像</label>
-            <div class="desc">
-              請提供一張正方形PNG檔，此圖會以100px*100px形式呈現在抽獎版面上。<br>
-              只是辨認角色用，建議拿現有作品或圖片直接擷取頭部即可！有畫出脖子肩膀為佳。
-            </div>
+            <label class="label"></label>
+            <div class="desc"></div>
             <uc-file-uploader-regular ctx-name="ocprofile-uploader"
               class="uc-light uc-orange"></uc-file-uploader-regular>
             <div class="uploadResult"></div>
@@ -135,33 +122,22 @@
           </div>
 
           <div class="question 3">
-            <label class="label">這個OC準備的禮物是？</label>
-            <div class="desc">
-              請先確認禮物符合【<span for="giftRulePanel">禮物規範</span>】不然58會來敲你的門！！不知要準備什麼的話可以跟主持人商量。<br>
-              中文字符請盡量不要超過16字，不然排版會跑位！
-            </div>
-            <input type="text" name="gift" placeholder="手工圍巾etc">
+            <label class="label"></label>
+            <div class="desc"></div>
+            <input type="text" name="gift">
           </div>
 
           <div class="question 4 gift-uploader-wrapper">
-            <label class="label">請繪製此禮物的內容物圖示</label>
-            <div class="desc">
-              這是抽獎和展示用的圖示，規格是400px*400px且背景透明的PNG檔案。請盡量畫出物品的完整樣貌，不要包裝紙！類似遊戲中常出現的道具圖示，可以【<span
-                for="sampleGiftPanel">點這裡看範本</span>】也可以【<span for="previewItemPanel">使用預覽小幫手</span>】<br>
-              另外，此圖風格不限，如果不想被別人透過畫風猜到自己是誰，建議可以用Splatoon官方風格的色塊作畫。
-            </div>
+            <label class="label"></label>
+            <div class="desc"></div>
             <uc-file-uploader-regular ctx-name="gift-uploader" class="uc-light uc-orange"></uc-file-uploader-regular>
             <div class="uploadResult"></div>
             <input class="dummy" name="gift_url" type="text" autocomplete="off">
 
             <div class="extraWrapper">
-              <span class="extraLink no-select">
-                >> 想上傳更多圖示或是大張詳細設計圖請按這裡
-              </span>
+              <span class="extraLink no-select"></span>
               <div class="extraUploader hiddenContent">
-                <div class="desc">
-                  可以從這邊上傳更多張400px*400px的禮物圖示，藉此展示此物件不同的狀態或角度（例如說玩偶的側面版或背面版、電燈打開前後的樣子等等甚至是附加的物品小卡都可以）也可以上傳自由規格的物品設計大圖喔！
-                </div>
+                <div class="desc"></div>
                 <uc-file-uploader-regular ctx-name="gift-ex-uploader"
                   class="uc-light uc-orange"></uc-file-uploader-regular>
                 <div class="multiUploadResult"></div>
@@ -171,71 +147,56 @@
           </div>
 
           <div class="question 5">
-            <label class="label">請提供禮物的文字介紹</label>
-            <div class="desc">
-              可以寫禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。另外因為這是匿名禮物，能的話請盡量不要包含你OC的名字。如果不確定怎麼寫，隨時歡迎私訊主持人叫他幫你想！也歡迎【<span
-                for="sampleGiftPanel">點這裡看範本</span>】或是【<span for="previewItemPanel">使用預覽小幫手</span>】
-            </div>
-            <textarea rows="5" cols="50" name="gift_summary" placeholder="用高級毛線織成的圍巾，光是看著就覺得暖。"></textarea>
+            <label class="label"></label>
+            <div class="desc"></div>
+            <textarea rows="5" cols="50" name="gift_summary"></textarea>
           </div>
 
           <div class="question 6 art-uploader-wrapper">
-            <label class="label">請繪製這個OC準備這份禮物的插圖</label>
-            <div class="desc">
-              圖片規格是1080px*1080px，
-              PNG檔案，最多10MB。在聖誕節當日才公開。繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出你報名的這位OC以及他欲送出的禮物物品即可！圖中的海產OC主角請以人型態為主，配角則不限。最低完成度可以參考【<a
-                href="https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art" target="_blank">二代官方的祭典插圖</a>】
-            </div>
+            <label class="label"></label>
+            <div class="desc"></div>
             <uc-file-uploader-regular ctx-name="art-uploader" class="uc-light uc-orange"></uc-file-uploader-regular>
             <div class="uploadResult"></div>
             <input class="dummy" name="art_url" type="text" autocomplete="off">
           </div>
 
           <div class="question 7">
-            <label class="label">投稿人名字</label>
-            <div class="desc">
-              在成品展示的網頁上會放這個名字。
-            </div>
-            <input type="text" name="artist" placeholder="58">
+            <label class="label"></label>
+            <div class="desc"></div>
+            <input type="text" name="artist">
           </div>
 
           <div class="question 8">
-            <label class="label">聯絡方式</label>
-            <div class="desc">
-              如果有需要討論的事項，主持人會用這個方式聯絡你。
-            </div>
-            <input type="text" name="contact" placeholder="58@woopa.com">
+            <label class="label"></label>
+            <div class="desc"></div>
+            <input type="text" name="contact">
           </div>
 
           <div class="question 9">
-            <label class="label">個人連結</label>
-            <div class="desc">
-              展示時會在作品旁附上的連結，可以填個人網站或SNS帳號，也可以不填。
-            </div>
-            <input type="text" name="link" placeholder="twitter@5858">
+            <label class="label"></label>
+            <div class="desc"></div>
+            <input type="text" name="link">
           </div>
 
           <div class="question 10">
-            <label class="label">你想要自己OC抽到自家人禮物的可能性嗎？</label>
-            <div class="desc">
-              這個選擇將會影響到你的角色能夠抽到的禮物。如果想要更改答案可以聯絡主持人58。另外為了保證抽獎機可以正常運作，如果你的角色數量多到一定的程度，主持人會私下找你調整這個選項。
-            </div>
+            <label class="label"></label>
+            <div class="desc"></div>
             <div class="selfTrade_options">
               <label>
                 <input type="radio" name="self_trade" value="false">
-                <span>否，我不想要我家角色抽到我家其他角色的禮物</span>
+                <span></span>
               </label>
               <label>
                 <input type="radio" name="self_trade" value="true">
-                <span>是，我可以接受我家角色抽到我家其他角色的禮物</span>
+                <span></span>
               </label>
               <label>
                 <input type="radio" checked="" name="self_trade" value="singleOC">
-                <span>我只打算投稿一隻OC</span>
+                <span></span>
               </label>
               <label>
                 <input type="radio" name="self_trade" value="tbd">
-                <span>目前不確定要投稿幾隻</span>
+                <span></span>
               </label>
             </div>
           </div>
@@ -243,16 +204,11 @@
 
         <!-- SUBMIT AREA -->
         <div class="submit_area">
-          <div class="warning">
-            ⚠️⚠️ 請注意 ⚠️⚠️<br>
-            投稿就代表你保證在開獎後一定會畫自家OC收禮物<br>
-            要是因為任何原因交不出來，對那個準備禮物的人來說會非常尷尬！<br>
-            如果發生的話主持人可能會把你從本活動中黑單！
-          </div>
+          <div class="warning"></div>
           <div class="confirm">
-            <input id="confirm" type="checkbox" autocomplete="off"><label for="confirm" class="no-select">我懂了！</label>
+            <input id="confirm" type="checkbox" autocomplete="off"><label for="confirm" class="no-select"></label>
           </div>
-          <button class="submit" type="submit" disabled>投稿禮物 >></button>
+          <button class="submit" type="submit" disabled></button>
         </div>
       </div>
     </form>
@@ -261,39 +217,31 @@
       <div class="main">
         <fieldset>
           <div class="question 1">
-            <label class="label">投稿人名字</label>
-            <div class="desc">
-              主持人確認內容用。
-            </div>
+            <label class="label"></label>
+            <div class="desc"></div>
             <div class="dropdown">
               <select id="artist_select" name="artist_select"  >
-                <option value="">請從下面選一個名字</option>
+                <option value=""></option>
               </select>
             </div>
           </div>
 
           <div class="ocIconWrapper">
             <div class="question 2">
-              <label class="label">這份投稿是給哪位OC的？</label>
-              <div class="desc">
-                主持人確認內容用。
-              </div>
+              <label class="label"></label>
+              <div class="desc"></div>
               <div class="dropdown">
                 <select id="oc_select" name="oc_select" disabled>
-                  <option value="">請從下面選一個OC</option>
+                  <option value=""></option>
                 </select>
               </div>
             </div>
           </div>
-          <div class="question giftInfo">
-          </div>
+          <div class="question giftInfo"></div>
 
           <div class="question 3 final-art-uploader-wrapper">
-            <label class="label">請繪製這個OC和抽到的禮物的插圖</label>
-            <div class="desc">
-              圖片規格是1080px*1080px，PNG檔案，最多10MB。會在聖誕節那天公開在展示網頁上。繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出這位OC以及他收到的禮物物品即可！可以單純是OC將物品拿在手上的構圖、也可以是OC使用禮物的過程、或是OC收到該禮物的反應等，請隨意發揮。圖中的海產OC主角請以人型為主，配角則不限。禮物物品盡量不要被包裝遮到為佳！最低完成度可以參考【<a
-                href="https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art" target="_blank">二代官方的祭典插圖</a>】
-            </div>
+            <label class="label"></label>
+            <div class="desc"></div>
             <uc-file-uploader-regular ctx-name="final-art-uploader"
               class="uc-light uc-orange"></uc-file-uploader-regular>
             <div class="uploadResult"></div>
@@ -302,14 +250,13 @@
         </fieldset>
 
         <div class="submit_area">
-          <button class="submit" type="submit">送出 >></button>
+          <button class="submit" type="submit"></button>
         </div>
       </div>
 
     </form>
 
-    <div class="tip">***此表單為手工製作，請多注意BUG並隨時諮詢58確認投稿狀況***</div>
-
+    <div class="tip"></div>
   </div>
   <!-- MODAL1 -->
   <div class="modal hide">
@@ -317,18 +264,10 @@
     <div class="modal_content">
       <div class="giftRulePanel fadeDown">
         <div class="giftRules">
-          <h2>禮物規範</h2>
+          <h2></h2>
           <ul>
-            <li>Splatoon世界中的哺乳類生物已滅絕，所以禮物內請勿包含哺乳類肉製品或相關的食品（請以雞肉或魚蝦貝類代替哺乳動物的肉類）</li>
-            <li>Splatoon世界存在奶製品﹐所以包含奶製品的食品OK。</li>
-            <li>Splatoon世界具有哺乳類生物的基本知識﹐所以哺乳類動物造型的物品OK。</li>
-            <li>請勿準備像是魔法物品這類不合乎普遍常理的東西！</li>
-            <li>請勿準備效果會讓人困擾的藥物！若藥物造成的效果無傷大雅（如改變墨色）的話就OK，建議跟主持人討論後再作畫。</li>
           </ul>
-          <div class="notice">
-            <div>※請大家切記這個神秘禮物在之後會被別人的角色抽到，並且會被別人拿去作畫，所以能盡量配合基本的Splatoon世界觀為佳！</div>
-            <div>※為了維持禮物正當性﹐主持人會私下先過目禮物﹐可能會以上述之外的標準來進行審核。是禮物不符合標準的話﹐主持人會私下和你協調＆一起想折衷方案。禮物內容規範可能隨時更新，請隨時關注這個頁面！</div>
-          </div>
+          <div class="notice"></div>
         </div>
       </div>
       <div class="previewItemPanel fadeDown">

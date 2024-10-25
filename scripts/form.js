@@ -189,15 +189,14 @@ function checkPhase() {
         }
         CURRENT_PHASE++;
     }
-    //CURRENT_PHASE = 3;
+    CURRENT_PHASE = 3;
 }
 
 function setUpTimer() {
     checkPhase();
     swapToSecondForm();
     applyLocalData(htmlLocalData_EN);
-    
-    // $(".giftDeadlineShort").text(new Date(phases[0]).toLocaleString("zh").split(" ")[0]);
+
     $(".giftDeadline").text(new Date(phases[0]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
     $(".unboxingDay").text(new Date(phases[1]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
     $(".receiveArtDeadline").text(new Date(phases[2]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));

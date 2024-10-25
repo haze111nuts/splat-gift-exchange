@@ -24,7 +24,6 @@ var htmlLocalData_CH = {
             "你的OC到底要不要照著信上的說的做呢？",
             ""
         ]
-
     },
     guide: [
         "OC家長向主持人或工作人員報告你要參加，並確認自己被列入參加名單中",
@@ -167,7 +166,7 @@ var htmlLocalData_CH = {
         discard: "丟棄",
         apply: "套用"
     },
-    form2:{
+    form2: {
         question1: {
             label: "投稿人名字",
             desc: [
@@ -186,8 +185,8 @@ var htmlLocalData_CH = {
             desc: [
                 "圖片規格是1080px*1080px，PNG檔案，最多10MB。會在聖誕節那天公開在展示網頁上。繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出這位OC以及他收到的禮物物品即可！可以單純是OC將物品拿在手上的構圖、也可以是OC使用禮物的過程、或是OC收到該禮物的反應等，請隨意發揮。圖中的海產OC主角請以人型為主，配角則不限。禮物物品盡量不要被包裝遮到為佳！最低完成度可以參考【<a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>二代官方的祭典插圖</a>】"
             ],
-        },    
-        submit: "送出"    
+        },
+        submit: "送出"
     }
 }
 
@@ -247,7 +246,7 @@ var htmlLocalData_EN = {
     member_unconfirmed: "觀望中",
     gift_guide: {
         title: "禮物規範",
-        guide: [
+        items: [
             "Splatoon世界中的哺乳類生物已滅絕，所以禮物內請勿包含哺乳類肉製品或相關的食品（請以雞肉或魚蝦貝類代替哺乳動物的肉類）",
             "Splatoon世界存在奶製品﹐所以包含奶製品的食品OK。",
             "Splatoon世界具有哺乳類生物的基本知識﹐所以哺乳類動物造型的物品OK。",
@@ -293,7 +292,7 @@ var htmlLocalData_EN = {
             ],
         },
         question4_ex: {
-            link: ">> 想上傳更多圖示或是大張詳細設計圖請按這裡",
+            link: "想上傳更多圖示或是大張詳細設計圖請按這裡",
             desc: "可以從這邊上傳更多張400px*400px的禮物圖示，藉此展示此物件不同的狀態或角度（例如說玩偶的側面版或背面版、電燈打開前後的樣子等等甚至是附加的物品小卡都可以）也可以上傳自由規格的物品設計大圖喔！"
         },
         question5: {
@@ -357,7 +356,7 @@ var htmlLocalData_EN = {
         discard: "丟棄",
         apply: "套用"
     },
-    form2:{
+    form2: {
         question1: {
             label: "投稿人名字",
             desc: [
@@ -368,27 +367,28 @@ var htmlLocalData_EN = {
         question2: {
             label: "這份投稿是給哪位OC的？",
             desc: [
-                "請從下面選一個OC"
+                "主持人確認內容用。"
             ],
+            placeholder: "請從下面選一個OC"
         },
         question3: {
             label: "請繪製這個OC和抽到的禮物的插圖",
             desc: [
                 "圖片規格是1080px*1080px，PNG檔案，最多10MB。會在聖誕節那天公開在展示網頁上。繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出這位OC以及他收到的禮物物品即可！可以單純是OC將物品拿在手上的構圖、也可以是OC使用禮物的過程、或是OC收到該禮物的反應等，請隨意發揮。圖中的海產OC主角請以人型為主，配角則不限。禮物物品盡量不要被包裝遮到為佳！最低完成度可以參考【<a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>二代官方的祭典插圖</a>】"
             ],
-        },    
-        submit: "送出"    
+        },
+        submit: "送出"
     }
 }
 
 
-function applyLocalData(data){
-    $(".title.phase1").html(data.phase1_title);
-    $(".title.phase2").html(data.phase2_title);
-    $(".summary.phase1").html(data.phase1_summary);
-    $(".summary.phase2").html(data.phase2_summary);
+function applyLocalData(data) {
+    //form
+    applyLocalDataForGiftForm(data);
+    applyLocalDataForExchangeForm(data);
+    //nav
     $(".nav ul.navlist li").each((i, el) => $(el).text(data.nav_list[i]));
-    $('.letterDeco').after(data.prologue.first_line+"<br>");
+    $('.letterDeco').after(data.prologue.first_line + "<br>");
     $('.letter').html(data.prologue.letter.join("<br>"));
     $('.letter').after(data.prologue.lines.join("<br>"));
     $(".guide ul").html(data.guide.map(item => `<li>${item}</li>`).join('<li>↓</li>'));
@@ -399,7 +399,71 @@ function applyLocalData(data){
     $('.minutes').after(data.countdown.min);
     $('.seconds').after(data.countdown.sec);
     $(".deadlines ul li span:first-child").each((i, el) => $(el).text(data.deadlines[i])).after(" : ");
+    $(".memberWrap div:nth-child(1) .memberType span").text(data.member_confirmed);
+    $(".memberWrap div:nth-child(2) .memberType span").text(data.member_unconfirmed);
+    //end of form
+    $(".wrapper .tip").text(data.form2.form_tip);
+    //modal - gift rules
+    $(".giftRules h2").text(data.gift_guide.title);
+    $(".giftRules ul").html(data.gift_guide.items.map(item => `<li>${item}</li>`));
+    $('.giftRules .notice').html(data.gift_guide.notice.map(item => `<div>${item}</div>`));
+}
 
+function applyLocalDataForGiftForm(data){
+    //banner
+    $(".title.phase1").html(data.phase1_title);
+    $(".summary.phase1").html(data.phase1_summary);
+    //form1
+    $('#giftForm .question.1 label').text(data.form1.question1.label);
+    $('#giftForm .question.1 .desc').html(data.form1.question1.desc.join("<br>"));
+    $('#giftForm .question.1 input').attr("placeholder", data.form1.question1.placeholder);
+    $('#giftForm .question.2 label').text(data.form1.question2.label);
+    $('#giftForm .question.2 .desc').html(data.form1.question2.desc.join("<br>"));
+    $('#giftForm .question.3 label').text(data.form1.question3.label);
+    $('#giftForm .question.3 .desc').html(data.form1.question3.desc.join("<br>"));
+    $('#giftForm .question.3 input').attr("placeholder", data.form1.question3.placeholder);
+    $('#giftForm .question.4 label').text(data.form1.question4.label);
+    $('#giftForm .question.4 .desc').html(data.form1.question4.desc.join("<br>"));
+    $('#giftForm .question.4 .extraLink').text(">> "+data.form1.question4_ex.link);
+    $('#giftForm .question.4 .extraUploader .desc').text(data.form1.question4_ex.desc);
+    $('#giftForm .question.5 label').text(data.form1.question5.label);
+    $('#giftForm .question.5 .desc').html(data.form1.question5.desc.join("<br>"));
+    $('#giftForm .question.5 input').attr("placeholder", data.form1.question5.placeholder);
+    $('#giftForm .question.6 label').text(data.form1.question6.label);
+    $('#giftForm .question.6 .desc').html(data.form1.question6.desc.join("<br>"));
+    $('#giftForm .question.7 label').text(data.form1.question7.label);
+    $('#giftForm .question.7 .desc').html(data.form1.question7.desc.join("<br>"));
+    $('#giftForm .question.7 input').attr("placeholder", data.form1.question7.placeholder);
+    $('#giftForm .question.8 label').text(data.form1.question8.label);
+    $('#giftForm .question.8 .desc').html(data.form1.question8.desc.join("<br>"));
+    $('#giftForm .question.8 input').attr("placeholder", data.form1.question8.placeholder);    
+    $('#giftForm .question.9 label').text(data.form1.question9.label);
+    $('#giftForm .question.9 .desc').html(data.form1.question9.desc.join("<br>"));
+    $('#giftForm .question.9 input').attr("placeholder", data.form1.question9.placeholder);    
+    $('#giftForm .question.10 .label').text(data.form1.question10.label);
+    $('#giftForm .question.10 .desc').html(data.form1.question10.desc.join("<br>"));
+    $('.selfTrade_options label span').each((i, el) => $(el).text(data.form1.question10.options[i]));
+    $('#giftForm .question.4 .desc span[for="sampleGiftPanel"],'
+        +'.question.5 .desc span[for="sampleGiftPanel"]').text(data.openSamplePanel);
+    $('#giftForm .question.4 .desc span[for="previewItemPanel"],'
+        +'.question.5 .desc span[for="previewItemPanel"]').text(data.openPreviewHelper);
+    $('#giftForm .warning').html(data.form1.warning.join("<br>"));
+    $('#giftForm .confirm label').text(data.form1.i_understand);
+    $('#giftForm .submit').text(data.form1.submit + " >>");
+}
 
-
+function applyLocalDataForExchangeForm(data){
+    //banner
+    $(".title.phase2").html(data.phase2_title);
+    $(".summary.phase2").html(data.phase2_summary);
+    //form2
+    $('#exchangeForm .question.1 label').text(data.form2.question1.label);
+    $('#exchangeForm .question.1 .desc').html(data.form2.question1.desc.join("<br>"));
+    $('#exchangeForm .question.1 .dropdown select option:nth-child(1)').text(data.form2.question1.placeholder);
+    $('#exchangeForm .question.2 label').text(data.form2.question2.label);
+    $('#exchangeForm .question.2 .desc').html(data.form2.question2.desc.join("<br>"));
+    $('#exchangeForm .question.2 .dropdown select option:nth-child(1)').text(data.form2.question2.placeholder);
+    $('#exchangeForm .question.3 label').text(data.form2.question3.label);
+    $('#exchangeForm .question.3 .desc').html(data.form2.question3.desc.join("<br>"));
+    $('#exchangeForm .submit').text(data.form2.submit + " >>");
 }
