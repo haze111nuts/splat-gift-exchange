@@ -11,11 +11,23 @@ var EX_IMG_URLS = []
 
 var PREVIEW_IS_EDITED = false;
 var IS_ENG_FORM = false;
-var LOCAL_DATA = {};
+var SCRIPT_LOCAL_DATA = {};
 var PLACEHOLDER_GIFT = {};
 
 var CURRENT_ALT_INDEX = 0;
 var CURRENT_SUMMARY_LANG = 0;
+
+
+//=================//
+//    CONSTANT     //
+//=================//
+
+var LOCAL_DATA = htmlLocalData_EN;
+
+var OVERWRITE = {
+    switch: true,
+    phase: 1
+}
 
 //==================//
 //    Time Data     //
@@ -137,7 +149,7 @@ function decideLocalization() {
     if ($('head title').text().includes("Gift")) {
         IS_ENG_FORM = true;
     }
-    LOCAL_DATA = IS_ENG_FORM ? localData_EN : localData_CH;
+    SCRIPT_LOCAL_DATA = IS_ENG_FORM ? localData_EN : localData_CH;
     PLACEHOLDER_GIFT = IS_ENG_FORM ? placehoderGift_EN : placehoderGift_CH;
 }
 
@@ -189,13 +201,15 @@ function checkPhase() {
         }
         CURRENT_PHASE++;
     }
-    CURRENT_PHASE = 3;
+    if(OVERWRITE.switch){
+        CURRENT_PHASE = OVERWRITE.phase;
+    }
 }
 
 function setUpTimer() {
     checkPhase();
     swapToSecondForm();
-    applyLocalData(htmlLocalData_EN);
+    applyLocalData(LOCAL_DATA);
 
     $(".giftDeadline").text(new Date(phases[0]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
     $(".unboxingDay").text(new Date(phases[1]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
@@ -322,7 +336,7 @@ function printProfileAndGiftRecievedByOC(ocName) {
 
     //remove other gift pic and insert
     $('.giftInfo').children('img').remove();
-    $('.giftInfo').html("<div class='giftTip'>" + LOCAL_DATA.yourGiftIs + " " + receivedGift.giftName + "</div>")
+    $('.giftInfo').html("<div class='giftTip'>" + SCRIPT_LOCAL_DATA.yourGiftIs + " " + receivedGift.giftName + "</div>")
     $('.giftTip').after("<img class='recievedGift' src='" + receivedGiftPNG + "' alt='recieved gift'>");
 
     $('.recievedGift').click(function () {
@@ -470,14 +484,14 @@ function validateGiftForm() {
             art_url: "required"
         },
         messages: {
-            OCname: LOCAL_DATA.inputError,
-            gift: LOCAL_DATA.inputError,
-            gift_summary: LOCAL_DATA.inputError,
-            artist: LOCAL_DATA.inputError,
-            contact: LOCAL_DATA.inputError,
-            ocprofile_url: LOCAL_DATA.imageError,
-            gift_url: LOCAL_DATA.imageError,
-            art_url: LOCAL_DATA.imageError
+            OCname: SCRIPT_LOCAL_DATA.inputError,
+            gift: SCRIPT_LOCAL_DATA.inputError,
+            gift_summary: SCRIPT_LOCAL_DATA.inputError,
+            artist: SCRIPT_LOCAL_DATA.inputError,
+            contact: SCRIPT_LOCAL_DATA.inputError,
+            ocprofile_url: SCRIPT_LOCAL_DATA.imageError,
+            gift_url: SCRIPT_LOCAL_DATA.imageError,
+            art_url: SCRIPT_LOCAL_DATA.imageError
         },
         // submitHandler: function (form) {
         //     alert("valid form submitted")
@@ -508,9 +522,9 @@ function validateExchangeForm() {
             final_art_url: "required"
         },
         messages: {
-            artist_select: LOCAL_DATA.selectError,
-            oc_select: LOCAL_DATA.selectError,
-            final_art_url: LOCAL_DATA.imageError
+            artist_select: SCRIPT_LOCAL_DATA.selectError,
+            oc_select: SCRIPT_LOCAL_DATA.selectError,
+            final_art_url: SCRIPT_LOCAL_DATA.imageError
         },
         // submitHandler: function (form) {
         //     alert("valid form submitted")
@@ -535,7 +549,7 @@ function displayImageUploadSuccessMsg(e, parentDiv) {
 
     //set success message
     var succHtml =
-        LOCAL_DATA.uploadSuccess + '<img src="' + e.detail.cdnUrl + '">';
+        SCRIPT_LOCAL_DATA.uploadSuccess + '<img src="' + e.detail.cdnUrl + '">';
     $('.' + parentDiv + ' .uploadResult').html(succHtml);
 
     //fill the hidden text input
@@ -551,7 +565,7 @@ function displayMultiImageUploadSuccessMsg(e) {
     NUM_OF_EX_IMG++;
     EX_IMG_URLS.push(e.detail.cdnUrl);
     var urlsToSend = "";
-    var succHtml = LOCAL_DATA.mutiUploadSuccess[0] + NUM_OF_EX_IMG + LOCAL_DATA.mutiUploadSuccess[1];
+    var succHtml = SCRIPT_LOCAL_DATA.mutiUploadSuccess[0] + NUM_OF_EX_IMG + SCRIPT_LOCAL_DATA.mutiUploadSuccess[1];
     for (let url of EX_IMG_URLS) {
         succHtml += '<img src="' + url + '">';
         urlsToSend += url + ", ";
@@ -669,10 +683,10 @@ function setupItemModalHtml() {
     // ====== item art ======
     itemModalHtml += "<div class='itemArtWrap'>";
     itemModalHtml += "<div class='noImage itemArt'>";
-    itemModalHtml += "<div>" + LOCAL_DATA.noImage + "</div>";
+    itemModalHtml += "<div>" + SCRIPT_LOCAL_DATA.noImage + "</div>";
     itemModalHtml += "</div>";
     itemModalHtml += "<input class='hiddenSelectButton' type='file' accept='.png' style='display: none;' >";
-    itemModalHtml += "<div class='selectImageButton'>" + LOCAL_DATA.chooseImage + "</div>";
+    itemModalHtml += "<div class='selectImageButton'>" + SCRIPT_LOCAL_DATA.chooseImage + "</div>";
     itemModalHtml += "</div>";
     // ====== item summary ======
     itemModalHtml += "<div class='itemSummary'>";
@@ -752,7 +766,7 @@ function setUpPreviwTextArea(previewData) {
         span.css("display", "none");
 
         $("<textarea></textarea>").insertBefore(span);
-        $("<div class='tip'>" + LOCAL_DATA.editTip + "</div>").insertAfter(span);
+        $("<div class='tip'>" + SCRIPT_LOCAL_DATA.editTip + "</div>").insertAfter(span);
         var ta = $(this).siblings("textarea");
 
         ta.val(NEW_GIFT_DESC);
@@ -804,7 +818,7 @@ var SAMPLE_ART_INDEX = [0,0,0];
 
 function setupSampleGiftModalHtml(entries) {
     var sampleGiftModalHtml = "";
-    sampleGiftModalHtml += '<div>' + LOCAL_DATA.sampleGiftTitle + '<div class="miniClose">[x]</div></div>';
+    sampleGiftModalHtml += '<div>' + SCRIPT_LOCAL_DATA.sampleGiftTitle + '<div class="miniClose no-select">[x]</div></div>';
     sampleGiftModalHtml += '<ul>';
     for (let entry of entries) {
         sampleGiftModalHtml += '<li>';

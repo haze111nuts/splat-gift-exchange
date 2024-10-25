@@ -4,7 +4,7 @@ html {
 }
 
 body {
-  font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
+  font-family: "Noto Sans TC", "Noto Sans SC";
   background-color: #424439;
   background-image: url(../assets/form/bg.png);
   background-attachment: fixed;
@@ -151,7 +151,6 @@ a {
 .nav .deadlines ul {
   padding: 0;
   list-style: none;
-  font-size: 1.1em;
 }
 .nav .deadlines ul li {
   color: #776256;
@@ -793,6 +792,9 @@ h2 {
   margin: 0;
   padding: 0;
 }
+.sampleGiftPanel > ul li:nth-child(2) img, .sampleGiftPanel > ul li:nth-child(3) img {
+  cursor: pointer;
+}
 .sampleGiftPanel > ul > li {
   color: rgb(58, 49, 45);
   transition: all 0.4s ease;
@@ -813,6 +815,10 @@ h2 {
   width: 150px;
   height: 150px;
   display: block;
+  transition: all 0.25s ease;
+}
+.sampleGiftPanel > ul > li img:hover {
+  transform: scale(1.2);
 }
 .sampleGiftPanel > ul > li .giftName {
   font-weight: bold;

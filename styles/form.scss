@@ -22,7 +22,7 @@ html {
     font-size: 16px;
 }
 body {
-    font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
+    font-family: "Noto Sans TC", "Noto Sans SC";
     background-color: $BG_MAIN;
     background-image: url(../assets/form/bg.png);
     background-attachment: fixed;
@@ -178,7 +178,6 @@ a {
         ul {
             padding: 0;
             list-style: none;
-            font-size: 1.1em;
             li {
                 color: $TEXT_NAV;
                 line-height: 100%;
@@ -861,6 +860,10 @@ h2 {
         list-style: none;
         margin: 0;
         padding: 0;
+
+        li:nth-child(2) img, li:nth-child(3) img{
+            cursor: pointer;
+        }
         > li {
             color: $TEXT_MAIN;
             transition: all 0.4s ease;
@@ -881,6 +884,10 @@ h2 {
                 width: 150px;
                 height: 150px;
                 display: block;
+                transition: all 0.25s ease;
+                &:hover{
+                    transform: scale(1.2);
+                }
             }
             .giftName {
                 font-weight: bold;

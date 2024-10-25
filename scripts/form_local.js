@@ -56,7 +56,7 @@ var htmlLocalData_CH = {
     member_unconfirmed: "觀望中",
     gift_guide: {
         title: "禮物規範",
-        guide: [
+        items: [
             "Splatoon世界中的哺乳類生物已滅絕，所以禮物內請勿包含哺乳類肉製品或相關的食品（請以雞肉或魚蝦貝類代替哺乳動物的肉類）",
             "Splatoon世界存在奶製品﹐所以包含奶製品的食品OK。",
             "Splatoon世界具有哺乳類生物的基本知識﹐所以哺乳類動物造型的物品OK。",
@@ -157,7 +157,7 @@ var htmlLocalData_CH = {
         i_understand: "我懂了！",
         submit: "投稿禮物"
     },
-    form_tip: "***此表單為手工製作，請多注意BUG並隨時諮詢58確認投稿狀況***",
+    form_tip: "***此表單為手工製作，遭遇BUG的話請向58回報***",
     editModal: {
         alert: [
             "你剛剛似乎有修改預覽畫面的內文，",
@@ -262,30 +262,28 @@ var htmlLocalData_EN = {
     openPreviewHelper: "使用預覽小幫手",
     form1: {
         question1: {
-            label: "欲參加的海產OC名字",
+            label: "Your OC's Name",
             desc: [
-                "抽獎實況時主持人會使用這個名字來稱呼你的角色，",
-                "這個欄位只能放一個角色！如果還想讓複數個OC參加，請另外再寫一次表單。"
+                "The name of the Splatoon OC you want to submit an entry with. The host will also call your OC by this name during the Unboxing stream. <b>You may only fill in one character's name</b>, if you want to submit entry for another OC, please fill this form again."
             ],
-            placeholder: "OC名字"
+            placeholder: "Name"
         },
         question2: {
-            label: "請提供這個OC的頭像",
+            label: "Profile Pic for This OC",
             desc: [
-                "請提供一張正方形PNG檔，此圖會以100px*100px形式呈現在抽獎版面上。",
-                "只是辨認角色用，建議拿現有作品或圖片直接擷取頭部即可！有畫出脖子肩膀為佳。"
+                "Please provide a profile picture for this OC, it needs to be a square image PNG file with at least 100px width/height. This will only be displayed during the stream, it's just for identification so feel free to use your old art!"
             ],
         },
         question3: {
-            label: "這個OC準備的禮物是？",
+            label: "What Gift Did Your OC pick?",
             desc: [
-                "請先確認禮物符合【<span for='giftRulePanel'>禮物規範</span>】不然58會來敲你的門！！不知要準備什麼的話可以跟主持人商量。",
-                "中文字符請盡量不要超過16字，不然排版會跑位！"
+                "Please ensure this gift follows the <span for='giftRulePanel'>Gift Guideline</span>, or our host will be knocking on your door :)",
+                "You can also consult with 58 if you are not sure what to/what not to prepare."
             ],
-            placeholder: "用手工圍巾etc"
+            placeholder: "Hand-knitted Scarf"
         },
         question4: {
-            label: "請繪製此禮物的內容物圖示",
+            label: "Provide an Icon for This Gift",
             desc: [
                 "這是抽獎和展示用的圖示，規格是400px*400px且背景透明的PNG檔案。請盡量畫出物品的完整樣貌，不要包裝紙！類似遊戲中常出現的道具圖示，可以【<span for='sampleGiftPanel'></span>】也可以【<span for='previewItemPanel'></span>】",
                 "另外，此圖風格不限，如果不想被別人透過畫風猜到自己是誰，建議可以用Splatoon官方風格的色塊作畫。"
@@ -347,7 +345,7 @@ var htmlLocalData_EN = {
         i_understand: "我懂了！",
         submit: "投稿禮物"
     },
-    form_tip: "***此表單為手工製作，請多注意BUG並隨時諮詢58確認投稿狀況***",
+    form_tip: "***此表單為手工製作，遭遇BUG的話請向58回報***",
     editModal: {
         alert: [
             "你剛剛似乎有修改預覽畫面的內文，",
@@ -402,7 +400,7 @@ function applyLocalData(data) {
     $(".memberWrap div:nth-child(1) .memberType span").text(data.member_confirmed);
     $(".memberWrap div:nth-child(2) .memberType span").text(data.member_unconfirmed);
     //end of form
-    $(".wrapper .tip").text(data.form2.form_tip);
+    $(".wrapper .tip").text(data.form_tip);
     //modal - gift rules
     $(".giftRules h2").text(data.gift_guide.title);
     $(".giftRules ul").html(data.gift_guide.items.map(item => `<li>${item}</li>`));
@@ -428,7 +426,7 @@ function applyLocalDataForGiftForm(data){
     $('#giftForm .question.4 .extraUploader .desc').text(data.form1.question4_ex.desc);
     $('#giftForm .question.5 label').text(data.form1.question5.label);
     $('#giftForm .question.5 .desc').html(data.form1.question5.desc.join("<br>"));
-    $('#giftForm .question.5 input').attr("placeholder", data.form1.question5.placeholder);
+    $('#giftForm .question.5 textarea').attr("placeholder", data.form1.question5.placeholder);
     $('#giftForm .question.6 label').text(data.form1.question6.label);
     $('#giftForm .question.6 .desc').html(data.form1.question6.desc.join("<br>"));
     $('#giftForm .question.7 label').text(data.form1.question7.label);
