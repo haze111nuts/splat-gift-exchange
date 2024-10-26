@@ -237,7 +237,7 @@ var htmlLocaleData_EN = {
         "Please connect with host 58 (@Xolot58 on Twitter) if you have any question."
     ],
     countdown: {
-        until_1: "Until",
+        until_1: "Until ",
         until_2: ":",
         day: "day",
         hour: "hour",
