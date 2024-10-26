@@ -15,8 +15,8 @@ var PLACEHOLDER_GIFT = {};
 var CURRENT_ALT_INDEX = 0;
 var CURRENT_SUMMARY_LANG = 0;
 
-var SCRIPT_LOCAL_DATA = {};
-var HTML_LOCAL_DATA = {};
+var SCRIPT_LOCAL_DATA;
+var HTML_LOCAL_DATA;
 
 //=================//
 //    CONSTANT     //
@@ -26,7 +26,7 @@ var IS_ENG_FORM = true;
 
 var OVERWRITE = {
     switch: true,
-    phase: 3
+    phase: 1
 }
 
 //==================//
@@ -149,7 +149,6 @@ function decideLocalization() {
     HTML_LOCAL_DATA =  IS_ENG_FORM ? htmlLocalData_EN : htmlLocalData_CH;
     SCRIPT_LOCAL_DATA = IS_ENG_FORM ? scriptLocalData_EN : scriptLocalData_CH;
     PLACEHOLDER_GIFT = IS_ENG_FORM ? placehoderGift_EN : placehoderGift_CH;
-    
     applyLocalData(HTML_LOCAL_DATA);
 }
 
@@ -208,8 +207,9 @@ function checkPhase() {
 
 function setUpTimer() {
     checkPhase();
+    decideLocalization();
     swapToSecondForm();
-    decideLocalization()
+    
 
     $(".giftDeadline").text(new Date(phases[0]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
     $(".unboxingDay").text(new Date(phases[1]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
@@ -886,7 +886,6 @@ function setupSampleGiftModalHtml(entries) {
 //======================//
 
 $(document).ready(function () {
-    decideLocalization();
     setUpTimer();
     setUpConfirmEvent();
     setUpNavClickEvents();
