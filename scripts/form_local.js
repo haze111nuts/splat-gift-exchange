@@ -198,52 +198,53 @@ var htmlLocalData_EN = {
     ,
     nav_list: ["Prologue", "Guide", "Read Me", "Deadlines", "Members"],
     prologue: {
-        first_line: "有一天，你的OC突然收到了一封神秘的信。",
+        first_line: "One day, your OC recieved a mysterious letter.",
         letter: [
-            "親愛的海洋生物，",
-            "我們是神秘禮物交換組織，在此來通知——你被選中了！",
-            "我們專門收集來自各種時空的神秘禮物，並且將這些禮物進行交換。如果想參加的話，就用我們附的郵票寄出一個冬季禮物吧。參加成功的話，冬季節日那天你也會收到一個別人準備的禮物哦。",
-            "<div class='hr'></div><span>P.S.請不要包裝禮物，我們會幫你包</span>",
-            "<span>P.S.請不要把郵票貼在你朋友身上</span>"
+            "Dear Inkfish,",
+            "We are the Mysterious Gift Exchange Association, you have been chosen as a participant!",
+            "We collect gift across space-time continuum and redistribute them. If you would like to participate, use the attached stamp to mail in a gift, and you will receive a gift in return on the day of winter holiday.",
+            "<div class='hr'></div><span>P.S. Do not wrap the gift, we will do it for you.</span>",
+            "<span>P.S. Do not stick the stamp onto your friend.</span>"
         ],
         lines: [
-            "信封上竟然沒有地址也沒有署名，只夾了一張看起來充滿奇特力量的郵票。",
-            "到底是怎麼寄到這裡的呢？真是太可疑了。",
+            "There are no address, neither name on the envelope.",
+            "There is only a stamp that seemed to contain some sort of power.",
+            "How did this mail get here? This is all very sus...",
             "",
-            "你的OC到底要不要照著信上的說的做呢？",
+            "Will your OC follow the instruction on the letter?",
             ""
         ]
 
     },
     guide: [
-        "OC家長向主持人或工作人員報告你要參加，並確認自己被列入參加名單中",
-        "大家各自讓自己海產OC去準備某種神秘禮物，需以繪圖方式呈現，並繪製該物品小圖示",
-        "在九月底前私下將禮物投稿，主持人會幫你把禮物打包放進禮物池",
-        "十月中會舉辦開箱直播，每個OC都會隨機從禮物池抽一個禮物走",
-        "開箱直播結束後，大家各自繪製自己的OC獲得禮物的後續圖",
-        "在十二月中之前將這張收禮圖私下繳交給主持人",
-        "聖誕節當日會在SNS上公開所有作品",
+        "Notify the staffs that you and your OC would like to participate, make sure you are in the Member list.",
+        "Draw your OC prepare some kind of holiday gift, and make an icon for the content of the gift",
+        "Submit the two artworks through form before the September deadline, we will add your gift to the pool.",
+        "We will host Unboxing Day stream around mid-October, every OC participant will pull for a gift",
+        "After the stream, draw your OC with the gift they obtained.",
+        "Submit the last piece of art to through form before the December deadline.",
+        "All artwork will be revealed on December 25.",
     ],
     readme: [
-        "一個禮物只能用一個OC的名義報名，但你可以用多個OC參加本活動，請注意丟越多OC要畫越多圖",
-        "為了保持驚喜感，還請參加者們將禮物內容跟畫作保密到最後，尤其是不要發布在群組聊天頻道中或是SNS這種公共場合，謝謝！",
-        "本活動僅給OC們提供禮物而非交流體驗，不一定有真實發生在角色所處時空！不需要太過認真看待！",
-        "設定上這些禮物全部匿名，角色不需要知道禮物來自誰或是送給了誰、無須和其他角色有互動或接觸。",
-        "參加者多時必定會有各式各樣的海產OC、時空、世界觀、甚至可能包含繪型海產跟武器擬人，如果你抽到的禮物是來自一個比較難以接受的世界觀的話，建議不要想太多，只專注在禮物上即可！",
-        "如果你在參加者名單發現有自己想要迴避的人，可以斟酌再參加本活動！",
-        "有任何參與事宜或是疑惑的話，請私訊主持人58的推特@xolot58"
+        "One gift per OC, You can participate with multiple OC. Please be aware that you need to prepare more artwork if you do so.",
+        "To keep the event fun, please DO NOT share the content of your gift or artwork until the event is over, especially not in public splace like discord channel or social media, thanks for your cooperation!",
+        "This project is just for fun, this gift exchange event may or may not happened in the universe or timeline your OC lives in, so don't take it too seriously!!",
+        "From the OC's perspective, all gifts are anonymous. Your OC is not required to interact with other OC at all.",
+        "There will be all kinds of OCs from all kinds of original Splatoon universes, some of them may even be from a completely different timeline,  they could also be someone's Splatsonas. If you got a gift from an OC that is not of your taste, please focus on the gift itself and don't thinking about it too much!",
+        "If there is a participant you don't want to have anything to do with, you can consider back out from this project.",
+        "Please connect with host Woopa @Xolot58 on Twitter if you have any questions."
     ],
     countdown: {
-        until_1: "距離",
-        until_2: "還有",
-        day: "天",
-        hour: "小時",
-        min: "分鐘",
-        sec: "秒"
+        until_1: "Until",
+        until_2: ":",
+        day: "day",
+        hour: "hour",
+        min: "min",
+        sec: "sec"
     },
-    deadlines: ["禮物投稿截止日", "開箱日直播", "收禮插圖截止日"],
-    member_confirmed: "確定參加",
-    member_unconfirmed: "觀望中",
+    deadlines: ["Gift Submission Deadline", "Unboxing Day Stream", "Gift Receiving Artwork Deadline"],
+    member_confirmed: "Confirmed",
+    member_unconfirmed: "Undecided",
     gift_guide: {
         title: "禮物規範",
         items: [
