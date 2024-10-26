@@ -28,7 +28,7 @@ var IS_ENG_FORM = checkBrowserAndSwitchLang();
 
 var OVERWRITE = {
     switch: true,
-    phase: 3
+    phase: 1
 }
 
 var members = {
