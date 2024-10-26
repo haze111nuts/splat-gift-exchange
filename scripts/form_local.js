@@ -245,21 +245,21 @@ var htmlLocalData_EN = {
     member_confirmed: "確定參加",
     member_unconfirmed: "觀望中",
     gift_guide: {
-        title: "禮物規範",
+        title: "Gift Guidelines",
         items: [
-            "Splatoon世界中的哺乳類生物已滅絕，所以禮物內請勿包含哺乳類肉製品或相關的食品（請以雞肉或魚蝦貝類代替哺乳動物的肉類）",
-            "Splatoon世界存在奶製品﹐所以包含奶製品的食品OK。",
-            "Splatoon世界具有哺乳類生物的基本知識﹐所以哺乳類動物造型的物品OK。",
-            "請勿準備像是魔法物品這類不合乎普遍常理的東西！",
-            "請勿準備效果會讓人困擾的藥物！若藥物造成的效果無傷大雅（如改變墨色）的話就OK，建議跟主持人討論後再作畫。"
+            "Please don't include anything containing mammal meat as mammals are extinct species in Splatoon, you can replace them with meat from fish/shellfish/shrimp",
+            "Dairy product seems to exists in Splatoon Universe so food containing dairy product should be fine.",
+            "Mammals are still known to people in Splatoon as a part of histry, so mammal themed products are fine.",
+            "Please do not prepare gift that has unexplainable magic power in the scope of Splatoon Universe.",
+            "Please do not submit potion/drugs with effects that may cause inconvenience to others, if the effects are harmless (e.g. changes ink color temporarily) the host may give it a pass, but please disscuss with 58 before you start drawing."
         ],
         notice: [
-            "※請大家切記這個神秘禮物在之後會被別人的角色抽到，並且會被別人拿去作畫，所以能盡量配合基本的Splatoon世界觀為佳！",
-            "※為了維持禮物正當性﹐主持人會私下先過目禮物﹐可能會以上述之外的標準來進行審核。是禮物不符合標準的話﹐主持人會私下和你協調＆一起想折衷方案。禮物內容規範可能隨時更新，請隨時關注這個頁面！"
+            "**Keep in mind that this gift will be randomly assigned to someone and they will make art out of it, so please try your best to make it follow the general rule in Splatoon Universe",
+            "**The host will review the content of the gift to ensure it's acceptable, the host may also review the gift with standards that are not mentioned above. If you have any doubts on wether your gift applys, feel free to ask the host thru DM. The host may update the gift guideline anytime."
         ]
     },
-    openSamplePanel: "點這裡看範本",
-    openPreviewHelper: "使用預覽小幫手",
+    openSamplePanel: "Sample Gifts",
+    openPreviewHelper: "Preview Helper",
     form1: {
         question1: {
             label: "Your OC's Name",
@@ -283,96 +283,97 @@ var htmlLocalData_EN = {
             placeholder: "Hand-knitted Scarf"
         },
         question4: {
-            label: "Provide an Icon for This Gift",
+            label: "An Icon for the Content of the Gift",
             desc: [
-                "這是抽獎和展示用的圖示，規格是400px*400px且背景透明的PNG檔案。請盡量畫出物品的完整樣貌，不要包裝紙！類似遊戲中常出現的道具圖示，可以【<span for='sampleGiftPanel'></span>】也可以【<span for='previewItemPanel'></span>】",
-                "另外，此圖風格不限，如果不想被別人透過畫風猜到自己是誰，建議可以用Splatoon官方風格的色塊作畫。"
+                "This icon will be showcased in the unboxing stream and the art project website, please provide a 400px*400px PNG image with transparent background. <b>Please draw the whole object and not the wrapped gift!</b> You can use the official Splatoon art style if you don't want others to recognize the gift by your art style.",
+                "Feel free to check out <span for='sampleGiftPanel'></span> or use the <span for='previewItemPanel'></span>."
             ],
         },
         question4_ex: {
-            link: "想上傳更多圖示或是大張詳細設計圖請按這裡",
-            desc: "可以從這邊上傳更多張400px*400px的禮物圖示，藉此展示此物件不同的狀態或角度（例如說玩偶的側面版或背面版、電燈打開前後的樣子等等甚至是附加的物品小卡都可以）也可以上傳自由規格的物品設計大圖喔！"
+            link: "Click here to upload more icons or detailed ref sheets",
+            desc: "You can upload more 400px*400px gift icons to show different angles or states of the gift (e.g. front/side of a plushie or on/off version of a lamp). Feel free to include refsheet of any size if needed!"
         },
         question5: {
-            label: "請提供禮物的文字介紹",
+            label: "Description of the Gift",
             desc: [
-                "可以寫禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。另外因為這是匿名禮物，能的話請盡量不要包含你OC的名字。如果不確定怎麼寫，隨時歡迎私訊主持人叫他幫你想！也歡迎【<span for='sampleGiftPanel'></span>】或是【<span for='previewItemPanel'></span>】"
+                "Provide a detailed description to help others understand the gift. You can write about things like what's included in the gift, what are the material used, what kind of texture this object has, or how it can be used. There is no character limit so put as much description as you want! You can also add links or links to images. Feel free to DM 58 for any questions or check out <span for='sampleGiftPanel'></span> or use the <span for='previewItemPanel'></span>",
+                "Please try not to include your OC's name as the gift is supposed to be anonymous."
             ],
             placeholder: "用高級毛線織成的圍巾，光是看著就覺得暖。"
         },
         question6: {
-            label: "請繪製這個OC準備這份禮物的插圖",
+            label: "An Artwork of Your OC Preparing the Gift",
             desc: [
-                "圖片規格是1080px*1080px，PNG檔案，最多10MB。在聖誕節當日才公開。繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出你報名的這位OC以及他欲送出的禮物物品即可！圖中的海產OC主角請以人型態為主，配角則不限。最低完成度可以參考【<a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>二代官方的祭典插圖</a>】"
+                "Please provide image in a 1080px*1080px PNG file. There is no restriction on the art style or complexity, a simple doodle will do. There is no restriction on presentation either, just make sure the the content of the gift and your OC for this entry is clearly shown in the art as humanoid form. This art will later be featured in a project webpage. Please reference <a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>S2 official Splatfest art</a> for the basic complexity."
             ]
         },
         question7: {
-            label: "投稿人名字",
+            label: "Your Name",
             desc: [
-                "成品展示的網頁上會放這個名字。"
+                "This name will be displayed on the webpage that showcase all the artworks"
             ]
         },
         question8: {
-            label: "聯絡方式",
+            label: "How to Reach You",
             desc: [
-                "如果有需要討論的事項，主持人會用這個方式聯絡你。"
+                "Provide a way for our host to reach you for any question and suggestion."
             ]
         },
         question9: {
-            label: "個人連結",
+            label: "Your Homepage/Twitter",
             desc: [
-                "展示時會在作品旁附上的連結，可以填個人網站或SNS帳號，也可以不填。"
+                "This will be linked to your name on the website for this art project."
             ]
         },
         question10: {
-            label: "你想要自己OC抽到自家人禮物的可能性嗎？",
+            label: "Do you want the possibility of trading between your OCs?",
             desc: [
-                "這個選擇將會影響到你的角色能夠抽到的禮物。如果想要更改答案可以聯絡主持人58。另外為了保證抽獎機可以正常運作，如果你的角色數量多到一定的程度，主持人會私下找你調整這個選項。"
+                "This will affect whose gift your OC will pull so please choose carefully, and feel free to DM 58 if you want to change your answer."
             ],
             options: [
-                "否，我不想要我家角色抽到我家其他角色的禮物",
-                "是，我可以接受我家角色抽到我家其他角色的禮物",
-                "我只打算投稿一隻OC",
-                "目前不確定要投稿幾隻"
+                "No, I don't want my OC to pull the gifts from my other OCs",
+                "Yes, I am okay with my OC pulling gifts from my other OCs",
+                "I will only be participating with one OC",
+                "I am not sure yet"
             ]
         },
         warning: [
-            "⚠️⚠️ 請注意 ⚠️⚠️",
-            "投稿就代表你保證在開獎後一定會畫自家OC收禮物",
-            "要是因為任何原因交不出來，對那個準備禮物的人來說會非常尷尬！",
-            "如果發生的話主持人可能會把你從本活動中黑單！"
+            "⚠️⚠️ Important Terms ⚠️⚠️",
+            "By Submitting you promise you WILL draw your OC recieving a gift.",
+            " If you failed to provide this art for any reason, it will be very disrespectful to the artist who design the gift, and the host has the right to permanently remove you from this project."
         ],
-        i_understand: "我懂了！",
-        submit: "投稿禮物"
+        i_understand: "I Understand",
+        submit: "Submit Gift"
     },
-    form_tip: "***此表單為手工製作，遭遇BUG的話請向58回報***",
+    form_tip: "***Please report to 58 if you see any bug on the form***",
     editModal: {
         alert: [
-            "你剛剛似乎有修改預覽畫面的內文，",
-            "要把內文套用到表單上嗎？"
+            "Looks like you've edited the preview content,",
+            "Do you want to apply the content to the form?"
         ],
-        discard: "丟棄",
-        apply: "套用"
+        discard: "Discard",
+        apply: "Apply"
     },
     form2: {
         question1: {
-            label: "投稿人名字",
+            label: "Your Name",
             desc: [
-                "主持人確認內容用。"
+                "This is just for confirmation"
             ],
-            placeholder: "請從下面選一個名字"
+            placeholder: "Select a Name"
         },
         question2: {
-            label: "這份投稿是給哪位OC的？",
+            label: "Your OC's Name",
             desc: [
-                "主持人確認內容用。"
+                "This is just for confirmation"
             ],
-            placeholder: "請從下面選一個OC"
+            placeholder: "Select an OC"
         },
         question3: {
-            label: "請繪製這個OC和抽到的禮物的插圖",
+            label: "Artwork of Your OC and the Received Gift",
             desc: [
-                "圖片規格是1080px*1080px，PNG檔案，最多10MB。會在聖誕節那天公開在展示網頁上。繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出這位OC以及他收到的禮物物品即可！可以單純是OC將物品拿在手上的構圖、也可以是OC使用禮物的過程、或是OC收到該禮物的反應等，請隨意發揮。圖中的海產OC主角請以人型為主，配角則不限。禮物物品盡量不要被包裝遮到為佳！最低完成度可以參考【<a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>二代官方的祭典插圖</a>】"
+                "Please provide image in a 1080px*1080px PNG file. There is no restriction on style or complexity of the art, you can just submit a simple doodle. There is no restriction on presentation either, just make sure your selected OC in in humanoid form and the content of the received gift is clearly shown in the art. For example, you can draw your OC holding the gift while looking at the camera, or you can draw your OC reacting/using the gift",
+                "<a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>二代官方的祭典插圖</a>】"
             ],
         },
         submit: "送出"
