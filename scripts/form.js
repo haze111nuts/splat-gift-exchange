@@ -606,7 +606,6 @@ function setupCloseModalEvents() {
 }
 
 function closeModals() {
-    console.log("close");
     $(".modal").addClass("hide");
     $(".modal_content >div").addClass("fadeDown");
     // $(document.body).removeClass("noscroll");
