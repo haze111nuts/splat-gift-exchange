@@ -26,7 +26,7 @@ var IS_ENG_FORM = true;
 
 var OVERWRITE = {
     switch: true,
-    phase: 1
+    phase: 3
 }
 
 //==================//
