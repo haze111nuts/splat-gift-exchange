@@ -180,6 +180,7 @@
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
   cursor: pointer;
+  font-size: 1em !important;
 }
 .itemPanel .itemSummary .langSwitch:hover {
   color: rgb(184, 120, 2);

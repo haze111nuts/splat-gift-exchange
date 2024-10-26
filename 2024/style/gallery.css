@@ -393,12 +393,6 @@ h4 {
   color: rgb(58, 49, 45);
 }
 
-.langSwitch {
-  font-size: 1.15em !important;
-  top: -2px !important;
-  cursor: pointer;
-}
-
 .modal .modal_bg {
   background-color: rgb(58, 49, 45) !important;
   opacity: 0.5;
