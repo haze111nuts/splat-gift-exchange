@@ -187,12 +187,15 @@ a {
   width: 80%;
   margin: 0 auto;
 }
+.nav .vips .memberWrap > div .memberType span {
+  color: #bda990;
+}
 .nav .vips .memberWrap > div ul {
   width: 80%;
   margin: 0 auto;
   padding: 0;
   list-style: none;
-  columns: 3;
+  columns: 1;
   column-gap: 0px;
 }
 .nav .vips .memberWrap > div ul li {

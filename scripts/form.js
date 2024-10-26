@@ -20,7 +20,7 @@ var HTML_LOCALE_DATA;
 var SAMPLE_GIFTS;
 
 //=================//
-//    CONSTANT     //
+//    Constant     //
 //=================//
 
 var IS_ENG_FORM = checkBrowserAndSwitchLang();
@@ -30,6 +30,18 @@ var OVERWRITE = {
     switch: true,
     phase: 1
 }
+
+var members = {
+    confirmed:[
+        "Hazy",
+        "22"
+    ],
+    unconfirmed:[
+        "???",
+        "???"
+    ]
+}
+
 
 //==================//
 //    Time Data     //
@@ -54,7 +66,7 @@ const phases = [
 
 
 //====================//
-//    URL GETTERS     //
+//    Url Getters     //
 //====================//
 
 var demoUrl = "../2024/";
@@ -132,6 +144,11 @@ function setUpExtraUploadToggle() {
     $('.extraLink').click(function () {
         $('.extraUploader').toggleClass('hiddenContent');
     });
+}
+
+function setUpMembers(){
+    $('.memberWrap div:nth-child(1) ul').html(members.confirmed.map(name => `<li>${name}</li>`));
+    $('.memberWrap div:nth-child(2) ul').html(members.unconfirmed.map(name => `<li>${name}</li>`));
 }
 
 //==================================//
@@ -852,6 +869,7 @@ function checkBrowserAndSwitchLang() {
 $(document).ready(function () {
     setUpTimer();
     setUpConfirmEvent();
+    setUpMembers();
     setUpNavClickEvents();
     setUpOtherValidationStyle();
     setUpExtraUploadToggle();

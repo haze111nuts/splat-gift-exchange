@@ -246,8 +246,8 @@ var htmlLocaleData_EN = {
     },
     deadlines: ["Gift Submission Deadline", "Unboxing Day Stream", "Gift Receiving Artwork Deadline"],
     member: {
-        confirmed: "Participating",
-        unconfirmed: "Undecided"
+        confirmed: "<span>P</span>articipatin<span>g</span>",
+        unconfirmed: "<span>U</span>ndecide<span>d</span>"
     },
     openSamplePanel: "Sample Gifts",
     openPreviewHelper: "Preview Helper",
@@ -445,7 +445,7 @@ var sampleGifts_EN = [
     },
     {
         giftName: "Strange Frying Pan",
-        giftDescription: "It looks like an ordinary frying pan, but there is an upside-down seal figurine in the middle of the pan for unknown purpose. The figurine is unremovable, seems like you will have to cook like this.\n\nThis pan also has some strange features:\n- When the pan is preheated, the seal's eye will glow red.\n- When you shake the pan, the seal figrine starts making odd sounds like \"squeak squeak!\" or \"meat!\"\n\nAfter washing the pan you can put it upside-down to dry, it looks just like a seal using a giant frying pan as a hat.",
+        giftDescription: "It looks like an ordinary frying pan, but there is an upside-down seal figurine in the middle of the pan for unknown purpose. The figurine is unremovable, seems like you will have to cook like this.\n\nThis pan also has some strange features:\n- When the pan is preheated, the seal's eye will glow red.\n- When you shake the pan, the seal will start making odd sounds like \"squeak squeak!\" or \"meat!\"\n\nAfter washing the pan you can put it upside-down to dry, it looks just like a seal using a giant frying pan as a hat.",
         numOfAlt: 1
     }
 ]
@@ -486,8 +486,8 @@ function applyLocaleData(data) {
     $('.minutes').after(data.countdown.min);
     $('.seconds').after(data.countdown.sec);
     $(".deadlines ul li span:first-child").each((i, el) => $(el).text(data.deadlines[i])).after(" : ");
-    $(".memberWrap div:nth-child(1) .memberType span").text(data.member.confirmed);
-    $(".memberWrap div:nth-child(2) .memberType span").text(data.member.unconfirmed);
+    $(".memberWrap div:nth-child(1) .memberType").html(data.member.confirmed);
+    $(".memberWrap div:nth-child(2) .memberType").html(data.member.unconfirmed);
     //end of form
     $(".wrapper .tip").text(data.form_tip);
     //modal - gift rules
