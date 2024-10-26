@@ -59,7 +59,7 @@ function setUpFlipToggle() {
 
             $(".exchangeIcon").css("left", "-80px");
             $(".exchangeBar_active").css("width", "0px");
-            $(".exchangeIcon img").attr('src', assetBaseUrl("changeIcon.png") );
+            $(".exchangeIcon img").attr('src', assetBaseUrl("changeIcon.png"));
         }
     });
 }
@@ -69,42 +69,29 @@ function setUpFlipToggle() {
 //======================//
 
 function generateGrid() {
-    var gridHtml = "";
-    for (var i = 0; i < ENTRIES.length; i++) {
-        gridHtml += '<li class="grid-item">';
-
-        gridHtml += '<div class="card">';
-        gridHtml += '<div class="cardBG"></div>';
-        gridHtml += '<div class="cardInner">';
-
-        gridHtml += '<div class="cardFront" data-id="' + i + '">';
-        gridHtml += '<div class="preview">';
-        gridHtml += '<div class="previewInner"></div>';
-        gridHtml += '</div>'
-        gridHtml += '</div>'
-
-        gridHtml += '<div class="cardBack" data-id="' + i + '">';
-        gridHtml += '<div class="preview">';
-        gridHtml += '<div class="previewInner"></div>';
-        gridHtml += '</div>'
-        gridHtml += '</div>'
-
-        gridHtml += '</div>'
-        gridHtml += '</div>'
-
-        gridHtml += '<div class="label" data-id="'+i+'">';
-        gridHtml += "<div class='label_BG'></div>";
-        gridHtml += '<div class="giftTitle">' + ENTRIES[i].giftName + '</div>';
-        gridHtml += '<div class="giftAltTitle">' + ENTRIES[i].giftNameAlt + '</div>';
-        gridHtml += '<div class="gift"><img src="' + getGiftUrl(i) + '"></div>';
-        gridHtml += '</div>';
-        gridHtml += '</li>';
-    }
+    let gridHtml = ENTRIES.map((entry, i) => `
+    <li class="grid-item">
+        <div class="card">
+            <div class="cardBG"></div>
+            <div class="cardInner">
+                ${['cardFront', 'cardBack'].map(side => `
+                    <div class="${side}" data-id="${i}">
+                        <div class="preview"><div class="previewInner"></div></div>
+                    </div>`).join('')}
+            </div>
+        </div>
+        <div class="label" data-id="${i}">
+            <div class="label_BG"></div>
+            <div class="giftTitle">${entry.giftName}</div>
+            <div class="giftAltTitle">${entry.giftNameAlt}</div>
+            <div class="gift"><img src="${getGiftUrl(i)}"></div>
+        </div>
+    </li>`).join('');
     $(".grid").html(gridHtml);
     setUpGridStyle();
 }
 
-function setUpGridStyle(){
+function setUpGridStyle() {
     for (var i = 0; i < ENTRIES.length; i++) {
         //set image for each grid item
         $(".grid-item:nth-child(" + (i + 1) + ") .cardFront .previewInner")
@@ -126,32 +113,25 @@ function setUpItemModalClickEvents(){
         $(this).click(function () {
             var dataID = $(this).data().id;
             $(".modal").removeClass("hide");
-            var itemModalHtml = "";
-            itemModalHtml += "<div class='close'>"+"</div>";
-            itemModalHtml += "<div class='itemPanel'>";
-            itemModalHtml += "<div class='itemArtWrap'>";
-            itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(dataID) + "' alt='item' draggable='false' >";
-            if(ENTRIES[dataID].numOfAlt>0){
-                itemModalHtml += "<div class='itemArtList'>";
-                for (let i = 0; i < ENTRIES[dataID].numOfAlt+1 ; i++) {
-                    itemModalHtml += "<span>◆</span>";
-                }
-                itemModalHtml += "</div>";
-            }
-            itemModalHtml += "</div>";
-            itemModalHtml += "<div class='itemSummary'>";
-            // itemModalHtml += "<div class='langSwitch'>"+"⇆"+"</div>";
-            itemModalHtml += "<div class='itemTitle'>";
-            itemModalHtml += "<div class='itemTitle1'>"+ENTRIES[dataID].giftName+"</div>";
-            itemModalHtml += "<div class='itemTitle2'>"+ENTRIES[dataID].giftNameAlt+"</div>";
-            itemModalHtml += "</div>";
-            itemModalHtml += "<div class='itemSummary_inner'>" + ENTRIES[dataID].giftDescription + "</div>"
-            itemModalHtml += "</div>";
-            itemModalHtml += "</div>";
-
+            let item = ENTRIES[dataID];
+            let itemModalHtml = `
+                <div class='close'></div>
+                <div class='itemPanel'>
+                    <div class='itemArtWrap'>
+                        <img class='itemArt' src='${getGiftUrl(dataID)}' alt='item' draggable='false'>
+                        ${item.numOfAlt > 0 ? `<div class='itemArtList'>${Array(item.numOfAlt + 1).fill('<span>◆</span>').join('')}</div>` : ''}
+                    </div>
+                    <div class='itemSummary'>
+                        <div class='langSwitch'>⇆</div>
+                        <div class='itemTitle'>
+                            <div class='itemTitle1'>${item.giftName}</div>
+                            <div class='itemTitle2'>${item.giftNameAlt}</div>
+                        </div>
+                        <div class='itemSummary_inner'>${item.giftDescription}</div>
+                    </div>
+                </div>
+            `;
             $(".modal_content").html(itemModalHtml);
-            // $(document.body).addClass("noscroll");
-
             hideScrollBar();
             setUpGiftAltArt(ENTRIES[dataID],dataID);
             setupCloseModalEvents();
@@ -190,19 +170,15 @@ function setUpArtModalClickEvents() {
     $(".cardFront").each(function () {
         $(this).click(function () {
             var dataID = $(this).data().id;
-            var modalHtml = "";
             $(".modal").removeClass("hide");
-
-            modalHtml += "<div class='art_wrap'>"
-            modalHtml += "<img class='art' src='" + getArtUrl(dataID, "sender") + "'>"
-            modalHtml += "<div class='author'>";
-            modalHtml += 
-            // ENTRIES[dataID].ocName +
-            "By <a aref='"+ ENTRIES[dataID].artist+" target='_blank'>"+ ENTRIES[dataID].artist +"</a>"
-            modalHtml += "</div>";
-            modalHtml += "</div>";
+            let modalHtml = `
+            <div class='art_wrap'>
+                <img class='art' src='${getArtUrl(dataID, "sender")}' alt='art'>
+                <div class='author'>
+                    By <a href='${ENTRIES[dataID].artist}' target='_blank'>${ENTRIES[dataID].artist}</a>
+                </div>
+            </div>`;
             $(".modal_content").html(modalHtml);
-            // $(document.body).addClass("noscroll");
             hideScrollBar();
         })
     })

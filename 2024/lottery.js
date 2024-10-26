@@ -118,67 +118,54 @@ function shuffleArray(array) {
 //=======================//
 
 function printOCs() {
-    var ocHtml = "";
-    for (const oc of OC_ARRANGED) {
-        ocHtml += "<div class='oc'>";
-        ocHtml += "<img src='" + getOcUrl(oc) + "' alt='oc'>";
-        ocHtml += "</div>";
-    }
+    let ocHtml = OC_ARRANGED.map(oc => `
+        <div class='oc'>
+            <img src='${getOcUrl(oc)}' alt='oc'>
+        </div>
+    `).join('');
+    
     $(".turingBar").html(ocHtml);
-
     setSpotlightToNextOC();
 }
 
 function printGrid() {
-    var gridHtml = "";
-    for (var cardNumber = 1; cardNumber <= ENTRIES.length; cardNumber++) {
-        gridHtml += "<div class='gridItem'>";
-        gridHtml += "<div class='gridItem_inner'>";
-
-        gridHtml += "<div class='gift_front no-select'>";
-        gridHtml += "<div class='progress'></div>";
-        gridHtml += cardNumber;
-        gridHtml += "</div>";
-
-        gridHtml += "<div class='gift_back no-select'>";
-        gridHtml += "</div>";
-
-        gridHtml += "</div>";
-        gridHtml += "</div>";
-    }
+    let gridHtml = ENTRIES.map((_, cardNumber) => `
+    <div class='gridItem'>
+        <div class='gridItem_inner'>
+            <div class='gift_front no-select'>
+                <div class='progress'></div>
+                ${cardNumber + 1}
+            </div>
+            <div class='gift_back no-select'></div>
+        </div>
+    </div>
+    `).join('');
     $(".grid").html(gridHtml);
 }
 
 function displayItemModal(entry) {
 
     $(".modal").removeClass("hide");
-    var itemModalHtml = "";
+    let itemModalHtml = `
+    <div class='itemPanel'>
+        <div class='itemSummary'>
+            <div class='langSwitch'>⇆</div>
+            <div class='itemTitle'>
+                <div class='itemTitle1'>${entry.giftName}</div>
+                <div class='itemTitle2'>${entry.giftNameAlt}</div>
+            </div>
+            <div class='itemSummary_inner'>${entry.giftDescription}</div>
+        </div>
+        <div class='itemArtWrap'>
+            <img class='itemArt' src='${getGiftUrl(entry)}' alt='item' draggable='false'>
+            ${entry.numOfAlt > 0 ? `<div class='itemArtList'>${Array(entry.numOfAlt + 1).fill('<span>◆</span>').join('')}</div>` : ''}
+        </div>
+    </div>`;
 
-    itemModalHtml += "<div class='itemPanel'>";
-    itemModalHtml += "<div class='itemSummary'>";
-    itemModalHtml += "<div class='langSwitch'>"+"⇆"+"</div>";
-    itemModalHtml += "<div class='itemTitle'>";
-    itemModalHtml += "<div class='itemTitle1'>"+entry.giftName+"</div>";
-    itemModalHtml += "<div class='itemTitle2'>"+entry.giftNameAlt+"</div>";
-    itemModalHtml += "</div>";
-    itemModalHtml += "<div class='itemSummary_inner'>" + entry.giftDescription + "</div>";
-    itemModalHtml += "</div>";
-    itemModalHtml += "<div class='itemArtWrap'>";
-    itemModalHtml += "<img class='itemArt' src='" + getGiftUrl(entry) + "' alt='item' draggable='false' >";
-    if(entry.numOfAlt>0){
-        itemModalHtml += "<div class='itemArtList'>";
-        for (let i = 0; i < entry.numOfAlt+1 ; i++) {
-            itemModalHtml += "<span>◆</span>";
-        }
-        itemModalHtml += "</div>";
-    }
-    itemModalHtml += "</div>";
-    itemModalHtml += "</div>";
     $(".modal_content").html(itemModalHtml);
     $(document.body).addClass("noscroll");
     setUpTraslateToggle(entry);
     setUpGiftAltArt(entry);
-    //setUpRefImageModalClickEvents(entry);
 }
 
 function setUpGiftAltArt(entry) {
