@@ -23,7 +23,7 @@ var SAMPLE_GIFTS;
 //    CONSTANT     //
 //=================//
 
-var IS_ENG_FORM = true;
+var IS_ENG_FORM = ShouldUseEng();
 
 var OVERWRITE = {
     switch: true,
@@ -826,14 +826,30 @@ function setupSampleGiftModalHtml(entries) {
 }
 
 //======================//
+//     Lang Function    //
+//======================//
+
+function ShouldUseEng() {
+    var language = window.navigator.userLanguage || window.navigator.language;
+    switch (language) {
+        case "zh":
+        case "zh-CN":
+        case "zh-HK":
+        case "zh-TW":
+            return false;
+        default:
+            return true;
+    }
+}
+
+
+//======================//
 //                      //
 //    Ready Function    //
 //                      //
 //======================//
 
 $(document).ready(function () {
-    var language = window.navigator.userLanguage || window.navigator.language;
-    IS_ENG_FORM = language === "en-US" ? true : false;
     setUpTimer();
     setUpConfirmEvent();
     setUpNavClickEvents();
