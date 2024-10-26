@@ -23,7 +23,8 @@ var SAMPLE_GIFTS;
 //    CONSTANT     //
 //=================//
 
-var IS_ENG_FORM = ShouldUseEng();
+var IS_ENG_FORM = checkBrowserAndSwitchLang();
+// var IS_ENG_FORM = false;
 
 var OVERWRITE = {
     switch: true,
@@ -825,11 +826,11 @@ function setupSampleGiftModalHtml(entries) {
     }
 }
 
-//======================//
-//     Lang Function    //
-//======================//
+//==============================//
+//     Browser Lang Function    //
+//==============================//
 
-function ShouldUseEng() {
+function checkBrowserAndSwitchLang() {
     var language = window.navigator.userLanguage || window.navigator.language;
     switch (language) {
         case "zh":
