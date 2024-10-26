@@ -28,15 +28,15 @@ var IS_ENG_FORM = checkBrowserAndSwitchLang();
 
 var OVERWRITE = {
     switch: true,
-    phase: 1
+    phase: 3
 }
 
 var members = {
-    confirmed:[
+    confirmed: [
         "Hazy",
         "22"
     ],
-    unconfirmed:[
+    unconfirmed: [
         "???",
         "???"
     ]
@@ -83,7 +83,7 @@ function getProfileUrl(ocName) {
 }
 
 function getSampleGiftUrl(gift, artIndex) {
-    if (artIndex > 0){
+    if (artIndex > 0) {
         return "../../assets/form/sample-gift/" + SAMPLE_GIFTS.indexOf(gift) + "-" + artIndex + ".png";
     }
     return "../../assets/form/sample-gift/" + SAMPLE_GIFTS.indexOf(gift) + ".png";
@@ -94,18 +94,18 @@ function getSampleGiftUrl(gift, artIndex) {
 //=========================//
 
 function decideLocalization() {
-    HTML_LOCALE_DATA =  IS_ENG_FORM ? htmlLocaleData_EN : htmlLocaleData_CH;
+    HTML_LOCALE_DATA = IS_ENG_FORM ? htmlLocaleData_EN : htmlLocaleData_CH;
     SCRIPT_LOCALE_DATA = IS_ENG_FORM ? scriptLocaleData_EN : scriptLocaleData_CH;
     PLACEHOLDER_GIFT = IS_ENG_FORM ? placehoderGift_EN : placehoderGift_CH;
     SAMPLE_GIFTS = IS_ENG_FORM ? sampleGifts_EN : sampleGifts_CH;
-    if(IS_ENG_FORM){
+    if (IS_ENG_FORM) {
         removeUploaderLocale();
-        $(".nav .prologue .letterDeco").css("bottom","340px");
+        $(".nav .prologue .letterDeco").css("bottom", "340px");
     }
     applyLocaleData(HTML_LOCALE_DATA);
 }
 
-function removeUploaderLocale(){
+function removeUploaderLocale() {
     $(".uc-stuff uc-config").each((i, el) => {
         $(el).removeAttr("locale-name");
     });
@@ -146,7 +146,7 @@ function setUpExtraUploadToggle() {
     });
 }
 
-function setUpMembers(){
+function setUpMembers() {
     $('.memberWrap div:nth-child(1) ul').html(members.confirmed.map(name => `<li>${name}</li>`));
     $('.memberWrap div:nth-child(2) ul').html(members.unconfirmed.map(name => `<li>${name}</li>`));
 }
@@ -164,7 +164,7 @@ function checkPhase() {
         }
         CURRENT_PHASE++;
     }
-    if(OVERWRITE.switch){
+    if (OVERWRITE.switch) {
         CURRENT_PHASE = OVERWRITE.phase;
     }
 }
@@ -173,7 +173,7 @@ function setUpTimer() {
     checkPhase();
     decideLocalization();
     swapToSecondForm();
-    
+
 
     $(".giftDeadline").text(new Date(phases[0]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
     $(".unboxingDay").text(new Date(phases[1]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
@@ -324,30 +324,24 @@ function secondFormBorderChange(fieldName, borderColor) {
 
 //setup standard item panel
 function setUpRegularItemPanel(entry, imgUrl) {
-    var itemModalHtml = "";
-    itemModalHtml += "<div class='standardItemPanel'>";
-    itemModalHtml += "<div class='close'>" + "</div>";
-    itemModalHtml += "<div class='itemPanel'>";
-    itemModalHtml += "<div class='itemArtWrap'>";
-    itemModalHtml += "<img class='itemArt' src='" + imgUrl + "' alt='item' draggable='false' >";
-    if (entry.numOfAlt > 0) {
-        itemModalHtml += "<div class='itemArtList'>";
-        for (let i = 0; i < entry.numOfAlt + 1; i++) {
-            itemModalHtml += "<span>◆</span>";
-        }
-        itemModalHtml += "</div>";
-    }
-    itemModalHtml += "</div>";
-    itemModalHtml += "<div class='itemSummary'>";
-    itemModalHtml += "<div class='langSwitch'>" + "⇆" + "</div>";
-    itemModalHtml += "<div class='itemTitle'>";
-    itemModalHtml += "<div class='itemTitle1'>" + entry.giftName + "</div>";
-    itemModalHtml += "<div class='itemTitle2'>" + entry.giftNameAlt + "</div>";
-    itemModalHtml += "</div>";
-    itemModalHtml += "<div class='itemSummary_inner'>" + entry.giftDescription + "</div>";
-    itemModalHtml += "</div>";
-    itemModalHtml += "</div>";
-    itemModalHtml += "</div>";
+    let itemModalHtml = `
+    <div class='standardItemPanel'>
+        <div class='close'></div>
+        <div class='itemPanel'>
+            <div class='itemArtWrap'>
+                <img class='itemArt' src='${imgUrl}' alt='item' draggable='false'>
+                ${entry.numOfAlt > 0 ? `<div class='itemArtList'>${Array(entry.numOfAlt + 1).fill('<span>◆</span>').join('')}</div>` : ''}
+            </div>
+            <div class='itemSummary'>
+                <div class='langSwitch'>⇆</div>
+                <div class='itemTitle'>
+                    <div class='itemTitle1'>${entry.giftName}</div>
+                    <div class='itemTitle2'>${entry.giftNameAlt}</div>
+                </div>
+                <div class='itemSummary_inner'>${entry.giftDescription}</div>
+            </div>
+        </div>
+    </div>`;
     $(".modal_content").html(itemModalHtml);
 
     unhideModel();
@@ -639,33 +633,34 @@ function setupItemModalHtml() {
 
     var previewData = setPreviewDataFromForm();
 
-    var itemModalHtml = "";
-    itemModalHtml += "<div class='close'>" + "</div>";
-    itemModalHtml += "<div class='itemPanel'>";
+    let itemModalHtml = `
+        <div class='close'></div>
+        <div class='itemPanel'>
+            <!-- ====== item art ====== -->
+            <div class='itemArtWrap'>
+                <div class='noImage itemArt'>
+                    <div>${SCRIPT_LOCALE_DATA.noImage}</div>
+                </div>
+                <input class='hiddenSelectButton' type='file' accept='.png' style='display: none;'>
+                <div class='selectImageButton'>${SCRIPT_LOCALE_DATA.chooseImage}</div>
+            </div>
+            <!-- ====== item summary ====== -->
+            <div class='itemSummary'>
+                <div class='itemTitle'>
+                    <div class='itemTitle1'>
+                        <div class='editable'><span>${previewData.giftName}</span></div>
+                    </div>
+                    <div class='itemTitle2'>
+                        <div class='editable'><span>${PLACEHOLDER_GIFT.giftNameAlt}</span></div>
+                    </div>
+                </div>
+                <div class='itemSummary_inner'>
+                    <div class='editableTextArea'><span>${simpleMarkdownToHTML(previewData.giftDescription)}</span></div>
+                </div>
+            </div>
+        </div>
+    `;
 
-    // ====== item art ======
-    itemModalHtml += "<div class='itemArtWrap'>";
-    itemModalHtml += "<div class='noImage itemArt'>";
-    itemModalHtml += "<div>" + SCRIPT_LOCALE_DATA.noImage + "</div>";
-    itemModalHtml += "</div>";
-    itemModalHtml += "<input class='hiddenSelectButton' type='file' accept='.png' style='display: none;' >";
-    itemModalHtml += "<div class='selectImageButton'>" + SCRIPT_LOCALE_DATA.chooseImage + "</div>";
-    itemModalHtml += "</div>";
-    // ====== item summary ======
-    itemModalHtml += "<div class='itemSummary'>";
-    itemModalHtml += "<div class='itemTitle'>";
-    itemModalHtml += "<div class='itemTitle1'>";
-    itemModalHtml += "<div class='editable'><span>" + previewData.giftName + "</span></div>";
-    itemModalHtml += "</div>";
-    itemModalHtml += "<div class='itemTitle2'>";
-    itemModalHtml += "<div class='editable'><span>" + PLACEHOLDER_GIFT.giftNameAlt + "</span></div>";
-    itemModalHtml += "</div>";
-    itemModalHtml += "</div>";
-    itemModalHtml += "<div class='itemSummary_inner'>";
-    itemModalHtml += "<div class='editableTextArea'><span>" + simpleMarkdownToHTML(previewData.giftDescription) + "</span></div>";
-    itemModalHtml += "</div>";
-    itemModalHtml += "</div>";
-    itemModalHtml += "</div>";
     $(".previewItemPanel").html(itemModalHtml);
 
     setUpPreviwInputs(previewData);
@@ -773,41 +768,36 @@ function setUpFakeUpload() {
     });
 }
 
-var SAMPLE_ART_INDEX = [0,0,0];
+var SAMPLE_ART_INDEX = [0, 0, 0];
 
 //========================================//
 //    Settingup Sample Gift Modal HTML    //
 //========================================//
 
 function setupSampleGiftModalHtml(entries) {
-    var sampleGiftModalHtml = "";
-    sampleGiftModalHtml += '<div>' + SCRIPT_LOCALE_DATA.sampleGiftTitle + '<div class="miniClose no-select">[x]</div></div>';
-    sampleGiftModalHtml += '<ul>';
-    for (let entry of entries) {
-        sampleGiftModalHtml += '<li>';
-        sampleGiftModalHtml += '<div class="itemArtList">';
-        if (entry.numOfAlt > 0) {
-            sampleGiftModalHtml += "<div class='itemArtList'>";
-            for (let i = 0; i < entry.numOfAlt + 1; i++) {
-                sampleGiftModalHtml += "<span>◆</span><br>";
-            }
-            sampleGiftModalHtml += "</div>";
-        }
-        sampleGiftModalHtml += '</div>';
-        sampleGiftModalHtml += '<img class="sampleItemArt" src="' + getSampleGiftUrl(entry, 0) + '" alt="gift">';
-        sampleGiftModalHtml += '<div class="sampleContent">';
-        sampleGiftModalHtml += '<div class="giftName">';
-        sampleGiftModalHtml += entry.giftName;
-        sampleGiftModalHtml += '</div>';
-        sampleGiftModalHtml += '<div class="giftDesc">';
-        sampleGiftModalHtml += simpleMarkdownToHTML(entry.giftDescription);
-        sampleGiftModalHtml += '</div>';
-        sampleGiftModalHtml += '</div>';
-        sampleGiftModalHtml += '</li>';
-    }
-    sampleGiftModalHtml += '</ul>';
-    $(".sampleGiftPanel").html(sampleGiftModalHtml);
 
+    let sampleGiftModalHtml = `
+    <div>
+        ${SCRIPT_LOCALE_DATA.sampleGiftTitle}
+        <div class="miniClose no-select">[x]</div>
+    </div>
+    <ul>
+        ${entries.map(entry => `
+            <li>
+                <div class="itemArtIndicatorList">
+                    ${entry.numOfAlt > 0 ? `<div>${Array(entry.numOfAlt + 1).fill("<span>◆</span><br>").join('')}</div>` : ''}
+                </div>
+                <img class="sampleItemArt" src="${getSampleGiftUrl(entry, 0)}" alt="gift">
+                <div class="sampleContent">
+                    <div class="giftName">${entry.giftName}</div>
+                    <div class="giftDesc">${simpleMarkdownToHTML(entry.giftDescription)}</div>
+                </div>
+            </li>
+        `).join('')}
+    </ul>`;
+
+
+    $(".sampleGiftPanel").html(sampleGiftModalHtml);
     $(".sampleItemArt").each(function (index) {
         setUpMiniAltArt(entries[index], $(this), index);
     });
@@ -829,7 +819,7 @@ function setupSampleGiftModalHtml(entries) {
                 SAMPLE_ART_INDEX[sampleIndex] = (SAMPLE_ART_INDEX[sampleIndex] < entry.numOfAlt) ? SAMPLE_ART_INDEX[sampleIndex] + 1 : 0;
                 element
                     .fadeOut(130, function () {
-                        element.attr('src', getSampleGiftUrl(entry,SAMPLE_ART_INDEX[sampleIndex]));
+                        element.attr('src', getSampleGiftUrl(entry, SAMPLE_ART_INDEX[sampleIndex]));
                         handleMiniAltArtIndicator(element, sampleIndex);
                     })
                     .fadeIn(130);
@@ -837,8 +827,8 @@ function setupSampleGiftModalHtml(entries) {
         })
     }
     function handleMiniAltArtIndicator(e, i) {
-        e.siblings(".itemArtList").children().children("span:eq("+SAMPLE_ART_INDEX[i]+")").css('color', 'white');
-        e.siblings(".itemArtList").children().children("span:not(:eq("+SAMPLE_ART_INDEX[i]+"))").css('color', 'rgba(0, 0, 0, 0.4)');
+        e.siblings(".itemArtIndicatorList").children().children("span:eq(" + SAMPLE_ART_INDEX[i] + ")").css('color', 'white');
+        e.siblings(".itemArtIndicatorList").children().children("span:not(:eq(" + SAMPLE_ART_INDEX[i] + "))").css('color', 'rgba(0, 0, 0, 0.4)');
     }
 }
 

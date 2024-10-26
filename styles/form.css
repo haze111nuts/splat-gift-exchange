@@ -816,11 +816,13 @@ h2 {
   width: 100%;
   opacity: 0;
 }
-.sampleGiftPanel > ul > li .itemArtList {
-  font-size: 0.8em;
+.sampleGiftPanel > ul > li .itemArtIndicatorList {
   position: absolute;
-  left: -10px;
-  top: 25px;
+  left: -20px;
+  top: 50px;
+}
+.sampleGiftPanel > ul > li .itemArtIndicatorList div {
+  font-size: 0.8em !important;
 }
 .sampleGiftPanel > ul > li img {
   width: 150px;
