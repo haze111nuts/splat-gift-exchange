@@ -446,7 +446,7 @@ var sampleGifts_EN = [
     },
     {
         giftName: "Strange Frying Pan",
-        giftDescription: "It looks like an ordinary frying pan, but there is an upside-down seal figurine in the middle of the pan with unknown purpose. The figurine is unremovable, seemed like you will have to cook with the figurine in the pan.\n\nThis pan has some peculiar features:\n- When the pan is preheated, the seal's eye will glow red.\n- When you shake the pan, the seal figrine starts saying odd things like \"squeak squeak!\" or even \"meat!\"\n\nAfter wash the pan and put it upside down to dry, it looks just like a seal using a giant frying pan as a hat.",
+        giftDescription: "It looks like an ordinary frying pan, but there is an upside-down seal figurine in the middle of the pan for unknown purpose. The figurine is unremovable, seems like you will have to cook like this.\n\nThis pan seems to have some strange features:\n- When the pan is preheated, the seal's eye will glow red.\n- When you shake the pan, the seal figrine starts making odd sounds like \"squeak squeak!\" or \"meat!\"\n\nAfter washing the pan you can put it upside-down to dry, it looks just like a seal using a giant frying pan as a hat.",
         numOfAlt: 1
     }
 ]
