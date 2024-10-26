@@ -247,12 +247,13 @@ var htmlLocalData_EN = {
     member_unconfirmed: "Undecided",
     gift_guide: {
         title: "Gift Guidelines",
+        title: "Gift Guidelines",
         items: [
-            "Please don't include anything containing mammal meat as mammals are extinct species in Splatoon, you can replace them with meat from fish/shellfish/shrimp",
-            "Dairy product seems to exists in Splatoon Universe so food containing dairy product should be fine.",
-            "Mammals are still known to people in Splatoon as a part of histry, so mammal themed products are fine.",
-            "Please do not prepare gift that has unexplainable magic power in the scope of Splatoon Universe.",
-            "Please do not submit potion/drugs with effects that may cause inconvenience to others, if the effects are harmless (e.g. changes ink color temporarily) the host may give it a pass, but please disscuss with 58 before you start drawing."
+            "Please don't include anything containing mammal meat as mammals are extinct species in Splatoon, you can replace them with poultry meat or seafood.",
+            "Dairy product seems to exists in Splatoon Universe so food containing dairy product is fine.",
+            "Mammals are still known to people in Splatoon as a part of histry, so mammal themed is fine.",
+            "Please do not prepare gift that has unexplainable magic power.",
+            "Please do not submit potion or drugs with effects that may cause inconvenience to others, if the effects are harmless (e.g. changes ink color temporarily) the host may give it a pass, but please disscuss with 58 before you start drawing."
         ],
         notice: [
             "**Keep in mind that this gift will be randomly assigned to someone and they will make art out of it, so please try your best to make it follow the general rule in Splatoon Universe",
@@ -300,7 +301,7 @@ var htmlLocalData_EN = {
                 "Provide a detailed description to help others understand the gift. You can write about things like what's included in the gift, what are the material used, what kind of texture this object has, or how it can be used. There is no character limit so put as much description as you want! You can also add links or links to images. Feel free to DM 58 for any questions or check out <span for='sampleGiftPanel'></span> or use the <span for='previewItemPanel'></span>.",
                 "Please try not to include your OC's name as the gift is supposed to be anonymous."
             ],
-            placeholder: "用高級毛線織成的圍巾，光是看著就覺得暖。"
+            placeholder: "A scarf made with high quality yarn, just looking at it makes you feel warm."
         },
         question6: {
             label: "An Artwork of This OC Preparing This Gift",
