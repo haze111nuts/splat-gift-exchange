@@ -52,21 +52,9 @@ var htmlLocalData_CH = {
         sec: "秒"
     },
     deadlines: ["禮物投稿截止日", "開箱日直播", "收禮插圖截止日"],
-    member_confirmed: "確定參加",
-    member_unconfirmed: "觀望中",
-    gift_guide: {
-        title: "禮物規範",
-        items: [
-            "Splatoon世界中的哺乳類生物已滅絕，所以禮物內請勿包含哺乳類肉製品或相關的食品（請以雞肉或魚蝦貝類代替哺乳動物的肉類）",
-            "Splatoon世界存在奶製品﹐所以包含奶製品的食品OK。",
-            "Splatoon世界具有哺乳類生物的基本知識﹐所以哺乳類動物造型的物品OK。",
-            "請勿準備像是魔法物品這類不合乎普遍常理的東西！",
-            "請勿準備效果會讓人困擾的藥物！若藥物造成的效果無傷大雅（如改變墨色）的話就OK，建議跟主持人討論後再作畫。"
-        ],
-        notice: [
-            "※請大家切記這個神秘禮物在之後會被別人的角色抽到，並且會被別人拿去作畫，所以能盡量配合基本的Splatoon世界觀為佳！",
-            "※為了維持禮物正當性﹐主持人會私下先過目禮物﹐可能會以上述之外的標準來進行審核。是禮物不符合標準的話﹐主持人會私下和你協調＆一起想折衷方案。禮物內容規範可能隨時更新，請隨時關注這個頁面！"
-        ]
+    member: {
+        confirmed: "確定參加",
+        unconfirmed: "觀望中"
     },
     openSamplePanel: "點這裡看範本",
     openPreviewHelper: "使用預覽小幫手",
@@ -157,15 +145,6 @@ var htmlLocalData_CH = {
         i_understand: "我懂了！",
         submit: "投稿禮物"
     },
-    form_tip: "***此表單為手工製作，遭遇BUG的話請向58回報***",
-    editModal: {
-        alert: [
-            "你剛剛似乎有修改預覽畫面的內文，",
-            "要把內文套用到表單上嗎？"
-        ],
-        discard: "丟棄",
-        apply: "套用"
-    },
     form2: {
         question1: {
             label: "投稿人名字",
@@ -187,15 +166,37 @@ var htmlLocalData_CH = {
             ],
         },
         submit: "送出"
-    }
+    },
+    form_tip: "***此表單為手工製作，遭遇BUG的話請向58回報***",
+    gift_guide: {
+        title: "禮物規範",
+        items: [
+            "Splatoon世界中的哺乳類生物已滅絕，所以禮物內請勿包含哺乳類肉製品或相關的食品（請以雞肉或魚蝦貝類代替哺乳動物的肉類）",
+            "Splatoon世界存在奶製品﹐所以包含奶製品的食品OK。",
+            "Splatoon世界具有哺乳類生物的基本知識﹐所以哺乳類動物造型的物品OK。",
+            "請勿準備像是魔法物品這類不合乎普遍常理的東西！",
+            "請勿準備效果會讓人困擾的藥物！若藥物造成的效果無傷大雅（如改變墨色）的話就OK，建議跟主持人討論後再作畫。"
+        ],
+        notice: [
+            "※請大家切記這個神秘禮物在之後會被別人的角色抽到，並且會被別人拿去作畫，所以能盡量配合基本的Splatoon世界觀為佳！",
+            "※為了維持禮物正當性﹐主持人會私下先過目禮物﹐可能會以上述之外的標準來進行審核。是禮物不符合標準的話﹐主持人會私下和你協調＆一起想折衷方案。禮物內容規範可能隨時更新，請隨時關注這個頁面！"
+        ]
+    },
+    apply_preview: {
+        alert: [
+            "你剛剛似乎有修改預覽畫面的內文，",
+            "要把內文套用到表單上嗎？"
+        ],
+        discard: "丟棄",
+        apply: "套用"
+    },
 }
 
 var htmlLocalData_EN = {
     phase1_title: "<span>2025 Splatoon Gift Exchange<br>Submission Form</span>",
     phase2_title: "<span>2025 Splatoon Gift Exchange<br>Unbox Art Submission Form</span>",
     phase1_summary: "⚠️ <span>This form is only for members who are invited</span> ⚠️",
-    phase2_summary: "<span>This is the second part of Splatoon Gift Exchange Art Project!<br>You will have to draw your OC with the gift they received during Unboxing Day.</span>"
-    ,
+    phase2_summary: "<span>This is the second part of Splatoon Gift Exchange Art Project!<br>You will have to draw your OC with the gift they received during Unboxing Day.</span>",
     nav_list: ["Prologue", "Guide", "Read Me", "Deadlines", "Members"],
     prologue: {
         first_line: "One day, your OC recieved a mysterious letter...",
@@ -243,22 +244,9 @@ var htmlLocalData_EN = {
         sec: "sec"
     },
     deadlines: ["Gift Submission Deadline", "Unboxing Day Stream", "Gift Receiving Artwork Deadline"],
-    member_confirmed: "Participating",
-    member_unconfirmed: "Undecided",
-    gift_guide: {
-        title: "Gift Guidelines",
-        title: "Gift Guidelines",
-        items: [
-            "Please don't include anything containing mammal meat as mammals are extinct species in Splatoon, you can replace them with poultry meat or seafood.",
-            "Dairy product seems to exists in Splatoon Universe so food containing dairy product is fine.",
-            "Mammals are still known to people in Splatoon as a part of histry, so mammal themed is fine.",
-            "Please do not prepare gift that has unexplainable magic power.",
-            "Please do not submit potion or drugs with effects that may cause inconvenience to others, if the effects are harmless (e.g. changes ink color temporarily) the host may give it a pass, but please disscuss with 58 before you start drawing."
-        ],
-        notice: [
-            "**Keep in mind that this gift will be randomly assigned to someone and they will make art out of it, so please try your best to make it follow the general rule in Splatoon Universe",
-            "**The host will review the content of the gift to ensure it's acceptable, the host may also review the gift with standards that are not mentioned above. If you have any doubts on wether your gift applys, feel free to ask the host thru DM. The host may update the gift guideline anytime."
-        ]
+    member: {
+        confirmed: "Participating",
+        unconfirmed: "Undecided"
     },
     openSamplePanel: "Sample Gifts",
     openPreviewHelper: "Preview Helper",
@@ -277,7 +265,7 @@ var htmlLocalData_EN = {
             ],
         },
         question3: {
-            label: "What Gift did This OC pick?",
+            label: "What Gift did This OC Pick?",
             desc: [
                 "Please ensure this gift follows the <span for='giftRulePanel'>Gift Guideline</span>, or our host will be knocking on your door :)",
                 "You can also consult with 58 if you are not sure what to/what not to prepare."
@@ -340,21 +328,12 @@ var htmlLocalData_EN = {
             ]
         },
         warning: [
-            "⚠️⚠️ Important Terms ⚠️⚠️",
+            "<span>⚠️⚠️ Important Terms ⚠️⚠️</span>",
             "By Submitting you promise you WILL draw your OC recieving a gift.",
             " If you failed to provide this art for any reason, it will be very disrespectful to the artist who design the gift, and the host has the right to permanently remove you from this project."
         ],
         i_understand: "I Understand",
         submit: "Submit Gift"
-    },
-    form_tip: "***Please report to 58 if you see any bug on the form***",
-    editModal: {
-        alert: [
-            "Looks like you've edited the preview content,",
-            "Do you want to apply the content to the form?"
-        ],
-        discard: "Discard",
-        apply: "Apply"
     },
     form2: {
         question1: {
@@ -378,6 +357,28 @@ var htmlLocalData_EN = {
             ],
         },
         submit: "Submit"
+    },
+    form_tip: "***Please report to 58 if you see any bug on the form***",
+    gift_guide: {
+        title: "Gift Guidelines",
+        items: [
+            "Please don't include anything containing mammal meat as mammals are extinct species in Splatoon, you can replace them with poultry meat or seafood.",
+            "Dairy product seems to exists in Splatoon Universe so food containing dairy product is fine.",
+            "Mammals are still known to people in Splatoon as a part of histry, so mammal themed is fine.",
+            "Please do not prepare gift that has unexplainable magic power.",
+            "Please do not submit potion or drugs with effects that may cause inconvenience to others, if the effects are harmless (e.g. changes ink color temporarily) the host may give it a pass, but please disscuss with 58 before you start drawing."
+        ],
+        notice: [
+            "**Keep in mind that this gift will be randomly assigned to someone and they will make art out of it, so please try your best to make it follow the general rule in Splatoon Universe",
+            "**The host will review the content of the gift to ensure it's acceptable, the host may also review the gift with standards that are not mentioned above. If you have any doubts on wether your gift applys, feel free to ask the host thru DM. The host may update the gift guideline anytime."
+        ]
+    },
+    apply_preview: {
+        alert: [
+            "Looks like you've edited the preview content, do you want to apply the content to the form?"
+        ],
+        discard: "Discard",
+        apply: "Apply"
     }
 }
 
@@ -399,14 +400,18 @@ function applyLocalData(data) {
     $('.minutes').after(data.countdown.min);
     $('.seconds').after(data.countdown.sec);
     $(".deadlines ul li span:first-child").each((i, el) => $(el).text(data.deadlines[i])).after(" : ");
-    $(".memberWrap div:nth-child(1) .memberType span").text(data.member_confirmed);
-    $(".memberWrap div:nth-child(2) .memberType span").text(data.member_unconfirmed);
+    $(".memberWrap div:nth-child(1) .memberType span").text(data.member.confirmed);
+    $(".memberWrap div:nth-child(2) .memberType span").text(data.member.unconfirmed);
     //end of form
     $(".wrapper .tip").text(data.form_tip);
     //modal - gift rules
     $(".giftRules h2").text(data.gift_guide.title);
     $(".giftRules ul").html(data.gift_guide.items.map(item => `<li>${item}</li>`));
     $('.giftRules .notice').html(data.gift_guide.notice.map(item => `<div>${item}</div>`));
+    //modal - apply preview
+    $(".confirmEdit div").before(data.apply_preview.alert.join("<br>"));
+    $(".confirmEdit div span:nth-child(1)").text(data.apply_preview.discard);
+    $(".confirmEdit div span:nth-child(2)").text(data.apply_preview.apply);
 }
 
 function applyLocalDataForGiftForm(data){

@@ -22,11 +22,11 @@ var HTML_LOCAL_DATA;
 //    CONSTANT     //
 //=================//
 
-var IS_ENG_FORM = true;
+var IS_ENG_FORM = false;
 
 var OVERWRITE = {
     switch: true,
-    phase: 1
+    phase: 3
 }
 
 //==================//
@@ -149,7 +149,17 @@ function decideLocalization() {
     HTML_LOCAL_DATA =  IS_ENG_FORM ? htmlLocalData_EN : htmlLocalData_CH;
     SCRIPT_LOCAL_DATA = IS_ENG_FORM ? scriptLocalData_EN : scriptLocalData_CH;
     PLACEHOLDER_GIFT = IS_ENG_FORM ? placehoderGift_EN : placehoderGift_CH;
+    if(IS_ENG_FORM){
+        removeUploaderLocale();
+        $(".nav .prologue .letterDeco").css("bottom","340px");
+    }
     applyLocalData(HTML_LOCAL_DATA);
+}
+
+function removeUploaderLocale(){
+    $(".uc-stuff uc-config").each((i, el) => {
+        $(el).removeAttr("locale-name");
+    });
 }
 
 function setUpConfirmEvent() {

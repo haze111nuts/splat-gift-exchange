@@ -283,7 +283,7 @@ a {
         .letterDeco {
             position: absolute;
             left: 40px;
-            bottom: 340px;
+            bottom: 280px;
             transform: rotate(-20deg);
             z-index: 58;
         }
@@ -415,6 +415,9 @@ a {
             margin: 0 auto;
             margin-bottom: 10px;
             padding: 0px 16px;
+            span{
+                font-size: 1.2em;
+            }
         }
         .confirm {
             color: $TEXT_MAIN;
