@@ -10,19 +10,19 @@ var NUM_OF_EX_IMG = 0;
 var EX_IMG_URLS = []
 
 var PREVIEW_IS_EDITED = false;
-var IS_ENG_FORM = false;
-var SCRIPT_LOCAL_DATA = {};
 var PLACEHOLDER_GIFT = {};
 
 var CURRENT_ALT_INDEX = 0;
 var CURRENT_SUMMARY_LANG = 0;
 
+var SCRIPT_LOCAL_DATA = {};
+var HTML_LOCAL_DATA = {};
 
 //=================//
 //    CONSTANT     //
 //=================//
 
-var LOCAL_DATA = htmlLocalData_EN;
+var IS_ENG_FORM = true;
 
 var OVERWRITE = {
     switch: true,
@@ -54,7 +54,7 @@ const phases = [
 //    Localizer Data     //
 //=======================//
 
-var localData_CH = {
+var scriptLocalData_CH = {
     sampleGiftTitle: "禮物範本",
     editTip: "點框外任意一處結束修改",
     chooseImage: "選張圖片",
@@ -67,7 +67,7 @@ var localData_CH = {
     yourGiftIs: "這個OC抽到的禮物是："
 }
 
-var localData_EN = {
+var scriptLocalData_EN = {
     sampleGiftTitle: "Sample Gifts",
     editTip: "Click anywhere outside to end edit",
     chooseImage: "Choose Image",
@@ -146,11 +146,11 @@ function getSampleGiftUrl(gift, artIndex) {
 //=========================//
 
 function decideLocalization() {
-    if ($('head title').text().includes("Gift")) {
-        IS_ENG_FORM = true;
-    }
-    SCRIPT_LOCAL_DATA = IS_ENG_FORM ? localData_EN : localData_CH;
+    HTML_LOCAL_DATA =  IS_ENG_FORM ? htmlLocalData_EN : htmlLocalData_CH;
+    SCRIPT_LOCAL_DATA = IS_ENG_FORM ? scriptLocalData_EN : scriptLocalData_CH;
     PLACEHOLDER_GIFT = IS_ENG_FORM ? placehoderGift_EN : placehoderGift_CH;
+    
+    applyLocalData(HTML_LOCAL_DATA);
 }
 
 function setUpConfirmEvent() {
@@ -209,7 +209,7 @@ function checkPhase() {
 function setUpTimer() {
     checkPhase();
     swapToSecondForm();
-    applyLocalData(LOCAL_DATA);
+    decideLocalization()
 
     $(".giftDeadline").text(new Date(phases[0]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
     $(".unboxingDay").text(new Date(phases[1]).toLocaleString("zh").replaceAll("/", "-").replaceAll(" ", ", ").slice(0, -3));
