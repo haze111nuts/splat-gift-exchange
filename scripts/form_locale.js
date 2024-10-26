@@ -205,7 +205,7 @@ var htmlLocaleData_EN = {
             "Dear Inkfish,",
             "We are the Mysterious Gift Exchange Association,",
             "you have been chosen as a participant!",
-            "We collect gift across different universes and exchange them. If you are interested, prepare a gift and mail it with the stamp we attached, then you will receive a gift in return on the winter holiday.",
+            "We collect gift across different universes and exchange them. If you'd like to join, simply prepare a winter gift and send it using the stamp we've included. Then, you'll receive a gift in return on the winter holiday!",
             "<div class='hr'></div><span>P.S. Do not wrap the gift, we will do it for you.</span>",
             "<span>P.S. Do not stick the stamp onto your friend.</span>"
         ],
@@ -228,10 +228,10 @@ var htmlLocaleData_EN = {
         "All artwork will be revealed on December 25.",
     ],
     readme: [
-        "Only one gift entry per OC, but you can participate with multiple OC. Please be aware that the amount of artwork increase exponentially if you do so.",
-        "Please try to keep your gift and art confidential so it's more fun when revealed!",
+        "You may only submit one gift entry per OC, but you can participate with multiple OC. Please be aware that the amount of artwork increase exponentially if you do so.",
+        "Please try to keep your gift and art confidential until the end so it's more fun when revealed!",
         "This project is just for fun, this gift exchange event may or may not happened in the universe or timeline your OC lives in, so don't take it too seriously!!",
-        "From the OC's perspective, all gifts are anonymous. Your OC is not required to interact with other OC at all.",
+        "From the OC's perspective, all gifts are anonymous. Your OC is not required to interact with other OCs at all.",
         "There will be OCs from all kinds of original Splatoon universes, some of them may even be from a completely different timeline. You may also see Splatsonas. If you got a gift from an OC or a universe that is not of your taste, please don't thinking about it too much, just focus on the gift itself!",
         "If there is a participant you don't want to have anything to do with, you can consider back out from this project.",
         "Please connect with host 58 (@Xolot58 on Twitter) if you have any question."
@@ -330,8 +330,7 @@ var htmlLocaleData_EN = {
         },
         warning: [
             "<span>⚠️⚠️ Important Terms ⚠️⚠️</span>",
-            "By Submitting you promise you WILL draw your OC recieving a gift.",
-            " If you failed to provide this art for any reason, it will be very disrespectful to the artist who design the gift, and the host has the right to permanently remove you from this project."
+            "By Submitting you promise you WILL draw your OC recieving a gift after unboxing day. If you failed to provide this art for any reason, it will be very disrespectful to the artist who designed the gift, and the host has the right to permanently remove you from this project."
         ],
         i_understand: "I Understand",
         submit: "Submit Gift"
@@ -363,7 +362,7 @@ var htmlLocaleData_EN = {
     gift_guide: {
         title: "Gift Guidelines",
         items: [
-            "Please don't include anything containing mammal meat as mammals are extinct species in Splatoon, you can replace them with poultry meat or seafood.",
+            "Please don't include anything containing mammal meat as mammals are extinct species in the world of Splatoon, you can replace them with poultry meat or seafood.",
             "Dairy product seems to exists in Splatoon Universe so food containing dairy product is fine.",
             "Mammals are still known to people in Splatoon as a part of histry, so mammal themed is fine.",
             "Please do not prepare gift that has unexplainable magic power.",
