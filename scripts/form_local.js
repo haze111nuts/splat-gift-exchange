@@ -158,6 +158,7 @@ var htmlLocalData_CH = {
             desc: [
                 "請從下面選一個OC"
             ],
+            placeholder: "請從下面選一個OC"
         },
         question3: {
             label: "請繪製這個OC與抽到的禮物互動的插圖",

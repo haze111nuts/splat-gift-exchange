@@ -26,7 +26,7 @@ var IS_ENG_FORM = false;
 
 var OVERWRITE = {
     switch: true,
-    phase: 3
+    phase: 1
 }
 
 //==================//
@@ -123,15 +123,17 @@ var sampleGifts = [
 //    URL GETTERS     //
 //====================//
 
+var demoUrl = "../2024/";
+
 function getGiftUrl(gift) {
     if (CURRENT_ALT_INDEX > 0) {
-        return "../gift/" + ENTRIES.indexOf(gift) + "-" + CURRENT_ALT_INDEX + ".png";
+        return "../" + demoUrl + "gift/" + ENTRIES.indexOf(gift) + "-" + CURRENT_ALT_INDEX + ".png";
     }
-    return "../gift" + ENTRIES.indexOf(gift) + ".png";
+    return "../" + demoUrl + "gift/" + ENTRIES.indexOf(gift) + ".png";
 }
 
 function getProfileUrl(ocName) {
-    return "../profile/" + ENTRIES.findIndex(e => e.ocName === ocName) + ".png";
+    return "../" + demoUrl + "profile/" + ENTRIES.findIndex(e => e.ocName === ocName) + ".png";
 }
 
 function getSampleGiftUrl(gift, artIndex) {
