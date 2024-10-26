@@ -17,12 +17,13 @@ var CURRENT_SUMMARY_LANG = 0;
 
 var SCRIPT_LOCALE_DATA;
 var HTML_LOCALE_DATA;
+var SAMPLE_GIFTS;
 
 //=================//
 //    CONSTANT     //
 //=================//
 
-var IS_ENG_FORM = false;
+var IS_ENG_FORM = true;
 
 var OVERWRITE = {
     switch: true,
@@ -50,36 +51,6 @@ const phases = [
 //      tomorroww
 // ];
 
-//=======================//
-//    Localizer Data     //
-//=======================//
-
-var scriptLocaleData_CH = {
-    sampleGiftTitle: "禮物範本",
-    editTip: "點框外任意一處結束修改",
-    chooseImage: "選張圖片",
-    noImage: "尚無圖片<br>可以按下方按鈕選圖<br>※此圖並不會被上傳",
-    uploadSuccess: "成功上傳了1張圖",
-    mutiUploadSuccess: ["成功上傳了", "張圖"],
-    inputError: "有東西沒填！",
-    selectError: "有東西沒選！",
-    imageError: "請提供圖片！",
-    yourGiftIs: "這個OC抽到的禮物是："
-}
-
-var scriptLocaleData_EN = {
-    sampleGiftTitle: "Sample Gifts",
-    editTip: "Click anywhere outside to end edit",
-    chooseImage: "Choose Image",
-    noImage: "Select Image from the button below<br>*This image will not get uploaded",
-    uploadSuccess: "Successfully upload 1 image!",
-    mutiUploadSuccess: ["Successfully upload ", " image!"],
-    inputError: "This field is required!",
-    selectError: "A selection is required!",
-    imageError: "An image is required!",
-    yourGiftIs: "The gift this OC recieved is:"
-}
-
 //=========================//
 //    Placeholder Data     //
 //=========================//
@@ -94,33 +65,6 @@ var placehoderGift_EN = {
     giftNameAlt: "禮物名",
     giftDescription: "Click here to write gift summary.\nAvailable Markdown: \n1. **Bold**\n2. *Italic*\n3. ~~strikethrough~~\n4. [URL](#)\nList is also available\n- Feel free to write anything you want!\n- Your could also write a greeting card."
 }
-
-//=========================//
-//    Sample Gift Data     //
-//=========================//
-
-var sampleGifts = [
-    {
-        giftName: "神秘的招財生物",
-        giftNameAlt: "Mysterious Lucky Creature",
-        giftDescription: "一個神秘生物的小雕像。只要有光，他的一隻手掌就會開始不斷擺動，而且還會發出難以解釋的奇怪叫聲。除了招財以外，也許還會招來什麼其他生物也說不定。",
-        giftDescriptionAlt: "A figurine of some mysterious creature. With some light, its arm will start a beckoning gesture, and it will make some weird noise. Other than bringing good fortune, it might bring in some other creature as well."
-    },
-    {
-        giftName: "可疑的零錢包",
-        giftNameAlt: "Suspicious Wallet",
-        giftDescription: "一個形狀非常特別，像太空人一樣的錢包。把錢包的拉鍊拉開後可以看到內有尖牙和血盆大口，真不知道做這個錢包的廠商是抱著什麼心態去設計的。\n據說把錢放在裡面就會拿不出來…真是太可疑了！",
-        giftDescriptionAlt: "A wallet with peculiar shape that looked like some kind of astronaut. The inside of this wallet is desgined like a bloody mouth with shape teeth, it's hard to imagine what the manufacturer was thinking when designing this wallet.\nRumor said once you put money in, you won't be able to get it back… Very sus!",
-        numOfAlt: 1
-    },
-    {
-        giftName: "奇怪的平底鍋",
-        giftNameAlt: "Seal Frying Pan",
-        giftDescription: "一個看似普通的平底鍋，中間有隻倒過來的海豹公仔，也不知道是用來做什麼的，似乎拿不起來的樣子，看來只能直接這樣使用了。\n另外，這平底鍋似乎有些奇怪的功能：\n- 當這個平底鍋預熱完成時，海豹的眼睛會發出紅光。\n- 甩動這個平底鍋時，海豹似乎會發出一些「揪揪！」或是「吃肉！」的怪聲。\n\n當你把這平底鍋洗好拿去倒扣晾乾時，看起來就像海豹頂著一個巨大的平底鍋。",
-        giftDescriptionAlt: "t looks like an ordinary frying pan, but there is an upside-down seal figurine in the middle of the pan with unknown purpose. The figurine is unremovable, seemed like you will have to cook with the figurine in the pan.\n\nThis pan has some peculiar features:\n- When the pan is preheated, the seal's eye will glow red.\n- When you shake the pan, the seal figrine starts saying odd things like \"squeak squeak!\" or even \"meat!\"\n\nAfter wash the pan and put it upside down to dry, it looks just like a seal using a giant frying pan as a hat.",
-        numOfAlt: 1
-    }
-]
 
 //====================//
 //    URL GETTERS     //
@@ -141,9 +85,9 @@ function getProfileUrl(ocName) {
 
 function getSampleGiftUrl(gift, artIndex) {
     if (artIndex > 0){
-        return "../../assets/form/sample-gift/" + sampleGifts.indexOf(gift) + "-" + artIndex + ".png";
+        return "../../assets/form/sample-gift/" + SAMPLE_GIFTS.indexOf(gift) + "-" + artIndex + ".png";
     }
-    return "../../assets/form/sample-gift/" + sampleGifts.indexOf(gift) + ".png";
+    return "../../assets/form/sample-gift/" + SAMPLE_GIFTS.indexOf(gift) + ".png";
 }
 
 //=========================//
@@ -154,6 +98,7 @@ function decideLocalization() {
     HTML_LOCALE_DATA =  IS_ENG_FORM ? htmlLocaleData_EN : htmlLocaleData_CH;
     SCRIPT_LOCALE_DATA = IS_ENG_FORM ? scriptLocaleData_EN : scriptLocaleData_CH;
     PLACEHOLDER_GIFT = IS_ENG_FORM ? placehoderGift_EN : placehoderGift_CH;
+    SAMPLE_GIFTS = IS_ENG_FORM ? sampleGifts_EN : sampleGifts_CH;
     if(IS_ENG_FORM){
         removeUploaderLocale();
         $(".nav .prologue .letterDeco").css("bottom","340px");
@@ -601,7 +546,7 @@ function setUpClickModalEvents(panelName) {
             if (panelName.includes("Item")) {
                 setupItemModalHtml();
             } else if (panelName.includes("Gift")) {
-                setupSampleGiftModalHtml(sampleGifts);
+                setupSampleGiftModalHtml(SAMPLE_GIFTS);
             }
 
             //unhide modal
@@ -623,7 +568,7 @@ function setUpClickModalEvents(panelName) {
 
             //unhide sample gifts
             setTimeout(function () {
-                for (var i = 0; i < sampleGifts.length; i++) {
+                for (var i = 0; i < SAMPLE_GIFTS.length; i++) {
                     $(".sampleGiftPanel ul li:nth-child(" + (i + 1) + ")")
                         .css("opacity", "1");
                 }
