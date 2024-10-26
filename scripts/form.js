@@ -832,6 +832,9 @@ function setupSampleGiftModalHtml(entries) {
 //======================//
 
 $(document).ready(function () {
+    var language = window.navigator.userLanguage || window.navigator.language;
+
+    IS_ENG_FORM = language === "en-US" ? true : false;
     setUpTimer();
     setUpConfirmEvent();
     setUpNavClickEvents();
