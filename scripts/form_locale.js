@@ -457,12 +457,12 @@ var sampleGifts_EN = [
 var placehoderGift_CH = {
     giftName: "按我改禮物名",
     giftNameAlt: "Gift Name",
-    giftDescription: "按這裡可以寫解釋，字數不限。\n可以用的語法：\n1. **粗體**\n2. *斜體*\n3. ~~刪除線~~\n4. [URL](#)\n也可以用普通清單\n- 請大家發揮創意\n- 也可以寫小卡片喔"
+    giftDescription: "按這裡可以寫解釋，字數不限。\n可以用的語法：\n1. **粗體**\n2. *斜體*\n3. ~~刪除線~~\n4. [URL](#)\n 也可以使用條列：\n- 項目一\n- 項目二"
 }
 var placehoderGift_EN = {
     giftName: "Click to Edit Gift Name",
     giftNameAlt: "禮物名",
-    giftDescription: "Click here to write gift summary.\nAvailable Markdown: \n1. **Bold**\n2. *Italic*\n3. ~~strikethrough~~\n4. [URL](#)\nList is also available\n- Feel free to write anything you want!\n- Your could also write a greeting card."
+    giftDescription: "Click here to write gift summary.\nAvailable Markdown: \n1. **Bold**\n2. *Italic*\n3. ~~strikethrough~~\n4. [URL](#)\n5. List\nPlease do: \n- Be creative!\n- Have fun!"
 }
 
 //=======================================//
