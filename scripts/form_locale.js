@@ -2,7 +2,7 @@
 //    Localizer Data     //
 //=======================//
 
-var htmlLocalData_CH = {
+var htmlLocaleData_CH = {
     phase1_title: "<span>2025</span>冬季神秘禮物投稿表單",
     phase2_title: "<span>2025</span>冬季神秘禮物後續圖表單",
     phase1_summary: "⚠️ 填之前請先跟主持人58確認你有在參加名單中 ⚠️",
@@ -193,7 +193,7 @@ var htmlLocalData_CH = {
     },
 }
 
-var htmlLocalData_EN = {
+var htmlLocaleData_EN = {
     phase1_title: "<span>2025 Splatoon Gift Exchange<br>Submission Form</span>",
     phase2_title: "<span>2025 Splatoon Gift Exchange<br>Unbox Art Submission Form</span>",
     phase1_summary: "⚠️ <span>This form is only for members who are invited</span> ⚠️",
@@ -384,10 +384,10 @@ var htmlLocalData_EN = {
 }
 
 
-function applyLocalData(data) {
+function applyLocaleData(data) {
     //form
-    applyLocalDataForGiftForm(data);
-    applyLocalDataForExchangeForm(data);
+    applyLocaleDataForGiftForm(data);
+    applyLocaleDataForExchangeForm(data);
     //nav
     $(".nav ul.navlist li").each((i, el) => $(el).text(data.nav_list[i]));
     $('.letterDeco').after(data.prologue.first_line + "<br>");
@@ -415,7 +415,7 @@ function applyLocalData(data) {
     $(".confirmEdit div span:nth-child(2)").text(data.apply_preview.apply);
 }
 
-function applyLocalDataForGiftForm(data){
+function applyLocaleDataForGiftForm(data){
     //banner
     $(".title.phase1").html(data.phase1_title);
     $(".summary.phase1").html(data.phase1_summary);
@@ -458,7 +458,7 @@ function applyLocalDataForGiftForm(data){
     $('#giftForm .submit').text(data.form1.submit + " >>");
 }
 
-function applyLocalDataForExchangeForm(data){
+function applyLocaleDataForExchangeForm(data){
     //banner
     $(".title.phase2").html(data.phase2_title);
     $(".summary.phase2").html(data.phase2_summary);

@@ -15,8 +15,8 @@ var PLACEHOLDER_GIFT = {};
 var CURRENT_ALT_INDEX = 0;
 var CURRENT_SUMMARY_LANG = 0;
 
-var SCRIPT_LOCAL_DATA;
-var HTML_LOCAL_DATA;
+var SCRIPT_LOCALE_DATA;
+var HTML_LOCALE_DATA;
 
 //=================//
 //    CONSTANT     //
@@ -54,7 +54,7 @@ const phases = [
 //    Localizer Data     //
 //=======================//
 
-var scriptLocalData_CH = {
+var scriptLocaleData_CH = {
     sampleGiftTitle: "禮物範本",
     editTip: "點框外任意一處結束修改",
     chooseImage: "選張圖片",
@@ -67,7 +67,7 @@ var scriptLocalData_CH = {
     yourGiftIs: "這個OC抽到的禮物是："
 }
 
-var scriptLocalData_EN = {
+var scriptLocaleData_EN = {
     sampleGiftTitle: "Sample Gifts",
     editTip: "Click anywhere outside to end edit",
     chooseImage: "Choose Image",
@@ -148,14 +148,14 @@ function getSampleGiftUrl(gift, artIndex) {
 //=========================//
 
 function decideLocalization() {
-    HTML_LOCAL_DATA =  IS_ENG_FORM ? htmlLocalData_EN : htmlLocalData_CH;
-    SCRIPT_LOCAL_DATA = IS_ENG_FORM ? scriptLocalData_EN : scriptLocalData_CH;
+    HTML_LOCALE_DATA =  IS_ENG_FORM ? htmlLocaleData_EN : htmlLocaleData_CH;
+    SCRIPT_LOCALE_DATA = IS_ENG_FORM ? scriptLocaleData_EN : scriptLocaleData_CH;
     PLACEHOLDER_GIFT = IS_ENG_FORM ? placehoderGift_EN : placehoderGift_CH;
     if(IS_ENG_FORM){
         removeUploaderLocale();
         $(".nav .prologue .letterDeco").css("bottom","340px");
     }
-    applyLocalData(HTML_LOCAL_DATA);
+    applyLocaleData(HTML_LOCALE_DATA);
 }
 
 function removeUploaderLocale(){
@@ -348,7 +348,7 @@ function printProfileAndGiftRecievedByOC(ocName) {
 
     //remove other gift pic and insert
     $('.giftInfo').children('img').remove();
-    $('.giftInfo').html("<div class='giftTip'>" + SCRIPT_LOCAL_DATA.yourGiftIs + " " + receivedGift.giftName + "</div>")
+    $('.giftInfo').html("<div class='giftTip'>" + SCRIPT_LOCALE_DATA.yourGiftIs + " " + receivedGift.giftName + "</div>")
     $('.giftTip').after("<img class='recievedGift' src='" + receivedGiftPNG + "' alt='recieved gift'>");
 
     $('.recievedGift').click(function () {
@@ -496,14 +496,14 @@ function validateGiftForm() {
             art_url: "required"
         },
         messages: {
-            OCname: SCRIPT_LOCAL_DATA.inputError,
-            gift: SCRIPT_LOCAL_DATA.inputError,
-            gift_summary: SCRIPT_LOCAL_DATA.inputError,
-            artist: SCRIPT_LOCAL_DATA.inputError,
-            contact: SCRIPT_LOCAL_DATA.inputError,
-            ocprofile_url: SCRIPT_LOCAL_DATA.imageError,
-            gift_url: SCRIPT_LOCAL_DATA.imageError,
-            art_url: SCRIPT_LOCAL_DATA.imageError
+            OCname: SCRIPT_LOCALE_DATA.inputError,
+            gift: SCRIPT_LOCALE_DATA.inputError,
+            gift_summary: SCRIPT_LOCALE_DATA.inputError,
+            artist: SCRIPT_LOCALE_DATA.inputError,
+            contact: SCRIPT_LOCALE_DATA.inputError,
+            ocprofile_url: SCRIPT_LOCALE_DATA.imageError,
+            gift_url: SCRIPT_LOCALE_DATA.imageError,
+            art_url: SCRIPT_LOCALE_DATA.imageError
         },
         // submitHandler: function (form) {
         //     alert("valid form submitted")
@@ -534,9 +534,9 @@ function validateExchangeForm() {
             final_art_url: "required"
         },
         messages: {
-            artist_select: SCRIPT_LOCAL_DATA.selectError,
-            oc_select: SCRIPT_LOCAL_DATA.selectError,
-            final_art_url: SCRIPT_LOCAL_DATA.imageError
+            artist_select: SCRIPT_LOCALE_DATA.selectError,
+            oc_select: SCRIPT_LOCALE_DATA.selectError,
+            final_art_url: SCRIPT_LOCALE_DATA.imageError
         },
         // submitHandler: function (form) {
         //     alert("valid form submitted")
@@ -561,7 +561,7 @@ function displayImageUploadSuccessMsg(e, parentDiv) {
 
     //set success message
     var succHtml =
-        SCRIPT_LOCAL_DATA.uploadSuccess + '<img src="' + e.detail.cdnUrl + '">';
+        SCRIPT_LOCALE_DATA.uploadSuccess + '<img src="' + e.detail.cdnUrl + '">';
     $('.' + parentDiv + ' .uploadResult').html(succHtml);
 
     //fill the hidden text input
@@ -577,7 +577,7 @@ function displayMultiImageUploadSuccessMsg(e) {
     NUM_OF_EX_IMG++;
     EX_IMG_URLS.push(e.detail.cdnUrl);
     var urlsToSend = "";
-    var succHtml = SCRIPT_LOCAL_DATA.mutiUploadSuccess[0] + NUM_OF_EX_IMG + SCRIPT_LOCAL_DATA.mutiUploadSuccess[1];
+    var succHtml = SCRIPT_LOCALE_DATA.mutiUploadSuccess[0] + NUM_OF_EX_IMG + SCRIPT_LOCALE_DATA.mutiUploadSuccess[1];
     for (let url of EX_IMG_URLS) {
         succHtml += '<img src="' + url + '">';
         urlsToSend += url + ", ";
@@ -695,10 +695,10 @@ function setupItemModalHtml() {
     // ====== item art ======
     itemModalHtml += "<div class='itemArtWrap'>";
     itemModalHtml += "<div class='noImage itemArt'>";
-    itemModalHtml += "<div>" + SCRIPT_LOCAL_DATA.noImage + "</div>";
+    itemModalHtml += "<div>" + SCRIPT_LOCALE_DATA.noImage + "</div>";
     itemModalHtml += "</div>";
     itemModalHtml += "<input class='hiddenSelectButton' type='file' accept='.png' style='display: none;' >";
-    itemModalHtml += "<div class='selectImageButton'>" + SCRIPT_LOCAL_DATA.chooseImage + "</div>";
+    itemModalHtml += "<div class='selectImageButton'>" + SCRIPT_LOCALE_DATA.chooseImage + "</div>";
     itemModalHtml += "</div>";
     // ====== item summary ======
     itemModalHtml += "<div class='itemSummary'>";
@@ -778,7 +778,7 @@ function setUpPreviwTextArea(previewData) {
         span.css("display", "none");
 
         $("<textarea></textarea>").insertBefore(span);
-        $("<div class='tip'>" + SCRIPT_LOCAL_DATA.editTip + "</div>").insertAfter(span);
+        $("<div class='tip'>" + SCRIPT_LOCALE_DATA.editTip + "</div>").insertAfter(span);
         var ta = $(this).siblings("textarea");
 
         ta.val(NEW_GIFT_DESC);
@@ -830,7 +830,7 @@ var SAMPLE_ART_INDEX = [0,0,0];
 
 function setupSampleGiftModalHtml(entries) {
     var sampleGiftModalHtml = "";
-    sampleGiftModalHtml += '<div>' + SCRIPT_LOCAL_DATA.sampleGiftTitle + '<div class="miniClose no-select">[x]</div></div>';
+    sampleGiftModalHtml += '<div>' + SCRIPT_LOCALE_DATA.sampleGiftTitle + '<div class="miniClose no-select">[x]</div></div>';
     sampleGiftModalHtml += '<ul>';
     for (let entry of entries) {
         sampleGiftModalHtml += '<li>';
