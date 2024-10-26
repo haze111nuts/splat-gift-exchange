@@ -115,7 +115,7 @@ var htmlLocalData_CH = {
         question6: {
             label: "請繪製這個OC準備這份禮物的插圖",
             desc: [
-                "圖片規格是1080px*1080px，PNG檔案，最多10MB。在聖誕節當日才公開。繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出你報名的這位OC以及他欲送出的禮物物品即可！圖中的海產OC主角請以人型態為主，配角則不限。最低完成度可以參考【<a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>二代官方的祭典插圖</a>】"
+                "圖片規格是1080px*1080px，PNG檔案，最多10MB。在聖誕節當日才公開。繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出你報名的這位OC準備禮物即可！圖中的海產OC主角請以人型態為主，配角則不限。最低完成度可以參考【<a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>二代官方的祭典插圖</a>】"
             ]
         },
         question7: {
@@ -181,9 +181,9 @@ var htmlLocalData_CH = {
             ],
         },
         question3: {
-            label: "請繪製這個OC和抽到的禮物的插圖",
+            label: "請繪製這個OC與抽到的禮物互動的插圖",
             desc: [
-                "圖片規格是1080px*1080px，PNG檔案，最多10MB。會在聖誕節那天公開在展示網頁上。繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出這位OC以及他收到的禮物物品即可！可以單純是OC將物品拿在手上的構圖、也可以是OC使用禮物的過程、或是OC收到該禮物的反應等，請隨意發揮。圖中的海產OC主角請以人型為主，配角則不限。禮物物品盡量不要被包裝遮到為佳！最低完成度可以參考【<a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>二代官方的祭典插圖</a>】"
+                "圖片規格是1080px*1080px，PNG檔案，最多10MB。會在聖誕節那天公開在展示網頁上。繪製內容、形式和完成度都請自由發揮，只要明確在圖中畫出這位OC使用他收到的禮物物品即可！可以單純是OC將物品拿在手上的構圖、也可以是OC使用禮物的過程、或是OC收到該禮物的反應等，請隨意發揮。圖中的海產OC主角請以人型為主，配角則不限。禮物物品盡量不要被包裝遮到為佳！最低完成度可以參考【<a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>二代官方的祭典插圖</a>】"
             ],
         },
         submit: "送出"
@@ -277,7 +277,7 @@ var htmlLocalData_EN = {
             ],
         },
         question3: {
-            label: "What Gift Did Your OC pick?",
+            label: "What Gift did This OC pick?",
             desc: [
                 "Please ensure this gift follows the <span for='giftRulePanel'>Gift Guideline</span>, or our host will be knocking on your door :)",
                 "You can also consult with 58 if you are not sure what to/what not to prepare."
@@ -298,15 +298,15 @@ var htmlLocalData_EN = {
         question5: {
             label: "Description of the Gift",
             desc: [
-                "Provide a detailed description to help others understand the gift. You can write about things like what's included in the gift, what are the material used, what kind of texture this object has, or how it can be used. There is no character limit so put as much description as you want! You can also add links or links to images. Feel free to DM 58 for any questions or check out <span for='sampleGiftPanel'></span> or use the <span for='previewItemPanel'></span>",
+                "Provide a detailed description to help others understand the gift. You can write about things like what's included in the gift, what are the material used, what kind of texture this object has, or how it can be used. There is no character limit so put as much description as you want! You can also add links or links to images. Feel free to DM 58 for any questions or check out <span for='sampleGiftPanel'></span> or use the <span for='previewItemPanel'></span>.",
                 "Please try not to include your OC's name as the gift is supposed to be anonymous."
             ],
             placeholder: "用高級毛線織成的圍巾，光是看著就覺得暖。"
         },
         question6: {
-            label: "An Artwork of Your OC Preparing the Gift",
+            label: "An Artwork of This OC Preparing This Gift",
             desc: [
-                "Please provide image in a 1080px*1080px PNG file. There is no restriction on the art style or complexity, a simple doodle will do. There is no restriction on presentation either, just make sure the the content of the gift and your OC for this entry is clearly shown in the art as humanoid form. This art will later be featured in a project webpage. Please reference <a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>S2 official Splatfest art</a> for the basic complexity."
+                "Please provide image in a 1080px*1080px PNG file. There is no restriction on the art style, presentation and complexity, a simple doodle will do. Just make sure this OC is clearly shown in the art and is in <b>humanoid form</b>. This art will later be featured in a project webpage. Please reference <a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>S2 official Splatfest art</a> for the basic complexity."
             ]
         },
         question7: {
@@ -372,13 +372,12 @@ var htmlLocalData_EN = {
             placeholder: "Select an OC"
         },
         question3: {
-            label: "Artwork of Your OC and the Received Gift",
+            label: "Artwork of Your OC interacting with the Received Gift",
             desc: [
-                "Please provide image in a 1080px*1080px PNG file. There is no restriction on style or complexity of the art, you can just submit a simple doodle. There is no restriction on presentation either, just make sure your selected OC in in humanoid form and the content of the received gift is clearly shown in the art. For example, you can draw your OC holding the gift while looking at the camera, or you can draw your OC reacting/using the gift",
-                "<a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>二代官方的祭典插圖</a>】"
+                "Please provide image in a 1080px*1080px PNG file. There is no restriction on the art style, presentation and complexity, a simple doodle will do. Just make sure this OC is clearly shown in the art and is in <b>humanoid form</b>, and the content of the received gift is clearly shown being used. Please reference <a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>S2 official Splatfest art</a> for the basic complexity of the art.",
             ],
         },
-        submit: "送出"
+        submit: "Submit"
     }
 }
 

@@ -316,6 +316,7 @@ a {
   position: relative;
 }
 .main fieldset .label {
+  word-spacing: 2px;
   font-size: 1.3em;
   margin: 10px 0;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
