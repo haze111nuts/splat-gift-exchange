@@ -247,6 +247,7 @@ var htmlLocalData_EN = {
     member_unconfirmed: "Undecided",
     gift_guide: {
         title: "Gift Guidelines",
+        title: "Gift Guidelines",
         items: [
             "Please don't include anything containing mammal meat as mammals are extinct species in Splatoon, you can replace them with meat from fish/shellfish/shrimp",
             "Dairy product seems to exists in Splatoon Universe so food containing dairy product should be fine.",
