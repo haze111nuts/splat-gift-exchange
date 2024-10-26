@@ -198,41 +198,41 @@ var htmlLocalData_EN = {
     ,
     nav_list: ["Prologue", "Guide", "Read Me", "Deadlines", "Members"],
     prologue: {
-        first_line: "One day, your OC recieved a mysterious letter.",
+        first_line: "One day, your OC recieved a mysterious letter...",
         letter: [
             "Dear Inkfish,",
-            "We are the Mysterious Gift Exchange Association, you have been chosen as a participant!",
-            "We collect gift across space-time continuum and redistribute them. If you would like to participate, use the attached stamp to mail in a gift, and you will receive a gift in return on the day of winter holiday.",
+            "We are the Mysterious Gift Exchange Association,",
+            "you have been chosen as a participant!",
+            "We collect gift across different universes and exchange them. If you are interested, prepare a gift and mail it with the stamp we attached, then you will receive a gift in return on the winter holiday.",
             "<div class='hr'></div><span>P.S. Do not wrap the gift, we will do it for you.</span>",
             "<span>P.S. Do not stick the stamp onto your friend.</span>"
         ],
         lines: [
-            "There are no address, neither name on the envelope.",
-            "There is only a stamp that seemed to contain some sort of power.",
+            "There was no address or name on the envelope.",
+            "only a stamp that seemed to hold some sort of power.",
             "How did this mail get here? This is all very sus...",
             "",
             "Will your OC follow the instruction on the letter?",
             ""
         ]
-
     },
     guide: [
-        "Notify the staffs that you and your OC would like to participate, make sure you are in the Member list.",
-        "Draw your OC prepare some kind of holiday gift, and make an icon for the content of the gift",
-        "Submit the two artworks through form before the September deadline, we will add your gift to the pool.",
-        "We will host Unboxing Day stream around mid-October, every OC participant will pull for a gift",
+        "Notify the staffs that you would like to participate, <br>and make sure you are added into the Member list.",
+        "Draw your OC preparing some kind of holiday gift, and draw an icon for the content of the gift",
+        "Submit the two artworks through this form before the September deadline,<br> we will add your gift into the pool.",
+        "We will host Unboxing Day stream around mid-October, each OC will get a chance to pull a gift",
         "After the stream, draw your OC with the gift they obtained.",
-        "Submit the last piece of art to through form before the December deadline.",
+        "Submit the last piece of art to through this form before the December deadline.",
         "All artwork will be revealed on December 25.",
     ],
     readme: [
-        "One gift per OC, You can participate with multiple OC. Please be aware that you need to prepare more artwork if you do so.",
-        "To keep the event fun, please DO NOT share the content of your gift or artwork until the event is over, especially not in public splace like discord channel or social media, thanks for your cooperation!",
+        "Only one gift entry per OC, but you can participate with multiple OC. Please be aware that the amount of artwork increase exponentially if you do so.",
+        "Please try to keep your gift and art confidential so it's more fun when revealed!",
         "This project is just for fun, this gift exchange event may or may not happened in the universe or timeline your OC lives in, so don't take it too seriously!!",
         "From the OC's perspective, all gifts are anonymous. Your OC is not required to interact with other OC at all.",
-        "There will be all kinds of OCs from all kinds of original Splatoon universes, some of them may even be from a completely different timeline,  they could also be someone's Splatsonas. If you got a gift from an OC that is not of your taste, please focus on the gift itself and don't thinking about it too much!",
+        "There will be OCs from all kinds of original Splatoon universes, some of them may even be from a completely different timeline. You may also see Splatsonas. If you got a gift from an OC or a universe that is not of your taste, please don't thinking about it too much, just focus on the gift itself!",
         "If there is a participant you don't want to have anything to do with, you can consider back out from this project.",
-        "Please connect with host Woopa @Xolot58 on Twitter if you have any questions."
+        "Please connect with host 58 (@Xolot58 on Twitter) if you have any question."
     ],
     countdown: {
         until_1: "Until",
@@ -243,7 +243,7 @@ var htmlLocalData_EN = {
         sec: "sec"
     },
     deadlines: ["Gift Submission Deadline", "Unboxing Day Stream", "Gift Receiving Artwork Deadline"],
-    member_confirmed: "Confirmed",
+    member_confirmed: "Participating",
     member_unconfirmed: "Undecided",
     gift_guide: {
         title: "Gift Guidelines",

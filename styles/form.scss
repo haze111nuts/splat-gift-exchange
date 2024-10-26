@@ -187,10 +187,10 @@ a {
             padding-bottom: 10px;
         }
         .countdown {
-            font-family: Garamond, serif, "Noto Sans TC", "Noto Sans SC", sans-serif;
             border-bottom: 1px solid $TEXT_NAV;
             padding: 8px 0px 5px 0px;
             > span {
+                font-family: Garamond, serif, "Noto Sans TC", "Noto Sans SC", sans-serif;
                 color: $TEXT_NAV2;
                 font-size: 3.4em;
                 padding: 0px 4px;
@@ -283,7 +283,7 @@ a {
         .letterDeco {
             position: absolute;
             left: 40px;
-            bottom: 280px;
+            bottom: 340px;
             transform: rotate(-20deg);
             z-index: 58;
         }
@@ -434,7 +434,7 @@ a {
             border-radius: 7px;
             color: $TEXT_MAIN;
             background-color: $ACCENT_MAIN;
-            padding: 7px 30px 10px 30px;
+            padding: 10px 30px;
             border: 0px;
             font-size: 1.5em;
             border: 1px solid $ACCENT_MAIN;

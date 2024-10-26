@@ -160,11 +160,11 @@ a {
   padding-bottom: 10px;
 }
 .nav .deadlines .countdown {
-  font-family: Garamond, serif, "Noto Sans TC", "Noto Sans SC", sans-serif;
   border-bottom: 1px solid #776256;
   padding: 8px 0px 5px 0px;
 }
 .nav .deadlines .countdown > span {
+  font-family: Garamond, serif, "Noto Sans TC", "Noto Sans SC", sans-serif;
   color: #bda990;
   font-size: 3.4em;
   padding: 0px 4px;
@@ -249,7 +249,7 @@ a {
 .nav .prologue .letterDeco {
   position: absolute;
   left: 40px;
-  bottom: 280px;
+  bottom: 340px;
   transform: rotate(-20deg);
   z-index: 58;
 }
@@ -394,7 +394,7 @@ a {
   border-radius: 7px;
   color: rgb(58, 49, 45);
   background-color: rgb(223, 177, 92);
-  padding: 7px 30px 10px 30px;
+  padding: 10px 30px;
   border: 0px;
   font-size: 1.5em;
   border: 1px solid rgb(223, 177, 92);
