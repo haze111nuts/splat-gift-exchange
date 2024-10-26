@@ -144,44 +144,13 @@ function printGrid() {
 }
 
 function displayItemModal(entry) {
-
     $(".modal").removeClass("hide");
-    let itemModalHtml = `
-    <div class='itemPanel'>
-        <div class='itemSummary'>
-            <div class='langSwitch'>⇆</div>
-            <div class='itemTitle'>
-                <div class='itemTitle1'>${entry.giftName}</div>
-                <div class='itemTitle2'>${entry.giftNameAlt}</div>
-            </div>
-            <div class='itemSummary_inner'>${entry.giftDescription}</div>
-        </div>
-        <div class='itemArtWrap'>
-            <img class='itemArt' src='${getGiftUrl(entry)}' alt='item' draggable='false'>
-            ${entry.numOfAlt > 0 ? `<div class='itemArtList'>${Array(entry.numOfAlt + 1).fill('<span>◆</span>').join('')}</div>` : ''}
-        </div>
-    </div>`;
-
-    $(".modal_content").html(itemModalHtml);
+    $(".modal_content").html(
+        setUpItemPanel(entry, getGiftUrl(entry))
+    );
     $(document.body).addClass("noscroll");
     setUpTraslateToggle(entry);
-    setUpGiftAltArt(entry);
-}
-
-function setUpGiftAltArt(entry) {
-    handleAltArtIndicator();
-    $(".itemArt").click(function () {
-        if(entry["numOfAlt"] != undefined){
-            generatePageFlipAudio().play();
-            CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
-            $(".itemArt")
-                .fadeOut(130, function() {
-                    $(".itemArt").attr('src', getGiftUrl(entry) );
-                    handleAltArtIndicator();
-                })
-                .fadeIn(130);
-        }
-    })
+    setUpGiftAltArt(entry, function(){generatePageFlipAudio().play()});
 }
 
 function getGiftLogHtml(currentOC, entry) {
@@ -196,7 +165,6 @@ function getGiftLogHtml(currentOC, entry) {
     logHtml += "</li>";
     return logHtml;
 }
-
 
 // This is an extra modal for future use
 // when ppl starts submitting detailed ref sheet for gift
@@ -595,11 +563,6 @@ function triggerEnding() {
 
 function extraStyle() {
     $('.oc img').attr('draggable', false);
-}
-
-function handleAltArtIndicator(){
-    $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white' );
-    $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(82, 68, 61, 0.4)" );
 }
 
 function removeWaitingScreen(){

@@ -28,7 +28,7 @@ var IS_ENG_FORM = checkBrowserAndSwitchLang();
 
 var OVERWRITE = {
     switch: true,
-    phase: 1
+    phase: 3
 }
 
 var members = {
@@ -324,29 +324,14 @@ function secondFormBorderChange(fieldName, borderColor) {
 
 //setup standard item panel
 function setUpRegularItemPanel(entry, imgUrl) {
-    let itemModalHtml = `
-    <div class='standardItemPanel'>
-        <div class='close'></div>
-        <div class='itemPanel'>
-            <div class='itemArtWrap'>
-                <img class='itemArt' src='${imgUrl}' alt='item' draggable='false'>
-                ${entry.numOfAlt > 0 ? `<div class='itemArtList'>${Array(entry.numOfAlt + 1).fill('<span>◆</span>').join('')}</div>` : ''}
-            </div>
-            <div class='itemSummary'>
-                <div class='langSwitch'>⇆</div>
-                <div class='itemTitle'>
-                    <div class='itemTitle1'>${entry.giftName}</div>
-                    <div class='itemTitle2'>${entry.giftNameAlt}</div>
-                </div>
-                <div class='itemSummary_inner'>${entry.giftDescription}</div>
-            </div>
-        </div>
-    </div>`;
-    $(".modal_content").html(itemModalHtml);
-
+    $(".modal_content").html(
+        `<div class='standardItemPanel'>
+            ${setUpItemPanel(entry, imgUrl)}
+        </div>`
+    );
     unhideModel();
     setUpItemTraslateToggle(entry);
-    setUpGiftAltArt(entry, $(".itemArt"));
+    setUpGiftAltArt(entry, null);
     setupExtraCloseButton(".close");
 
     //===========================//
@@ -376,28 +361,6 @@ function setUpRegularItemPanel(entry, imgUrl) {
             }
             $(".itemSummary_inner").html(newSummary);
         });
-    }
-
-    //=============================//
-    //    Handle alt art clicks    //
-    //=============================//
-    function setUpGiftAltArt(entry, element) {
-        handleAltArtIndicator();
-        element.click(function () {
-            if (entry["numOfAlt"] != undefined) {
-                CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt) ? CURRENT_ALT_INDEX + 1 : 0;
-                element
-                    .fadeOut(130, function () {
-                        element.attr('src', getGiftUrl(entry));
-                        handleAltArtIndicator();
-                    })
-                    .fadeIn(130);
-            }
-        })
-        function handleAltArtIndicator() {
-            $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white');
-            $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(0, 0, 0, 0.4)");
-        }
     }
 }
 

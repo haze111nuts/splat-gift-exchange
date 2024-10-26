@@ -26,11 +26,11 @@ function getArtUrl(group,id) {
     return "/art_" + group + "/" + id + ".jpg";
 }
 
-function getGiftUrl(id) {
+function getGiftUrl(gift) {
     if(CURRENT_ALT_INDEX > 0 ){
-        return "gift/" + id +"-"+ CURRENT_ALT_INDEX + ".png";
+        return "gift/" + ENTRIES.indexOf(gift)  +"-"+ CURRENT_ALT_INDEX + ".png";
     }
-    return "gift/" + id + ".png";
+    return "gift/" + ENTRIES.indexOf(gift)  + ".png";
 }
 
 //=============================//
@@ -84,7 +84,7 @@ function generateGrid() {
             <div class="label_BG"></div>
             <div class="giftTitle">${entry.giftName}</div>
             <div class="giftAltTitle">${entry.giftNameAlt}</div>
-            <div class="gift"><img src="${getGiftUrl(i)}"></div>
+            <div class="gift"><img src="${getGiftUrl(entry)}"></div>
         </div>
     </li>`).join('');
     $(".grid").html(gridHtml);
@@ -112,54 +112,17 @@ function setUpItemModalClickEvents(){
     $(".label").each(function () {
         $(this).click(function () {
             var dataID = $(this).data().id;
-            $(".modal").removeClass("hide");
             let item = ENTRIES[dataID];
-            let itemModalHtml = `
-                <div class='close'></div>
-                <div class='itemPanel'>
-                    <div class='itemArtWrap'>
-                        <img class='itemArt' src='${getGiftUrl(dataID)}' alt='item' draggable='false'>
-                        ${item.numOfAlt > 0 ? `<div class='itemArtList'>${Array(item.numOfAlt + 1).fill('<span>◆</span>').join('')}</div>` : ''}
-                    </div>
-                    <div class='itemSummary'>
-                        <div class='langSwitch'>⇆</div>
-                        <div class='itemTitle'>
-                            <div class='itemTitle1'>${item.giftName}</div>
-                            <div class='itemTitle2'>${item.giftNameAlt}</div>
-                        </div>
-                        <div class='itemSummary_inner'>${item.giftDescription}</div>
-                    </div>
-                </div>
-            `;
-            $(".modal_content").html(itemModalHtml);
+            $(".modal_content").html(
+                setUpItemPanel(item, getGiftUrl(item))
+            );
+
+            $(".modal").removeClass("hide");
             hideScrollBar();
-            setUpGiftAltArt(ENTRIES[dataID],dataID);
+            setUpGiftAltArt(item, null);
             setupCloseModalEvents();
         })
     })
-}
-
-function setUpGiftAltArt(entry,id) {
-    handleAltArtIndicator();
-    if(entry["numOfAlt"] != undefined){
-        $(".itemArt").css("cursor","pointer");
-    }
-    $(".itemArt").click(function () {
-        if(entry["numOfAlt"] != undefined){
-            CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
-            $(".itemArt")
-                .fadeOut(130, function() {
-                    $(".itemArt").attr('src', getGiftUrl(id) );
-                    handleAltArtIndicator();
-                })
-                .fadeIn(130);
-        }
-    })
-}
-
-function handleAltArtIndicator(){
-    $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white' );
-    $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(82, 68, 61, 0.4)" );
 }
 
 //===========================//
