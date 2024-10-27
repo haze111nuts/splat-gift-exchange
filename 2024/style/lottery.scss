@@ -29,7 +29,7 @@ body {
 a {
     color: $ACCENT6;
     transition: all 0.3s ease-out;
-    &:hover{
+    &:hover {
         color: rgb(199, 71, 21);
     }
 }
@@ -38,7 +38,7 @@ a {
 //===   PRE-STREAM   ===//
 //======================//
 
-.waiting{
+.waiting {
     z-index: 998;
     position: absolute;
     width: 100%;
@@ -48,13 +48,13 @@ a {
     background-color: #493e3e46;
     top: -1800px;
     display: none;
-    .waitingWrap{
+    .waitingWrap {
         position: absolute;
-        left:50%;
-        top:50%;
-        transform: translate(-50%,-50%);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         text-align: center;
-        .starting{
+        .starting {
             width: 950px;
             text-shadow:
                 3px 3px 0 #f5ece1,
@@ -65,12 +65,12 @@ a {
             color: $ACCENT2;
             font-family: "DFPT_AZ5", sans-serif;
         }
-        .divider{
+        .divider {
             border: 1px solid white;
             width: 100%;
             margin: 10px auto 2px auto;
         }
-        p{
+        p {
             text-align: left;
             color: white;
             font-family: "DFPT_AZ5", sans-serif;
@@ -78,7 +78,7 @@ a {
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
             line-height: 110%;
             margin: 20px auto;
-            span{
+            span {
                 color: #eedfd5;
                 opacity: 0.85;
                 padding-left: 20px;
@@ -348,6 +348,7 @@ $preview_gapY: 20px;
             }
             .gift_front {
                 background-position: center center;
+                cursor: pointer;
                 .progress {
                     width: 0%;
                     position: absolute;
@@ -734,7 +735,7 @@ $BUBBLE_LEFT: 480px;
 //===   MODAL    ===//
 //==================//
 
-.itemPanel .itemSummary{
+.itemPanel .itemSummary {
     color: $ACCENT1;
 }
 
@@ -755,7 +756,7 @@ $BUBBLE_LEFT: 480px;
 
 .currentText span::selection,
 .currentName::selection,
-.endingText div::selection{
+.endingText div::selection {
     color: white;
     background: $ACCENT7;
 }
@@ -769,19 +770,20 @@ $BUBBLE_LEFT: 480px;
 //===   CURSOR   ===//
 //==================//
 
-.cursor{
-    width: 48px;
-    height: 48px;
-    background-image: url(../../assets/lottery/cursor/pointer.png);
-    position: fixed;
-	pointer-events: none;
-	z-index: 999;
-	transition: background-image 0.15s;
-}
+// .cursor {
+//     width: 48px;
+//     height: 48px;
+//     background-image: url(../../assets/lottery/cursor/pointer.png);
+//     position: fixed;
+//     pointer-events: none;
+//     z-index: 999;
+//     transition: background-image 0.15s;
+// }
 
-body, a {
-    cursor: none;
-}
+// body,
+// a {
+//     cursor: none;
+// }
 
 //=====================//
 //===   SCROLLBAR   ===//

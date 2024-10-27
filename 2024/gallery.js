@@ -10,27 +10,22 @@ var YEAR = "0000";
 
 var displayGroup = "sender";
 
-var CURRENT_SUMMARY_LANG = 0;
-
-var CURRENT_ALT_INDEX = 0;
-
 //===================//
 //    URL Getters    //
 //===================//
 
 function assetBaseUrl(fileName){
-    return "../assets/gallery/" + fileName;
+    return `../assets/gallery/${fileName}`;
 }
 
 function getArtUrl(group,id) {
-    return "/art_" + group + "/" + id + ".jpg";
+    return `/art_${group}/${id}.jpg`;
 }
 
-function getGiftUrl(id) {
-    if(CURRENT_ALT_INDEX > 0 ){
-        return "gift/" + id +"-"+ CURRENT_ALT_INDEX + ".png";
-    }
-    return "gift/" + id + ".png";
+function getGiftUrl(gift) {
+    const index = ENTRIES.indexOf(gift);
+    const altIndex = getAltIndex();
+    return `gift/${index}${altIndex > 0 ? `-${altIndex}` : ''}.png`;
 }
 
 //=============================//
@@ -84,7 +79,7 @@ function generateGrid() {
             <div class="label_BG"></div>
             <div class="giftTitle">${entry.giftName}</div>
             <div class="giftAltTitle">${entry.giftNameAlt}</div>
-            <div class="gift"><img src="${getGiftUrl(i)}"></div>
+            <div class="gift"><img src="${getGiftUrl(entry)}"></div>
         </div>
     </li>`).join('');
     $(".grid").html(gridHtml);
@@ -112,54 +107,18 @@ function setUpItemModalClickEvents(){
     $(".label").each(function () {
         $(this).click(function () {
             var dataID = $(this).data().id;
+            let entry = ENTRIES[dataID];
+            $(".modal_content").html(
+                setUpItemPanel(entry, getGiftUrl(entry))
+            );
+
             $(".modal").removeClass("hide");
-            let item = ENTRIES[dataID];
-            let itemModalHtml = `
-                <div class='close'></div>
-                <div class='itemPanel'>
-                    <div class='itemArtWrap'>
-                        <img class='itemArt' src='${getGiftUrl(dataID)}' alt='item' draggable='false'>
-                        ${item.numOfAlt > 0 ? `<div class='itemArtList'>${Array(item.numOfAlt + 1).fill('<span>◆</span>').join('')}</div>` : ''}
-                    </div>
-                    <div class='itemSummary'>
-                        <div class='langSwitch'>⇆</div>
-                        <div class='itemTitle'>
-                            <div class='itemTitle1'>${item.giftName}</div>
-                            <div class='itemTitle2'>${item.giftNameAlt}</div>
-                        </div>
-                        <div class='itemSummary_inner'>${item.giftDescription}</div>
-                    </div>
-                </div>
-            `;
-            $(".modal_content").html(itemModalHtml);
             hideScrollBar();
-            setUpGiftAltArt(ENTRIES[dataID],dataID);
+            setUpGiftAltArt(entry, null);
+            setUpItemTranslateToggle(entry, null);
             setupCloseModalEvents();
         })
     })
-}
-
-function setUpGiftAltArt(entry,id) {
-    handleAltArtIndicator();
-    if(entry["numOfAlt"] != undefined){
-        $(".itemArt").css("cursor","pointer");
-    }
-    $(".itemArt").click(function () {
-        if(entry["numOfAlt"] != undefined){
-            CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
-            $(".itemArt")
-                .fadeOut(130, function() {
-                    $(".itemArt").attr('src', getGiftUrl(id) );
-                    handleAltArtIndicator();
-                })
-                .fadeIn(130);
-        }
-    })
-}
-
-function handleAltArtIndicator(){
-    $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white' );
-    $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(82, 68, 61, 0.4)" );
 }
 
 //===========================//
@@ -203,32 +162,10 @@ function setupCloseModalEvents(){
         $(".modal").addClass("hide");
         //$(document.body).removeClass("noscroll");
         resetScrollBar();
+        resetModalParems();
         $(".itemArt").css("cursor","auto");
-        CURRENT_SUMMARY_LANG = 0;
-        CURRENT_ALT_INDEX = 0;
     })
 }
-
-//=============================//
-//    Handle traslate Event    //
-//=============================//
-
-// function setUpTraslateToggle(entry) {
-//     var newSummary;
-//     if(entry.giftDescriptionAlt.length==0){
-//         $(".langSwitch").css("display", "none");
-//     }
-//     $(".langSwitch").click(function () {
-//         if (CURRENT_SUMMARY_LANG === 0 && entry.giftDescriptionAlt.length>0) {
-//             newSummary = entry.giftDescriptionAlt;
-//             CURRENT_SUMMARY_LANG = 1
-//         } else {
-//             newSummary = entry.giftDescription;
-//             CURRENT_SUMMARY_LANG = 0;
-//         }
-//         $(".itemSummary_inner").html(newSummary);
-//     });
-// }
 
 //==================//
 //    Other Stuff   //

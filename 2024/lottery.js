@@ -6,10 +6,6 @@ var FLIPPED_CARD = [];
 
 var HOST_CURRENT_SIDE = 0;
 
-var CURRENT_SUMMARY_LANG = 0;
-
-var CURRENT_ALT_INDEX = 0;
-
 var WAITING_SCREEN = false;
 
 var AUDIO_ELEMENTS = {};
@@ -46,33 +42,29 @@ var HOST_QUOTES = [
 //======================//
 
 function assetBaseUrl(fileName){
-    return "../assets/lottery/" + fileName;
+    return `../assets/lottery/${fileName}`;
 }
 
 function getOcUrl(oc) {
-    return "profile/" + ENTRIES.indexOf(oc) + ".png";
+    return `profile/${ENTRIES.indexOf(oc)}.png`;
 }
 
 function getGiftUrl(gift) {
-    if(CURRENT_ALT_INDEX > 0 ){
-        return "gift/" + ENTRIES.indexOf(gift) +"-"+ CURRENT_ALT_INDEX + ".png";
-    }
-    return "gift/" + ENTRIES.indexOf(gift) + ".png";
+    const index = ENTRIES.indexOf(gift);
+    const altIndex = getAltIndex();
+    return `gift/${index}${altIndex > 0 ? `-${altIndex}` : ''}.png`;
 }
 
 function getHostEmoteUrl(char) {
-    return assetBaseUrl("host/" + char + ".png");
+    return assetBaseUrl(`host/${char}.png`);
 }
 
 function getQuoteOfRemainingGiftCountZH(count) {
-    return "還有<span>" + count + "個禮物</span>還沒被打開～";
+    return `還有<span>${count}個禮物</span>還沒被打開～`;
 }
 
 function getQuoteOfRemainingGiftCountEN(count) {
-    if (count !== 1) 
-        return "There are <span>" + count + " presents</span> left!";
-    else
-        return "There is <span>" + count + " present</span> left!";
+    return `There ${count === 1 ? 'is' : 'are'} <span>${count} present${count === 1 ? '' : 's'}</span> left!`;
 }
 
 function getCurrentOCPos() {
@@ -111,44 +103,13 @@ function printGrid() {
 }
 
 function displayItemModal(entry) {
-
     $(".modal").removeClass("hide");
-    let itemModalHtml = `
-    <div class='itemPanel'>
-        <div class='itemSummary'>
-            <div class='langSwitch'>⇆</div>
-            <div class='itemTitle'>
-                <div class='itemTitle1'>${entry.giftName}</div>
-                <div class='itemTitle2'>${entry.giftNameAlt}</div>
-            </div>
-            <div class='itemSummary_inner'>${entry.giftDescription}</div>
-        </div>
-        <div class='itemArtWrap'>
-            <img class='itemArt' src='${getGiftUrl(entry)}' alt='item' draggable='false'>
-            ${entry.numOfAlt > 0 ? `<div class='itemArtList'>${Array(entry.numOfAlt + 1).fill('<span>◆</span>').join('')}</div>` : ''}
-        </div>
-    </div>`;
-
-    $(".modal_content").html(itemModalHtml);
+    $(".modal_content").html(
+        setUpItemPanel(entry, getGiftUrl(entry))
+    );
     $(document.body).addClass("noscroll");
-    setUpTraslateToggle(entry);
-    setUpGiftAltArt(entry);
-}
-
-function setUpGiftAltArt(entry) {
-    handleAltArtIndicator();
-    $(".itemArt").click(function () {
-        if(entry["numOfAlt"] != undefined){
-            generatePageFlipAudio().play();
-            CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt )? CURRENT_ALT_INDEX+1 : 0;
-            $(".itemArt")
-                .fadeOut(130, function() {
-                    $(".itemArt").attr('src', getGiftUrl(entry) );
-                    handleAltArtIndicator();
-                })
-                .fadeIn(130);
-        }
-    })
+    setUpItemTranslateToggle(entry, function(){AUDIO_ELEMENTS["flipPage"].play()});
+    setUpGiftAltArt(entry, function(){generatePageFlipAudio().play()});
 }
 
 function getGiftLogHtml(currentOC, entry) {
@@ -163,7 +124,6 @@ function getGiftLogHtml(currentOC, entry) {
     logHtml += "</li>";
     return logHtml;
 }
-
 
 // This is an extra modal for future use
 // when ppl starts submitting detailed ref sheet for gift
@@ -301,8 +261,7 @@ function setUpFlipEvent() {
     $(".modal_bg").click(function () {
         $(".modal").addClass("hide");
         $(document.body).removeClass("noscroll");
-        CURRENT_SUMMARY_LANG = 0;
-        CURRENT_ALT_INDEX = 0;
+        resetModalParems();
 
         // only do the rest when this modal was a result of a lottery draw
         if (currentGiftCard) {
@@ -357,27 +316,6 @@ function shuffleHostQuotes() {
     }, 4000);
 }
 
-//=============================//
-//    Handle traslate Event    //
-//=============================//
-
-function setUpTraslateToggle(entry) {
-    var newSummary;
-    if(entry.giftDescriptionAlt.length==0){
-        $(".langSwitch").css("display", "none");
-    }
-    $(".langSwitch").click(function () {
-        if (CURRENT_SUMMARY_LANG === 0 && entry.giftDescriptionAlt.length>0) {
-            newSummary = entry.giftDescriptionAlt;
-            CURRENT_SUMMARY_LANG = 1
-        } else {
-            newSummary = entry.giftDescription;
-            CURRENT_SUMMARY_LANG = 0;
-        }
-        AUDIO_ELEMENTS["flipPage"].play();
-        $(".itemSummary_inner").html(newSummary);
-    });
-}
 
 //====================//
 //    Audio Events    //
@@ -503,11 +441,6 @@ function extraStyle() {
     $('.oc img').attr('draggable', false);
 }
 
-function handleAltArtIndicator(){
-    $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white' );
-    $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(82, 68, 61, 0.4)" );
-}
-
 function removeWaitingScreen(){
     $(".waiting").css("top", "-1800px");
     AUDIO_ELEMENTS["blop"].play();
@@ -525,24 +458,24 @@ function bringBackWaitingScreen(){
         }, 1);
 }
 
-function setUpCursor(){
-	var cursor = $(".cursor");
-	$(window).mousemove(function(e) {
-		cursor.css({
-			top: e.clientY,
-			left: e.clientX
-		});
-	});
-    $(".gift_front").mouseenter(function() {
-        cursor.css(
-            "background-image", "url(" + assetBaseUrl("cursor/pointer_gift.png") + ")"
-        );
-    }).mouseleave(function() {
-        cursor.css(
-            "background-image", "url(" + assetBaseUrl("cursor/pointer.png") + ")"
-        );
-    });
-}
+// function setUpCursor(){
+// 	var cursor = $(".cursor");
+// 	$(window).mousemove(function(e) {
+// 		cursor.css({
+// 			top: e.clientY,
+// 			left: e.clientX
+// 		});
+// 	});
+//     $(".gift_front").mouseenter(function() {
+//         cursor.css(
+//             "background-image", "url(" + assetBaseUrl("cursor/pointer_gift.png") + ")"
+//         );
+//     }).mouseleave(function() {
+//         cursor.css(
+//             "background-image", "url(" + assetBaseUrl("cursor/pointer.png") + ")"
+//         );
+//     });
+// }
 
 //======================//
 //                      //
@@ -656,7 +589,7 @@ $(document).ready(function () {
     setHostEmote(HOST_CURRENT_SIDE, getHostEmoteUrl(HOST_CURRENT_LETTER));
     extraStyle();
     printSnow();
-    setUpCursor();
+    // setUpCursor();
     printOCList();
 });
 

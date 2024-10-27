@@ -13,7 +13,6 @@ var PREVIEW_IS_EDITED = false;
 var PLACEHOLDER_GIFT = {};
 
 var CURRENT_ALT_INDEX = 0;
-var CURRENT_SUMMARY_LANG = 0;
 
 var SCRIPT_LOCALE_DATA;
 var HTML_LOCALE_DATA;
@@ -28,7 +27,7 @@ var IS_ENG_FORM = checkBrowserAndSwitchLang();
 
 var OVERWRITE = {
     switch: true,
-    phase: 1
+    phase: 3
 }
 
 var members = {
@@ -69,17 +68,16 @@ const phases = [
 //    Url Getters     //
 //====================//
 
-var demoUrl = "../2024/";
+var DEBUG_URL = "../2024/";
 
 function getGiftUrl(gift) {
-    if (CURRENT_ALT_INDEX > 0) {
-        return "../" + demoUrl + "gift/" + ENTRIES.indexOf(gift) + "-" + CURRENT_ALT_INDEX + ".png";
-    }
-    return "../" + demoUrl + "gift/" + ENTRIES.indexOf(gift) + ".png";
+    const index = ENTRIES.indexOf(gift);
+    const altIndex = getAltIndex();
+    return `../${DEBUG_URL}gift/${index}${altIndex > 0 ? `-${altIndex}` : ''}.png`;
 }
 
 function getProfileUrl(ocName) {
-    return "../" + demoUrl + "profile/" + ENTRIES.findIndex(e => e.ocName === ocName) + ".png";
+    return `../${DEBUG_URL}profile/${ENTRIES.findIndex(e => e.ocName === ocName)}.png`;
 }
 
 function getSampleGiftUrl(gift, artIndex) {
@@ -324,29 +322,14 @@ function secondFormBorderChange(fieldName, borderColor) {
 
 //setup standard item panel
 function setUpRegularItemPanel(entry, imgUrl) {
-    let itemModalHtml = `
-    <div class='standardItemPanel'>
-        <div class='close'></div>
-        <div class='itemPanel'>
-            <div class='itemArtWrap'>
-                <img class='itemArt' src='${imgUrl}' alt='item' draggable='false'>
-                ${entry.numOfAlt > 0 ? `<div class='itemArtList'>${Array(entry.numOfAlt + 1).fill('<span>◆</span>').join('')}</div>` : ''}
-            </div>
-            <div class='itemSummary'>
-                <div class='langSwitch'>⇆</div>
-                <div class='itemTitle'>
-                    <div class='itemTitle1'>${entry.giftName}</div>
-                    <div class='itemTitle2'>${entry.giftNameAlt}</div>
-                </div>
-                <div class='itemSummary_inner'>${entry.giftDescription}</div>
-            </div>
-        </div>
-    </div>`;
-    $(".modal_content").html(itemModalHtml);
-
+    $(".modal_content").html(
+        `<div class='standardItemPanel'>
+            ${setUpItemPanel(entry, imgUrl)}
+        </div>`
+    );
     unhideModel();
-    setUpItemTraslateToggle(entry);
-    setUpGiftAltArt(entry, $(".itemArt"));
+    setUpItemTranslateToggle(entry, null);
+    setUpGiftAltArt(entry, null);
     setupExtraCloseButton(".close");
 
     //===========================//
@@ -357,53 +340,11 @@ function setUpRegularItemPanel(entry, imgUrl) {
         $('body').width($('body').width());
         $('body').css('overflow', 'hidden');
     }
-
-    //==================================//
-    //    Handle Item traslate Event    //
-    //==================================//
-    function setUpItemTraslateToggle(entry) {
-        var newSummary;
-        if (entry.giftDescriptionAlt.length == 0) {
-            $(".langSwitch").css("display", "none");
-        }
-        $(".langSwitch").click(function () {
-            if (CURRENT_SUMMARY_LANG === 0 && entry.giftDescriptionAlt.length > 0) {
-                newSummary = entry.giftDescriptionAlt;
-                CURRENT_SUMMARY_LANG = 1
-            } else {
-                newSummary = entry.giftDescription;
-                CURRENT_SUMMARY_LANG = 0;
-            }
-            $(".itemSummary_inner").html(newSummary);
-        });
-    }
-
-    //=============================//
-    //    Handle alt art clicks    //
-    //=============================//
-    function setUpGiftAltArt(entry, element) {
-        handleAltArtIndicator();
-        element.click(function () {
-            if (entry["numOfAlt"] != undefined) {
-                CURRENT_ALT_INDEX = (CURRENT_ALT_INDEX < entry.numOfAlt) ? CURRENT_ALT_INDEX + 1 : 0;
-                element
-                    .fadeOut(130, function () {
-                        element.attr('src', getGiftUrl(entry));
-                        handleAltArtIndicator();
-                    })
-                    .fadeIn(130);
-            }
-        })
-        function handleAltArtIndicator() {
-            $(".itemArtList span:eq(" + CURRENT_ALT_INDEX + ")").css('color', 'white');
-            $(".itemArtList span").not(':eq(' + CURRENT_ALT_INDEX + ')').css('color', "rgba(0, 0, 0, 0.4)");
-        }
-    }
 }
 
-//==================================//
-//    Settingup Form Validation     //
-//==================================//
+//===================================//
+//    Setting up Form Validation     //
+//===================================//
 
 function setUpOtherValidationStyle() {
     $('input, textarea').on('focusout keyup', function () {
@@ -596,8 +537,7 @@ function setupCloseModalEvents() {
             $(".modal2").removeClass("hide");
         } else {
             closeModals();
-            CURRENT_ALT_INDEX = 0;
-            CURRENT_SUMMARY_LANG = 0;
+            resetModalParems();
         }
     })
     //IF USER CLICKS NO ON PREVIEW CONFIRM

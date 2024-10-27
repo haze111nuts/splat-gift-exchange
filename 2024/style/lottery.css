@@ -297,6 +297,7 @@ a:hover {
 }
 .grid .gridItem .gridItem_inner .gift_front {
   background-position: center center;
+  cursor: pointer;
 }
 .grid .gridItem .gridItem_inner .gift_front .progress {
   width: 0%;
@@ -655,20 +656,6 @@ a:hover {
 .infoBubble_inner::selection {
   color: #ca3044;
   background: white;
-}
-
-.cursor {
-  width: 48px;
-  height: 48px;
-  background-image: url(../../assets/lottery/cursor/pointer.png);
-  position: fixed;
-  pointer-events: none;
-  z-index: 999;
-  transition: background-image 0.15s;
-}
-
-body, a {
-  cursor: none;
 }
 
 /* Firefox */
