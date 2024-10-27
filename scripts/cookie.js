@@ -5,9 +5,9 @@ const COOKIE_EXPIRE_DEFAULT_DAYS = 7;
 
 const COOKIE = {
     OC_ARRANGEMENT: "ocArrangement",
-    BG_PATTEREN: "bgPattern",
+    PATTERN: "pattern",
     OBTAINED_GIFT: "obtainedGift",
-    FLIPPED_CARD: "flippedCard"
+    CHOSEN_NUM: "chosenNum"
 }
 
 function setCookie(cname, cvalue, exdays) {
@@ -40,10 +40,12 @@ function deleteCookies(cname) {
 }
 
 function deleteAllCookies() {
+    console.log(document.cookie);
     document.cookie.split(';').forEach(cookie => {
         const eqPos = cookie.indexOf('=');
         const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
-        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        document.cookie = name + '=;Path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        console.log(document.cookie);
     });
 }
 

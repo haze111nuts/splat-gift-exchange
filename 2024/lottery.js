@@ -2,15 +2,7 @@
 //    Functional Variables    //
 //============================//
 
-var OBTAINED_GIFT_INDEX = [];
-
 var FLIPPED_CARD = [];
-
-var OC_ARRANGED;
-
-var GIFT_PILE = [].concat(ENTRIES);
-
-var CURRENT_OC_INDEX = 0;
 
 var HOST_CURRENT_SIDE = 0;
 
@@ -26,13 +18,9 @@ var AUDIO_ELEMENTS = {};
 //    Custom Variables    //
 //========================//
 
-var YEAR = "2024";
-
-var dataMasking = false;
-
 const CONFIG = {
-    ORDER2024: "order2024",
-    RESULT2024: "result2024",
+    ORDER: "order",
+    RESULT: "result",
     RANDOM: "random"
 }
 
@@ -53,30 +41,16 @@ var HOST_QUOTES = [
     "Give me a number when its your OC's turn!"
 ]
 
-var placeholderGift = {
-    ocName: "綾里春美",
-    giftName: "倉院特產饅頭",
-    giftNameAlt: "Kurain Buns",
-    giftDescription: "倉院之里的特產栗子饅頭。每個饅頭都是勾玉形狀﹐有經過某位靈媒的祈禱加持﹐據說吃下去可以補充靈力。",
-    giftDescriptionAlt: "Some chestnut manju. Each bun is in the shape of a magatama and is blessed by a certain spirital medium. It is said that eating it will replenish your spiritual energy.",
-    numOfAlt: 2,
-    artist: "2"
-}
-
 //======================//
 //    Getter & Utils    //
 //======================//
-
-function fileFormat() {
-    return YEAR === "0000" ? ".jpg" : ".png";
-}
 
 function assetBaseUrl(fileName){
     return "../assets/lottery/" + fileName;
 }
 
 function getOcUrl(oc) {
-    return "profile/" + ENTRIES.indexOf(oc) + fileFormat();
+    return "profile/" + ENTRIES.indexOf(oc) + ".png";
 }
 
 function getGiftUrl(gift) {
@@ -104,13 +78,6 @@ function getQuoteOfRemainingGiftCountEN(count) {
 function getCurrentOCPos() {
     var offset = $(".oc").width() / 2 * -1
     return offset + ((CURRENT_OC_INDEX) * -100);
-}
-
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
 }
 
 //=======================//
@@ -223,22 +190,21 @@ function setUpRefImageModalClickEvents(entry) {
 
 function setGridBG() {
     var bgPattern;
-    const bgPatternData = "67,25,38,24,53,6,81,44,71,56,17,68,50,20,41,49,77,78,70,7,29,39,23,59,11,32,57,46,43,60,13,2,40,8,79,1,21,14,69,22,37,52,18,58,34,72,27,61,75,74,54,62,16,10,12,42,26,4,31,51,5,45,15,28,36,0,82,48,47,80,76,66,55,3,33,9,64,73,63,65,19,35,30";
     var bgPatternCookie = "";
 
-    if (DISPLAY === CONFIG.RESULT2024 || DISPLAY === CONFIG.ORDER2024) {
+    if (DISPLAY === CONFIG.RESULT || DISPLAY === CONFIG.ORDER) {
         bgPatternCookie = bgPatternData;
-        setCookie(COOKIE.BG_PATTEREN, bgPatternData, COOKIE_EXPIRE_DEFAULT_DAYS);
+        setCookie(COOKIE.PATTERN, bgPatternData, COOKIE_EXPIRE_DEFAULT_DAYS);
     } else if (DISPLAY === CONFIG.RANDOM) {
-        deleteCookies(COOKIE.BG_PATTEREN);
+        deleteCookies(COOKIE.PATTERN);
     } else {
-        bgPatternCookie = getCookie(COOKIE.BG_PATTEREN);
+        bgPatternCookie = getCookie(COOKIE.PATTERN);
     }
 
     if (bgPatternCookie === "") {
         bgPattern = [...Array(NUMBER_OF_BG).keys()];
         shuffleArray(bgPattern);
-        setCookie(COOKIE.BG_PATTEREN, bgPattern.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
+        setCookie(COOKIE.PATTERN, bgPattern.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
     }
     else {
         bgPattern = bgPatternCookie.split(",");
@@ -278,67 +244,6 @@ function FindLargestFamilyNoSelfTrade(ocList) {
     return currentMax;
 }
 
-function drawGift() {
-    var randomGift;
-    var currentOCArtist = OC_ARRANGED[CURRENT_OC_INDEX].artist;
-
-    var waitingOC = OC_ARRANGED.slice(CURRENT_OC_INDEX+1);
-    // check the artist that still has the biggest group of oc without gift
-    var largestFamilyNoSelfTrade = FindLargestFamilyNoSelfTrade(waitingOC);
-    console.log("####################################");
-    console.log("biggest family that disabled self trade: "+ largestFamilyNoSelfTrade);
-    console.log("group member: ");
-    console.log(waitingOC.filter(oc => oc.artist === largestFamilyNoSelfTrade) );
-    // find all the available gift for this group of oc
-    var giftPoolForFamily = GIFT_PILE.filter(entry => entry.artist !== largestFamilyNoSelfTrade);
-    console.log("available gift for this group: ");
-    console.log(giftPoolForFamily);
-
-    // if there is still someone in pool that disable selfTrade and
-    // if the amount of available gift for this group is equal or smaller than the size of this group, then there is danger of self trade
-    if ( largestFamilyNoSelfTrade &&
-         giftPoolForFamily.length <= waitingOC.filter(participants => participants.artist === largestFamilyNoSelfTrade).length) {
-        // assign current gift from any of this artist's oc
-        console.log("danger of self trade!");    
-
-        var availableGifts = GIFT_PILE.filter(entry => entry.artist === largestFamilyNoSelfTrade);
-        randomGift = availableGifts[Math.floor(Math.random() * availableGifts.length)];
-        console.log("assign a random gift from the family to current OC: ");    
-        console.log(availableGifts);
-        console.log("the gift chosen is: ");
-        console.log(randomGift);    
-
-    } else {
-        // if no danger of self trade, proceed as normal
-        var giftPoolForCurrentOC;
-
-        // if selfTrade is permitted by artist
-        console.log("self trade: " + ARTISTS[currentOCArtist].selfTrade);
-        if (ARTISTS[currentOCArtist].selfTrade) {
-            // only exclude current OC
-            giftPoolForCurrentOC = GIFT_PILE.filter(entry => entry !== OC_ARRANGED[CURRENT_OC_INDEX])        
-        } else {
-            // exclude all oc by this artist
-            giftPoolForCurrentOC = GIFT_PILE.filter(entry => entry.artist !== currentOCArtist);
-        }
-
-        console.log("available gift for current oc: ");
-        console.log(giftPoolForCurrentOC);
-
-        randomGift = giftPoolForCurrentOC[Math.floor(Math.random() * giftPoolForCurrentOC.length)];
-        // to handle lonely oc problem
-        if (OC_ARRANGED.length - CURRENT_OC_INDEX === 2 && giftPoolForCurrentOC.some(r => waitingOC.includes(r)) && giftPoolForCurrentOC.length === 2) {
-            console.log("detected lonely OC! OC that haven't get gift and still has their own gift in gift pool: ");
-            var lonelyOCsGift = waitingOC.filter(value => giftPoolForCurrentOC.includes(value))[0];
-            randomGift = lonelyOCsGift;
-        }
-    }
-    GIFT_PILE = GIFT_PILE.filter(entry => entry != randomGift);
-    HOST_QUOTES[0] = getQuoteOfRemainingGiftCountZH(GIFT_PILE.length);
-    HOST_QUOTES[1] = getQuoteOfRemainingGiftCountEN(GIFT_PILE.length);
-    return randomGift;
-}
-
 //=========================//
 //    Handle Flip Click    //
 //=========================//
@@ -373,16 +278,18 @@ function setUpFlipEvent() {
 
                 //draw gift
                 gift = drawGift();
+                HOST_QUOTES[0] = getQuoteOfRemainingGiftCountZH(GIFT_PILE.length);
+                HOST_QUOTES[1] = getQuoteOfRemainingGiftCountEN(GIFT_PILE.length);
+                            
                 giftCard.siblings().html("<img src='" + getGiftUrl(gift) + "' alt='gift' />");
 
                 //display item
                 displayItemModal(gift);
 
                 //handle gift data
-                OBTAINED_GIFT_INDEX.push(ENTRIES.indexOf(gift));
                 FLIPPED_CARD.push(giftCard.parent().parent().index());
                 setCookie(COOKIE.OBTAINED_GIFT, OBTAINED_GIFT_INDEX.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
-                setCookie(COOKIE.FLIPPED_CARD, FLIPPED_CARD.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
+                setCookie(COOKIE.CHOSEN_NUM, FLIPPED_CARD.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
 
                 popConfetti();
             }, 1500);
@@ -406,8 +313,7 @@ function setUpFlipEvent() {
             doCardFlip(currentGiftCard.parent(".gridItem_inner"))
             //add entry to gift log
             addEntryToGiftLog(gift);
-
-            CURRENT_OC_INDEX++;
+            nextOC();
             setSpotlightToNextOC();
             fadeFinishedOCs();
             if (CURRENT_OC_INDEX == ENTRIES.length) {
@@ -649,44 +555,41 @@ function loadCookie() {
     var obtainedGIftCookie = "";
     var flippedCardCookie = "";
 
-    const ocArrangementData = "15,22,36,27,12,26,19,23,33,13,30,10,35,31,14,4,39,8,6,32,21,34,2,1,0,5,20,29,9,3,7,38,25,11,17,18,37,28,24,16";
-    const obtainedGiftData = "18,11,16,12,26,10,0,35,28,6,25,32,17,2,27,5,1,33,20,21,34,19,7,31,30,36,13,3,23,15,24,14,8,4,38,9,29,37,22,39";
-    const flippedCardData = "13,11,10,38,14,22,17,21,12,7,34,1,19,0,4,6,20,36,32,18,2,33,31,27,16,28,37,29,23,35,26,25,30,3,5,24,15,9,8,39";
-
-    if (DISPLAY === CONFIG.RESULT2024) {
+    if (DISPLAY === CONFIG.RESULT) {
         ocArrangementCookie = ocArrangementData;
         obtainedGIftCookie = obtainedGiftData;
         flippedCardCookie = flippedCardData;
         setCookie(COOKIE.OC_ARRANGEMENT, ocArrangementCookie, COOKIE_EXPIRE_DEFAULT_DAYS);
         setCookie(COOKIE.OBTAINED_GIFT, obtainedGiftData, COOKIE_EXPIRE_DEFAULT_DAYS);
-        setCookie(COOKIE.FLIPPED_CARD, flippedCardData, COOKIE_EXPIRE_DEFAULT_DAYS);
-    } else if (DISPLAY === CONFIG.ORDER2024) {
+        setCookie(COOKIE.CHOSEN_NUM, flippedCardData, COOKIE_EXPIRE_DEFAULT_DAYS);
+    } else if (DISPLAY === CONFIG.ORDER) {
         ocArrangementCookie = ocArrangementData;
         deleteCookies(COOKIE.OBTAINED_GIFT);
-        deleteCookies(COOKIE.FLIPPED_CARD);
+        deleteCookies(COOKIE.CHOSEN_NUM);
         setCookie(COOKIE.OC_ARRANGEMENT, ocArrangementCookie, COOKIE_EXPIRE_DEFAULT_DAYS);
     } else if (DISPLAY === CONFIG.RANDOM) {
         deleteAllCookies();
     } else {
         ocArrangementCookie = getCookie(COOKIE.OC_ARRANGEMENT);
         obtainedGIftCookie = getCookie(COOKIE.OBTAINED_GIFT);
-        flippedCardCookie = getCookie(COOKIE.FLIPPED_CARD);
+        flippedCardCookie = getCookie(COOKIE.CHOSEN_NUM);
     }
 
-    if (ocArrangementCookie === "") {
-        OC_ARRANGED = [].concat(ENTRIES);
-        shuffleArray(OC_ARRANGED);
-        var arrangedIndexs = OC_ARRANGED.map(oc => ENTRIES.indexOf(oc));
-        setCookie(COOKIE.OC_ARRANGEMENT, arrangedIndexs.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
-    } else {
-        OC_ARRANGED = ocArrangementCookie.split(",").map(index => ENTRIES[index]);
+    var oc_arranged = [];
+
+    if (ocArrangementCookie !== "") {
+        oc_arranged = ocArrangementCookie.split(",").map(index => ENTRIES[index]);
     }
 
     if (obtainedGIftCookie !== "" && flippedCardCookie !== "") {
-        OBTAINED_GIFT_INDEX = obtainedGIftCookie.split(",");
+        var obtained_gift_index = obtainedGIftCookie.split(",");
         FLIPPED_CARD = flippedCardCookie.split(",");
 
-        var obtainedGifts = OBTAINED_GIFT_INDEX.map(index => ENTRIES[index]);
+        var obtainedGifts = obtained_gift_index.map(index => ENTRIES[index]);
+        var gift_pile = ENTRIES.filter(gift => !obtainedGifts.includes(gift));
+        initExchangeData(oc_arranged, gift_pile, obtained_gift_index);
+        var arrangedIndexs = OC_ARRANGED.map(oc => ENTRIES.indexOf(oc));
+        setCookie(COOKIE.OC_ARRANGEMENT, arrangedIndexs.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
         var index = 0;
         for (var gift of obtainedGifts) {
             $(".logPanelContent ul").append(getGiftLogHtml(OC_ARRANGED[index], gift));
@@ -701,6 +604,8 @@ function loadCookie() {
         }
         CURRENT_OC_INDEX = index;
         GIFT_PILE = GIFT_PILE.filter(gift => !obtainedGifts.includes(gift));
+        HOST_QUOTES[0] = getQuoteOfRemainingGiftCountZH(GIFT_PILE.length);
+        HOST_QUOTES[1] = getQuoteOfRemainingGiftCountEN(GIFT_PILE.length);
         if (GIFT_PILE.length == 0) {
             triggerEnding();
         }
@@ -710,6 +615,11 @@ function loadCookie() {
             $(".oc:nth-child(n+1):nth-child(-n+"+(CURRENT_OC_INDEX-4)+")").css("opacity", 0);
         return;
     }
+    initExchangeData(oc_arranged);
+    HOST_QUOTES[0] = getQuoteOfRemainingGiftCountZH(GIFT_PILE.length);
+    HOST_QUOTES[1] = getQuoteOfRemainingGiftCountEN(GIFT_PILE.length);
+    var arrangedIndexs = OC_ARRANGED.map(oc => ENTRIES.indexOf(oc));
+    setCookie(COOKIE.OC_ARRANGEMENT, arrangedIndexs.toString(), COOKIE_EXPIRE_DEFAULT_DAYS);
     printOCs();
 }
 
@@ -718,15 +628,6 @@ function addLogClick(index, gift) { // has to seperate this out due rules of clo
         displayItemModal(gift);
         AUDIO_ELEMENTS["flipPage"].play();
     });
-}
-
-function printOCList() {
-    let output = "";
-    let rank = 1;
-    for (var oc of OC_ARRANGED)
-        output += rank++ + ". " + oc.ocName + "  ------  " + oc.artist + "\n";
-
-    console.log(output);
 }
 
 function setParams() {
