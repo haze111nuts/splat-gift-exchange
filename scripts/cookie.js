@@ -40,12 +40,10 @@ function deleteCookies(cname) {
 }
 
 function deleteAllCookies() {
-    console.log(document.cookie);
     document.cookie.split(';').forEach(cookie => {
         const eqPos = cookie.indexOf('=');
         const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
         document.cookie = name + '=;Path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT';
-        console.log(document.cookie);
     });
 }
 
