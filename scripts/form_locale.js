@@ -203,9 +203,9 @@ var htmlLocaleData_EN = {
         first_line: "One day, your OC recieved a mysterious letter...",
         letter: [
             "Dear Inkfish,",
-            "We are the Mysterious Gift Exchange Association,",
-            "you have been chosen as a participant!",
-            "We collect gift across different universes and exchange them. If you'd like to join, simply prepare a winter gift and send it using the stamp we've included. Then, you'll receive a gift in return on the winter holiday!",
+            "We are the Mysterious Gift Exchange Association.",
+            "You have been chosen as a participant!",
+            "We collect gifts across different universes and exchange them. If you'd like to participate, simply prepare a winter gift and send it using the stamp we've included. Then, you'll receive a gift in return on the winter holiday!",
             "<div class='hr'></div><span>P.S. Do not wrap the gift, we will do it for you.</span>",
             "<span>P.S. Do not stick the stamp onto your friend.</span>"
         ],
@@ -311,7 +311,7 @@ var htmlLocaleData_EN = {
             ]
         },
         question9: {
-            label: "Your Homepage/Twitter",
+            label: "Your Homepage",
             desc: [
                 "This will be linked to your name on the website for this art project."
             ]
@@ -322,7 +322,7 @@ var htmlLocaleData_EN = {
                 "This will affect whose gift your OC will pull so please choose carefully, and feel free to DM 58 if you want to change your answer."
             ],
             options: [
-                "No, I don't want my OC to pull the gifts from my other OCs",
+                "No, I don't want my OC to pull gifts from my other OCs",
                 "Yes, I am okay with my OC pulling gifts from my other OCs",
                 "I will only be participating with one OC",
                 "I am not sure yet"
