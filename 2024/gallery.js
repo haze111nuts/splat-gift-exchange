@@ -64,38 +64,43 @@ function setUpFlipToggle() {
 //======================//
 
 function generateGrid() {
-    let gridHtml = ENTRIES.map((entry, i) => `
+
+
+    let arrangement2024 = ocArrangementData.split(",");
+    let gridHtml = arrangement2024.map((ocIndex, i) => `
     <li class="grid-item">
         <div class="card">
             <div class="cardBG"></div>
             <div class="cardInner">
                 ${['cardFront', 'cardBack'].map(side => `
-                    <div class="${side}" data-id="${i}">
+                    <div class="${side}" data-id="${ocIndex}">
                         <div class="preview"><div class="previewInner"></div></div>
                     </div>`).join('')}
             </div>
         </div>
-        <div class="label" data-id="${i}">
+        <div class="label" data-id="${ocIndex}">
             <div class="label_BG"></div>
-            <div class="giftTitle">${entry.giftName}</div>
-            <div class="giftAltTitle">${entry.giftNameAlt}</div>
-            <div class="gift"><img src="${getGiftUrl(entry)}"></div>
+            <div class="giftTitle">${ENTRIES[ocIndex].giftName}</div>
+            <div class="giftAltTitle">${ENTRIES[ocIndex].giftNameAlt}</div>
+            <div class="gift"><img src="${getGiftUrl(ENTRIES[ocIndex])}"></div>
         </div>
     </li>`).join('');
     $(".grid").html(gridHtml);
-    setUpGridStyle();
+    setUpGridStyle(arrangement2024);
 }
 
-function setUpGridStyle() {
-    for (var i = 0; i < ENTRIES.length; i++) {
+function setUpGridStyle(arrangement2024) {
+    var i = 0 ;
+    for (var ocIndex of arrangement2024) {
         //set image for each grid item
         $(".grid-item:nth-child(" + (i + 1) + ") .cardFront .previewInner")
-            .css("background-image", "url(" + getArtUrl("sender", i) + ")");
+            .css("background-image", "url(" + getArtUrl("sender", ocIndex) + ")");
         $(".grid-item:nth-child(" + (i + 1) + ") .cardBack .previewInner")
-            .css("background-image", "url(" + getArtUrl("getter", i) + ")");
+            .css("background-image", "url(" + getArtUrl("getter", ocIndex) + ")");
         // delay style for each grid tem
         $(".grid-item:nth-child(" + (i + 1) + ") .cardInner")
         .css("transition-delay", i * 0.03 + "s");
+        i++;
     }
 }
 
@@ -132,7 +137,7 @@ function setUpArtModalClickEvents() {
             $(".modal").removeClass("hide");
             let modalHtml = `
             <div class='art_wrap'>
-                <img class='art' src='${getArtUrl(dataID, "sender")}' alt='art'>
+                <img class='art' src='${getArtUrl("sender", dataID)}' alt='art'>
                 <div class='author'>
                     By <a href='${ENTRIES[dataID].artist}' target='_blank'>${ENTRIES[dataID].artist}</a>
                 </div>
@@ -145,7 +150,7 @@ function setUpArtModalClickEvents() {
         $(this).click(function () {
             var dataID = $(this).data().id;
             $(".modal").removeClass("hide");
-            $(".modal_content").html("<img class='art' src='" + getArtUrl(dataID, "getter") + "'>");
+            $(".modal_content").html("<img class='art' src='" + getArtUrl("getter", dataID) + "'>");
             // $(document.body).addClass("noscroll");
             hideScrollBar();
         })
