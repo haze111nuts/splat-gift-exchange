@@ -19,7 +19,7 @@ function assetBaseUrl(fileName){
 }
 
 function getArtUrl(group,id) {
-    return `/art_${group}/${id}.jpg`;
+    return `art_${group}/${id}.png`;
 }
 
 function getGiftUrl(gift) {
@@ -90,9 +90,9 @@ function setUpGridStyle() {
     for (var i = 0; i < ENTRIES.length; i++) {
         //set image for each grid item
         $(".grid-item:nth-child(" + (i + 1) + ") .cardFront .previewInner")
-            .css("background-image", "url(" + getArtUrl(i, "sender") + ")");
+            .css("background-image", "url(" + getArtUrl("sender", i) + ")");
         $(".grid-item:nth-child(" + (i + 1) + ") .cardBack .previewInner")
-            .css("background-image", "url(" + getArtUrl(i, "getter") + ")");
+            .css("background-image", "url(" + getArtUrl("getter", i) + ")");
         // delay style for each grid tem
         $(".grid-item:nth-child(" + (i + 1) + ") .cardInner")
         .css("transition-delay", i * 0.03 + "s");
