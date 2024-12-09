@@ -64,16 +64,16 @@ function setUpFlipToggle() {
 //======================//
 
 function generateGrid() {
+    var obtainedGifts2024 = obtainedGiftData.split(",");
     var arrangement2024 = ocArrangementData.split(",");
 
-    var obtainedGifts2024 = obtainedGiftData.split(",");
     let gridHtml = obtainedGifts2024.map((ocIndex, i) => `
     <li class="grid-item">
         <div class="card">
             <div class="cardBG"></div>
             <div class="cardInner">
                 ${['cardFront', 'cardBack'].map(side => `
-                    <div class="${side}" data-id="${arrangement2024[obtainedGifts2024.indexOf(ocIndex)]}">
+                    <div class="${side}" data-id="${side=='cardFront'?ocIndex:arrangement2024[obtainedGifts2024.indexOf(ocIndex)]}">
                         <div class="preview"><div class="previewInner"></div></div>
                     </div>`).join('')}
             </div>
@@ -100,7 +100,7 @@ function setUpGridStyle(obtainedGifts2024) {
             .css("background-image", "url(" + getArtUrl("getter", arrangement2024[obtainedGifts2024.indexOf(ocIndex)]) + ")");
         // delay style for each grid tem
         $(".grid-item:nth-child(" + (i + 1) + ") .cardInner")
-        .css("transition-delay", i * 0.03 + "s");
+        .css("transition-delay", i * 0.02 + "s");
         i++;
     }
 }
@@ -140,7 +140,8 @@ function setUpArtModalClickEvents() {
             <div class='art_wrap'>
                 <img class='art' src='${getArtUrl("sender", dataID)}' alt='art'>
                 <div class='author'>
-                    By <a href='${ENTRIES[dataID].artist}' target='_blank'>${ENTRIES[dataID].artist}</a>
+                    ${ENTRIES[dataID].giftName} by ${ENTRIES[dataID].ocName}<br>
+                    Art by <a href='${ENTRIES[dataID].artist}' target='_blank'>${ENTRIES[dataID].artist}</a>
                 </div>
             </div>`;
             $(".modal_content").html(modalHtml);
@@ -151,8 +152,15 @@ function setUpArtModalClickEvents() {
         $(this).click(function () {
             var dataID = $(this).data().id;
             $(".modal").removeClass("hide");
-            $(".modal_content").html("<img class='art' src='" + getArtUrl("getter", dataID) + "'>");
-            // $(document.body).addClass("noscroll");
+            let modalHtml = `
+            <div class='art_wrap'>
+                <img class='art' src='${getArtUrl("getter", dataID)}' alt='art'>
+                <div class='author'>
+                    ${ENTRIES[$(this).siblings().data().id].giftName} for ${ENTRIES[dataID].ocName}<br>
+                    Art by <a href='${ENTRIES[dataID].artist}' target='_blank'>${ENTRIES[dataID].artist}</a>
+                </div>
+            </div>`;
+            $(".modal_content").html(modalHtml);
             hideScrollBar();
         })
     })
