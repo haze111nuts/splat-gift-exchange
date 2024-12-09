@@ -64,16 +64,16 @@ function setUpFlipToggle() {
 //======================//
 
 function generateGrid() {
+    var arrangement2024 = ocArrangementData.split(",");
 
-
-    let arrangement2024 = ocArrangementData.split(",");
-    let gridHtml = arrangement2024.map((ocIndex, i) => `
+    var obtainedGifts2024 = obtainedGiftData.split(",");
+    let gridHtml = obtainedGifts2024.map((ocIndex, i) => `
     <li class="grid-item">
         <div class="card">
             <div class="cardBG"></div>
             <div class="cardInner">
                 ${['cardFront', 'cardBack'].map(side => `
-                    <div class="${side}" data-id="${ocIndex}">
+                    <div class="${side}" data-id="${arrangement2024[obtainedGifts2024.indexOf(ocIndex)]}">
                         <div class="preview"><div class="previewInner"></div></div>
                     </div>`).join('')}
             </div>
@@ -86,17 +86,18 @@ function generateGrid() {
         </div>
     </li>`).join('');
     $(".grid").html(gridHtml);
-    setUpGridStyle(arrangement2024);
+    setUpGridStyle(obtainedGifts2024);
 }
 
-function setUpGridStyle(arrangement2024) {
+function setUpGridStyle(obtainedGifts2024) {
     var i = 0 ;
-    for (var ocIndex of arrangement2024) {
+    var arrangement2024 = ocArrangementData.split(",");
+    for (var ocIndex of obtainedGifts2024) {
         //set image for each grid item
         $(".grid-item:nth-child(" + (i + 1) + ") .cardFront .previewInner")
             .css("background-image", "url(" + getArtUrl("sender", ocIndex) + ")");
         $(".grid-item:nth-child(" + (i + 1) + ") .cardBack .previewInner")
-            .css("background-image", "url(" + getArtUrl("getter", ocIndex) + ")");
+            .css("background-image", "url(" + getArtUrl("getter", arrangement2024[obtainedGifts2024.indexOf(ocIndex)]) + ")");
         // delay style for each grid tem
         $(".grid-item:nth-child(" + (i + 1) + ") .cardInner")
         .css("transition-delay", i * 0.03 + "s");
