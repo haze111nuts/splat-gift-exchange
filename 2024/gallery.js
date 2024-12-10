@@ -22,6 +22,10 @@ function getArtUrl(group,id) {
     return `art_${group}/${id}.png`;
 }
 
+function getPlaceholderArt() {
+    return "../assets/gallery/noart.png"
+}
+
 function getGiftUrl(gift) {
     const index = ENTRIES.indexOf(gift);
     const altIndex = getAltIndex();
@@ -89,15 +93,34 @@ function generateGrid() {
     setUpGridStyle(obtainedGifts2024);
 }
 
+
+function setBackgroundImage(element, imageUrl, placeholderUrl) {
+    const img = new Image();
+    img.onload = function() {
+        // Image is valid, set as background
+        $(element).css('background-image', `url(${imageUrl})`);
+    };
+    img.onerror = function() {
+        // Image failed to load, set placeholder
+        $(element).css('background-image', `url(${placeholderUrl})`);
+    };
+    img.src = imageUrl; // Trigger the load
+}
+
+
 function setUpGridStyle(obtainedGifts2024) {
     var i = 0 ;
     var arrangement2024 = ocArrangementData.split(",");
     for (var ocIndex of obtainedGifts2024) {
         //set image for each grid item
-        $(".grid-item:nth-child(" + (i + 1) + ") .cardFront .previewInner")
-            .css("background-image", "url(" + getArtUrl("sender", ocIndex) + ")");
-        $(".grid-item:nth-child(" + (i + 1) + ") .cardBack .previewInner")
-            .css("background-image", "url(" + getArtUrl("getter", arrangement2024[obtainedGifts2024.indexOf(ocIndex)]) + ")");
+        setBackgroundImage( ".grid-item:nth-child(" + (i + 1) + ") .cardFront .previewInner",
+                            getArtUrl("sender", ocIndex), 
+                            getPlaceholderArt() );
+
+        setBackgroundImage( ".grid-item:nth-child(" + (i + 1) + ") .cardBack .previewInner",
+                            getArtUrl("getter", arrangement2024[obtainedGifts2024.indexOf(ocIndex)]), 
+                            getPlaceholderArt() );
+
         // delay style for each grid tem
         $(".grid-item:nth-child(" + (i + 1) + ") .cardInner")
         .css("transition-delay", i * 0.02 + "s");
@@ -138,7 +161,7 @@ function setUpArtModalClickEvents() {
             $(".modal").removeClass("hide");
             let modalHtml = `
             <div class='art_wrap'>
-                <img class='art' src='${getArtUrl("sender", dataID)}' alt='art'>
+                <img class='art' src='${getArtUrl("sender", dataID)}' alt='art' onerror='this.onerror=null; this.src="${getPlaceholderArt()}";'>
                 <div class='author'>
                     ${ENTRIES[dataID].giftName} by ${ENTRIES[dataID].ocName}<br>
                     Art by <a href='${ENTRIES[dataID].artist}' target='_blank'>${ENTRIES[dataID].artist}</a>
@@ -154,7 +177,7 @@ function setUpArtModalClickEvents() {
             $(".modal").removeClass("hide");
             let modalHtml = `
             <div class='art_wrap'>
-                <img class='art' src='${getArtUrl("getter", dataID)}' alt='art'>
+                <img class='art' src='${getArtUrl("getter", dataID)}' alt='art' onerror='this.onerror=null; this.src="${getPlaceholderArt()}";'>
                 <div class='author'>
                     ${ENTRIES[$(this).siblings().data().id].giftName} for ${ENTRIES[dataID].ocName}<br>
                     Art by <a href='${ENTRIES[dataID].artist}' target='_blank'>${ENTRIES[dataID].artist}</a>
