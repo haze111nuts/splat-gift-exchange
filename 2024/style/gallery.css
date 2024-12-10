@@ -100,7 +100,7 @@ h4 {
 .navbar {
   z-index: 10;
   font-size: medium;
-  height: 110px;
+  height: 120px;
   position: sticky;
   top: 0;
   transition: all 0.2s ease-in;
@@ -143,7 +143,7 @@ h4 {
   width: 166px;
   position: absolute;
   left: -80px;
-  top: -20%;
+  top: -16%;
   transform: scale(0.95);
   cursor: pointer;
   transition: all 0.2s;
@@ -180,7 +180,7 @@ h4 {
   align-items: self-start;
   justify-content: center;
   width: 90%;
-  max-width: 1200px;
+  max-width: 1500px;
   height: 100%;
   margin: 0 auto;
   padding: 53px 0;
@@ -226,7 +226,7 @@ h4 {
   transition: all 0.4s;
 }
 .card:hover .cardBG {
-  background-color: #c4a87f !important;
+  background-color: #47341e !important;
 }
 .card .cardInner {
   position: relative;
@@ -276,17 +276,16 @@ h4 {
   left: 0;
 }
 .preview:hover .previewInner, .preview:focus .previewInner {
-  background-color: #bdc4d0;
-  -ms-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -webkit-transform: scale(1.2);
-  -o-transform: scale(1.2);
-  transform: scale(1.2);
+  -ms-transform: scale(1.15);
+  -moz-transform: scale(1.15);
+  -webkit-transform: scale(1.15);
+  -o-transform: scale(1.15);
+  transform: scale(1.15);
 }
 
 .label {
   color: white;
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
   cursor: pointer;
   width: 105%;
   margin-top: 10px;
@@ -346,7 +345,7 @@ h4 {
   color: #fcfcfc;
   text-align: center;
   font-size: 0.9em;
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: "Noto Sans TC", "Noto Sans SC", sans-serif;
 }
 .footer .content {
   padding: 20px;
@@ -414,7 +413,7 @@ h4 {
 
 .author {
   font-size: 1.4rem;
-  font-family: "DFPT_AZ5", sans-serif;
+  font-family: "DFPT_AZ5", "HanyiZongyi", sans-serif;
   color: white;
   text-align: center;
   padding: 3px 0 5px 0;
