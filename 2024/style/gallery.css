@@ -417,10 +417,11 @@ h4 {
   color: white;
   text-align: center;
   padding: 3px 0 5px 0;
+  line-height: 120%;
 }
 .author a {
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
   color: #dbb781;
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 }

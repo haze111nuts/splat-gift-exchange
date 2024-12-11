@@ -179,7 +179,7 @@ function setUpArtModalClickEvents() {
             <div class='art_wrap'>
                 <img class='art' src='${getArtUrl("getter", dataID)}' alt='art' onerror='this.onerror=null; this.src="${getPlaceholderArt()}";'>
                 <div class='author'>
-                    ${ENTRIES[$(this).siblings().data().id].giftName} for ${ENTRIES[dataID].ocName}<br>
+                    ${ENTRIES[$(this).siblings().data().id].giftName} x ${ENTRIES[dataID].ocName}<br>
                     Art by <a href='${ENTRIES[dataID].artist}' target='_blank'>${ENTRIES[dataID].artist}</a>
                 </div>
             </div>`;
