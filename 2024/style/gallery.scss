@@ -480,13 +480,17 @@ h4 {
 	font-family: "DFPT_AZ5", "HanyiZongyi", sans-serif;
 	color: white;
 	text-align: center;
-	padding: 3px 0 5px 0;
-	line-height: 120%;
+	padding: 5px 0 5px 0;
+	line-height: 110%;
+	span{
+		font-size: 1.2rem;
+	}
 	a {
 		cursor: pointer;
 		// text-decoration: underline;
 		text-decoration: none;
-		color: $ACCENT8;
+		color: burlywood;
+
 		// text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 		&:hover {
 			color: rgb(126, 214, 255);

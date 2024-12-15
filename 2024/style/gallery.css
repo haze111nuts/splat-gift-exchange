@@ -417,13 +417,16 @@ h4 {
   font-family: "DFPT_AZ5", "HanyiZongyi", sans-serif;
   color: white;
   text-align: center;
-  padding: 3px 0 5px 0;
-  line-height: 120%;
+  padding: 5px 0 5px 0;
+  line-height: 110%;
+}
+.author span {
+  font-size: 1.2rem;
 }
 .author a {
   cursor: pointer;
   text-decoration: none;
-  color: #d8be67;
+  color: burlywood;
 }
 .author a:hover {
   color: rgb(126, 214, 255);
