@@ -183,7 +183,8 @@ h4 {
   max-width: 1500px;
   height: 100%;
   margin: 0 auto;
-  padding: 53px 0;
+  padding-top: 53px;
+  padding-bottom: 8px;
   list-style: none;
 }
 .grid .grid-item {
@@ -310,7 +311,7 @@ h4 {
 }
 .label:hover .label_BG {
   width: 100%;
-  background-color: #d3b993;
+  background-color: #c2b29a;
 }
 .label .giftTitle,
 .label .giftAltTitle {
@@ -336,6 +337,13 @@ h4 {
 }
 .label .gift img {
   width: 72px;
+}
+
+.thanks {
+  color: rgb(58, 49, 45);
+  margin-top: 24px;
+  margin-bottom: 65px;
+  text-align: center;
 }
 
 .footer {

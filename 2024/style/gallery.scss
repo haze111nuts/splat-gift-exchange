@@ -8,7 +8,7 @@ $gift_toT: -16px;
 $ACCENT1: rgb(58, 49, 45);
 $ACCENT2: #684a29;
 $ACCENT3: #b38242;
-$ACCENT4: #d3b993;
+$ACCENT4: #c2b29a;
 $ACCENT5: rgb(219, 213, 202);
 $ACCENT6: rgb(184, 120, 2);
 $ACCENT7: rgb(219, 149, 19);
@@ -220,7 +220,8 @@ h4 {
 	max-width: 1500px;
 	height: 100%;
 	margin: 0 auto;
-	padding: 53px 0;
+	padding-top: 53px;
+	padding-bottom: 8px;
 	list-style: none;
 	.grid-item {
 		display: flex;
@@ -394,6 +395,13 @@ h4 {
 //==================//
 //===   FOOTER   ===//
 //==================//
+
+.thanks{
+	color: $ACCENT1;
+	margin-top: 24px;
+	margin-bottom: 65px;
+	text-align: center;
+}
 
 .footer {
 	width: 100%;
