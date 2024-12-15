@@ -53,8 +53,8 @@ var htmlLocaleData_CH = {
     },
     deadlines: ["禮物投稿截止日", "開箱日直播", "收禮插圖截止日"],
     member: {
-        confirmed: "<span>確</span>定參加",
-        unconfirmed: "<span>觀</span>望中"
+        confirmed: "<span>確定參加</span>",
+        unconfirmed: "<span>觀望中</span>"
     },
     openSamplePanel: "點這裡看範本",
     openPreviewHelper: "使用預覽小幫手",
@@ -246,8 +246,8 @@ var htmlLocaleData_EN = {
     },
     deadlines: ["Gift Submission Deadline", "Unboxing Day Stream", "Gift Receiving Artwork Deadline"],
     member: {
-        confirmed: "<span>Par</span>ticipating",
-        unconfirmed: "<span>Un</span>decided"
+        confirmed: "<span>Participating</span>",
+        unconfirmed: "<span>Undecided</span>"
     },
     openSamplePanel: "Sample Gifts",
     openPreviewHelper: "Preview Helper",
