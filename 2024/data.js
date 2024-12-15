@@ -72,7 +72,7 @@ const ARTISTS = {
         selfTrade: true
     },
     "み": {
-        link: "https://x.com/dashijiru_",
+        link: "",
         selfTrade: true
     },
     "ㄈㄉ": {

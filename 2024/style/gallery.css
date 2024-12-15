@@ -204,6 +204,7 @@ h4 {
   transition: transform 0.14s ease-in, text-shadow 0.1s ease-in;
   will-change: transform;
   background-color: #b38242;
+  background: linear-gradient(157deg, rgb(179, 130, 66) 66%, rgb(162, 157, 127) 100%);
   padding: 14px;
   border-radius: 3px;
   box-shadow: 1px 3px 4px 0 rgba(0, 0, 0, 0.2);
@@ -309,7 +310,7 @@ h4 {
 }
 .label:hover .label_BG {
   width: 100%;
-  background-color: #c4a87f;
+  background-color: #d3b993;
 }
 .label .giftTitle,
 .label .giftAltTitle {
@@ -352,7 +353,7 @@ h4 {
 }
 .footer a {
   cursor: pointer;
-  color: #dfb982;
+  color: #d8be67;
 }
 .footer a:hover {
   color: rgb(126, 214, 255);
@@ -404,7 +405,7 @@ h4 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1) !important;
-  transition: all 0.25s ease-out;
+  transition: opacity 0.25s ease-out;
 }
 
 .art {
@@ -422,8 +423,7 @@ h4 {
 .author a {
   cursor: pointer;
   text-decoration: none;
-  color: #dbb781;
-  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  color: #d8be67;
 }
 .author a:hover {
   color: rgb(126, 214, 255);

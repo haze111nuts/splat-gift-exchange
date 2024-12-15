@@ -163,12 +163,13 @@ function setUpArtModalClickEvents() {
             <div class='art_wrap'>
                 <img class='art' src='${getArtUrl("sender", dataID)}' alt='art' onerror='this.onerror=null; this.src="${getPlaceholderArt()}";'>
                 <div class='author'>
-                    ${ENTRIES[dataID].giftName} by ${ENTRIES[dataID].ocName}<br>
-                    Art by <a href='${ENTRIES[dataID].artist}' target='_blank'>${ENTRIES[dataID].artist}</a>
+                    ${ENTRIES[dataID].giftName} from ${ENTRIES[dataID].ocName}<br>
+                    Art by ${getArtistLinkRef(ENTRIES[dataID].artist)}
                 </div>
             </div>`;
             $(".modal_content").html(modalHtml);
             hideScrollBar();
+            applyExtraModalStyle(dataID);
         })
     })
     $(".cardBack").each(function () {
@@ -180,14 +181,31 @@ function setUpArtModalClickEvents() {
                 <img class='art' src='${getArtUrl("getter", dataID)}' alt='art' onerror='this.onerror=null; this.src="${getPlaceholderArt()}";'>
                 <div class='author'>
                     ${ENTRIES[$(this).siblings().data().id].giftName} x ${ENTRIES[dataID].ocName}<br>
-                    Art by <a href='${ENTRIES[dataID].artist}' target='_blank'>${ENTRIES[dataID].artist}</a>
+                    Art by ${getArtistLinkRef(ENTRIES[dataID].artist)}
                 </div>
             </div>`;
             $(".modal_content").html(modalHtml);
             hideScrollBar();
+            applyExtraModalStyle(dataID);
         })
     })
     setupCloseModalEvents();
+}
+
+function applyExtraModalStyle(dataID) {
+    const img = new Image();
+    img.onload = function () {
+        console.log(this.width + 'x' + this.height);
+        $(".art_wrap").css("max-width" , (this.width/this.height)*750 );
+    }
+    img.src = getArtUrl(displayGroup,dataID);
+}
+
+function getArtistLinkRef(artistName){
+    if(ARTISTS[artistName].link){
+        return `<a href='${ARTISTS[artistName].link}' target='_blank'>${artistName}</a>`
+    }else
+        return artistName
 }
 
 //===================================//
@@ -213,7 +231,6 @@ function hideScrollBar(){
     $('body').width($('body').width());
     $('body').css('overflow', 'hidden');
     // $('.modal').css('display', 'block');
-    
 }
 
 function resetScrollBar(){

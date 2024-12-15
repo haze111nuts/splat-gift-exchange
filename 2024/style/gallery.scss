@@ -8,10 +8,13 @@ $gift_toT: -16px;
 $ACCENT1: rgb(58, 49, 45);
 $ACCENT2: #684a29;
 $ACCENT3: #b38242;
-$ACCENT4: #c4a87f;
+$ACCENT4: #d3b993;
 $ACCENT5: rgb(219, 213, 202);
 $ACCENT6: rgb(184, 120, 2);
 $ACCENT7: rgb(219, 149, 19);
+$ACCENT8: #d8be67;
+$CARD_GRAD: linear-gradient(157deg, rgba(179,130,66,1) 66%, rgba(162,157,127,1) 100%);
+$CARD_GRAD2: linear-gradient(157deg, rgba(162,157,127,1) 66%,  rgba(179,130,66,1) 100%);
 
 html {
 	font-size: 16px;
@@ -239,6 +242,7 @@ h4 {
 			text-shadow 0.1s ease-in;
 		will-change: transform;
 		background-color: $ACCENT3;
+		background: $CARD_GRAD;
 		padding: 14px;
 		border-radius: 3px;
 		box-shadow: 1px 3px 4px 0 rgba(0, 0, 0, 0.2);
@@ -405,7 +409,7 @@ h4 {
 	}
 	a {
 		cursor: pointer;
-		color: #dfb982;
+		color: $ACCENT8;
 		&:hover {
 			color: rgb(126, 214, 255);
 		}
@@ -465,7 +469,7 @@ h4 {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%) scale(1) !important;
-	transition: all 0.25s ease-out;
+	transition: opacity 0.25s ease-out;
 }
 .art {
 	width: 100%;
@@ -482,8 +486,8 @@ h4 {
 		cursor: pointer;
 		// text-decoration: underline;
 		text-decoration: none;
-		color: #dbb781;
-		text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+		color: $ACCENT8;
+		// text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 		&:hover {
 			color: rgb(126, 214, 255);
 		}
