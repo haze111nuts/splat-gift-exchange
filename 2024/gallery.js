@@ -160,6 +160,7 @@ function setUpArtModalClickEvents() {
             var dataID = $(this).data().id;
             $(".modal").removeClass("hide");
             let modalHtml = `
+            <div class='close'></div>
             <div class='art_wrap'>
                 <img class='art' src='${getArtUrl("sender", dataID)}' alt='art' onerror='this.onerror=null; this.src="${getPlaceholderArt()}";'>
                 <div class='author'>
@@ -170,6 +171,7 @@ function setUpArtModalClickEvents() {
             $(".modal_content").html(modalHtml);
             hideScrollBar();
             applyExtraModalStyle(dataID);
+            setupCloseModalEvents();
         })
     })
     $(".cardBack").each(function () {
@@ -177,6 +179,7 @@ function setUpArtModalClickEvents() {
             var dataID = $(this).data().id;
             $(".modal").removeClass("hide");
             let modalHtml = `
+            <div class='close'></div>
             <div class='art_wrap'>
                 <img class='art' src='${getArtUrl("getter", dataID)}' alt='art' onerror='this.onerror=null; this.src="${getPlaceholderArt()}";'>
                 <div class='author'>
@@ -187,15 +190,14 @@ function setUpArtModalClickEvents() {
             $(".modal_content").html(modalHtml);
             hideScrollBar();
             applyExtraModalStyle(dataID);
+            setupCloseModalEvents();
         })
     })
-    setupCloseModalEvents();
 }
 
 function applyExtraModalStyle(dataID) {
     const img = new Image();
     img.onload = function () {
-        console.log(this.width + 'x' + this.height);
         $(".art_wrap").css("max-width" , (this.width/this.height)*750 );
     }
     img.src = getArtUrl(displayGroup,dataID);
