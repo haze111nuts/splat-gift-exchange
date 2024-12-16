@@ -69,7 +69,6 @@ function setUpFlipToggle() {
 
 function generateGrid() {
     var obtainedGifts2024 = obtainedGiftData.split(",");
-    var arrangement2024 = ocArrangementData.split(",");
 
     let gridHtml = obtainedGifts2024.map((ocIndex, i) => `
     <li class="grid-item">
@@ -77,7 +76,7 @@ function generateGrid() {
             <div class="cardBG"></div>
             <div class="cardInner">
                 ${['cardFront', 'cardBack'].map(side => `
-                    <div class="${side}" data-id="${side=='cardFront'?ocIndex:arrangement2024[obtainedGifts2024.indexOf(ocIndex)]}">
+                    <div class="${side}" data-id="${side=='cardFront'?ocIndex: ENTRIES.findIndex(entry => entry.received === Number(ocIndex))}">
                         <div class="preview"><div class="previewInner"></div></div>
                     </div>`).join('')}
             </div>
@@ -110,7 +109,6 @@ function setBackgroundImage(element, imageUrl, placeholderUrl) {
 
 function setUpGridStyle(obtainedGifts2024) {
     var i = 0 ;
-    var arrangement2024 = ocArrangementData.split(",");
     for (var ocIndex of obtainedGifts2024) {
         //set image for each grid item
         setBackgroundImage( ".grid-item:nth-child(" + (i + 1) + ") .cardFront .previewInner",
@@ -118,7 +116,7 @@ function setUpGridStyle(obtainedGifts2024) {
                             getPlaceholderArt() );
 
         setBackgroundImage( ".grid-item:nth-child(" + (i + 1) + ") .cardBack .previewInner",
-                            getArtUrl("getter", arrangement2024[obtainedGifts2024.indexOf(ocIndex)]), 
+                            getArtUrl("getter", ENTRIES.findIndex(entry => entry.received === Number(ocIndex))), 
                             getPlaceholderArt() );
 
         // delay style for each grid tem
