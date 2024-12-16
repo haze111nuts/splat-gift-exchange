@@ -163,8 +163,8 @@ function setUpArtModalClickEvents() {
             <div class='art_wrap'>
                 <img class='art' src='${getArtUrl("sender", dataID)}' alt='art' onerror='this.onerror=null; this.src="${getPlaceholderArt()}";'>
                 <div class='author'>
-                    ${ENTRIES[dataID].giftName} from ${ENTRIES[dataID].ocName}<br>
-                    <span>By ${getArtistLinkRef(ENTRIES[dataID].artist)}</span>
+                    <div>${ENTRIES[dataID].giftName} from ${ENTRIES[dataID].ocName}</div>
+                    <div>by ${getArtistLinkRef(ENTRIES[dataID].artist)}</div>
                 </div>
             </div>`;
             $(".modal_content").html(modalHtml);
@@ -180,8 +180,8 @@ function setUpArtModalClickEvents() {
             <div class='art_wrap'>
                 <img class='art' src='${getArtUrl("getter", dataID)}' alt='art' onerror='this.onerror=null; this.src="${getPlaceholderArt()}";'>
                 <div class='author'>
-                    ${ENTRIES[$(this).siblings().data().id].giftName} x ${ENTRIES[dataID].ocName}<br>
-                    <span>By ${getArtistLinkRef(ENTRIES[dataID].artist)}</span>
+                    <div>${ENTRIES[$(this).siblings().data().id].giftName} x ${ENTRIES[dataID].ocName}</div>
+                    <div>by ${getArtistLinkRef(ENTRIES[dataID].artist)}</div>
                 </div>
             </div>`;
             $(".modal_content").html(modalHtml);
@@ -260,4 +260,13 @@ $(document).ready(function () {
     $(".flipButtonBG2").css("width", "0");
     setupStuff();
     printSnow();
+
+    $(window).on('load', function () {
+        $('#loading').fadeOut();
+        setTimeout(
+            function() {
+                $(".streamLink img").addClass("animateOnce");
+            }, 1000);    
+    }) 
+
 });
