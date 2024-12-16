@@ -248,7 +248,7 @@ function calculateLoadProgress(){
     $('img, link[rel="stylesheet"], script').each(function () {
         $(this).on('load error', function () {
             resourcesLoaded++;
-            console.log(resourcesLoaded + "/" +totalResources)
+            // console.log(resourcesLoaded + "/" +totalResources)
             // 41/52??
             let percentage = (resourcesLoaded / (totalResources-11)) * 100;
             $('.progressbar div').width(percentage + '%');
