@@ -203,6 +203,18 @@
     }
 }
 
+.tranlateIcon{
+    width: 19px;
+    height: 19px;
+    padding-top: 6px;
+    fill: rgb(58, 49, 45);
+    transition: all 0.2s ease-in;
+    &:hover {
+        fill: rgb(184, 120, 2);
+    }
+}
+
+
 .close {
     z-index: 888;
     cursor: pointer;
@@ -248,9 +260,11 @@
         // transform: translate(-50%,0) !important;
 
         .itemArtWrap {
-            width: 100%;
+            // width: 100%;
+            display: inline-block;
             height: unset !important;
-            position: static !important;
+            position: unset !important;
+            // position: static !important;
             margin: 0 auto !important;
             transform: translate(0, 0) !important;
         }
