@@ -242,6 +242,7 @@ h4 {
   max-width: 1500px;
   height: 100%;
   margin: 0 auto;
+  padding-left: 0;
   padding-top: 53px;
   padding-bottom: 8px;
   list-style: none;
@@ -563,7 +564,7 @@ h4 {
 }
 @media only screen and (max-width: 765px) {
   .logo .logo_bg {
-    z-index: 100;
+    z-index: 98;
   }
   .decor {
     position: fixed;
