@@ -250,7 +250,7 @@ function calculateLoadProgress(){
             resourcesLoaded++;
             // console.log(resourcesLoaded + "/" +totalResources)
             // 41/52??
-            let percentage = (resourcesLoaded / (totalResources-11)) * 100;
+            let percentage = (resourcesLoaded / (totalResources)) * 100;
             $('.progressbar div').width(percentage + '%');
         });
     });
