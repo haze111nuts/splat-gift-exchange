@@ -158,16 +158,18 @@ function setUpArtModalClickEvents() {
             var dataID = $(this).data().id;
             $(".modal").removeClass("hide");
             let modalHtml = `
+            <div class='close'></div>
             <div class='art_wrap'>
                 <img class='art' src='${getArtUrl("sender", dataID)}' alt='art' onerror='this.onerror=null; this.src="${getPlaceholderArt()}";'>
                 <div class='author'>
-                    ${ENTRIES[dataID].giftName} from ${ENTRIES[dataID].ocName}<br>
-                    <span>By ${getArtistLinkRef(ENTRIES[dataID].artist)}</span>
+                    <div>${ENTRIES[dataID].giftName} from ${ENTRIES[dataID].ocName}</div>
+                    <div>by ${getArtistLinkRef(ENTRIES[dataID].artist)}</div>
                 </div>
             </div>`;
             $(".modal_content").html(modalHtml);
             hideScrollBar();
             applyExtraModalStyle(dataID);
+            setupCloseModalEvents();
         })
     })
     $(".cardBack").each(function () {
@@ -175,25 +177,25 @@ function setUpArtModalClickEvents() {
             var dataID = $(this).data().id;
             $(".modal").removeClass("hide");
             let modalHtml = `
+            <div class='close'></div>
             <div class='art_wrap'>
                 <img class='art' src='${getArtUrl("getter", dataID)}' alt='art' onerror='this.onerror=null; this.src="${getPlaceholderArt()}";'>
                 <div class='author'>
-                    ${ENTRIES[$(this).siblings().data().id].giftName} x ${ENTRIES[dataID].ocName}<br>
-                    <span>By ${getArtistLinkRef(ENTRIES[dataID].artist)}</span>
+                    <div>${ENTRIES[$(this).siblings().data().id].giftName} x ${ENTRIES[dataID].ocName}</div>
+                    <div>by ${getArtistLinkRef(ENTRIES[dataID].artist)}</div>
                 </div>
             </div>`;
             $(".modal_content").html(modalHtml);
             hideScrollBar();
             applyExtraModalStyle(dataID);
+            setupCloseModalEvents();
         })
     })
-    setupCloseModalEvents();
 }
 
 function applyExtraModalStyle(dataID) {
     const img = new Image();
     img.onload = function () {
-        console.log(this.width + 'x' + this.height);
         $(".art_wrap").css("max-width" , (this.width/this.height)*750 );
     }
     img.src = getArtUrl(displayGroup,dataID);
@@ -258,4 +260,13 @@ $(document).ready(function () {
     $(".flipButtonBG2").css("width", "0");
     setupStuff();
     printSnow();
+
+    $(window).on('load', function () {
+        $('#loading').fadeOut();
+        setTimeout(
+            function() {
+                $(".streamLink img").addClass("animateOnce");
+            }, 1000);    
+    }) 
+
 });

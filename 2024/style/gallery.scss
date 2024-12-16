@@ -8,7 +8,7 @@ $gift_toT: -16px;
 $ACCENT1: rgb(58, 49, 45);
 $ACCENT2: #684a29;
 $ACCENT3: #b38242;
-$ACCENT4: #d3b993;
+$ACCENT4: #c2b29a;
 $ACCENT5: rgb(219, 213, 202);
 $ACCENT6: rgb(184, 120, 2);
 $ACCENT7: rgb(219, 149, 19);
@@ -43,6 +43,40 @@ a {
 //decided not to use this for now
 .night {
 	background-color: $ACCENT5;
+}
+
+//============================//
+//===    LADING OVERLAY    ===//
+//============================//
+
+#loading {
+	position: fixed;
+	display: block;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	text-align: center;
+	background-color: $ACCENT5;
+	z-index: 99;
+  }
+  
+  #loading-image {
+	width: 86px;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	z-index: 100;
+	animation: rotating 2s linear infinite;
+  }
+
+  @keyframes rotating {
+    from{
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to{
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
 //====================//
@@ -88,7 +122,7 @@ a {
 		background-position: center center;
 		background-size: 100% auto;
 		background-repeat: no-repeat;
-		z-index: -1;
+		z-index: 1;
 	}
 }
 
@@ -122,6 +156,37 @@ h4 {
 	font-family: "DFPT_AZ5", sans-serif;
 	color: white;
 	text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	position: relative;
+}
+
+.streamLink{
+	position: absolute;
+	bottom: 10px;
+	right: -32px;
+	transform: translate(-50%, -50%);
+	transition: all 0.3s;
+	img{
+		opacity: 0;
+		width: 68px;
+	}
+	&:hover{
+		transform: translate(-50%, -50%)  scale(1.1);
+	}
+}
+
+.animateOnce {
+	animation: wooper 0.3s normal forwards ease-out;
+}
+
+@keyframes wooper {
+    0% {
+		transform: scale(1.2);
+        opacity: 0;
+    }
+    100% {
+		transform: scale(1);
+        opacity: 1;
+    }
 }
 
 //=====================//
@@ -220,7 +285,9 @@ h4 {
 	max-width: 1500px;
 	height: 100%;
 	margin: 0 auto;
-	padding: 53px 0;
+	padding-left: 0;
+	padding-top: 53px;
+	padding-bottom: 8px;
 	list-style: none;
 	.grid-item {
 		display: flex;
@@ -395,6 +462,13 @@ h4 {
 //===   FOOTER   ===//
 //==================//
 
+.thanks{
+	color: $ACCENT1;
+	margin-top: 24px;
+	margin-bottom: 65px;
+	text-align: center;
+}
+
 .footer {
 	width: 100%;
 	border-top: 20px solid #fcfcfc;
@@ -481,16 +555,23 @@ h4 {
 	color: white;
 	text-align: center;
 	padding: 5px 0 5px 0;
-	line-height: 110%;
-	span{
-		font-size: 1.2rem;
+	clear: left;
+	div:nth-child(1){
+		margin: 0 auto;
+		padding-bottom: 8px;
+	}
+	div:nth-child(2){
+		margin: 0 auto;
+		display: inline-block;
+		border-top: 1px solid white;	
+		font-size: 1.15rem;
+		padding: 4px 32px 0 32px;
 	}
 	a {
 		cursor: pointer;
 		// text-decoration: underline;
 		text-decoration: none;
 		color: burlywood;
-
 		// text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 		&:hover {
 			color: rgb(126, 214, 255);
@@ -578,7 +659,7 @@ h4 {
 
 @media only screen and (max-width: 765px) {
 	.logo .logo_bg {
-		z-index: 100;
+		z-index: 98;
 	}
 	.decor {
 		position: fixed;
