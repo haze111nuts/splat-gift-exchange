@@ -14,11 +14,11 @@ var displayGroup = "sender";
 //    URL Getters    //
 //===================//
 
-function assetBaseUrl(fileName){
+function assetBaseUrl(fileName) {
     return `../assets/gallery/${fileName}`;
 }
 
-function getArtUrl(group,id) {
+function getArtUrl(group, id) {
     return `art_${group}/${id}.png`;
 }
 
@@ -47,8 +47,8 @@ function setUpFlipToggle() {
 
             $(".exchangeIcon").css("left", "200px");
             $(".exchangeBar_active").css("width", "284px");
-            $(".exchangeIcon img").attr('src', assetBaseUrl("changeIcon_open.png") );
-            
+            $(".exchangeIcon img").attr('src', assetBaseUrl("changeIcon_open.png"));
+
         } else {
             //set to sender
             $(".cardInner").css("transform", "rotateY(0deg)");
@@ -76,7 +76,7 @@ function generateGrid() {
             <div class="cardBG"></div>
             <div class="cardInner">
                 ${['cardFront', 'cardBack'].map(side => `
-                    <div class="${side}" data-id="${side=='cardFront'?ocIndex: ENTRIES.findIndex(entry => entry.received === Number(ocIndex))}">
+                    <div class="${side}" data-id="${side == 'cardFront' ? ocIndex : ENTRIES.findIndex(entry => entry.received === Number(ocIndex))}">
                         <div class="preview"><div class="previewInner"></div></div>
                     </div>`).join('')}
             </div>
@@ -95,11 +95,11 @@ function generateGrid() {
 
 function setBackgroundImage(element, imageUrl, placeholderUrl) {
     const img = new Image();
-    img.onload = function() {
+    img.onload = function () {
         // Image is valid, set as background
         $(element).css('background-image', `url(${imageUrl})`);
     };
-    img.onerror = function() {
+    img.onerror = function () {
         // Image failed to load, set placeholder
         $(element).css('background-image', `url(${placeholderUrl})`);
     };
@@ -108,20 +108,20 @@ function setBackgroundImage(element, imageUrl, placeholderUrl) {
 
 
 function setUpGridStyle(obtainedGifts2024) {
-    var i = 0 ;
+    var i = 0;
     for (var ocIndex of obtainedGifts2024) {
         //set image for each grid item
-        setBackgroundImage( ".grid-item:nth-child(" + (i + 1) + ") .cardFront .previewInner",
-                            getArtUrl("sender", ocIndex), 
-                            getPlaceholderArt() );
+        setBackgroundImage(".grid-item:nth-child(" + (i + 1) + ") .cardFront .previewInner",
+            getArtUrl("sender", ocIndex),
+            getPlaceholderArt());
 
-        setBackgroundImage( ".grid-item:nth-child(" + (i + 1) + ") .cardBack .previewInner",
-                            getArtUrl("getter", ENTRIES.findIndex(entry => entry.received === Number(ocIndex))), 
-                            getPlaceholderArt() );
+        setBackgroundImage(".grid-item:nth-child(" + (i + 1) + ") .cardBack .previewInner",
+            getArtUrl("getter", ENTRIES.findIndex(entry => entry.received === Number(ocIndex))),
+            getPlaceholderArt());
 
         // delay style for each grid tem
         $(".grid-item:nth-child(" + (i + 1) + ") .cardInner")
-        .css("transition-delay", i * 0.02 + "s");
+            .css("transition-delay", i * 0.02 + "s");
         i++;
     }
 }
@@ -130,7 +130,7 @@ function setUpGridStyle(obtainedGifts2024) {
 //    Settingup Item Modal    //
 //============================//
 
-function setUpItemModalClickEvents(){
+function setUpItemModalClickEvents() {
     $(".label").each(function () {
         $(this).click(function () {
             var dataID = $(this).data().id;
@@ -196,15 +196,15 @@ function setUpArtModalClickEvents() {
 function applyExtraModalStyle(dataID) {
     const img = new Image();
     img.onload = function () {
-        $(".art_wrap").css("max-width" , (this.width/this.height)*750 );
+        $(".art_wrap").css("max-width", (this.width / this.height) * 750);
     }
-    img.src = getArtUrl(displayGroup,dataID);
+    img.src = getArtUrl(displayGroup, dataID);
 }
 
-function getArtistLinkRef(artistName){
-    if(ARTISTS[artistName].link){
+function getArtistLinkRef(artistName) {
+    if (ARTISTS[artistName].link) {
         return `<a href='${ARTISTS[artistName].link}' target='_blank'>${artistName}</a>`
-    }else
+    } else
         return artistName
 }
 
@@ -212,13 +212,13 @@ function getArtistLinkRef(artistName){
 //    Settingup Modal Close Event    //
 //===================================//
 
-function setupCloseModalEvents(){
+function setupCloseModalEvents() {
     $(".modal_bg, .close").click(function () {
         $(".modal").addClass("hide");
         //$(document.body).removeClass("noscroll");
         resetScrollBar();
         resetModalParems();
-        $(".itemArt").css("cursor","auto");
+        $(".itemArt").css("cursor", "auto");
     })
 }
 
@@ -226,19 +226,32 @@ function setupCloseModalEvents(){
 //    Other Stuff   //
 //==================//
 
-function hideScrollBar(){
+function hideScrollBar() {
     //prevent body content to shift right when scrollbar is gone
     $('body').width($('body').width());
     $('body').css('overflow', 'hidden');
     // $('.modal').css('display', 'block');
 }
 
-function resetScrollBar(){
+function resetScrollBar() {
     //fix slight position bump caused by scroll bar
     setTimeout(
-    function() {
-        $('body').removeAttr('style')
-    }, 250);
+        function () {
+            $('body').removeAttr('style')
+        }, 250);
+}
+
+function calculateLoadProgress(){
+    let resourcesLoaded = 0;
+    let totalResources = $('img, link[rel="stylesheet"], script').length;
+
+    $('img, link[rel="stylesheet"], script').each(function () {
+        $(this).on('load error', function () {
+            resourcesLoaded++;
+            let percentage = (resourcesLoaded / totalResources) * 100;
+            $('.progressbar div').width(percentage + '%');
+        });
+    });
 }
 
 function setupStuff() {
@@ -262,11 +275,11 @@ $(document).ready(function () {
     printSnow();
 
     $(window).on('load', function () {
-        $('#loading').fadeOut();
+        $('#loadingScreen').fadeOut();
         setTimeout(
-            function() {
+            function () {
                 $(".streamLink img").addClass("animateOnce");
-            }, 1000);    
-    }) 
-
+            }, 1000);
+    })
+    calculateLoadProgress();
 });

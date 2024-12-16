@@ -26,7 +26,7 @@ a:hover {
   background-color: rgb(219, 213, 202);
 }
 
-#loading {
+#loadingScreen {
   position: fixed;
   display: block;
   width: 100%;
@@ -37,22 +37,39 @@ a:hover {
   background-color: rgb(219, 213, 202);
   z-index: 99;
 }
-
-#loading-image {
-  width: 86px;
+#loadingScreen .loaderWrapper {
   top: 50%;
   left: 50%;
   position: absolute;
-  z-index: 100;
+  transform: translate(-50%, -50%);
+}
+#loadingScreen .loaderWrapper img {
+  width: 86px;
   animation: rotating 2s linear infinite;
+}
+
+.progressbar {
+  margin-top: 16px;
+  height: 8px;
+  width: 110px;
+  background: none;
+  border: 1px solid white;
+  border-radius: 3px;
+  padding: 2px;
+}
+.progressbar div {
+  height: 100%;
+  background-color: white;
+  width: 0%;
+  border-radius: 3px;
 }
 
 @keyframes rotating {
   from {
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
-    transform: translate(-50%, -50%) rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 .decor {
