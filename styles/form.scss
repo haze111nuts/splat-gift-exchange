@@ -198,29 +198,34 @@ a {
         }
     }
     .vips {
+        padding-top: 4px;
         padding-right: 42px;
         padding-left: 42px;
         .memberWrap {
             display: flex;
             text-align: center;
             > div {
-                width: 50%;
-                .memberType {
-                    font-size: 1.5em;
-                    border-bottom: 1px solid $TEXT_NAV;
-                    padding-bottom: 4px;
+                // width: 50%;
+                width: 100%;
+                .memberTitle, .memberFooter{
                     width: 80%;
                     margin: 0 auto;
-                    span{
-                        color: $TEXT_NAV2;
-                    }
+                    color: $TEXT_NAV2;
+                }
+                .memberTitle{
+                    border-bottom: 1px solid $TEXT_NAV;
+                    padding-bottom: 10px;
+                }
+                .memberFooter{
+                    border-top: 1px solid $TEXT_NAV;
+                    padding-top: 10px;
                 }
                 ul {
                     width: 80%;
                     margin: 0 auto;
                     padding: 0;
                     list-style: none;
-                    columns: 1;
+                    columns: 3;
                     column-gap: 0px;
                     // border: 1px solid $TEXT_NAV;
                     // border-top: 0;

@@ -170,6 +170,7 @@ a {
   padding: 0px 4px;
 }
 .nav .vips {
+  padding-top: 4px;
   padding-right: 42px;
   padding-left: 42px;
 }
@@ -178,24 +179,27 @@ a {
   text-align: center;
 }
 .nav .vips .memberWrap > div {
-  width: 50%;
+  width: 100%;
 }
-.nav .vips .memberWrap > div .memberType {
-  font-size: 1.5em;
-  border-bottom: 1px solid #776256;
-  padding-bottom: 4px;
+.nav .vips .memberWrap > div .memberTitle, .nav .vips .memberWrap > div .memberFooter {
   width: 80%;
   margin: 0 auto;
-}
-.nav .vips .memberWrap > div .memberType span {
   color: #bda990;
+}
+.nav .vips .memberWrap > div .memberTitle {
+  border-bottom: 1px solid #776256;
+  padding-bottom: 10px;
+}
+.nav .vips .memberWrap > div .memberFooter {
+  border-top: 1px solid #776256;
+  padding-top: 10px;
 }
 .nav .vips .memberWrap > div ul {
   width: 80%;
   margin: 0 auto;
   padding: 0;
   list-style: none;
-  columns: 1;
+  columns: 3;
   column-gap: 0px;
 }
 .nav .vips .memberWrap > div ul li {

@@ -31,14 +31,7 @@ var OVERWRITE = {
 }
 
 var members = {
-    confirmed: [
-        "Hazy",
-        "22"
-    ],
-    unconfirmed: [
-        "???",
-        "???"
-    ]
+    confirmed: []
 }
 
 
@@ -146,7 +139,6 @@ function setUpExtraUploadToggle() {
 
 function setUpMembers() {
     $('.memberWrap div:nth-child(1) ul').html(members.confirmed.map(name => `<li>${name}</li>`));
-    $('.memberWrap div:nth-child(2) ul').html(members.unconfirmed.map(name => `<li>${name}</li>`));
 }
 
 //==================================//

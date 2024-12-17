@@ -53,8 +53,7 @@ var htmlLocaleData_CH = {
     },
     deadlines: ["禮物投稿截止日", "開箱日直播", "收禮插圖截止日"],
     member: {
-        confirmed: "<span>確定參加</span>",
-        unconfirmed: "<span>觀望中</span>"
+        notice: "※本列表不定期更新，也可以去DC看名單。"
     },
     openSamplePanel: "點這裡看範本",
     openPreviewHelper: "使用預覽小幫手",
@@ -194,11 +193,11 @@ var htmlLocaleData_CH = {
 }
 
 var htmlLocaleData_EN = {
-    phase1_title: "<span>2025 Splatoon Gift Exchange<br>Submission Form</span>",
-    phase2_title: "<span>2025 Splatoon Gift Exchange<br>Unbox Art Submission Form</span>",
-    phase1_summary: "⚠️ <span>This form is only for members who are invited</span> ⚠️",
+    phase1_title: "<span>2025 Splatoon OC Gift Exchange<br>Submission Form</span>",
+    phase2_title: "<span>2025 Splatoon OC Gift Exchange<br>Unbox Art Submission Form</span>",
+    phase1_summary: "⚠️ <span>This form is only for guests who are invited</span> ⚠️",
     phase2_summary: "<span>This is the second part of Splatoon Gift Exchange Art Project!<br>You will have to draw your OC with the gift they received during Unboxing Day.</span>",
-    nav_list: ["Prologue", "Guide", "Read Me", "Deadlines", "Members"],
+    nav_list: ["Prologue", "Guide", "Read Me", "Deadlines", "Guests"],
     prologue: {
         first_line: "One day, your OC recieved a mysterious letter...",
         letter: [
@@ -207,11 +206,11 @@ var htmlLocaleData_EN = {
             "You have been chosen as a participant!",
             "We collect gifts across different universes and exchange them. If you'd like to participate, simply prepare a winter gift and send it using the stamp we've included. Then, you'll receive a gift in return on the winter holiday!",
             "<div class='hr'></div><span>P.S. Do not wrap the gift, we will do it for you.</span>",
-            "<span>P.S. Do not stick the stamp onto your friend.</span>"
+            "<span>P.S. Do not stick this stamp onto your friend!!!</span>"
         ],
         lines: [
             "There was no address or name on the envelope.",
-            "only a stamp that seemed to hold some sort of power.",
+            "only a stamp that seems to hold some sort of power.",
             "How did this mail get here? This is all very sus...",
             "",
             "Will your OC follow the instruction on the letter?",
@@ -246,8 +245,7 @@ var htmlLocaleData_EN = {
     },
     deadlines: ["Gift Submission Deadline", "Unboxing Day Stream", "Gift Receiving Artwork Deadline"],
     member: {
-        confirmed: "<span>Participating</span>",
-        unconfirmed: "<span>Undecided</span>"
+        notice: "*Please check Discord to see the most up-to-date guest list"
     },
     openSamplePanel: "Sample Gifts",
     openPreviewHelper: "Preview Helper",
@@ -358,7 +356,7 @@ var htmlLocaleData_EN = {
         },
         submit: "Submit"
     },
-    form_tip: "***Please report to 58 if you see any bug on the form***",
+    form_tip: "***Please report to 58 if you notice any bug on this form***",
     gift_guide: {
         title: "Gift Guidelines",
         items: [
@@ -486,8 +484,7 @@ function applyLocaleData(data) {
     $('.minutes').after(data.countdown.min);
     $('.seconds').after(data.countdown.sec);
     $(".deadlines ul li span:first-child").each((i, el) => $(el).text(data.deadlines[i])).after(" : ");
-    $(".memberWrap div:nth-child(1) .memberType").html(data.member.confirmed);
-    $(".memberWrap div:nth-child(2) .memberType").html(data.member.unconfirmed);
+    $(".memberFooter").html(data.member.notice);
     //end of form
     $(".wrapper .tip").text(data.form_tip);
     //modal - gift rules
