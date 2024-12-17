@@ -498,7 +498,7 @@ h4 {
 }
 
 .author {
-  font-size: 20px;
+  font-size: 21px;
   font-family: "DFPT_AZ5", "HanyiZongyi", sans-serif;
   color: white;
   text-align: center;
@@ -519,10 +519,10 @@ h4 {
 .author a {
   cursor: pointer;
   text-decoration: none;
-  color: burlywood;
+  color: rgb(222, 192, 135);
 }
 .author a:hover {
-  color: rgb(126, 214, 255);
+  color: rgb(157, 236, 226);
 }
 
 ::selection {

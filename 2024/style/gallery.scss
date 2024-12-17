@@ -569,7 +569,7 @@ h4 {
 }
 .author {
 	// background-color: #c4a87f;
-	font-size: 20px;
+	font-size: 21px;
 	font-family: "DFPT_AZ5", "HanyiZongyi", sans-serif;
 	color: white;
 	text-align: center;
@@ -590,10 +590,10 @@ h4 {
 		cursor: pointer;
 		// text-decoration: underline;
 		text-decoration: none;
-		color: burlywood;
+		color: rgb(222, 192, 135);
 		// text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 		&:hover {
-			color: rgb(126, 214, 255);
+			color: rgb(157, 236, 226);
 		}
 	}
 }
