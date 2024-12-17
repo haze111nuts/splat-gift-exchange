@@ -9,6 +9,8 @@ var YEAR = "0000";
 //============================//
 
 var displayGroup = "sender";
+var documentHeight = 0;
+var scrollPos = 0;
 
 //===================//
 //    URL Getters    //
@@ -38,6 +40,7 @@ function getGiftUrl(gift) {
 
 function setUpFlipToggle() {
     $(".exchangeButton").click(function () {
+        setFlipDelay();
         if (displayGroup === "sender") {
             //set to getter
             $(".cardInner").css("transform", "rotateY(180deg)");
@@ -118,12 +121,23 @@ function setUpGridStyle(obtainedGifts2024) {
         setBackgroundImage(".grid-item:nth-child(" + (i + 1) + ") .cardBack .previewInner",
             getArtUrl("getter", ENTRIES.findIndex(entry => entry.received === Number(ocIndex))),
             getPlaceholderArt());
-
-        // delay style for each grid tem
-        $(".grid-item:nth-child(" + (i + 1) + ") .cardInner")
-            .css("transition-delay", i * 0.02 + "s");
         i++;
     }
+}
+
+function setFlipDelay() {
+    for (var i = 0; i < obtainedGiftData.split(",").length; i++) {
+        // delay style for each grid tem
+        $(".grid-item:nth-child(" + (i + 1) + ") .cardInner")
+            .css("transition-delay", i * getFlipDelay() + "s");
+    }
+}
+
+function getFlipDelay() {
+    if (scrollPos / documentHeight > 0.45) {
+        return 0.01;
+    }
+    return 0.03;
 }
 
 //============================//
@@ -194,6 +208,7 @@ function setUpArtModalClickEvents() {
 }
 
 function applyExtraModalStyle(dataID) {
+    forceSetArtHeight();
     const img = new Image();
     img.onload = function () {
         $(".art_wrap").css("max-width", (this.width / this.height) * 750);
@@ -241,7 +256,7 @@ function resetScrollBar() {
         }, 250);
 }
 
-function calculateLoadProgress(){
+function calculateLoadProgress() {
     let resourcesLoaded = 0;
     let totalResources = $('img, link[rel="stylesheet"], script').length;
 
@@ -263,6 +278,26 @@ function setupStuff() {
     setUpItemModalClickEvents();
 }
 
+function forceSetArtHeight() {
+    var windowHeight = $(window).height();
+    if (windowHeight < 820) {
+        $(".art_wrap").css("width", "unset");
+        $(".art").css("height", (windowHeight - 60) + "px");
+        $(".author").css("font-size", '16px');
+    } else {
+        $(".art_wrap").css("width", "100%");
+        $(".art").css("height", "unset");
+        $(".author").css("font-size", '20px');
+    }
+}
+
+function removeLoaderScreen() {
+    $('#loadingScreen').fadeOut();
+    setTimeout(
+        function () {
+            $(".streamLink img").addClass("animateOnce");
+        }, 1000);
+}
 //======================//
 //                      //
 //    Ready Function    //
@@ -273,15 +308,26 @@ $(document).ready(function () {
     $("body").addClass("day");
     $(".flipButtonBG").css("width", "50%");
     $(".flipButtonBG2").css("width", "0");
+
     setupStuff();
     printSnow();
 
-    $(window).on('load', function () {
-        $('#loadingScreen').fadeOut();
-        setTimeout(
-            function () {
-                $(".streamLink img").addClass("animateOnce");
-            }, 1000);
-    })
+    //Scroll watcher
+    documentHeight = $(document).height();
+    console.log(documentHeight)
+    $(window).scroll(function () {
+        scrollPos = $(this).scrollTop();
+    });
+
+
+    //Handle window with tiny height
+    $(window).resize(() =>
+        forceSetArtHeight()
+    ).resize();
+
+    //Initial loader logic
+    $(window).on('load', () => removeLoaderScreen())
+    //In case the loader takes too long
+    setTimeout(removeLoaderScreen, 12 * 1000);
     calculateLoadProgress();
 });
