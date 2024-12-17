@@ -53,7 +53,7 @@ var htmlLocaleData_CH = {
     },
     deadlines: ["禮物投稿截止日", "開箱日直播", "收禮插圖截止日"],
     member: {
-        notice: "※本列表不定期更新，也可以去DC看名單。"
+        notice: "目前尚未更新，可以先去DC看看有沒有新資訊。"
     },
     openSamplePanel: "點這裡看範本",
     openPreviewHelper: "使用預覽小幫手",
@@ -245,7 +245,7 @@ var htmlLocaleData_EN = {
     },
     deadlines: ["Gift Submission Deadline", "Unboxing Day Stream", "Gift Receiving Artwork Deadline"],
     member: {
-        notice: "*Please check Discord to see the most up-to-date guest list"
+        notice: "TBD *Please check Discord to see the most up-to-date guest list"
     },
     openSamplePanel: "Sample Gifts",
     openPreviewHelper: "Preview Helper",

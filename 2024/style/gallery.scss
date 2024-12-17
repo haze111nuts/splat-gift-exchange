@@ -486,6 +486,9 @@ h4 {
 	margin-top: 24px;
 	margin-bottom: 65px;
 	text-align: center;
+	span{
+		color: $ACCENT3;
+	}
 }
 
 .footer {
@@ -502,9 +505,9 @@ h4 {
 	}
 	a {
 		cursor: pointer;
-		color: $ACCENT8;
+		color: rgb(245, 180, 191);
 		&:hover {
-			color: rgb(126, 214, 255);
+			color: rgb(157, 236, 226);
 		}
 	}
 	.snowdeco {

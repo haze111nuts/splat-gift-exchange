@@ -422,6 +422,9 @@ h4 {
   margin-bottom: 65px;
   text-align: center;
 }
+.thanks span {
+  color: #b38242;
+}
 
 .footer {
   width: 100%;
@@ -438,10 +441,10 @@ h4 {
 }
 .footer a {
   cursor: pointer;
-  color: #d8be67;
+  color: rgb(245, 180, 191);
 }
 .footer a:hover {
-  color: rgb(126, 214, 255);
+  color: rgb(157, 236, 226);
 }
 .footer .snowdeco {
   width: 100%;
