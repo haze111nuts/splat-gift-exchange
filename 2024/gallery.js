@@ -314,11 +314,9 @@ $(document).ready(function () {
 
     //Scroll watcher
     documentHeight = $(document).height();
-    console.log(documentHeight)
     $(window).scroll(function () {
         scrollPos = $(this).scrollTop();
     });
-
 
     //Handle window with tiny height
     $(window).resize(() =>

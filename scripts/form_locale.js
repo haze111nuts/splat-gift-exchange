@@ -438,12 +438,12 @@ var sampleGifts_EN = [
     },
     {
         giftName: "Suspicious Wallet",
-        giftDescription: "A coin wallet with peculiar shape...some kind of astronaut perhaps? The inside of this wallet is designed to look like a bloody mouth with sharpe teeth, it's kind of gruesome. What was the manufacturer thinking?!\nRumor said once you put money in, you won't be able to get it back… Very sus!",
+        giftDescription: "A coin wallet with peculiar shape...some kind of astronaut perhaps? The inside of this wallet is designed to look like a bloody mouth with sharpe teeth, it's kind of gruesome. What was the manufacturer thinking?!\nRumor said once you put money in, you won't be able to get it back… very sus!",
         numOfAlt: 1
     },
     {
         giftName: "Strange Frying Pan",
-        giftDescription: "It looks like an ordinary frying pan, but there is an upside-down seal figurine in the middle of the pan for unknown purpose. The figurine is unremovable, seems like you will have to cook like this.\n\nThis pan also has some strange features:\n- When the pan is preheated, the seal's eye will glow red.\n- When you shake the pan, the seal will start making odd sounds like \"squeak squeak!\" or \"meat!\"\n\nAfter washing the pan you can put it upside-down to dry, it looks just like a seal using a giant frying pan as a hat.",
+        giftDescription: "It looks like an ordinary frying pan, but there is an upside-down seal figurine in the middle of the pan for unknown purpose. The figurine is unremovable, seems like you will have to cook like this.\n\nThis pan also has some strange features:\n- When the pan is preheated, the seal's eye will glow red.\n- When you shake the pan, the seal will start making odd sounds like \"squeak squeak!\" or \"meat!\"\n\nAfter washing the pan you can put it upside-down to dry, it looks just like a seal wearing a giant frying pan as a hat.",
         numOfAlt: 1
     }
 ]

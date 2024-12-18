@@ -92,6 +92,7 @@ function decideLocalization() {
     if (IS_ENG_FORM) {
         removeUploaderLocale();
         $(".nav .prologue .letterDeco").css("bottom", "340px");
+        $(".stamp").css("bottom", "48px");
     }
     applyLocaleData(HTML_LOCALE_DATA);
 }
