@@ -221,7 +221,7 @@ var htmlLocaleData_EN = {
         "Notify the staffs that you would like to participate, <br>and make sure you are added into the Member list.",
         "Draw your OC preparing some kind of holiday gift, and draw an icon for the content of the gift",
         "Submit the two artworks through this form before the September deadline,<br> we will add your gift into the pool.",
-        "We will host Unboxing Day stream around mid-October, each OC will get a chance to pull a gift",
+        "We will host the Unboxing Day stream around mid-October, each OC will get a chance to pull a gift",
         "After the stream, draw your OC with the gift they obtained.",
         "Submit the last piece of art to through this form before the December deadline.",
         "All artwork will be revealed on December 25.",
