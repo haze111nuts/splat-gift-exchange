@@ -264,6 +264,16 @@
     width: 290px !important;
     height: 290px !important;
   }
+  .itemPanel .itemSummary .itemTitle {
+    font-size: 20px;
+  }
+  .itemPanel .itemSummary .itemTitle div:nth-child(2) {
+    font-size: small;
+  }
+  .itemPanel .itemSummary_inner {
+    font-size: 0.8em;
+    max-height: 220px !important;
+  }
 }
 
 /*# sourceMappingURL=modal.css.map */

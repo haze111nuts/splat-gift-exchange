@@ -280,11 +280,13 @@ function setupStuff() {
 
 function forceSetArtHeight() {
     var windowHeight = $(window).height();
-    if (windowHeight < 820) {
+    var windowWidth = $(window).width()
+    if (windowHeight < 820 && windowWidth>windowHeight) {
+        $(".author").css("font-size", '16px');            
         $(".art_wrap").css("width", "unset");
+        $(".art").css("width", "auto");
         $(".art").css("height", (windowHeight - 60) + "px");
-        $(".author").css("font-size", '16px');
-    } else {
+    }else {
         $(".art_wrap").css("width", "100%");
         $(".art").css("height", "unset");
         $(".author").css("font-size", '20px');

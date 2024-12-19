@@ -195,7 +195,7 @@ var htmlLocaleData_CH = {
 var htmlLocaleData_EN = {
     phase1_title: "<span>2025 Splatoon OC Gift Exchange<br>Submission Form</span>",
     phase2_title: "<span>2025 Splatoon OC Gift Exchange<br>Unbox Art Submission Form</span>",
-    phase1_summary: "⚠️ <span>This form is only for guests who are invited</span> ⚠️",
+    phase1_summary: "⚠️ <span>This form is only for people who are in our guest list</span> ⚠️",
     phase2_summary: "<span>This is the second part of Splatoon Gift Exchange Art Project!<br>You will have to draw your OC with the gift they received during Unboxing Day.</span>",
     nav_list: ["Prologue", "Guide", "Read Me", "Deadlines", "Guests"],
     prologue: {
@@ -245,7 +245,7 @@ var htmlLocaleData_EN = {
     },
     deadlines: ["Gift Submission Deadline", "Unboxing Day Stream", "Gift Receiving Artwork Deadline"],
     member: {
-        notice: "TBD *Please check Discord to see the most up-to-date guest list"
+        notice: "TBD *Please check Discord to see the most up-to-date list"
     },
     openSamplePanel: "Sample Gifts",
     openPreviewHelper: "Preview Helper",
