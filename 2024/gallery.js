@@ -328,6 +328,6 @@ $(document).ready(function () {
     //Initial loader logic
     $(window).on('load', () => removeLoaderScreen())
     //In case the loader takes too long
-    setTimeout(removeLoaderScreen, 12 * 1000);
+    setTimeout(removeLoaderScreen, 20 * 1000);
     calculateLoadProgress();
 });
