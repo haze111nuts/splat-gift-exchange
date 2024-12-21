@@ -22,8 +22,8 @@ var SAMPLE_GIFTS;
 //    Constant     //
 //=================//
 
-var IS_ENG_FORM = checkBrowserAndSwitchLang();
-// var IS_ENG_FORM = false;
+//var IS_ENG_FORM = checkBrowserAndSwitchLang();
+var IS_ENG_FORM = false;
 
 var OVERWRITE = {
     switch: true,
@@ -532,6 +532,7 @@ function setupCloseModalEvents() {
             closeModals();
             resetModalParems();
         }
+        SAMPLE_ART_INDEX = [0, 0, 0];
     })
     //IF USER CLICKS NO ON PREVIEW CONFIRM
     $('.confirmEdit div span:nth-child(1)').click(function () {
