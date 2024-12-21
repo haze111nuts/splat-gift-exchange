@@ -22,8 +22,8 @@ var SAMPLE_GIFTS;
 //    Constant     //
 //=================//
 
-//var IS_ENG_FORM = checkBrowserAndSwitchLang();
-var IS_ENG_FORM = false;
+var IS_ENG_FORM = checkBrowserAndSwitchLang();
+// var IS_ENG_FORM = false;
 
 var OVERWRITE = {
     switch: true,

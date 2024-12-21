@@ -79,7 +79,7 @@ var htmlLocaleData_CH = {
                 "請先確認禮物符合【<span for='giftRulePanel'>禮物規範</span>】不然58會來敲你的門！！不知要準備什麼的話可以跟主持人商量。",
                 "中文字符請盡量不要超過16字，不然排版會跑位！"
             ],
-            placeholder: "用手工圍巾etc"
+            placeholder: "（例）手工圍巾"
         },
         question4: {
             label: "請繪製此禮物的內容物圖示",
@@ -97,7 +97,7 @@ var htmlLocaleData_CH = {
             desc: [
                 "可以寫禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。另外因為這是匿名禮物，能的話請盡量不要包含你OC的名字。如果不確定怎麼寫，隨時歡迎私訊主持人叫他幫你想！也歡迎【<span for='sampleGiftPanel'></span>】或是【<span for='previewItemPanel'></span>】"
             ],
-            placeholder: "用高級毛線織成的圍巾，光是看著就覺得暖。"
+            placeholder: "（例）用高級毛線織成的圍巾，光是看著就覺得暖。"
         },
         question6: {
             label: "請繪製這個OC準備這份禮物的插圖",
@@ -269,7 +269,7 @@ var htmlLocaleData_EN = {
                 "Please ensure this gift follows the <span for='giftRulePanel'>Gift Guideline</span>, or our host will be knocking on your door :)",
                 "You can also consult with 58 if you are not sure what to/what not to prepare."
             ],
-            placeholder: "Hand-knitted Scarf"
+            placeholder: "e.g. Hand-knitted Scarf"
         },
         question4: {
             label: "An Icon for the Content of the Gift",
@@ -288,7 +288,7 @@ var htmlLocaleData_EN = {
                 "Provide a detailed description to help others understand the gift. You can write about things like what's included in the gift, what are the material used, what kind of texture this object has, or how it can be used. There is no character limit so put as much description as you want! You can also add links or links to images. Feel free to DM 58 for any questions or check out <span for='sampleGiftPanel'></span> or use the <span for='previewItemPanel'></span>.",
                 "Please try not to include your OC's name as the gift is supposed to be anonymous."
             ],
-            placeholder: "A scarf made with high quality yarn, just looking at it makes you feel warm."
+            placeholder: "e.g. A scarf made with high quality yarn, just looking at it makes you feel warm."
         },
         question6: {
             label: "An Artwork of This OC Preparing This Gift",
