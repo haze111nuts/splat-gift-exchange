@@ -293,7 +293,7 @@ var htmlLocaleData_EN = {
         question6: {
             label: "An Artwork of This OC Preparing This Gift",
             desc: [
-                "Please provide image in a 1080px*1080px PNG file. There is no restriction on the art style, presentation and complexity, a simple doodle will do. Just make sure this OC is clearly shown in the art and is in <b>humanoid form</b>. This art will later be featured in a project webpage. Please reference <a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>S2 official Splatfest art</a> for the basic complexity."
+                "Please provide a 1080px*1080px PNG image. There is no restriction on the art style, presentation and complexity, a simple doodle will do. Just make sure this OC is clearly shown in the art and is in <b>humanoid form</b>. This art will later be featured in a project webpage. Please reference <a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>S2 official Splatfest art</a> for the basic complexity."
             ]
         },
         question7: {
@@ -351,7 +351,7 @@ var htmlLocaleData_EN = {
         question3: {
             label: "Artwork of Your OC interacting with the Received Gift",
             desc: [
-                "Please provide image in a 1080px*1080px PNG file. There is no restriction on the art style, presentation and complexity, a simple doodle will do. Just make sure this OC is clearly shown in the art and is in <b>humanoid form</b>, and the content of the received gift is clearly shown being used. Please reference <a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>S2 official Splatfest art</a> for the basic complexity of the art.",
+                "Please provide a 1080px*1080px PNG image. There is no restriction on the art style, presentation and complexity, a simple doodle will do. Just make sure this OC is clearly shown in the art and is in <b>humanoid form</b>, and the content of the received gift is clearly shown being used. Please reference <a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>S2 official Splatfest art</a> for the basic complexity of the art.",
             ],
         },
         submit: "Submit"
