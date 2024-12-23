@@ -292,6 +292,11 @@ function getImportantImageAsset() {
             var img = new Image();
             img.src = url;
             imgAssets.push(img);
+
+            img.onload = function(){
+                calculateLoadProgress();
+            }
+
             // Trigger onload immediately if the image is already cached
             if (img.complete) img.onload();
         }
@@ -343,9 +348,10 @@ $(document).ready(function () {
     calculateLoadProgress(getGiftUrl());
     Promise.all(Array.from(getImportantImageAsset()).filter(img => !img.complete).map(
         img => new Promise(resolve => { 
-            calculateLoadProgress(); 
-            img.onload = img.onerror = resolve; }
-        )
+            // calculateLoadProgress(); 
+            img.addEventListener('load', resolve); 
+            img.addEventListener('error', resolve);
+        })
     )).then(() => {       
         console.log('images finished loading');
         removeLoaderScreen()
