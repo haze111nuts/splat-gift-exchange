@@ -439,11 +439,16 @@ h4 {
 .footer .content {
   padding: 20px;
 }
-.footer a {
-  cursor: pointer;
+.footer .content a:nth-of-type(1) {
   color: rgb(245, 180, 191);
 }
-.footer a:hover {
+.footer .content a:nth-of-type(2) {
+  color: rgb(197, 214, 149);
+}
+.footer .content a {
+  cursor: pointer;
+}
+.footer .content a:hover {
   color: rgb(157, 236, 226);
 }
 .footer .snowdeco {
@@ -508,11 +513,11 @@ h4 {
   padding: 5px 0 5px 0;
   clear: left;
 }
-.author div:nth-child(1) {
+.author div:nth-of-type(1) {
   margin: 0 auto;
   padding-bottom: 8px;
 }
-.author div:nth-child(2) {
+.author div:nth-of-type(2) {
   margin: 0 auto;
   display: inline-block;
   border-top: 1px solid white;
