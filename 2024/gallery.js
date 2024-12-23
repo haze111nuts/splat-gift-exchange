@@ -258,13 +258,12 @@ function resetScrollBar() {
 
 function calculateLoadProgress() {
     let resourcesLoaded = 0;
-    let totalResources = $('img, link[rel="stylesheet"], script').length;
-
-    $('img, link[rel="stylesheet"], script').each(function () {
+    let totalResources = $('img').length;
+    $('img').each(function () {
         $(this).on('load error', function () {
             resourcesLoaded++;
+            //console.log($(this)[0].currentSrc)
             // console.log(resourcesLoaded + "/" +totalResources)
-            // 41/52??
             let percentage = (resourcesLoaded / (totalResources)) * 100;
             $('.progressbar div').width(percentage + '%');
         });
