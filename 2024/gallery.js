@@ -348,7 +348,6 @@ $(document).ready(function () {
     calculateLoadProgress(getGiftUrl());
     Promise.all(Array.from(getImportantImageAsset()).filter(img => !img.complete).map(
         img => new Promise(resolve => { 
-            // calculateLoadProgress(); 
             img.addEventListener('load', resolve); 
             img.addEventListener('error', resolve);
         })
