@@ -281,19 +281,15 @@ function removeLoaderScreen() {
         }, 1000);
 }
 
-var imgAssets = []
 
-function calculateLoadProgress() {
+
+function getImportantImageAsset() {
+    var imgAssets = []
     for (var i = 0; i < ENTRIES.length; i++) {
         var imgUrls = [getArtUrl('sender',i), getArtUrl('getter',i), getGiftUrl(ENTRIES[i])];
 
         for (var url of imgUrls) {
             var img = new Image();
-            img.onload = function () {
-                resourcesLoaded++;
-                let percentage = (resourcesLoaded / (totalResources)) * 100;
-                $('.progressbar div').width(percentage + '%');
-            };
             img.src = url;
             imgAssets.push(img);
             // Trigger onload immediately if the image is already cached
@@ -301,6 +297,13 @@ function calculateLoadProgress() {
         }
 
     }
+    return imgAssets;
+}
+
+function calculateLoadProgress(){
+    resourcesLoaded++;
+    let percentage = (resourcesLoaded / (totalResources)) * 100;
+    $('.progressbar div').width(percentage + '%');
 }
 
 
@@ -338,7 +341,12 @@ $(document).ready(function () {
 
     //Handling image loading
     calculateLoadProgress(getGiftUrl());
-    Promise.all(Array.from(imgAssets).filter(img => !img.complete).map(img => new Promise(resolve => { img.onload = img.onerror = resolve; }))).then(() => {
+    Promise.all(Array.from(getImportantImageAsset()).filter(img => !img.complete).map(
+        img => new Promise(resolve => { 
+            calculateLoadProgress(); 
+            img.onload = img.onerror = resolve; }
+        )
+    )).then(() => {       
         console.log('images finished loading');
         removeLoaderScreen()
     });
