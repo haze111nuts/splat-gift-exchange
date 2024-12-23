@@ -156,6 +156,8 @@ function setUpItemModalClickEvents() {
             );
 
             $(".modal").removeClass("hide");
+            //???
+            $(".itemSummary").css('opacity',1);
             hideScrollBar();
             setUpGiftAltArt(entry, null);
             setUpItemTranslateToggle(entry, null);
