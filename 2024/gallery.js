@@ -258,15 +258,6 @@ function resetScrollBar() {
         }, 250);
 }
 
-
-
-function setupStuff() {
-    generateGrid();
-    setUpFlipToggle();
-    setUpArtModalClickEvents();
-    setUpItemModalClickEvents();
-}
-
 function forceSetArtHeight() {
     var windowHeight = $(window).height();
     var windowWidth = $(window).width()
@@ -290,20 +281,6 @@ function removeLoaderScreen() {
         }, 1000);
 }
 
-// function calculateLoadProgress() {
-//     let resourcesLoaded = 0;
-//     let totalResources = $('img').length;
-//     $('img').each(function () {
-//         $(this).on('load error', function () {
-//             resourcesLoaded++;
-//             //console.log($(this)[0].currentSrc)
-//             // console.log(resourcesLoaded + "/" +totalResources)
-//             let percentage = (resourcesLoaded / (totalResources)) * 100;
-//             $('.progressbar div').width(percentage + '%');
-//         });
-//     });
-// }
-
 function calculateLoadProgress() {
     for (var i = 0; i < ENTRIES.length; i++) {
         var imgUrls = [getArtUrl('sender',i), getArtUrl('getter',i), getGiftUrl(ENTRIES[i])];
@@ -322,6 +299,14 @@ function calculateLoadProgress() {
         }
 
     }
+}
+
+
+function setupStuff() {
+    generateGrid();
+    setUpFlipToggle();
+    setUpArtModalClickEvents();
+    setUpItemModalClickEvents();
 }
 
 //======================//
@@ -358,6 +343,4 @@ $(document).ready(function () {
 
     //In case the loader takes too long
     setTimeout(removeLoaderScreen, 20 * 1000);
-
-
 });
