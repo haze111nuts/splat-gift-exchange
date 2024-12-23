@@ -11,6 +11,8 @@ var YEAR = "0000";
 var displayGroup = "sender";
 var documentHeight = 0;
 var scrollPos = 0;
+let resourcesLoaded = 0;
+let totalResources = ENTRIES.length *3;
 
 //===================//
 //    URL Getters    //
@@ -256,19 +258,7 @@ function resetScrollBar() {
         }, 250);
 }
 
-function calculateLoadProgress() {
-    let resourcesLoaded = 0;
-    let totalResources = $('img').length;
-    $('img').each(function () {
-        $(this).on('load error', function () {
-            resourcesLoaded++;
-            //console.log($(this)[0].currentSrc)
-            // console.log(resourcesLoaded + "/" +totalResources)
-            let percentage = (resourcesLoaded / (totalResources)) * 100;
-            $('.progressbar div').width(percentage + '%');
-        });
-    });
-}
+
 
 function setupStuff() {
     generateGrid();
@@ -280,12 +270,12 @@ function setupStuff() {
 function forceSetArtHeight() {
     var windowHeight = $(window).height();
     var windowWidth = $(window).width()
-    if (windowHeight < 820 && windowWidth>windowHeight) {
-        $(".author").css("font-size", '16px');            
+    if (windowHeight < 820 && windowWidth > windowHeight) {
+        $(".author").css("font-size", '16px');
         $(".art_wrap").css("width", "unset");
         $(".art").css("width", "auto");
         $(".art").css("height", (windowHeight - 60) + "px");
-    }else {
+    } else {
         $(".art_wrap").css("width", "100%");
         $(".art").css("height", "unset");
         $(".author").css("font-size", '20px');
@@ -299,6 +289,41 @@ function removeLoaderScreen() {
             $(".streamLink img").addClass("animateOnce");
         }, 1000);
 }
+
+// function calculateLoadProgress() {
+//     let resourcesLoaded = 0;
+//     let totalResources = $('img').length;
+//     $('img').each(function () {
+//         $(this).on('load error', function () {
+//             resourcesLoaded++;
+//             //console.log($(this)[0].currentSrc)
+//             // console.log(resourcesLoaded + "/" +totalResources)
+//             let percentage = (resourcesLoaded / (totalResources)) * 100;
+//             $('.progressbar div').width(percentage + '%');
+//         });
+//     });
+// }
+
+function calculateLoadProgress() {
+    for (var i = 0; i < ENTRIES.length; i++) {
+        var imgUrls = [getArtUrl('sender',i), getArtUrl('getter',i), getGiftUrl(ENTRIES[i])];
+
+        for (var url of imgUrls) {
+            var img = new Image();
+            img.onload = function () {
+                resourcesLoaded++;
+                let percentage = (resourcesLoaded / (totalResources)) * 100;
+                $('.progressbar div').width(percentage + '%');
+            };
+            img.src = url;
+    
+            // Trigger onload immediately if the image is already cached
+            if (img.complete) img.onload();
+        }
+
+    }
+}
+
 //======================//
 //                      //
 //    Ready Function    //
@@ -324,9 +349,15 @@ $(document).ready(function () {
         forceSetArtHeight()
     ).resize();
 
-    //Initial loader logic
-    $(window).on('load', () => removeLoaderScreen())
+    //Handling image loading
+    calculateLoadProgress(getGiftUrl());
+    Promise.all(Array.from(document.images).filter(img => !img.complete).map(img => new Promise(resolve => { img.onload = img.onerror = resolve; }))).then(() => {
+        console.log('images finished loading');
+        removeLoaderScreen()
+    });
+
     //In case the loader takes too long
     setTimeout(removeLoaderScreen, 20 * 1000);
-    calculateLoadProgress();
+
+
 });
