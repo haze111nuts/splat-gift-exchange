@@ -281,6 +281,8 @@ function removeLoaderScreen() {
         }, 1000);
 }
 
+var imgAssets = []
+
 function calculateLoadProgress() {
     for (var i = 0; i < ENTRIES.length; i++) {
         var imgUrls = [getArtUrl('sender',i), getArtUrl('getter',i), getGiftUrl(ENTRIES[i])];
@@ -293,7 +295,7 @@ function calculateLoadProgress() {
                 $('.progressbar div').width(percentage + '%');
             };
             img.src = url;
-    
+            imgAssets.push(img);
             // Trigger onload immediately if the image is already cached
             if (img.complete) img.onload();
         }
@@ -336,7 +338,7 @@ $(document).ready(function () {
 
     //Handling image loading
     calculateLoadProgress(getGiftUrl());
-    Promise.all(Array.from(document.images).filter(img => !img.complete).map(img => new Promise(resolve => { img.onload = img.onerror = resolve; }))).then(() => {
+    Promise.all(Array.from(imgAssets).filter(img => !img.complete).map(img => new Promise(resolve => { img.onload = img.onerror = resolve; }))).then(() => {
         console.log('images finished loading');
         removeLoaderScreen()
     });
