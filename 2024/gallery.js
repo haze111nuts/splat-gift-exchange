@@ -308,7 +308,8 @@ function getImportantImageAsset() {
 function calculateLoadProgress(){
     resourcesLoaded++;
     let percentage = (resourcesLoaded / (totalResources)) * 100;
-    $('.progressbar div').width(percentage + '%');
+    if(percentage<=100)
+        $('.progressbar div').width(percentage + '%');
 }
 
 
