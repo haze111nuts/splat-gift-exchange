@@ -41,6 +41,7 @@ function setUpItemPanel(entry, imgUrl) {
                     <div class='itemTitle2'>${entry.giftNameAlt}</div>
                 </div>
                 <div class='itemSummary_inner'>${entry.giftDescription}</div>
+                <div class='moreText'></div>
             </div>
         </div>`;
 }

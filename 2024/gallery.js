@@ -145,6 +145,9 @@ function getFlipDelay() {
 //============================//
 //    Settingup Item Modal    //
 //============================//
+function hasScrollbar(element) {
+    return element.get(0).scrollHeight > element.innerHeight();
+}
 
 function setUpItemModalClickEvents() {
     $(".label").each(function () {
@@ -160,8 +163,22 @@ function setUpItemModalClickEvents() {
             setUpGiftAltArt(entry, null);
             setUpItemTranslateToggle(entry, null);
             setupCloseModalEvents();
+            if(hasScrollbar($('.itemSummary_inner'))){
+                $('.moreText').css('display','block');
+
+                $('.itemSummary_inner').scroll(checkItemSummaryInnerScroll);
+            }
         })
     })
+}
+
+function checkItemSummaryInnerScroll(e) {
+    var elem = $(e.currentTarget);
+    if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
+        $('.moreText').css('opacity', 0);
+    }else{
+        $('.moreText').css('opacity', 1);
+    }
 }
 
 //===========================//
