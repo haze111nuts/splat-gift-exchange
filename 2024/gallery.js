@@ -163,15 +163,17 @@ function setUpItemModalClickEvents() {
             setUpGiftAltArt(entry, null);
             setUpItemTranslateToggle(entry, null);
             setupCloseModalEvents();
-            if(hasScrollbar($('.itemSummary_inner'))){
-                $('.moreText').css('display','block');
-
-                $('.itemSummary_inner').scroll(checkItemSummaryInnerScroll);
-            }
+            checkIfSummaryNeedsScrollBar();
         })
     })
 }
 
+function checkIfSummaryNeedsScrollBar(){
+    if(hasScrollbar($('.itemSummary_inner'))){
+        $('.moreText').css('display','block');
+        $('.itemSummary_inner').scroll(checkItemSummaryInnerScroll);
+    }
+}
 function checkItemSummaryInnerScroll(e) {
     var elem = $(e.currentTarget);
     if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {

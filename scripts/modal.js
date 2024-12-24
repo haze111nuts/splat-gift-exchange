@@ -97,6 +97,7 @@ function setUpItemTranslateToggle(entry, callback) {
             callback();
         }        
         $(".itemSummary_inner").html(newSummary);
+        checkIfSummaryNeedsScrollBar();
     });
 }
 
