@@ -362,7 +362,7 @@ var htmlLocaleData_EN = {
         items: [
             "Please don't include anything containing mammal meat as mammals are extinct species in the world of Splatoon, you can replace them with poultry meat or seafood.",
             "Dairy product seems to exists in Splatoon Universe so food containing dairy product is fine.",
-            "Mammals are still known to people in Splatoon as a part of histry, so mammal themed is fine.",
+            "Mammals are still known to people in Splatoon as a part of histry, so mammal themed gift is fine.",
             "Please do not prepare gift that has unexplainable magic power.",
             "Please do not submit potion or drugs with effects that may cause inconvenience to others, if the effects are harmless (e.g. changes ink color temporarily) the host may give it a pass, but please disscuss with 58 before you start drawing."
         ],
