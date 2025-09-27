@@ -3,13 +3,13 @@
 $PROFILE_SIZE: 100px;
 $SPOTLIGHT_BORDER_SIZE: 8px;
 
-$ACCENT1: rgb(58, 49, 45);
-$ACCENT2: rgb(82, 68, 61);
-$ACCENT3: rgb(179, 170, 156);
-$ACCENT4: rgb(252, 241, 183);
+$ACCENT1: rgb(29, 37, 29);
+$ACCENT2: rgb(58, 77, 63);
+$ACCENT3: rgb(179, 170, 156); //is this divide line color?
+$ACCENT4: rgb(213, 223, 185);
 $ACCENT5: rgb(219, 213, 202);
 $ACCENT6: rgb(184, 120, 2);
-$ACCENT7: rgb(219, 149, 19);
+$ACCENT7: rgb(187, 67, 19);
 $ACCENT_WOOPA: rgb(250, 200, 200);
 
 html {
@@ -22,8 +22,8 @@ body {
     padding: 0;
     overflow: hidden;
     background-position: center 40%;
-    background-size: auto;
-    background-image: url(../../assets/lottery/bg.jpg);
+    background-size: cover;
+    background-image: url(../../assets/lottery/bg2.png);
 }
 
 a {
@@ -79,7 +79,7 @@ a {
             line-height: 110%;
             margin: 20px auto;
             span {
-                color: #eedfd5;
+                color: #e4eed5;
                 opacity: 0.85;
                 padding-left: 20px;
                 font-size: 1.4rem;
@@ -320,7 +320,7 @@ $preview_gapY: 20px;
             line-height: $preview_size;
             border: $ACCENT2 2px solid;
             font-size: 5rem;
-            font-family: "Thelma";
+            font-family: "Rockwell";
             color: #fff;
             text-shadow:
                 0 0 4px rgba(0, 0, 0, 0.7),
@@ -743,6 +743,16 @@ $BUBBLE_LEFT: 480px;
 .itemSummary_inner *::selection {
     color: white;
     background: $ACCENT7;
+}
+
+.itemPanel {
+    .itemSummary {
+        background-image: url(../../assets/paper2.jpg) !important;
+        .itemTitle {
+            background-image: url(../../assets/paper2.jpg) !important;
+        }   
+    }
+
 }
 
 .close {
