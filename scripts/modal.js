@@ -41,6 +41,7 @@ function setUpItemPanel(entry, imgUrl) {
                     <div class='itemTitle2'>${entry.giftNameAlt}</div>
                 </div>
                 <div class='itemSummary_inner'>${simpleMarkdownToHTML(entry.giftDescription)}</div>
+                <div class='moreText'></div>
             </div>
         </div>`;
 }
@@ -96,6 +97,7 @@ function setUpItemTranslateToggle(entry, callback) {
             callback();
         }        
         $(".itemSummary_inner").html(newSummary);
+        checkIfSummaryNeedsScrollBar();
     });
 }
 

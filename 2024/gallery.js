@@ -11,6 +11,8 @@ var YEAR = "0000";
 var displayGroup = "sender";
 var documentHeight = 0;
 var scrollPos = 0;
+let resourcesLoaded = 0;
+let totalResources = ENTRIES.length *3;
 
 //===================//
 //    URL Getters    //
@@ -143,6 +145,9 @@ function getFlipDelay() {
 //============================//
 //    Settingup Item Modal    //
 //============================//
+function hasScrollbar(element) {
+    return element.get(0).scrollHeight > element.innerHeight();
+}
 
 function setUpItemModalClickEvents() {
     $(".label").each(function () {
@@ -158,8 +163,24 @@ function setUpItemModalClickEvents() {
             setUpGiftAltArt(entry, null);
             setUpItemTranslateToggle(entry, null);
             setupCloseModalEvents();
+            checkIfSummaryNeedsScrollBar();
         })
     })
+}
+
+function checkIfSummaryNeedsScrollBar(){
+    if(hasScrollbar($('.itemSummary_inner'))){
+        $('.moreText').css('display','block');
+        $('.itemSummary_inner').scroll(checkItemSummaryInnerScroll);
+    }
+}
+function checkItemSummaryInnerScroll(e) {
+    var elem = $(e.currentTarget);
+    if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
+        $('.moreText').css('opacity', 0);
+    }else{
+        $('.moreText').css('opacity', 1);
+    }
 }
 
 //===========================//
@@ -256,34 +277,14 @@ function resetScrollBar() {
         }, 250);
 }
 
-function calculateLoadProgress() {
-    let resourcesLoaded = 0;
-    let totalResources = $('img, link[rel="stylesheet"], script').length;
-
-    $('img, link[rel="stylesheet"], script').each(function () {
-        $(this).on('load error', function () {
-            resourcesLoaded++;
-            // console.log(resourcesLoaded + "/" +totalResources)
-            // 41/52??
-            let percentage = (resourcesLoaded / (totalResources)) * 100;
-            $('.progressbar div').width(percentage + '%');
-        });
-    });
-}
-
-function setupStuff() {
-    generateGrid();
-    setUpFlipToggle();
-    setUpArtModalClickEvents();
-    setUpItemModalClickEvents();
-}
-
 function forceSetArtHeight() {
     var windowHeight = $(window).height();
-    if (windowHeight < 820) {
-        $(".art_wrap").css("width", "unset");
-        $(".art").css("height", (windowHeight - 60) + "px");
+    var windowWidth = $(window).width()
+    if (windowHeight < 820 && windowWidth > windowHeight) {
         $(".author").css("font-size", '16px');
+        $(".art_wrap").css("width", "unset");
+        $(".art").css("width", "auto");
+        $(".art").css("height", (windowHeight - 60) + "px");
     } else {
         $(".art_wrap").css("width", "100%");
         $(".art").css("height", "unset");
@@ -298,6 +299,46 @@ function removeLoaderScreen() {
             $(".streamLink img").addClass("animateOnce");
         }, 1000);
 }
+
+
+
+function getImportantImageAsset() {
+    var imgAssets = []
+    for (var i = 0; i < ENTRIES.length; i++) {
+        var imgUrls = [getArtUrl('sender',i), getArtUrl('getter',i), getGiftUrl(ENTRIES[i])];
+
+        for (var url of imgUrls) {
+            var img = new Image();
+            img.src = url;
+            imgAssets.push(img);
+
+            img.onload = function(){
+                calculateLoadProgress();
+            }
+
+            // Trigger onload immediately if the image is already cached
+            if (img.complete) img.onload();
+        }
+
+    }
+    return imgAssets;
+}
+
+function calculateLoadProgress(){
+    resourcesLoaded++;
+    let percentage = (resourcesLoaded / (totalResources)) * 100;
+    if(percentage<=100)
+        $('.progressbar div').width(percentage + '%');
+}
+
+
+function setupStuff() {
+    generateGrid();
+    setUpFlipToggle();
+    setUpArtModalClickEvents();
+    setUpItemModalClickEvents();
+}
+
 //======================//
 //                      //
 //    Ready Function    //
@@ -323,9 +364,18 @@ $(document).ready(function () {
         forceSetArtHeight()
     ).resize();
 
-    //Initial loader logic
-    $(window).on('load', () => removeLoaderScreen())
+    //Handling image loading
+    calculateLoadProgress(getGiftUrl());
+    Promise.all(Array.from(getImportantImageAsset()).filter(img => !img.complete).map(
+        img => new Promise(resolve => { 
+            img.addEventListener('load', resolve); 
+            img.addEventListener('error', resolve);
+        })
+    )).then(() => {       
+        console.log('images finished loading');
+        removeLoaderScreen()
+    });
+
     //In case the loader takes too long
-    setTimeout(removeLoaderScreen, 12 * 1000);
-    calculateLoadProgress();
+    setTimeout(removeLoaderScreen, 20 * 1000);
 });

@@ -27,7 +27,7 @@ var htmlLocaleData_CH = {
     },
     guide: [
         "OC家長向主持人或工作人員報告你要參加，並確認自己被列入參加名單中",
-        "大家各自讓自己海產OC去準備某種神秘禮物，需以繪圖方式呈現，並繪製該物品小圖示",
+        "大家各自讓自己海產OC去準備某種神秘禮物，需以插圖方式呈現，並繪製該物品小圖示",
         "在九月底前私下將禮物投稿，主持人會幫你把禮物打包放進禮物池",
         "十月中會舉辦開箱直播，每個OC都會隨機從禮物池抽一個禮物走",
         "開箱直播結束後，大家各自繪製自己的OC獲得禮物的後續圖",
@@ -79,7 +79,7 @@ var htmlLocaleData_CH = {
                 "請先確認禮物符合【<span for='giftRulePanel'>禮物規範</span>】不然58會來敲你的門！！不知要準備什麼的話可以跟主持人商量。",
                 "中文字符請盡量不要超過16字，不然排版會跑位！"
             ],
-            placeholder: "用手工圍巾etc"
+            placeholder: "（例）手工圍巾"
         },
         question4: {
             label: "請繪製此禮物的內容物圖示",
@@ -97,7 +97,7 @@ var htmlLocaleData_CH = {
             desc: [
                 "可以寫禮物詳細內容物、外觀材質或用途等，有助於抽到者理解禮物，字數不限，越詳細越好！也可以附上圖片或是URL，主持人會幫你整理內文跟排版。另外因為這是匿名禮物，能的話請盡量不要包含你OC的名字。如果不確定怎麼寫，隨時歡迎私訊主持人叫他幫你想！也歡迎【<span for='sampleGiftPanel'></span>】或是【<span for='previewItemPanel'></span>】"
             ],
-            placeholder: "用高級毛線織成的圍巾，光是看著就覺得暖。"
+            placeholder: "（例）用高級毛線織成的圍巾，光是看著就覺得暖。"
         },
         question6: {
             label: "請繪製這個OC準備這份禮物的插圖",
@@ -195,7 +195,7 @@ var htmlLocaleData_CH = {
 var htmlLocaleData_EN = {
     phase1_title: "<span>2025 Splatoon OC Gift Exchange<br>Submission Form</span>",
     phase2_title: "<span>2025 Splatoon OC Gift Exchange<br>Unbox Art Submission Form</span>",
-    phase1_summary: "⚠️ <span>This form is only for guests who are invited</span> ⚠️",
+    phase1_summary: "⚠️ <span>This form is only for people who are in our guest list</span> ⚠️",
     phase2_summary: "<span>This is the second part of Splatoon Gift Exchange Art Project!<br>You will have to draw your OC with the gift they received during Unboxing Day.</span>",
     nav_list: ["Prologue", "Guide", "Read Me", "Deadlines", "Guests"],
     prologue: {
@@ -245,7 +245,7 @@ var htmlLocaleData_EN = {
     },
     deadlines: ["Gift Submission Deadline", "Unboxing Day Stream", "Gift Receiving Artwork Deadline"],
     member: {
-        notice: "TBD *Please check Discord to see the most up-to-date guest list"
+        notice: "TBD *Please check Discord to see the most up-to-date list"
     },
     openSamplePanel: "Sample Gifts",
     openPreviewHelper: "Preview Helper",
@@ -269,7 +269,7 @@ var htmlLocaleData_EN = {
                 "Please ensure this gift follows the <span for='giftRulePanel'>Gift Guideline</span>, or our host will be knocking on your door :)",
                 "You can also consult with 58 if you are not sure what to/what not to prepare."
             ],
-            placeholder: "Hand-knitted Scarf"
+            placeholder: "e.g. Hand-knitted Scarf"
         },
         question4: {
             label: "An Icon for the Content of the Gift",
@@ -288,12 +288,12 @@ var htmlLocaleData_EN = {
                 "Provide a detailed description to help others understand the gift. You can write about things like what's included in the gift, what are the material used, what kind of texture this object has, or how it can be used. There is no character limit so put as much description as you want! You can also add links or links to images. Feel free to DM 58 for any questions or check out <span for='sampleGiftPanel'></span> or use the <span for='previewItemPanel'></span>.",
                 "Please try not to include your OC's name as the gift is supposed to be anonymous."
             ],
-            placeholder: "A scarf made with high quality yarn, just looking at it makes you feel warm."
+            placeholder: "e.g. A scarf made with high quality yarn, just looking at it makes you feel warm."
         },
         question6: {
             label: "An Artwork of This OC Preparing This Gift",
             desc: [
-                "Please provide image in a 1080px*1080px PNG file. There is no restriction on the art style, presentation and complexity, a simple doodle will do. Just make sure this OC is clearly shown in the art and is in <b>humanoid form</b>. This art will later be featured in a project webpage. Please reference <a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>S2 official Splatfest art</a> for the basic complexity."
+                "Please provide a 1080px*1080px PNG image. There is no restriction on the art style, presentation and complexity, a simple doodle will do. Just make sure this OC is clearly shown in the art and is in <b>humanoid form</b>. This art will later be featured in a project webpage. Please reference <a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>S2 official Splatfest art</a> for the basic complexity."
             ]
         },
         question7: {
@@ -351,7 +351,7 @@ var htmlLocaleData_EN = {
         question3: {
             label: "Artwork of Your OC interacting with the Received Gift",
             desc: [
-                "Please provide image in a 1080px*1080px PNG file. There is no restriction on the art style, presentation and complexity, a simple doodle will do. Just make sure this OC is clearly shown in the art and is in <b>humanoid form</b>, and the content of the received gift is clearly shown being used. Please reference <a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>S2 official Splatfest art</a> for the basic complexity of the art.",
+                "Please provide a 1080px*1080px PNG image. There is no restriction on the art style, presentation and complexity, a simple doodle will do. Just make sure this OC is clearly shown in the art and is in <b>humanoid form</b>, and the content of the received gift is clearly shown being used. Please reference <a href='https://splatoonwiki.org/wiki/Off_the_Hook/Gallery#Splatfest_art' target='_blank'>S2 official Splatfest art</a> for the basic complexity of the art.",
             ],
         },
         submit: "Submit"
