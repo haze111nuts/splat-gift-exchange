@@ -26,7 +26,7 @@ var IS_ENG_FORM = checkBrowserAndSwitchLang();
 // var IS_ENG_FORM = false;
 
 var OVERWRITE = {
-    switch: true,
+    switch: false,
     phase: 1
 }
 
@@ -34,6 +34,7 @@ var members = {
     confirmed: []
 }
 
+var timer;
 
 //==================//
 //    Time Data     //
@@ -180,7 +181,7 @@ function setUpTimer() {
     if (!isNaN(compareDate)) {
         compareDate.setDate(compareDate.getDate());
 
-        setInterval(function () {
+        timer = setInterval(function () {
             setTimeBetweenDates(compareDate);
         }, 500);
     }
