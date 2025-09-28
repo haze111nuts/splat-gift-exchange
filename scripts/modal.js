@@ -40,7 +40,7 @@ function setUpItemPanel(entry, imgUrl) {
                     <div class='itemTitle1'>${entry.giftName}</div>
                     <div class='itemTitle2'>${entry.giftNameAlt}</div>
                 </div>
-                <div class='itemSummary_inner'>${entry.giftDescription}</div>
+                <div class='itemSummary_inner'>${simpleMarkdownToHTML(entry.giftDescription)}</div>
                 <div class='moreText'></div>
             </div>
         </div>`;
@@ -91,7 +91,7 @@ function setUpItemTranslateToggle(entry, callback) {
     }
     $(".langSwitch").click(function () {
         CURRENT_SUMMARY_LANG = 1 - CURRENT_SUMMARY_LANG;
-        const newSummary = CURRENT_SUMMARY_LANG ? entry.giftDescriptionAlt : entry.giftDescription;
+        const newSummary = simpleMarkdownToHTML(CURRENT_SUMMARY_LANG ? entry.giftDescriptionAlt : entry.giftDescription);
         // call the passed in function (for playing sound)
         if (typeof callback === 'function') {
             callback();

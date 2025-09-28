@@ -42,7 +42,7 @@ var timer;
 
 const phases = [
     1758988740000, // new Date('2025-09-27T11:59:00').valueOf(); (EST)
-    1760184000000, // new Date('2025-10-11T08:00:00').valueOf(); (EST)
+    1760187600000, // new Date('2025-10-11T08:00:00').valueOf(); (EST)
     1765472340000  // new Date('2025-12-11T11:59:00').valueOf(); (EST)
 ];
 
