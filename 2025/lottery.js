@@ -46,15 +46,13 @@ function assetBaseUrl(fileName){
 }
 
 function getOcUrl(oc) {
-    return `../0000/profile/${ENTRIES.indexOf(oc)}.jpg`;
-    // return `profile/${ENTRIES.indexOf(oc)}.png`;
+    return `profile/${ENTRIES.indexOf(oc)}.png`;
 }
 
 function getGiftUrl(gift) {
     const index = ENTRIES.indexOf(gift);
     const altIndex = getAltIndex();
-    return `../0000/gift/${index}${altIndex > 0 ? `-${altIndex}` : ''}.png`;
-    // return `gift/${index}${altIndex > 0 ? `-${altIndex}` : ''}.png`;
+    return `gift/${index}${altIndex > 0 ? `-${altIndex}` : ''}.png`;
 }
 
 function getHostEmoteUrl(char) {
@@ -112,6 +110,7 @@ function displayItemModal(entry) {
     $(document.body).addClass("noscroll");
     setUpItemTranslateToggle(entry, function(){AUDIO_ELEMENTS["flipPage"].play()});
     setUpGiftAltArt(entry, function(){generatePageFlipAudio().play()});
+    setSendButton(entry, OC_ARRANGED[CURRENT_OC_INDEX], "2025"); 
 }
 
 function getGiftLogHtml(currentOC, entry) {

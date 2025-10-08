@@ -130,8 +130,12 @@ function drawGift() {
 function printOCList() {
     let output = "";
     let rank = 1;
-    for (var oc of OC_ARRANGED)
-        output += rank++ + ". " + oc.ocName + "  ------  " + oc.artist + "\n";
+    let orderArray = [];
 
+    for (var oc of OC_ARRANGED) {
+        output += rank++ + ". " + oc.ocName + "  ------  " + oc.artist + "\n";
+        orderArray.push(ENTRIES.findIndex(o => o == oc));
+    }
     console.log(output);
+    console.log(orderArray);
 }
