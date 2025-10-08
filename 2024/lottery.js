@@ -110,7 +110,7 @@ function displayItemModal(entry) {
     $(document.body).addClass("noscroll");
     setUpItemTranslateToggle(entry, function(){AUDIO_ELEMENTS["flipPage"].play()});
     setUpGiftAltArt(entry, function(){generatePageFlipAudio().play()});
-    setSendButton(entry, OC_ARRANGED[CURRENT_OC_INDEX]); 
+    setSendButton(entry, OC_ARRANGED[CURRENT_OC_INDEX], "2024"); 
 }
 
 function getGiftLogHtml(currentOC, entry) {
