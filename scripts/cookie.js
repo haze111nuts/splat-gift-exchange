@@ -47,7 +47,7 @@ function deleteAllCookies() {
     });
 }
 
-//   function checkCookie() {
+//   function printCookie() {
 //     let username = getCookie("username");
 //     if (username != "") {
 //      alert("Welcome again " + username);
