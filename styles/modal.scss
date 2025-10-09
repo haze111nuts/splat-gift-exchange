@@ -199,7 +199,21 @@
             &:hover {
                 color: rgb(184, 120, 2);
             }
-        }        
+        }
+        .publishButton{
+            position: absolute;
+            bottom: 3px;
+            right: 10px;
+            transition: all 0.14s ease-in;
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+            cursor: pointer;
+            font-size: 1em !important;
+            &:hover {
+                color: rgb(184, 120, 2);
+            }
+        }
     }
     .moreText{
         left: 50%;
@@ -225,8 +239,8 @@
 }
 
 .tranlateIcon{
-    width: 19px;
-    height: 19px;
+    width: 20px;
+    height: 20px;
     padding-top: 6px;
     fill: rgb(58, 49, 45);
     transition: all 0.2s ease-in;
@@ -235,6 +249,19 @@
     }
 }
 
+.discordIcon{
+    width: 26px;
+    height: 26px;
+    padding-top: 6px;
+    fill: rgb(58, 49, 45);
+    transition: all 0.1s ease-in;
+    &:hover {
+        fill: rgb(107, 114, 211);
+    }
+    &:active {
+        fill: rgb(46, 56, 185);
+    }
+}
 
 .close {
     z-index: 888;

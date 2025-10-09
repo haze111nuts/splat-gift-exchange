@@ -1,5 +1,8 @@
-function setSendButton(entry, recipient, year) {
-    $(".itemArt").click(function () {
+function setSendButton(entry, recipient, year, callback) {
+    $(".publishButton").click(function () {
+        if (typeof callback === 'function') {
+            callback();
+        }
         const lang = ARTISTS[recipient.artist].lang;
         let description = CURRENT_SUMMARY_LANG ? entry.giftDescriptionAlt : entry.giftDescription;
         description = description.replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '[$1](<$2>)');

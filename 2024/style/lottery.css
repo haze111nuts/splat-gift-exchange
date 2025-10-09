@@ -641,6 +641,10 @@ a:hover {
   background: rgb(219, 149, 19);
 }
 
+.close {
+  display: none;
+}
+
 ::selection {
   color: rgb(58, 49, 45);
   background: rgb(219, 213, 202);

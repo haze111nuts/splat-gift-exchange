@@ -110,7 +110,7 @@ function displayItemModal(entry) {
     $(document.body).addClass("noscroll");
     setUpItemTranslateToggle(entry, function(){AUDIO_ELEMENTS["flipPage"].play()});
     setUpGiftAltArt(entry, function(){generatePageFlipAudio().play()});
-    setSendButton(entry, OC_ARRANGED[CURRENT_OC_INDEX], "2024"); 
+    setSendButton(entry, OC_ARRANGED[CURRENT_OC_INDEX], "2024", function(){AUDIO_ELEMENTS["decide"].play()}); 
 }
 
 function getGiftLogHtml(currentOC, entry) {
@@ -341,12 +341,13 @@ function setUpAudios() {
     AUDIO_ELEMENTS["balloonPop"] = createAudioElement(0.2, assetBaseUrl('sound/balloon_pop.mp3') );
     AUDIO_ELEMENTS["itemObtain"] = createAudioElement(0.2, assetBaseUrl('sound/item_obtain.mp3') );
     AUDIO_ELEMENTS["paperTear"] = createAudioElement(0.45, assetBaseUrl('sound/paper_tear.mp3') );
-    AUDIO_ELEMENTS["flipCard"] = createAudioElement(0.2, assetBaseUrl('sound/flip_card.mp3') );
-    AUDIO_ELEMENTS["flipPage"] = createAudioElement(0.3, assetBaseUrl('sound/flip_page.mp3') );
+    AUDIO_ELEMENTS["flipCard"] = createAudioElement(0.3, assetBaseUrl('sound/flip_card.mp3') );
+    AUDIO_ELEMENTS["flipPage"] = createAudioElement(0.4, assetBaseUrl('sound/flip_page.mp3') );
     AUDIO_ELEMENTS["bell"] = createAudioElement(0.6, assetBaseUrl('sound/bicycle_bell.mp3') );
     AUDIO_ELEMENTS["blop"] = createAudioElement(0.2, assetBaseUrl('sound/blop.mp3') );
     AUDIO_ELEMENTS["click"] = createAudioElement(0.2, assetBaseUrl('sound/click.mp3') );
     AUDIO_ELEMENTS["wow"] = createAudioElement(0.2, assetBaseUrl('sound/wow.mp3') );
+    AUDIO_ELEMENTS["decide"] = createAudioElement(0.5, assetBaseUrl('sound/splatoon3_decide.mp3') );
 }
 
 //===================//
