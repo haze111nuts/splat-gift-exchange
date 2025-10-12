@@ -62,16 +62,16 @@ const phases = [
 //    Url Getters     //
 //====================//
 
-var DEBUG_URL = "../2024/";
+var PATH = "../2025/";
 
 function getGiftUrl(gift) {
     const index = ENTRIES.indexOf(gift);
     const altIndex = getAltIndex();
-    return `../${DEBUG_URL}gift/${index}${altIndex > 0 ? `-${altIndex}` : ''}.png`;
+    return `../${PATH}gift/${index}${altIndex > 0 ? `-${altIndex}` : ''}.png`;
 }
 
 function getProfileUrl(ocName) {
-    return `../${DEBUG_URL}profile/${ENTRIES.findIndex(e => e.ocName === ocName)}.png`;
+    return `../${PATH}profile/${ENTRIES.findIndex(e => e.ocName === ocName)}.png`;
 }
 
 function getSampleGiftUrl(gift, artIndex) {
