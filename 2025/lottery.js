@@ -28,6 +28,8 @@ var EMOTES = "WASDFX";
 
 var HOST_CURRENT_LETTER = "W";
 
+const STREAM_MODE = false;
+
 var HOST_QUOTES = [
     getQuoteOfRemainingGiftCountZH(GIFT_PILE.length),
     getQuoteOfRemainingGiftCountEN(GIFT_PILE.length),
@@ -110,7 +112,6 @@ function displayItemModal(entry) {
     $(document.body).addClass("noscroll");
     setUpItemTranslateToggle(entry, function(){AUDIO_ELEMENTS["flipPage"].play()});
     setUpGiftAltArt(entry, function(){generatePageFlipAudio().play()});
-    setSendButton(entry, OC_ARRANGED[CURRENT_OC_INDEX], "2025", function(){AUDIO_ELEMENTS["decide"].play()}); 
 }
 
 function getGiftLogHtml(currentOC, entry) {
@@ -263,7 +264,6 @@ function setUpFlipEvent() {
     $(".modal_bg").click(function () {
         $(".modal").addClass("hide");
         $(document.body).removeClass("noscroll");
-        resetModalParems();
 
         // only do the rest when this modal was a result of a lottery draw
         if (currentGiftCard) {
@@ -274,6 +274,9 @@ function setUpFlipEvent() {
             doCardFlip(currentGiftCard.parent(".gridItem_inner"))
             //add entry to gift log
             addEntryToGiftLog(gift);
+            if (STREAM_MODE) {
+                sendToDiscord(gift, OC_ARRANGED[CURRENT_OC_INDEX], "2025", null);
+            }
             nextOC();
             setSpotlightToNextOC();
             fadeFinishedOCs();
@@ -284,6 +287,8 @@ function setUpFlipEvent() {
             updateStats();
             currentGiftCard = undefined;
         }
+        resetModalParems();
+
     })
 }
 
@@ -336,6 +341,19 @@ function generateKidsCheerAudio(){
 
 function generatePageFlipAudio(){
     return createAudioElement(0.25, assetBaseUrl('sound/flip_page.mp3') );
+}
+
+function generateWowAudio(){
+    return createAudioElement(0.2, assetBaseUrl('sound/wow.mp3') );
+}
+
+function generateSqueakAudio(){
+    return createAudioElement(0.2, assetBaseUrl('sound/toy_squeak.mp3') );
+}
+
+
+function generateSusAudio(){
+    return createAudioElement(0.2, assetBaseUrl('sound/sus.mp3') );
 }
 
 function setUpAudios() {
@@ -396,9 +414,20 @@ function handleKeyPress(keyPressed) {
     }
     //Wow
     if(letter == "O"){
-        AUDIO_ELEMENTS["wow"].play();
+        generateWowAudio().play();
         popConfetti();
+
     }
+
+    if(letter == "K"){
+        generateSqueakAudio().play();
+    }
+
+    if(letter == "U"){
+        generateSusAudio().play();
+    }
+    
+    // generateSqueakAudio
 }
 
 //====================//
