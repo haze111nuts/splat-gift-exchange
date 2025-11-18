@@ -114,8 +114,8 @@ const ENTRIES = [
         ocName: "梧",
         giftName: "鰻有話講（橘色）",
         giftNameAlt: "\"How are you fEeling\" Plushie (Orange)",
-        giftDescription: "娃娃以哈氏異康吉鰻作為靈感，讓生性膽小又害羞的牠們也能鼓起勇敢和其他魚群打招呼，使用比YEAH作為友善的象徵。請務必小心距離，以免引起紛爭。",
-        giftDescriptionAlt: "A plush toy with a design inspired by spotted garden eel. The V sign it makes is a friendly gesture! It would surely help these shy little creature to work up the courage greeting others. Maybe it would inspire you to do the same?",
+        giftDescription: "娃娃以哈氏異康吉鰻作為靈感，讓生性膽小又害羞的牠們也能鼓起勇敢和其他魚群打招呼，使用比YEAH作為友善的象徵。請務必小心距離，以免引起紛爭。\n\n**商品特色：**\n- 全長：40公分（彈出的舌頭：20公分）\n- 冬天好幫手：也可以當圍巾使用，雖然稍微有點重。\n- 耐用材質：耐玩耐拉，練臂力的最佳好夥伴。",
+        giftDescriptionAlt: "A plush toy with a design inspired by spotted garden eel. The V sign it makes is a friendly gesture! It would surely help these shy little creature to work up the courage greeting others. Maybe it would inspire you to do the same?\n\n**Product Highlights: **\n- Total length: 40cm (extended tongue : 20cm)\n- Winter companion: Can double as a scarf, though it is a little on the heavy side.\n- Durable material: Built to withstand lots of pulling and play, it is the perfect partner for arm-strength training.",
         artist: "33°",
         received: 14
     },
