@@ -114,13 +114,13 @@ a {
 		top: 0;
 	}
 	.decor_L {
-		background-image: url(../../assets/gallery/banner_L.png);
+		background-image: url(../../assets/gallery/2024/banner_L.png);
 		// width: 41.2%;
 		width: 791px;
 		left: 0;
 	}
 	.decor_R {
-		background-image: url(../../assets/gallery/banner_R.png);
+		background-image: url(../../assets/gallery/2024/banner_R.png);
 		// width: 40.8%;
 		width: 783px;
 		right: 0;
@@ -128,7 +128,7 @@ a {
 }
 
 .logo {
-	padding: 120px 0 145px 0;
+	padding: 120px 0 120px 0;
 	position: relative;
 	.logo_bg {
 		width: 380px;
@@ -137,7 +137,7 @@ a {
 		left: 50%;
 		position: absolute;
 		transform: translate(-50%, 0);
-		background-image: url(../../assets/gallery/title.png);
+		background-image: url(../../assets/gallery/2024/title.png);
 		background-position: center center;
 		background-size: 100% auto;
 		background-repeat: no-repeat;
@@ -176,6 +176,15 @@ h4 {
 	color: white;
 	text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 	position: relative;
+}
+
+.leaveLink{
+  text-align: center;
+  transition: all 0.3s;
+	a {
+		font-family: "DFPT_AZ5", sans-serif;
+		text-decoration: none;
+	}
 }
 
 .streamLink {
@@ -232,7 +241,7 @@ h4 {
 		cursor: pointer;
 
 		.exchangeBar {
-			background-image: url(../../assets/gallery/changebar.png);
+			background-image: url(../../assets/gallery/2024/changebar.png);
 			background-repeat: no-repeat;
 			background-position: left center;
 			width: 284px;
@@ -243,7 +252,7 @@ h4 {
 			transform: translate(-50%, -50%);
 		}
 		.exchangeBar_active {
-			background-image: url(../../assets/gallery/changebar_active.png);
+			background-image: url(../../assets/gallery/2024/changebar_active.png);
 			background-repeat: no-repeat;
 			background-position: left center;
 			width: 0px;

@@ -19,7 +19,7 @@ let totalResources = ENTRIES.length *3;
 //===================//
 
 function assetBaseUrl(fileName) {
-    return `../assets/gallery/${fileName}`;
+    return `../assets/gallery/2025/${fileName}`;
 }
 
 function getArtUrl(group, id) {
